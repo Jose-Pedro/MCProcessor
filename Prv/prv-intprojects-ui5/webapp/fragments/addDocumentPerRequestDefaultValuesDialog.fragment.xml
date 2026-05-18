@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="addDocumentPerRequesDefaultValuestDialog" title="{i18n>addDocument}" >
+        <content>
+            <smartform:SmartForm id="addDocumentPerRequestDefaultValuesForm" editable="true" entityType="Requests">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="ColumnLayoutaddDocumentPerRequestDefaultValuesForm"  columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="GroupaddDocumentPerRequestDefaultValuesForm" >
+                        <smartform:GroupElement id="GroupElementaddDocumentPerRequestDefaultValuesForm" >
+                            <smartfield:SmartField  id="documentIdPerRequestDefaultValues" value='{documentId}' entitySet="Requests"/>
+                        </smartform:GroupElement>                    
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar id="ToolbaraddDocumentPerRequestDefaultValuesForm" >
+				<content>
+					
+					<ToolbarSpacer id="ToolbarSpaceraddDocumentPerRequestDefaultValuesForm"  />
+					<Button id="createDocumentPerRequestDefaultValues"
+                            type="Emphasized"
+							text="{i18n>addDocumentFlow}"
+							press="onAddDocFlowPerRequestDefaultValues" />
+					<Button id="cancelDocumentPerRequestDefaultValues"
+                            type="Transparent"
+                            text="{i18n>cancel}"
+                            press="onCloseAddDocumentPerRequestDefaultValues" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

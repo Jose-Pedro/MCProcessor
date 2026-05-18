@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="workEditComments" title="{i18n>workComments}" >
+        <content>
+        
+	        <smartform:SmartForm id="workEditCommentsForm" editable="true">
+                <smartform:groups> 
+                    <smartform:Group id="_IDGenGroup" >
+                        <smartform:GroupElement id="_IDGenGroupElement">
+                            <smartfield:SmartField id="workEditCommentsField" change="onFieldChange" value="{comments}" entitySet="Works" editable="true" customdata:multiLineSettings="{cols: 60, rows: 5}" />
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar1">
+				<content>
+					<ToolbarSpacer id="_IDGenToolbarSpacer2" />
+					<Button id="workEditCommentsCloseBtn"
+                            type="Emphasized"
+							text="Close"
+							press="onWorkEditCommentsConfirm" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

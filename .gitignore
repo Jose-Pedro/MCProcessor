@@ -1,0 +1,126 @@
+# ============================================================
+# MCProcessor .gitignore
+# Strategy: deny everything at root by default, then explicitly
+# allow the scope folders. Inside allowed paths, exclude build
+# artifacts and secrets. Tighten over time, never loosen.
+# ============================================================
+
+# --- Root deny: ignore every top-level entry by default ---
+/*
+
+# --- Root allow: repo metadata + scope folders ---
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/ROADMAP.md
+!/LICENSE
+!/.augment/
+!/Prv/
+
+# --- Inside Prv, only include the three intprojects folders ---
+/Prv/*
+!/Prv/prv-intprojects-app/
+!/Prv/prv-intprojects-nodejs/
+!/Prv/prv-intprojects-ui5/
+
+# ============================================================
+# Build artifacts, caches, generated code
+# ============================================================
+**/node_modules/
+**/gen/
+**/dist/
+**/build/
+**/out/
+**/coverage/
+**/.nyc_output/
+**/mta_archives/
+*.tar.gz
+*.tar
+*.mtar
+*.zip
+
+# ============================================================
+# Logs and temp files
+# ============================================================
+**/*.log
+**/npm-debug.log*
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/cap-boot.log
+**/cap-boot.err.log
+**/ui-boot.log
+**/ui-boot.err.log
+
+# ============================================================
+# Secrets and credentials — DO NOT COMMIT
+# ============================================================
+**/.env
+**/.env.*
+!**/.env.example
+**/default-env.json
+**/*credentials*.json
+**/*credentials*.yaml
+**/*credentials*.yml
+**/*secret*.json
+**/*secret*.yaml
+**/*.hdbenv
+**/.npmrc
+**/.cdsrc-private.json
+**/.cdsrc.json.private
+**/connections.json
+**/destinations.json
+**/uaa-credentials*
+**/xs-app-bundle-*
+**/private-key.pem
+**/*.pfx
+**/*.p12
+**/*.key
+*.pem
+*_rsa
+*_rsa.pub
+*_dsa
+*_ed25519
+**/.ssh/
+
+# ============================================================
+# Local databases and runtime data
+# ============================================================
+**/*.db
+**/*.db-journal
+**/*.sqlite
+**/*.sqlite3
+
+# ============================================================
+# IDE / editor cruft
+# ============================================================
+**/.idea/
+**/.vs/
+**/*.swp
+**/*.swo
+**/.vscode/settings.json
+**/.vscode/launch.json
+# Keep .vscode/extensions.json + .vscode/tasks.json if explicitly added
+
+# ============================================================
+# HANA / CAP / SAP tooling artifacts
+# ============================================================
+**/.che/
+**/.hdideployer/
+**/.metadata/
+**/_out/
+**/*.taroutput
+
+# ============================================================
+# Augment session artifacts (keep SESSION_LOG.md, ignore caches)
+# ============================================================
+.augment/*.tmp
+.augment/cache/
+.augment/.cache/
+
+# ============================================================
+# Local tooling cache
+# ============================================================
+.cache/
+.tmp/
+.turbo/

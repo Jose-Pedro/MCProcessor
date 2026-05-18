@@ -1,0 +1,640 @@
+@server = http://localhost:4004 
+# @credencialsAdmin = Authorization: Basic JMEDEIRO:Dezembro?2025 
+# @credencialsAdmin = Authorization: Basic JDIEZCRI:Cachocabrones.01
+#@credencialsAdmin = Authorization: Basic FRPRSUBCO2:Cellnex01.
+@credencialsAdmin = Authorization: Basic FRPRCOLMNG:Cellnex01.
+
+### Get metadata v2
+GET {{server}}/odata/v2/service/project/$metadata?sap-language=EN HTTP/1.1
+{{credencialsAdmin}}
+
+### Get metadata v2
+GET {{server}}/odata/v2/service/checklistconfiguration/$metadata?sap-language=EN HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'16f3b4f7-81d3-413d-9bf1-6fe2a6a05a4d')/Works?$skip=0&$top=103&$select=status%2ctype_ID%2cdescription%2cresponsibleDefault%2cstartDate%2cexpectedStartDate%2crealStartDate%2cComments%2cdocument%2cID%2cstatus_ID%2cparentID%2ccomments%2cstatusFC%2cdescriptionFC%2cresponsibleType%2cexternalType%2cinternalResponsible%2cexternalResponsible%2cresponsibleTypeFC%2cexternalTypeFC%2cinternalResponsibleFC%2cexternalResponsibleFC%2ccommentsFC%2cstartDateFC%2cendDateFC%2cexpectedStartDateFC%2cexpectedEndDateFC%2crealStartDateFC%2crealEndDateFC&$expand=type&$inlinecount=allpages HTTP/1.1
+
+
+### get block works
+POST  {{server}}/odata/v2/service/project/Blocks_close?ID=guid'9dbf1c83-4005-4358-8edf-02cf37fcacdb' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760306579655-1272
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/ImpactedCustomers(requestId=guid'4770cdcc-5eff-4354-9bcc-cf21850d1b4b',siteId='UK-00-000061',customerId='0300000000') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760307985249-242
+Content-Length: 362
+{{credencialsAdmin}}
+
+{"impacted":false,"__metadata":{"type":"project.ImpactedCustomers","uri":"https://port8080-workspaces-ws-xkjuy.eu20.applicationstudio.cloud.sap,agora-prvintprojects-http.dest:443/destinations/Agora-prvintprojects-HTTP/odata/v2/service/project/ImpactedCustomers(requestId=guid'4770cdcc-5eff-4354-9bcc-cf21850d1b4b',siteId='UK-00-000061',customerId='0300000000')"}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/ChecklistItems(guid'478a0233-c80a-47fc-b29b-6bdb82db2d90') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760386673445-309
+Content-Length: 322
+{{credencialsAdmin}}
+
+{"dateValue":"\/Date(1760313600000)\/","__metadata":{"type":"project.ChecklistItems","uri":"https://port8080-workspaces-ws-xkjuy.eu20.applicationstudio.cloud.sap,agora-prvintprojects-http.dest:443/destinations/Agora-prvintprojects-HTTP/odata/v2/service/project/ChecklistItems(guid'478a0233-c80a-47fc-b29b-6bdb82db2d90')"}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/Works(guid'6dc6e439-6437-4a6e-b9d7-a8792474410c') HTTP/1.1 
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1764140518319-359
+Content-Length: 307
+{{credencialsAdmin}}
+
+{"externalType":3,"__metadata":{"type":"project.Works","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~790ec857-5223-476e-bd3b-d8ce9de95e5c~/odata/v2/service/project/Works(guid'6dc6e439-6437-4a6e-b9d7-a8792474410c')"}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Managers
+{{credencialsAdmin}}
+
+
+### get block works
+POST {{server}}/odata/v2/service/project/Blocks_close?ID=guid'cc0fbd20-5586-4c26-83dd-f1ad285b19cf' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1764669305477-3780
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/SearchByRequests?$skip=0&$top=110&$filter=searchType%20eq%200&$select=code%2cstatus%2cobjectStatus%2cstatusName%2csiteId%2csiteName%2csiteRegion%2csiteCity%2csiteLegacyCode%2cmanager%2cmanagerName%2cpreferredProvider%2cpreferredProviderName%2crequestedDate%2cassignationDate%2cID&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(fb5f9879-5259-480d-9ae7-3c56d7c61926)/Phases(guid'c6feef79-5a5f-4390-8e2d-27c6c3c54464')/Blocks(guid'54de77d4-f400-45c0-9b61-dd5249c55f34')?$expand=BlockProvision%2cBlockStatus%2cBlockProvision%2fApproverTypes%2cBlockProvision%2fSubcoTypes HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(be7b1445-47de-4a01-987d-9d6bff2125dd)?$expand=Phases%2cSite%2cRequestProvision%2cRequestStatus%2cOnHoldReasons%2cCancellationReasons%2cRequestTypes%2cManagers%2cRequestProvision%2fProjectObjectives%2cRequestProvision%2fClassifications%2cRequestProvision%2fPMOManagers%2cRequestProvision%2fRequesters%2cRequestProvision%2fPreferredProviders%2cSite%2fCellnexZones%2cSite%2fZones%2cSite%2fInfraOrigins%2cSite%2fInfraOwnerships%2cSite%2fInfraStatus%2cSite%2fMarketables%2cSite%2fABFZones%2cSite%2fManagingCompanies%2cSite%2fCellnexProjects%2cSite%2fExploiteds%2cSite%2fCompanies HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/BlockProvision(guid'5d9057ab-4a34-4991-83b1-f8a3998eaf91') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1765132479184-739
+Content-Length: 345
+{{credencialsAdmin}}
+
+{"plannedDate":"\/Date(1766534400000)\/","__metadata":{"type":"project.BlockProvision","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~2413adb5-533a-4996-922d-e3f7e6e23239~/odata/v2/service/project/BlockProvision(guid'5d9057ab-4a34-4991-83b1-f8a3998eaf91')"}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'c909e660-0cd6-4aa6-add1-94ffda77b169')/Works?$skip=0&$top=103&$select=status%2ctype_ID%2cdescription%2cresponsibleDefault%2cstartDate%2cexpectedStartDate%2crealStartDate%2cComments%2cdocument%2cID%2cstatus_ID%2cparentID%2ccomments%2cstatusFC%2cdescriptionFC%2cresponsibleType%2cexternalType%2cresponsibleTypeName%2cexternalTypeName%2cinternalResponsible%2cexternalResponsible%2cinternalResponsibleName%2cexternalResponsibleName%2cresponsibleTypeFC%2cexternalTypeFC%2cinternalResponsibleFC%2cexternalResponsibleFC%2ccommentsFC%2cstartDateFC%2cendDateFC%2cexpectedStartDateFC%2cexpectedEndDateFC%2crealStartDateFC%2crealEndDateFC%2chasAuthVF&$expand=type&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/SearchByRequests?$skip=0&$top=110&$orderby=requestedDate%20desc&$filter=searchType%20eq%200%20and%20requestedDate%20eq%20datetime%272025-12-11T00%3a00%3a00%27&$select=code%2cstatus%2cobjectStatus%2cstatusName%2csiteId%2csiteName%2csiteRegion%2csiteCity%2csiteLegacyCode%2cmanager%2cmanagerName%2cpreferredProvider%2cpreferredProviderName%2crequestedDate%2cassignationDate%2cID&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/SearchByTasks?$skip=0&$top=110&$filter=searchType%20eq%200%20and%20(requestedDate%20ge%20datetime%272025-11-17T00%3a00%3a00%27%20and%20requestedDate%20le%20datetime%272025-11-17T00%3a00%3a00%27)&$select=code%2ctaskType%2ctaskTypeName%2crequestStatus%2cobjectRequestStatus%2crequestStatusName%2cstatus%2cobjectStatus%2cstatusName%2csiteId%2csiteName%2csiteRegion%2csiteCity%2cphase%2cblock%2cdocumentType%2cdocumentName%2cmanager%2cmanagerName%2cpreferredProvider%2cpreferredProviderName%2cassignedResponsible%2cassignedResponsibleName%2crequestedDate%2cID%2cprojectTypeName%2cprojectObjectiveName%2ccellnexZoneName%2cmasterPhaseId%2cmasterBlockID%2cwork%2cworkId%2cworkTypeName%2croleId&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/PhasesPerProcess?$skip=0&$top=100&$orderby=phaseOrder%20asc&$filter=processFlowId%20eq%20155l&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/setCountryForProcess
+Accept: application/json
+Accept-Language: en
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{"processId": 93, "countryId": "FR"}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Requests_reopen?ID=guid'9969f717-00be-4019-94f7-2a7b03dfe944' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/BlockProvision(guid'2920ff8b-d9ac-414f-ad72-27bf13148c97') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1765973222957-2535
+Content-Length: 320
+{{credencialsAdmin}}
+
+{"accepted":"2","__metadata":{"type":"project.BlockProvision","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~015cbcf0-53f5-427e-91db-31251b359a0b~/odata/v2/service/project/BlockProvision(guid'2920ff8b-d9ac-414f-ad72-27bf13148c97')"}}
+
+
+### get block works
+POST {{server}}/odata/v2/service/project/Blocks_close?ID=guid'14fd1ec9-5fab-4377-b4bd-64e1978b2d3b' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1766056432264-3001
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(3947eb9b-4188-4e4e-8dcf-baca489dbc02)/Phases(guid'fc301b1c-2464-4b0c-adf1-4cbc25de8b1d')/Blocks(guid'83fe431a-3d0e-4193-8844-b5508a2f3a42')?$expand=BlockProvision%2cBlockStatus%2cBlockProvision%2fSiteSurveyNeeded HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(3947eb9b-4188-4e4e-8dcf-baca489dbc02)?$expand=Phases%2cSite%2cRequestProvision%2cRequestStatus%2cOnHoldReasons%2cCancellationReasons%2cRequestTypes%2cManagers%2cRequestProvision%2fProjectObjectives%2cRequestProvision%2fClassifications%2cRequestProvision%2fPMOManagers%2cRequestProvision%2fRequesters%2cRequestProvision%2fPreferredProviders%2cSite%2fCellnexZones%2cSite%2fZones%2cSite%2fInfraOrigins%2cSite%2fInfraOwnerships%2cSite%2fInfraStatus%2cSite%2fMarketables%2cSite%2fABFZones%2cSite%2fManagingCompanies%2cSite%2fCellnexProjects%2cSite%2fExploiteds%2cSite%2fCompanies HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'64f5c659-698a-4648-8e4f-411458e81cea')/DocumentsPerBlocks?$skip=0&$top=103&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2cactivated%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fdocumentNameVF%2cInstancesPerDocuments%2fresponsibleDefaultNameVF%2cInstancesPerDocuments%2fapproverTypeName%2cInstancesPerDocuments%2fsubcoTypeName%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF%2cinstanceId&$expand=InstancesPerDocuments%2cInstancesPerDocuments%2fDocuments&$inlinecount=allpages
+
+{{credencialsAdmin}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Requests HTTP/1.1
+sap-cancel-on-close: false
+Content-Type: application/json
+Content-ID: id-1766216859750-171
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Length: 193
+{{credencialsAdmin}}
+
+{"creationConfig":"DEF","processFlowId":"int","requestType":40,"requestedDate":"\/Date(1766216852027)\/","siteId":"FR-00-007222","projectObjective":100,"__metadata":{"type":"project.Requests"}}
+
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/ChecklistItems(guid'7d0a6ecc-c770-47de-8cf8-56fece4b34b0') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1768221872466-1114
+Content-Length: 318
+{{credencialsAdmin}}
+
+{"pickList":2,"__metadata":{"type":"project.ChecklistItems","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~f1c27514-8bf6-485c-a6c9-3fa1be417142~/odata/v2/service/project/ChecklistItems(guid'7d0a6ecc-c770-47de-8cf8-56fece4b34b0')"}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Works HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1768389326896-2566
+Content-Length: 70
+{{credencialsAdmin}}
+
+{"parentId":"f9b9f4be-fd4a-42f4-9be9-7238f14d0473","parentType_ID":30}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/Works(guid'7a7fae03-6a85-4e6e-b52a-651c3c4b7771') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1768399209993-488
+Content-Length: 333
+{{credencialsAdmin}}
+
+{"expectedStartDate":"\/Date(1768262400000)\/","__metadata":{"type":"project.Works","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~d35bd3ea-f6e7-49d7-9aee-02e32b96c792~/odata/v2/service/project/Works(guid'7a7fae03-6a85-4e6e-b52a-651c3c4b7771')"}}
+
+
+### get block works
+POST {{server}}/odata/v2/service/project/Works_complete?ID=guid'9ce7bfbb-72d4-4d9b-8b84-33123d64d6b2' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1768403506660-459
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'3ff72274-f6ad-4221-87f0-f763f8f9347c')/Works?$skip=0&$top=103&$select=status%2ctype_ID%2cdescription%2cresponsibleDefault%2cstartDate%2cexpectedStartDate%2crealStartDate%2cComments%2cdocument%2cID%2cstatus_ID%2cparentID%2ccomments%2cendDate%2cstatusFC%2cdescriptionFC%2cresponsibleType%2cexternalType%2cresponsibleTypeName%2cexternalTypeName%2cinternalResponsible%2cexternalResponsible%2cinternalResponsibleName%2cexternalResponsibleName%2cresponsibleTypeFC%2cexternalTypeFC%2cinternalResponsibleFC%2cexternalResponsibleFC%2ccommentsFC%2cstartDateFC%2cendDateFC%2cexpectedStartDateFC%2cexpectedEndDateFC%2crealStartDateFC%2crealEndDateFC%2chasAuthVF&$expand=type&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'417be50c-d8f4-4af9-8499-528b5e13411f')/DocumentsPerBlocks?$skip=0&$top=103&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2cactivated%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fdocumentNameVF%2cInstancesPerDocuments%2fresponsibleDefaultNameVF%2cInstancesPerDocuments%2fapproverTypeName%2cInstancesPerDocuments%2fsubcoTypeName%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF%2cinstanceId&$expand=InstancesPerDocuments%2cInstancesPerDocuments%2fDocuments&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'062f495e-ee94-4ffb-85dd-9085254afcaa')/DocumentsPerBlocks?$skip=0&$top=103&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2cactivated%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fdocumentNameVF%2cInstancesPerDocuments%2fresponsibleDefaultNameVF%2cInstancesPerDocuments%2fapproverTypeName%2cInstancesPerDocuments%2fsubcoTypeName%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF%2cinstanceId&$expand=InstancesPerDocuments%2cInstancesPerDocuments%2fDocuments&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/DocumentsPerRequest('b06c8edf-7e55-469e-8e55-57165ffc924c') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769424430926-843
+Content-Length: 331
+{{credencialsAdmin}}
+
+{"responsibleId":"2","__metadata":{"type":"project.DocumentsPerRequest","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~9f7ca51b-31e6-4c9b-8c44-5edbcbdc3b6c~/odata/v2/service/project/DocumentsPerRequest('b06c8edf-7e55-469e-8e55-57165ffc924c')"}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/LocalDocuments HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769523150251-958
+Content-Length: 387
+{{credencialsAdmin}}
+
+{"requestId":"01182cb5-28b5-42f1-88ec-c68cbfe891ba","blockId":"048900c0-88ef-4951-92f9-26af4c163f59","requestCode":"INT.SIN.FR.0000115","workId":"38c71a52-4def-482c-ad57-295c00a2b304","documentName":"Diseño Tecnico REST Agora 15.0.0.pdf","documentId":"EBI","docType":"Initial Request","subType":"EBI","subTypeLvl2":"Initial Request","finalDocument":false,"mediaType":"application/pdf"}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'417be50c-d8f4-4af9-8499-528b5e13411f')/SupportDocuments?$skip=0&$top=100&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'048900c0-88ef-4951-92f9-26af4c163f59')/Works?$skip=0&$top=103&$select=status%2ctype_ID%2cdescription%2cresponsibleDefault%2cstartDate%2cexpectedStartDate%2crealStartDate%2cComments%2cdocument%2cID%2cstatus_ID%2cparentID%2ccomments%2cendDate%2cstatusFC%2cdescriptionFC%2cresponsibleType%2cexternalType%2cresponsibleTypeName%2cexternalTypeName%2cinternalResponsible%2cexternalResponsible%2cinternalResponsibleName%2cexternalResponsibleName%2cresponsibleTypeFC%2cexternalTypeFC%2cinternalResponsibleFC%2cexternalResponsibleFC%2ccommentsFC%2cstartDateFC%2cendDateFC%2cexpectedStartDateFC%2cexpectedEndDateFC%2crealStartDateFC%2crealEndDateFC%2chasAuthVF&$expand=type&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/Works(guid'de6475c2-f26d-47a7-a3b4-a0b6f276d510') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769625168346-825
+Content-Length: 318
+{{credencialsAdmin}}
+
+{"externalResponsible":"161807","__metadata":{"type":"project.Works","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~b5e10f11-b67b-4cb1-9ec9-76182d90e7d6~/odata/v2/service/project/Works(guid'de6475c2-f26d-47a7-a3b4-a0b6f276d510')"}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/BlocksResponsibles?$skip=0&$top=110&$filter=requestId%20eq%20guid%279ab4270e-ac04-40fd-8ce7-f4061205a8d4%27&$select=phaseProcessFlowId%2cphaseName%2cblockProcessFlowId%2cblockName%2capproverType%2capproverTypeFC%2cApproverTypes%2fname%2csubcoType%2csubcoTypeFC%2cSubcoTypes%2fname%2cexternalResponsible%2cexternalResponsibleFC%2cexternalResponsibleName%2cinternalResponsible%2cinternalResponsibleFC%2cID&$expand=ApproverTypes%2cSubcoTypes&$inlinecount=allpages 
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/Works(guid'65a9e76a-7058-49a4-85f4-5f67c30010cf') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769692710371-839
+Content-Length: 331
+{{credencialsAdmin}}
+
+{"__metadata":{"type":"project.Works","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~b5e10f11-b67b-4cb1-9ec9-76182d90e7d6~/odata/v2/service/project/Works(guid'65a9e76a-7058-49a4-85f4-5f67c30010cf')"},"expectedEndDate":"\/Date(1769644800000)\/"}
+
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/RequestProvision(guid'9ab4270e-ac04-40fd-8ce7-f4061205a8d4') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769963000454-510
+Content-Length: 338
+{{credencialsAdmin}}
+
+{"preferredProvider":"161814","__metadata":{"type":"project.RequestProvision","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~513c16dc-1838-42fc-8376-8941321e7096~/odata/v2/service/project/RequestProvision(guid'9ab4270e-ac04-40fd-8ce7-f4061205a8d4')"}}
+
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'943fe90f-d9e7-4540-a63c-2af07b3ca1fe')/DocumentsPerBlocks?$skip=0&$top=103&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2cactivated%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fdocumentNameVF%2cInstancesPerDocuments%2fresponsibleDefaultNameVF%2cInstancesPerDocuments%2fapproverTypeName%2cInstancesPerDocuments%2fsubcoTypeName%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF%2cinstanceId&$expand=InstancesPerDocuments%2cInstancesPerDocuments%2fDocuments&$inlinecount=allpages 
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/BlockProvision(guid'1205ef3d-60ce-492f-a508-d87f563514cf') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1769894305058-442
+Content-Length: 348
+{{credencialsAdmin}}
+
+{"siteSurveyDate":"\/Date(1768435200000)\/","__metadata":{"type":"project.BlockProvision","uri":"https://cnx-pre-cf.cpp.cfapps.eu20.hana.ondemand.com/fae3ad47-6d54-470a-b281-7d34bea80eaf.prvintprojectsui5.prvintprojectsui5/~81b77a77-5230-467a-87da-956050622ad2~/odata/v2/service/project/BlockProvision(guid'a6981b89-a92b-456a-ad42-9c9a5f67b6db')"}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(959ef8ad-7319-4aaf-b518-6358a6eedbb4)?$expand=Phases%2cSite%2cRequestProvision%2cRequestDocumentsPerBlockDefaultValid%2cRequestStatus%2cOnHoldReasons%2cCancellationReasons%2cRequestTypes%2cManagers%2cRequestProvision%2fProjectObjectives%2cRequestProvision%2fMoaOperationTypes%2cRequestProvision%2fClassifications%2cRequestProvision%2fPMOManagers%2cRequestProvision%2fRequesters%2cRequestProvision%2fPreferredProviders%2cSite%2fCellnexZones%2cSite%2fZones%2cSite%2fInfraOrigins%2cSite%2fInfraOwnerships%2cSite%2fInfraStatus%2cSite%2fMarketables%2cSite%2fABFZones%2cSite%2fManagingCompanies%2cSite%2fCellnexProjects%2cSite%2fExploiteds%2cSite%2fCompanies
+{{credencialsAdmin}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Requests HTTP/1.1 
+sap-cancel-on-close: false
+Content-Type: application/json
+Content-ID: id-1770208508947-710
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Length: 221
+{{credencialsAdmin}}
+
+{"creationConfig":"DEF","processFlowId":"int","requestType":40,"requestedDate":"\/Date(1770208503134)\/","siteId":"FR-00-007222","projectObjective":10,"__metadata":{"type":"project.Requests"},"preferredProvider":"161807"}
+
+### get block works
+DELETE {{server}}/odata/v2/service/project/ContractRestrictions(contractRestrictionId='1',BLOCK_ID='e62f5faa-7534-4785-aebf-e855f067fb0b') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-ID: id-1770489301263-429
+{{credencialsAdmin}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/InstancesPerDocuments('99949ce0-991d-4d10-9c85-e812b5976f09') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1770641289199-971
+Content-Length: 453
+{{credencialsAdmin}}
+
+{"expectedSubmissionDate":"\/Date(1770681600000)\/","customerInformDate":"\/Date(1770595200000)\/","documentsResponsibleComments":"ererer","__metadata":{"type":"project.InstancesPerDocuments","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~16a0de86-31f2-484e-b68d-9ec9b31a89cf~/odata/v2/service/project/InstancesPerDocuments('99949ce0-991d-4d10-9c85-e812b5976f09')"}}
+
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/BlockProvision(guid'e78917b0-22ec-4807-bc94-02541b2ad06d') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: fr-FR
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1770641674607-1766
+Content-Length: 345
+{{credencialsAdmin}}
+
+{"realEstateFeasibilityExp":"21","__metadata":{"type":"project.BlockProvision","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~16a0de86-31f2-484e-b68d-9ec9b31a89cf~/odata/v2/service/project/BlockProvision(guid'e78917b0-22ec-4807-bc94-02541b2ad06d')"}}
+
+### get block works
+PATCH {{server}}/odata/v2/service/project/DocumentsPerBlocks('c9343cd8-3c63-4193-a760-d8979210fa5a') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1770802866062-343
+Content-Length: 338
+{{credencialsAdmin}}
+
+{"customerValidationVF":true,"__metadata":{"type":"project.DocumentsPerBlocks","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~16a0de86-31f2-484e-b68d-9ec9b31a89cf~/odata/v2/service/project/DocumentsPerBlocks('c9343cd8-3c63-4193-a760-d8979210fa5a')"}}
+
+
+### get block works
+POST {{server}}/odata/v2/service/project/Works_cancel?ID=guid'38c71a52-4def-482c-ad57-295c00a2b304'&comments='gfdfdfdf' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1770817836731-481
+{{credencialsAdmin}}
+
+
+### get block works
+POST {{server}}/odata/v2/service/project/Works HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1770893429950-363
+Content-Length: 72
+{{credencialsAdmin}}
+
+{"parentId":"048900c0-88ef-4951-92f9-26af4c163f59","parentType_ID":null}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Blocks(guid'5cf36282-9605-4c14-b685-b23dca14e175')/Works?$skip=0&$top=103&$orderby=status%20desc,type_ID%20asc&$select=status%2ctype_ID%2cdescription%2cresponsibleDefault%2cstartDate%2cexpectedStartDate%2crealStartDate%2cComments%2cdocuments%2cID%2cstatus_ID%2cparentID%2ccomments%2cendDate%2cstatusFC%2cdescriptionFC%2cresponsibleType%2cexternalType%2cresponsibleTypeName%2cexternalTypeName%2cinternalResponsible%2cexternalResponsible%2cinternalResponsibleName%2cexternalResponsibleName%2cresponsibleTypeFC%2cexternalTypeFC%2cinternalResponsibleFC%2cexternalResponsibleFC%2ccommentsFC%2cstartDateFC%2cendDateFC%2cexpectedStartDateFC%2cexpectedEndDateFC%2crealStartDateFC%2crealEndDateFC%2chasAuthVF&$expand=type&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works 
+GET {{server}}/odata/v2/service/project/Blocks(guid'5ec98577-3353-40bd-9d9d-82c21138baa2')/ContractRestrictions?$skip=0&$top=100&$expand=ContractRestrictionsVH&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+###
+DELETE {{server}}/odata/v2/service/project/ContractRestrictions(contractRestrictionId='2',BLOCK_ID='5ec98577-3353-40bd-9d9d-82c21138baa2') HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works  
+GET {{server}}/odata/v2/service/project/Blocks(guid'5ec98577-3353-40bd-9d9d-82c21138baa2')/ContractRestrictions?$skip=0&$top=100&$expand=ContractRestrictionsVH&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Blocks(guid'5ec98577-3353-40bd-9d9d-82c21138baa2')/ContractRestrictions HTTP/1.1
+sap-cancel-on-close: false
+Content-Type: application/json
+Content-ID: id-1771582929210-286
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Length: 84
+{{credencialsAdmin}}
+
+{"contractRestrictionIdUI":"1","__metadata":{"type":"project.ContractRestrictions"}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/SearchByRequests?$skip=0&$top=110&$orderby=createdAt%20desc&$filter=searchType%20eq%200&$select=code%2cstatus%2cobjectStatus%2cstatusName%2cprojectType%2cprojectTypeName%2cprojectObjective%2cprojectObjectiveName%2ccomplexity%2ccomplexityName%2csiteId%2csiteName%2csiteRegion%2csiteCity%2csiteLegacyCode%2cmanager%2cmanagerName%2cpreferredProvider%2cpreferredProviderName%2crequestedDate%2ccreatedAt%2cassignationDate%2clastBlock%2cID%2ccellnexZoneName&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(12860c8f-23c3-44e1-a73a-9647b1bd226e)?$expand=Phases%2cSite%2cRequestProvision%2cRequestDocumentsPerBlockDefaultValid%2cRequestStatus%2cOnHoldReasons%2cCancellationReasons%2cRequestTypes%2cManagers%2cRequestProvision%2fProjectObjectives%2cRequestProvision%2fMoaOperationTypes%2cRequestProvision%2fClassifications%2cRequestProvision%2fPMOManagers%2cRequestProvision%2fRequesters%2cRequestProvision%2fPreferredProviders%2cSite%2fCellnexZones%2cSite%2fZones%2cSite%2fInfraOrigins%2cSite%2fInfraOwnerships%2cSite%2fInfraStatus%2cSite%2fMarketables%2cSite%2fABFZones%2cSite%2fManagingCompanies%2cSite%2fCellnexProjects%2cSite%2fExploiteds%2cSite%2fCompanies HTTP/1.1
+{{credencialsAdmin}}
+
+
+### get block works
+GET {{server}}/odata/v2/service/project/Sites?$select=siteId%2CAOTYPE%2CprimaryLegacyCode%2ClegacyCode%2CsiteName%2Ccompany%2CcellnexZone%2Czone%2CinfraOrigin%2CinfraOwnership%2CinfraStatus%2CmarketableId%2CabfZone%2CmanagingCompany%2CcellnexProject%2Cexploited%2Ccomunity%2Ccountry%2Cregion%2Ccity%2CpostalCode%2Cstreet%2ChouseNumber%2Cfloor%2CproductionZoneResponsible%2CproductionZoneResponsibleName%2CsiteManagerZoneResponsible%2CsiteManagerZoneResponsibleName%2CproductionRegionManager%2CproductionRegionManagerName%2CregionSiteManager%2CregionSiteManagerName%2CproductionManager%2CproductionManagerName%2CsiteManager%2CsiteManagerName&$top=2&$filter=siteId%20eq%20%27FR-00-007205%27 HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/InternalPhases
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/InternalBlocks
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/Requests(cccccf34-ff19-4988-bb77-77afbff9ab49)?$expand=Phases%2cSite%2cRequestProvision%2cRequestDocumentsPerBlockDefaultValid%2cRequestStatus%2cOnHoldReasons%2cCancellationReasons%2cRequestTypes%2cManagers%2cRequestProvision%2fProjectObjectives%2cRequestProvision%2fMoaOperationTypes%2cRequestProvision%2fClassifications%2cRequestProvision%2fPMOManagers%2cRequestProvision%2fRequesters%2cRequestProvision%2fPreferredProviders%2cSite%2fCellnexZones%2cSite%2fZones%2cSite%2fInfraOrigins%2cSite%2fInfraOwnerships%2cSite%2fInfraStatus%2cSite%2fMarketables%2cSite%2fABFZones%2cSite%2fManagingCompanies%2cSite%2fCellnexProjects%2cSite%2fExploiteds%2cSite%2fCompanies HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+GET {{server}}/odata/v2/service/project/ServicesECC?$filter=Idrequest%20eq%20%27INT.DIS.FR.0000170%27 HTTP/1.1
+{{credencialsAdmin}}
+
+### get block works
+POST {{server}}/odata/v2/service/project/Blocks_close?ID=guid'a7d7a7a1-d15b-4f5d-91a6-c76ebbb065ed' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1775478729047-2742
+{{credencialsAdmin}}

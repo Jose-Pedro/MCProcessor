@@ -1,0 +1,21 @@
+CREATE VIEW SITES_BY_AOTYPE(IN p_aotype NVARCHAR(3)) AS SELECT
+  site_0.AOID AS siteId,
+  site_0.AOTYPE,
+  site_0.ZZMUNA AS legacyCode,
+  site_0.ZZINFO AS primaryLegacyCode,
+  site_0.XAO AS siteName,
+  emplaz_3.BUKRS AS company,
+  site_0.ZZUNIDOPER AS cellnexZone,
+  site_0.ZZOPERTYPE AS infraOrigin,
+  site_0.ZZOWNERSHIP AS infraOwner,
+  site_0.ZZCOMERCIAL AS marketableId,
+  site_0.ZZABFZONE AS abfZone,
+  address_5.COUNTRY AS country,
+  address_5.REGION AS region,
+  site_0.ZZCOMUNIDAD AS comunity,
+  address_5.CITY1 AS city,
+  address_5.POST_CODE1 AS postalCode,
+  address_5.STREET AS street,
+  address_5.HOUSE_NUM1 AS houseNumber,
+  address_5."FLOOR" AS "FLOOR"
+FROM (((((VIBDAO AS site_0 INNER JOIN VIBDOBJASS AS relation_1 ON relation_1.OBJNRSRC = site_0.OBJNR AND relation_1.OBJASSTYPE = '61' AND site_0.AOTYPE = :P_AOTYPE) INNER JOIN IFLOT AS details_2 ON details_2.OBJNR = relation_1.OBJNRTRG) INNER JOIN ILOA AS emplaz_3 ON emplaz_3.ILOAN = details_2.ILOAN) LEFT JOIN VZOBJECT AS adrcrel_4 ON adrcrel_4.ADROBJNR = site_0.INTRENO AND adrcrel_4.ADROBJTYP = 'VI' AND adrcrel_4.OBTYP = '56') LEFT JOIN ADRC AS address_5 ON address_5.ADDRNUMBER = adrcrel_4.ADRNR);

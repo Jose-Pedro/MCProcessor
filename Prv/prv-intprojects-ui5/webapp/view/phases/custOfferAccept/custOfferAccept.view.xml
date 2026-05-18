@@ -1,0 +1,10 @@
+<mvc:View 
+    controllerName="prvintprojectsui5.controller.phases.custOfferAccept.custOfferAccept" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:upload="sap.m.upload"
+    displayBlock="true">
+    <mvc:XMLView id="acceptBuildOffeView" viewName="prvintprojectsui5.view.phases.custOfferAccept.blocks.acceptBuildOffe"/>
+    <Label id="custOfferAccept_IDGenLabel1" class="sapUiLargeMarginBottom"></Label>
+</mvc:View>

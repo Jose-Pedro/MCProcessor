@@ -1,0 +1,66 @@
+<mvc:View 
+    xmlns:core="sap.ui.core"
+    controllerName="prvintprojectsui5.components.uploadTable.controller.Component"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.m"
+    xmlns:upload="sap.m.upload"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <Table
+        id="uploadTable"
+        headerText="{i18n>Attachments}" 
+        sticky="ColumnHeaders,HeaderToolbar"
+        width="100%"
+        mode="None"
+        fixedLayout="false"
+        autoPopinMode="true"
+        hiddenInPopin="None">
+        <!-- items="{ path: 'SupportDocuments',  templateShareable: false }"> -->
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="{i18n>Attachments}" level="H2" />
+                <ToolbarSpacer />
+                <upload:ActionsPlaceholder id="uploadButton" placeholderFor="UploadButtonPlaceholder" />
+            </OverflowToolbar>
+        </headerToolbar>
+        <dependents>
+            <plugins.UploadSetwithTable
+                multiple="true"
+                onActivated="onAttachmentTablePluginActivated"
+                uploadEnabled="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+                uploadCompleted="onTableFileUploadCompleted"
+                cloudFilePickerEnabled="true"
+                itemValidationHandler=".onAttachmentUploadFileValidation"
+                actions="uploadButton"
+                >
+                <rowConfiguration>
+                    <upload.UploadItemConfiguration fileNamePath="fileName" mediaTypePath="mediaType" />
+                </rowConfiguration>
+            </plugins.UploadSetwithTable>
+        </dependents>
+        <columns>
+            <Column width="3rem"/>
+            <Column><header><Label text="{i18n>filename}" /></header></Column>
+            <!-- <Column><header><Label text="{i18n>Document}" /></header></Column> -->
+            <Column width="3rem"/>
+        </columns>
+        <!-- <items>
+            <ColumnListItem>
+                <cells>
+                    <core:Icon class="sapMUSTItemImage sapMUSTItemIcon"
+                        src="{
+                            parts: ['mediaType', 'documentName'],
+                            formatter: '.getTableFileIcon' 
+                        }"
+                    />
+                    <Link text="{documentName}" press="onTableFileDownload" class="sapUiTinyMarginBottom"/>
+                    <Text text="{documentTypeName}"/>
+                    <Button icon="sap-icon://decline" tooltip="{i18n>DeleteFile}" press="onTableFileRemove" type="Transparent" class="sapUiTinyMarginBegin"/>
+                </cells>
+            </ColumnListItem>
+        </items> -->
+    </Table>
+</mvc:View>

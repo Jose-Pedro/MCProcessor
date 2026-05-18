@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <Dialog id="assignResponsiblesDialog" title="{i18n>assignResponsibles}" >
+        <content>
+            <IconTabBar xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="requestFlowFilter" headerMode="Inline" expandable="false" select="onResponsiblePhaseSelect" expanded="{device>/isNoPhone}" tabDensityMode="Compact" tabsOverflowMode= "StartAndEnd" cd:w5g.dt.context="/request/phases" >
+                <items>
+                    <IconTabFilter id="AllFilter" icon="" key="All" text="{i18n>allResponsibles}" />
+                    <IconTabFilter id="feasibilCheckRespFilter" icon="" key="feasibilCheck" text="{i18n>feasibilCheck}" />
+                    <IconTabFilter id="siteSurveyRespFilter" icon="" key="siteSurvey" text="{i18n>siteSurvey}" />
+                    <IconTabFilter id="techCostAnalysisRespFilter" icon="" key="techCostAnalys" text="{i18n>techCostAnalys}" />
+                    <IconTabFilter id="customerOfferAcceptRespFilter" icon="" key="custOfferAccept" text="{i18n>custOfferAccept}" />
+                    <IconTabFilter id="manageAdaptationsRespFilter" icon="" key="manageAdapt" text="{i18n>manageAdapt}" />
+                    <IconTabFilter id="custEquipmentInstallRespFilter" icon="" key="instCustEquip" text="{i18n>instCustEquip}" />
+                    <IconTabFilter id="finalValidationRespFilter" icon="" key="finalValidation" text="{i18n>finalValidation}" />
+                </items>
+                <content>
+                    <smarttable:SmartTable 
+                        id="assignResponsiblesTable" 
+                        tableType="Table"
+                        entitySet="BlocksResponsibles"
+                        width="100%" 
+                        direction="Column" 
+                        fitContainer="true" 
+                        placeToolbarInTable="true" 
+                        persistencyKey="assignResponsiblesTable" 
+                        customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 7, 'gap': 0, 'truncateLabel': false}}}"
+                        header="{i18n>assignResponsibles}"
+                        enableAutoColumnWidth="true" 
+                        enableAutoBinding="true"
+                        editTogglable="{= ${configuration>/editMode} === true}" 
+                        app:useSmartToggle="true"
+                        requestAtLeastFields="ID"
+                        app:useSmartField="true"
+                        initialise="onResponsiblesTableInitialise"
+                        beforeRebindTable="onBeforerResponsiblesRebind"
+                        fieldChange="onResponsibleFieldChange">
+                        <table:Table id="_IDGenTable4" selectionMode="None">
+                        </table:Table>
+                    </smarttable:SmartTable>                            
+                </content>
+            </IconTabBar>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar7">
+				<content>
+					<Button id="assignResponsiblePopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer id="_IDGenToolbarSpacer18" />
+					<Button id="close" text="{i18n>close}" type="Emphasized" press="onCloseDialog" >
+                        <customData>
+                            <core:CustomData key="dialogName" value="assignResponsiblesDialog" />
+                        </customData>
+                    </Button>
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

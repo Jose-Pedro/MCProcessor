@@ -1,0 +1,72 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    displayBlock="true">
+    <Dialog id="OtDocumentsViewerDialog" title="{i18n>documentViewer}">
+        <content>
+            <table:TreeTable id="OtDocumentsViewerTree"
+                rows="{path:'OTDocumentViewer>/', parameters: { arrayNames:['children'], numberOfExpandedLevels: 1}}"
+                enableSelectAll="false"
+                selectionMode="None"
+                enableColumnReordering="false">
+                <table:rowMode>
+                    <rowmodes:Interactive id="_IDGenInteractive1" minRowCount="5" rowCount="15" />
+                </table:rowMode>
+                <table:extension>
+                    <OverflowToolbar id="_IDGenOverflowToolbar3" style="Clear">
+                        <ToolbarSpacer id="_IDGenToolbarSpacer7"/>
+                        <Button id="_IDGenButton12" icon="sap-icon://decline" press="clearAllOTDocumentsFilters"/>
+                        <ToolbarSeparator id="_IDGenToolbarSeparator"/>
+						<SearchField id="_IDGenSearchField" placeholder="Filter" search="filterOTDocuments" width="15rem" />
+                    </OverflowToolbar>
+                </table:extension>
+                <table:columns>
+                    <table:Column id="_IDGenColumn" sortProperty="nodeId" filterProperty="nodeId" defaultFilterOperator="Contains">
+                        <Label id="_IDGenLabel2" text="{i18n>nodeId}"/>
+                        <table:template>
+                            <Text id="_IDGenText" text="{OTDocumentViewer>nodeId}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="_IDGenColumn1" sortProperty="description" filterProperty="description" defaultFilterOperator="Contains">
+                        <Label id="_IDGenLabel3" text="{i18n>description}"/>
+                        <table:template>
+                            <Link id="_IDGenLink" press="onOTViewerDocumentPress" text="{OTDocumentViewer>description}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="_IDGenColumn2" sortProperty="createdBy" filterProperty="createdBy" defaultFilterOperator="Contains">
+                        <Label id="_IDGenLabel4" text="{i18n>createdBy}"/>
+                        <table:template>
+                            <Text id="_IDGenText1" text="{OTDocumentViewer>createdBy}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="_IDGenColumn3" sortProperty="createdAt" filterProperty="createdAt" defaultFilterOperator="Contains">
+                        <Label id="_IDGenLabel5" text="{i18n>createdAt}"/>
+                        <table:template> 
+                            <Text id="_IDGenText2" text="{OTDocumentViewer>createdAt}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:TreeTable>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar2">
+				<content>
+					<Button id="OtDocumentsViewerPopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer id="_IDGenToolbarSpacer8" />
+					<Button id="OtDocumentsViewerCloseButton" type="Emphasized" text="{i18n>close}" press="onCloseDialog" >
+                        <customData>
+                            <core:CustomData key="dialogName" value="_OtDocumentsViewerDialog" />
+                        </customData>
+                    </Button>
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

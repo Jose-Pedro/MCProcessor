@@ -1,0 +1,103 @@
+<mvc:View 
+    id="checkPrevious" 
+    controllerName="prvintprojectsui5.controller.phases.feasibilCheck.blocks.checkPrevious"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:table="sap.ui.table"
+    displayBlock="true">
+    <Panel width="auto" visible="{=${configuration>/processInfo/feasibilCheck/checkPrevious/VISIBLE_ON} === 'X'}" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} }" id="checkPreviousPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="checkPrevious_IDGenOverflowToolbar2" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="checkPrevious_IDGenTitle3" text="{i18n>checkPrevious}"/>
+                <ToolbarSpacer id="_IDGenToolbarSpacer4"/>
+                <smartfield:SmartLabel id="checkPrevious_IDGenSmartLabel" labelFor="selectAssignedResponsible"/>
+                <smartfield:SmartField id="selectAssignedResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/assignedResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="checkPrevious_IDGenSmartLabel1" labelFor="selectSucontractorResponsible"/>
+                <smartfield:SmartField id="selectSucontractorResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/subcontractorType}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onSubcoTypeChange"/>
+                <smartfield:SmartLabel id="checkPrevious_IDGenSmartLabel2" labelFor="selectExternalResponsible"/>
+                <smartfield:SmartField id="selectExternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/externalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="checkPrevious_IDGenSmartLabel3" labelFor="selectInternalResponsible"/>
+                <smartfield:SmartField id="selectInternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/internalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" textInEditModeSource="ValueListNoValidation"/>
+                <ToolbarSpacer id="_IDGenToolbarSpacer5"/>
+                <Switch id="_IDGenSwitch"  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/checkPrevious/activate} === true }"/>
+                <Button id="closeBlock" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/checkPrevious/complete} === true}"/>
+                <OverflowToolbarButton id="buttoncheckPreviousForm" press="onEditBlock" icon="sap-icon://edit" visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED}  &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/checkPrevious/reopen} === true}"/>
+                <ObjectStatus id="checkPrevious_IDGenObjectStatus2" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="checkPreviousForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="checkPrevious_IDGenColumnLayout" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="checkPrevious_IDGenGroup2">
+                            <smartform:GroupElement id="checkPrevious_IDGenGroupElement12">
+                                    <smartfield:SmartField id="checkPrevious_startDate" value="{openAt}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="checkPrevious_IDGenGroupElement13">
+                                    <smartfield:SmartField id="checkPrevious_completedDate" value="{BlockProvision/completedDate}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="checkPrevious_IDGenGroupElement14">
+                                    <smartfield:SmartField id="checkPrevious_completedBy" value="{BlockProvision/completedBy}" change="onFieldChange"/>
+                            </smartform:GroupElement>                           
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+            
+             <smartform:SmartForm editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}" id="checkPreviousCommentsFormForm">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="checkPreviousCommentsFormFormColumnLayout" columnsM="1" columnsL="1" columnsXL="1" labelCellsLarge="12"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="checkPreviousCommentsFormFormGroup">                
+                        <smartform:GroupElement id="checkPreviousCommentsFormFormGroupElement">
+                            <smartfield:SmartField id="checkPreviousCommentsConfig" value="{comments}" change="onFieldChange" customdata:multiLineSettings="{cols: 2000, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>                
+                </smartform:groups>
+            </smartform:SmartForm>
+            <core:ComponentContainer id="checkPreviousChecklist" usage="checklist"
+                name="prvintprojectsui5.components.checklist"
+                component="prvintprojectsui5.components.checklist"
+                visible="{= ${checklistVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="checkPreviousApprovalFlow" usage="approvalFlow"
+                name="prvintprojectsui5.components.approvalFlow"
+                component="prvintprojectsui5.components.approvalFlow"
+                visible="{= ${dpbVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="checkPreviousWorks" usage="works"
+                name="prvintprojectsui5.components.works"
+                component="prvintprojectsui5.components.works"
+                propagateModel="true"
+                visible="{= ${worksVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="checkPreviousUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%"  
+
+                >
+            </core:ComponentContainer>
+
+        </content>
+    </Panel>
+
+</mvc:View>

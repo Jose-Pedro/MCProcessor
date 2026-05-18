@@ -1,0 +1,86 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.finalValidation.blocks.validDocument"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" visible="{=${configuration>/processInfo/finalValidation/validDocument/VISIBLE_ON} === 'X'}" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="validDocumentPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="validDocumentToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="validDocumentTitle" text="{i18n>validDocument}"/>
+                <ToolbarSpacer id="validDocument_IDGenToolbarSpacer3"/>
+                <smartfield:SmartLabel id="validDocument_IDGenSmartLabel" labelFor="selectAssignedResponsible"/>
+                <smartfield:SmartField id="selectAssignedResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/assignedResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="validDocument_IDGenSmartLabel1" labelFor="selectSucontractorResponsible"/>
+                <smartfield:SmartField id="selectSucontractorResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/subcontractorType}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onSubcoTypeChange"/>
+                <smartfield:SmartLabel id="validDocument_IDGenSmartLabel2" labelFor="selectExternalResponsible"/>
+                <smartfield:SmartField id="selectExternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/externalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="validDocument_IDGenSmartLabel3" labelFor="selectInternalResponsible"/>
+                <smartfield:SmartField id="selectInternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/internalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" textInEditModeSource="ValueListNoValidation"/>
+                <ToolbarSpacer id="validDocument_IDGenToolbarSpacer5"/>
+                <Switch id="validDocument_IDGenSwitch"  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/finalValidation/validDocument/activate} === true }"/>
+                <Button id="closeBlockvalidDocument" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/finalValidation/validDocument/complete} === true}"/>
+                <OverflowToolbarButton id="buttonvalidDocumentForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/finalValidation/validDocument/reopen} === true}"/>
+                <ObjectStatus id="validDocument_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <!-- <smartform:SmartForm id="validDocumentForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="validDocument_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="validDocument_IDGenGroup1" >
+                        <smartform:GroupElement id="validDocument_IDGenGroupElement12">
+                                <smartfield:SmartField id="openAt" value="{openAt}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="validDocument_IDGenGroupElement13">
+                                <smartfield:SmartField id="completedDate" value="{BlockProvision/completedDate}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm> -->
+            <core:ComponentContainer id="finalValidationValidDocumentChecklist" usage="checklist"
+                name="prvintprojectsui5.components.checklist"
+                component="prvintprojectsui5.components.checklist"
+                visible="{= ${checklistVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="finalValidationValidDocumentWorks" usage="works"
+                name="prvintprojectsui5.components.works"
+                component="prvintprojectsui5.components.works"
+                propagateModel="true"
+                visible="{= ${worksVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="finalValidationValidDocumentApprovalFlow" usage="approvalFlow"
+                name="prvintprojectsui5.components.approvalFlow"
+                component="prvintprojectsui5.components.approvalFlow"
+                visible="{= ${dpbVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <!-- <core:ComponentContainer id="finalValidationValidDocumentUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%"  
+
+                >
+            </core:ComponentContainer> -->
+        </content>
+    </Panel>              
+</mvc:View>

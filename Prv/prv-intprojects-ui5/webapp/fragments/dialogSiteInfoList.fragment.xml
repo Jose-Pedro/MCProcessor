@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<Dialog id="_IDGenDialog" title="{i18n>SiteInfo}" contentWidth="90%" contentHeight="90%">
+		<content>
+		</content>
+		<endButton>
+			<Button id="_IDGenButton11"  text="{i18n>Close}" type="Emphasized" press="onCloseDialog" class="sapUiSmallMarginBegin cstmMBtnInner btnHoverCustom">
+				<customData>
+					<core:CustomData key="dialogName" value="dialogSiteInfoList" />
+				</customData>
+			</Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

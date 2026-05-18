@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <MessagePopover id="_IDGenMessagePopover1"
+        items="{message>/}"
+        afterClose="onMessagePopoverClose"
+        activeTitlePress="onMessagePress"
+        initiallyExpanded="true"
+        groupItems="true">
+        <MessageItem id="detail_IDGenMessageItem"
+            type="{message>type}"
+            title="{message>message}"
+            activeTitle="{parts: [{path: 'message>controlIds'}], formatter: '.isPositionable'}"
+            subtitle="{message>additionalText}"
+            description="{message>description}"/>
+    </MessagePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,18 @@
+{
+  "name": "prv-intprojects-app",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Local integration umbrella: CAP backend (prv-intprojects-nodejs) + UI5 frontend (prv-intprojects-ui5) running against the cmm-sync SQLite replica.",
+  "scripts": {
+    "install:srv": "npm --prefix ../prv-intprojects-nodejs install --no-audit --no-fund --loglevel=error",
+    "install:ui": "npm --prefix ../prv-intprojects-ui5 install --no-audit --no-fund --loglevel=error",
+    "install:all": "npm run install:srv && npm run install:ui",
+    "check:db": "node scripts/check-db.cjs",
+    "start:srv": "node scripts/start-srv.cjs",
+    "start:ui": "npm --prefix ../prv-intprojects-ui5 exec -- fiori run --config ui5-integrated.yaml --port 8080 --no-open",
+    "start": "concurrently -k -n SRV,UI -c blue,green \"npm:start:srv\" \"npm:start:ui\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

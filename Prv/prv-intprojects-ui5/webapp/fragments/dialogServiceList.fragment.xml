@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:table="sap.ui.table">
+	<Dialog title="{i18n>servicesList}" id="serviceList">
+		<content>
+			<table:Table id="serviceTable" 
+				rows="{ path: 'ServiceListModel>/'}"
+			    class="sapUiSmallMargin"
+			    selectionMode="MultiToggle">
+				<table:Column id="serviceTableServiceidColumn" hAlign="Center" sortProperty="Zzidintern" filterProperty="Zzidintern">
+					<Text id="serviceTableServiceidText" text="{i18n>Zzidintern}"/>
+					<table:template>
+						<Link id="serviceTableServiceidLink" text="{ServiceListModel>Zzidintern}" 	press="onpressServiceListItem"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableDescriptionColumn" hAlign="Center" sortProperty="Zzservid" filterProperty="Zzservid">
+					<Text id="serviceTableDescriptionText" text="{i18n>Zzservid}"/>
+					<table:template>
+						<Text id="serviceTableDescriptionValue" text="{ServiceListModel>Zzservid}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableMaterialColumn" hAlign="Center" sortProperty="ZzservcatDesc" filterProperty="ZzservcatDesc">
+					<Text id="serviceTableMaterialLabel" text="{i18n>ZzserviceCatalog}"/>
+					<table:template>
+						<Text id="serviceTableMaterialValue" text="{ServiceListModel>ZzserviceCatalog} - {ServiceListModel>ZzservcatDesc}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableStatusColumn" hAlign="Center" sortProperty="ZzopStatusDesc" filterProperty="ZzopStatusDesc">
+					<Text id="serviceTableStatusLabel" text="{i18n>ZzopStatus}"/>
+					<table:template>
+						<Text id="serviceTableStatusValue" text="{ServiceListModel>ZzopStatus} - {ServiceListModel>ZzopStatusDesc}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableInvoiceStatusColumn" hAlign="Center" sortProperty="InvstDesc" filterProperty="InvstDesc">
+					<Text id="serviceTableInvoiceStatusLabel" text="{i18n>ZzinvStatus}"/>
+					<table:template>
+						<Text id="serviceTableInvoiceStatusValue" text="{ServiceListModel>ZzinvStatus} - {ServiceListModel>InvstDesc}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableBPColumn" hAlign="Center" sortProperty="ZzbpDesc" filterProperty="ZzbpDesc">
+					<Text id="serviceTableBPLabel" text="{i18n>Zzbusinessprtnr}"/>
+					<table:template>
+						<Text id="serviceTableBPValue" text="{ServiceListModel>Zzbusinessprtnr} - {ServiceListModel>ZzbpDesc}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableStartDateColumn"  hAlign="Center" sortProperty="Zzstartdate" filterProperty="Zzstartdate" visible="{BusinessSwitchConfig>/PRV_REQ_SERVICE_START_END_DATE}">
+					<Text id="serviceTableStartDateLabel" text="{i18n>Zzstartdate}"/>
+					<table:template>
+						<Text id="serviceTableStartDateValue" text="{path: 'ServiceListModel>Zzstartdate',  type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="serviceTableEndDateColumn" hAlign="Center" sortProperty="Zzenddate" filterProperty="Zzenddate" visible="{BusinessSwitchConfig>/PRV_REQ_SERVICE_START_END_DATE}">
+					<Text id="serviceTableEndDateLabel" text="{i18n>Zzenddate}"/>
+					<table:template>
+						 <Text id="serviceTableEndDateValue"  text="{path: 'ServiceListModel>Zzenddate',  type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}"/>
+					</table:template>
+				</table:Column>
+				<!-- <table:Column id="serviceTableComplianceColumn" hAlign="Center" sortProperty="COMPLIANCE" filterProperty="COMPLIANCE" >
+					<Text id="serviceTableComplianceLabel" text="{i18n>compliance}"/>
+					<table:template>
+						 <CheckBox id="serviceTableComplianceValue" selected="{ServiceListModel>zcompliance}" select=".updateCompliance"/>
+					</table:template>
+				</table:Column> -->
+			</table:Table>
+		</content>
+		<buttons>
+    		<Button id="showMessagesServices" icon="sap-icon://message-popup" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Neutral" press="onMessagePopoverPress" />
+			<!-- <Button id ="btnDownloadCCP" type="Ghost" text="{i18n>downloadCCP}" press="downloadDocument"  visible="{= ${BusinessSwitchConfig>/PRV_TMPL_EXCEL} === true }"/>
+			<Button id ="btnDownloadVIC" type="Ghost" text="{i18n>downloadVICUK}" press="openVICPopUp"  visible="{= ${BusinessSwitchConfig>/PRV_TMPL_VIC_DOC} === true  }"/>
+			<Button id ="btnDownloadOfl" type="Ghost" text="{i18n>downloadOfl}" press="openOfferLetter"  visible="{= ${BusinessSwitchConfig>/PRV_TMPL_OFFER_LETTER} === true }"/> -->
+			<Button id ="dialogServiceListClose" type="Emphasized" text="{i18n>close}" press="onServiceListClose" />           
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

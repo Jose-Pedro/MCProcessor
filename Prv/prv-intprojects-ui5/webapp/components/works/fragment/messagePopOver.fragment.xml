@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <MessagePopover id="MessagePopoverWorkApprovalFlowDialog"
+        items="{message>/}"
+        afterClose="onMessagePopoverClose"
+        activeTitlePress="onMessagePress"
+        initiallyExpanded="true"
+        groupItems="true">
+        <MessageItem 
+            type="{message>type}"
+            title="{message>message}"
+            activeTitle="{parts: [{path: 'message>controlIds'}], formatter: '.isPositionable'}"
+            subtitle="{message>additionalText}"
+            description="{message>description}"/>
+    </MessagePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,1907 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Aggregation.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Core.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Validation.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AUTHORIZATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Authorization.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Capabilities.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Communication.v1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="Org.OData.Measures.V1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_TIMELINE',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Timeline.v1"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://scc:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.UI.v1"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPM_SERVICES_V2_SRV" xml:lang="en" sap:schema-version="1">
+<EntityType Name="service" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="zcompliance" Type="Edm.Boolean" sap:label="Compliance Check"/>
+<Property Name="siteId" Type="Edm.String" MaxLength="40" sap:label="Functional loc."/>
+<Property Name="lastReadyInvoiceDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="stopInvoiceDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="serviceName" Type="Edm.String" Nullable="false" MaxLength="200" sap:label="Description"/>
+<Property Name="siteName" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="legacyId" Type="Edm.String" MaxLength="20" sap:label="Legacy for service"/>
+<Property Name="catalogId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Service Catalog Elem"/>
+<Property Name="catalogName" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="catalogClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="catalogClassDescription" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="instanceClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="instanceClassDescription" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="createdOn" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="startDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="endDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="companyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/>
+<Property Name="companyName" Type="Edm.String" MaxLength="25" sap:label="Company Name"/>
+<Property Name="customerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="customerName" Type="Edm.String" MaxLength="40" sap:label="First Name"/>
+<Property Name="customerOldId" Type="Edm.String" MaxLength="10" sap:label="Customer (Old)"/>
+<Property Name="customerOldName" Type="Edm.String" MaxLength="35" sap:label="Name"/>
+<Property Name="invoiceRecepient" Type="Edm.String" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="invoiceRecepientName" Type="Edm.String" MaxLength="40" sap:label="First Name"/>
+<Property Name="serviceHolder" Type="Edm.String" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="serviceHolderName" Type="Edm.String" MaxLength="40" sap:label="First Name"/>
+<Property Name="operativeStatus" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Opertative status"/>
+<Property Name="opStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short text"/>
+<Property Name="invoiceStatus" Type="Edm.String" MaxLength="25" sap:label="Invoincing status"/>
+<Property Name="invoiceStatusDescription" Type="Edm.String" MaxLength="80" sap:label="Invoicing Status Des"/>
+<Property Name="businessLine" Type="Edm.String" MaxLength="10" sap:label="Business Line"/>
+<Property Name="opportunity" Type="Edm.String" MaxLength="100" sap:label="Opportunity"/>
+<Property Name="agreement" Type="Edm.String" MaxLength="20" sap:label="Agreement"/>
+<Property Name="opeContract" Type="Edm.String" MaxLength="64" sap:label="Ope. contract"/>
+<Property Name="operativeContract" Type="Edm.String" MaxLength="30" sap:label="Operative Contract"/>
+<Property Name="contractNumber" Type="Edm.String" MaxLength="70" sap:label="Char 70"/>
+<Property Name="contractEndDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="treeId" Type="Edm.String" MaxLength="12" sap:label="Tree ID"/>
+<Property Name="nodeId" Type="Edm.String" MaxLength="12" sap:label="Node ID"/>
+<Property Name="nodeName" Type="Edm.String" MaxLength="120" sap:label="Node Description"/>
+<Property Name="isDeleted" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="modifiedAt" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="workflow" Type="Edm.String" MaxLength="25" sap:label="Workflow"/>
+<Property Name="workflowApp" Type="Edm.String" MaxLength="50" sap:label="App"/>
+<Property Name="workflowPhase" Type="Edm.String" MaxLength="100" sap:label="Phase"/>
+<Property Name="zzModifyNote" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="zzPopEnergy" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="zzPopFlag" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="zzEnergyFlag" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="zzPopEnergIdint" Type="Edm.String" MaxLength="15" sap:label="Pop Energy Int"/>
+<Property Name="noHeaderUpdateRequired" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="commercialElementId" Type="Edm.String" MaxLength="36" sap:label="C. Element ID"/>
+<Property Name="commercialElementDescription" Type="Edm.String" MaxLength="500" sap:label="C. Element Desc"/>
+<NavigationProperty Name="to_ServiceLocations" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceLocation" FromRole="FromRole_service_to_serviceLocation" ToRole="ToRole_service_to_serviceLocation"/>
+<NavigationProperty Name="to_ServiceEquipments" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceEquipment" FromRole="FromRole_service_to_serviceEquipment" ToRole="ToRole_service_to_serviceEquipment"/>
+<NavigationProperty Name="to_ServiceContacts" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceContact" FromRole="FromRole_service_to_serviceContact" ToRole="ToRole_service_to_serviceContact"/>
+<NavigationProperty Name="to_ServiceNotes" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceNote" FromRole="FromRole_service_to_serviceNote" ToRole="ToRole_service_to_serviceNote"/>
+<NavigationProperty Name="to_ServiceReservedConfiguration" Relationship="ZPM_SERVICES_V2_SRV.service_to_reserveConfiguration" FromRole="FromRole_service_to_reserveConfiguration" ToRole="ToRole_service_to_reserveConfiguration"/>
+<NavigationProperty Name="to_ServiceAliases" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceAlias" FromRole="FromRole_service_to_serviceAlias" ToRole="ToRole_service_to_serviceAlias"/>
+<NavigationProperty Name="to_CustomerPo" Relationship="ZPM_SERVICES_V2_SRV.service_to_customerPo" FromRole="FromRole_service_to_customerPo" ToRole="ToRole_service_to_customerPo"/>
+<NavigationProperty Name="to_AvailableEquipments" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceEquipment" FromRole="FromRole_service_to_serviceEquipment" ToRole="ToRole_service_to_serviceEquipment"/>
+<NavigationProperty Name="to_ServiceAttributes" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceAttribute" FromRole="FromRole_service_to_serviceAttribute" ToRole="ToRole_service_to_serviceAttribute"/>
+<NavigationProperty Name="to_ServiceRequests" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceRequest" FromRole="FromRole_service_to_serviceRequest" ToRole="ToRole_service_to_serviceRequest"/>
+<NavigationProperty Name="to_Classifications" Relationship="ZPM_SERVICES_V2_SRV.classification_to_service" FromRole="ToRole_classification_to_service" ToRole="FromRole_classification_to_service"/>
+<NavigationProperty Name="to_ServiceOpStatusLogs" Relationship="ZPM_SERVICES_V2_SRV.service_to_ServiceOperationStatusLog" FromRole="FromRole_service_to_ServiceOperationStatusLog" ToRole="ToRole_service_to_ServiceOperationStatusLog"/>
+<NavigationProperty Name="to_ServiceLogs" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceLog" FromRole="FromRole_service_to_serviceLog" ToRole="ToRole_service_to_serviceLog"/>
+<NavigationProperty Name="to_hardcodes" Relationship="ZPM_SERVICES_V2_SRV.service_to_hardcodes" FromRole="FromRole_service_to_hardcodes" ToRole="ToRole_service_to_hardcodes"/>
+<NavigationProperty Name="to_serviceHierarchyFrom" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceHierarchyFrom" FromRole="FromRole_service_to_serviceHierarchyFrom" ToRole="ToRole_service_to_serviceHierarchyFrom"/>
+<NavigationProperty Name="to_serviceHierarchyTo" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceHierarchyTo" FromRole="FromRole_service_to_serviceHierarchyTo" ToRole="ToRole_service_to_serviceHierarchyTo"/>
+<NavigationProperty Name="to_FirstServiceLog" Relationship="ZPM_SERVICES_V2_SRV.service_to_oneServiceLog" FromRole="FromRole_service_to_oneServiceLog" ToRole="ToRole_service_to_oneServiceLog"/>
+<NavigationProperty Name="to_LastServiceLog" Relationship="ZPM_SERVICES_V2_SRV.service_to_oneServiceLog" FromRole="FromRole_service_to_oneServiceLog" ToRole="ToRole_service_to_oneServiceLog"/>
+<NavigationProperty Name="to_AvailableMeters" Relationship="ZPM_SERVICES_V2_SRV.service_to_meter" FromRole="FromRole_service_to_meter" ToRole="ToRole_service_to_meter"/>
+<NavigationProperty Name="to_Formfactor" Relationship="ZPM_SERVICES_V2_SRV.service_to_formfactor" FromRole="FromRole_service_to_formfactor" ToRole="ToRole_service_to_formfactor"/>
+<NavigationProperty Name="to_ServiceCatalog" Relationship="ZPM_SERVICES_V2_SRV.serviceCatalog_to_service" FromRole="ToRole_serviceCatalog_to_service" ToRole="FromRole_serviceCatalog_to_service"/>
+<NavigationProperty Name="to_RelatedServices" Relationship="ZPM_SERVICES_V2_SRV.service_to_serviceToServiceRelation" FromRole="FromRole_service_to_serviceToServiceRelation" ToRole="ToRole_service_to_serviceToServiceRelation"/>
+<NavigationProperty Name="to_ExternalProject" Relationship="ZPM_SERVICES_V2_SRV.service_to_externalProject" FromRole="FromRole_service_to_externalProject" ToRole="ToRole_service_to_externalProject"/>
+<NavigationProperty Name="to_TarificationTool" Relationship="ZPM_SERVICES_V2_SRV.service_to_tarificationTool" FromRole="FromRole_service_to_tarificationTool" ToRole="ToRole_service_to_tarificationTool"/>
+</EntityType>
+<EntityType Name="serviceLocation" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="locationId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="locationId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional loc."/>
+<Property Name="locationName" Type="Edm.String" MaxLength="40" sap:label="Location description"/>
+<Property Name="parentLocationId" Type="Edm.String" MaxLength="40" sap:label="SupFunctLoc."/>
+<Property Name="parentLocationName" Type="Edm.String" MaxLength="40" sap:label="Location description"/>
+<Property Name="locationClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="locationClassDescription" Type="Edm.String" MaxLength="40" sap:label="Keyword"/>
+<Property Name="category" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="FunctLocCat."/>
+<Property Name="categoryDescription" Type="Edm.String" MaxLength="50" sap:label="Text Location Catego"/>
+<Property Name="maintenancePlant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="MaintPlant"/>
+<Property Name="maintenancePlantName" Type="Edm.String" MaxLength="30" sap:label="Name 1"/>
+<Property Name="companyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/>
+<Property Name="companyName" Type="Edm.String" MaxLength="25" sap:label="Company Name"/>
+<Property Name="maintenancePlanningPlant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Planning plant"/>
+<Property Name="maintenancePlanningPlantName" Type="Edm.String" MaxLength="30" sap:label="Name 1"/>
+<Property Name="plannerGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Planner group"/>
+<Property Name="plannerGroupDescription" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="PM PlGrp name"/>
+<Property Name="isActive" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="hasSite" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="site" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="siteName" Type="Edm.String" MaxLength="40" sap:label="Location description"/>
+<Property Name="intCode" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional loc."/>
+</EntityType>
+<EntityType Name="invoiceStatus" sap:content-version="1">
+<Key>
+<PropertyRef Name="invoiceStatusId"/>
+</Key>
+<Property Name="invoiceStatusId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Invoice Status"/>
+<Property Name="invoiceStatusDescription" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Invoicing Status Des"/>
+</EntityType>
+<EntityType Name="operationalStatus" sap:content-version="1">
+<Key>
+<PropertyRef Name="operationalStatusId"/>
+</Key>
+<Property Name="operationalStatusId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Opertative status"/>
+<Property Name="operationalStatusDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."/>
+</EntityType>
+<EntityType Name="serviceEquipment" sap:content-version="1">
+<Key>
+<PropertyRef Name="equipmentId"/>
+<PropertyRef Name="serviceId"/>
+</Key>
+<Property Name="classDescription" Type="Edm.String" MaxLength="40" sap:label="Keyword"/>
+<Property Name="classId" Type="Edm.String" MaxLength="18" sap:label="Class"/>
+<Property Name="equipmentId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Equipment"/>
+<Property Name="equipmentName" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="failurePropagationTypeDesc" Type="Edm.String" MaxLength="60" sap:label="Failed Propagation Description"/>
+<Property Name="failurePropagationTypeId" Type="Edm.String" MaxLength="2" sap:label="FailureProp"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="isUpdate" Type="Edm.String" MaxLength="1" sap:label="Single-Character Flag"/>
+<Property Name="partnerId" Type="Edm.String" MaxLength="12" sap:label="Partner"/>
+<Property Name="partnerName" Type="Edm.String" MaxLength="50" sap:label="c"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="serviceName" Type="Edm.String" MaxLength="200" sap:label="Description"/>
+<Property Name="status" Type="Edm.String" MaxLength="5" sap:label="Status"/>
+<Property Name="statusDescription" Type="Edm.String" MaxLength="20" sap:label="Description"/>
+</EntityType>
+<EntityType Name="serviceContact" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="businessPartnerId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="businessPartnerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="businessPartnerFirstName" Type="Edm.String" MaxLength="40" sap:label="First Name"/>
+<Property Name="businessPartnerLastName" Type="Edm.String" MaxLength="40" sap:label="Last Name"/>
+<Property Name="businessPartnerName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
+<Property Name="isActive" Type="Edm.String" MaxLength="10" sap:label="TRUE"/>
+<Property Name="isDeleted" Type="Edm.Boolean" sap:label="Deletion block"/>
+</EntityType>
+<EntityType Name="catalogAttribute" sap:content-version="1">
+<Key>
+<PropertyRef Name="catalogId"/>
+<PropertyRef Name="counter"/>
+<PropertyRef Name="characteristic"/>
+</Key>
+<Property Name="catalogId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Service Catalog Elem"/>
+<Property Name="counter" Type="Edm.Int32" Nullable="false"/>
+<Property Name="catalogClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="characteristic" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="valueFrom" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="valueTo" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="characteristicDescription" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="characteristicDataType" Type="Edm.String" Nullable="false" MaxLength="20"/>
+<Property Name="applyOnlyEmptyValue" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+</EntityType>
+<EntityType Name="serviceNote" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="noteTitle"/>
+<PropertyRef Name="version"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="40"/>
+<Property Name="noteTitle" Type="Edm.String" Nullable="false" MaxLength="50"/>
+<Property Name="version" Type="Edm.Int32" Nullable="false"/>
+<Property Name="categoryId" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Note category"/>
+<Property Name="content" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="Notes"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="createdAt" Type="Edm.DateTime" Precision="7" sap:label="Time Stamp"/>
+<Property Name="createdBy" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name"/>
+<Property Name="isActive" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+<Property Name="categoryDescription" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Title Note"/>
+</EntityType>
+<EntityType Name="serviceReservedConfiguration" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="antenna" Type="Edm.Int32"/>
+<Property Name="dishes" Type="Edm.Int32"/>
+<Property Name="feeders" Type="Edm.Int32"/>
+<Property Name="upperEquipment" Type="Edm.Int32"/>
+<Property Name="lowerEquipment" Type="Edm.Int32"/>
+<Property Name="groundBased" Type="Edm.Int32"/>
+<Property Name="antennaSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+<Property Name="dishesSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+<Property Name="feederSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+<Property Name="upperEquipmentSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+<Property Name="lowerEquipmentSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+<Property Name="groundBasedSqm" Type="Edm.Decimal" Precision="10" Scale="6"/>
+</EntityType>
+<EntityType Name="serviceAlias" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="aliasId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="aliasId" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Client loc. code"/>
+<Property Name="alias" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Cl. localiz. name"/>
+<Property Name="businessPartnerName" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Name/address"/>
+<Property Name="businessPartnerArea" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Client area"/>
+<Property Name="businessPartner" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+</EntityType>
+<EntityType Name="serviceCustomerPo" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="customerPo"/>
+</Key>
+<Property Name="comments" Type="Edm.String" Nullable="false" MaxLength="250" sap:label="Data field"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="customerPo" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Char20"/>
+<Property Name="sellerId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/>
+<Property Name="sellerName" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Company Name"/>
+<Property Name="customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="customerName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="First Name"/>
+<Property Name="orderDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Document Date"/>
+<Property Name="orderValue" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unit="currency" sap:label="Net value"/>
+<Property Name="currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/>
+</EntityType>
+<EntityType Name="serviceAttribute" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="instanceClass"/>
+<PropertyRef Name="characteristic"/>
+<PropertyRef Name="counter"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="instanceClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="characteristic" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="counter" Type="Edm.Int32" Nullable="false"/>
+<Property Name="characteristicDescription" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="valueFrom" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="valueTo" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="dataType" Type="Edm.String" Nullable="false" MaxLength="20"/>
+<Property Name="applyOnlyEmptyValue" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<NavigationProperty Name="to_Classifications" Relationship="ZPM_SERVICES_V2_SRV.classification_to_serviceAttribute" FromRole="ToRole_classification_to_serviceAttribute" ToRole="FromRole_classification_to_serviceAttribute"/>
+<NavigationProperty Name="to_CharacteristicDefinition" Relationship="ZPM_SERVICES_V2_SRV.characteristic_to_serviceAttribute" FromRole="ToRole_characteristic_to_serviceAttribute" ToRole="FromRole_characteristic_to_serviceAttribute"/>
+</EntityType>
+<EntityType Name="serviceRequest" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="requestId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="requestId" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Id request"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="TRUE"/>
+</EntityType>
+<EntityType Name="serviceBundle" sap:content-version="1">
+<Key>
+<PropertyRef Name="zzbunIdIntern"/>
+</Key>
+<Property Name="operation" Type="Edm.String" Nullable="false" MaxLength="1"/>
+<Property Name="zzbundleFlg" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="zzbunIdIntern" Type="Edm.String" Nullable="false" MaxLength="15"/>
+<Property Name="zzcustTxt" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name"/>
+<Property Name="zzmarkDel" Type="Edm.Boolean" Nullable="false" sap:label="Deletion block"/>
+<Property Name="zzsite" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional loc."/>
+<Property Name="zzbusinesSprtnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="zzcustomer" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer (Old)"/>
+<Property Name="createDat" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="zzbundleType" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Number"/>
+<Property Name="createdBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="zzbundleTypeDesc" Type="Edm.String" Nullable="false" MaxLength="50"/>
+<Property Name="modifieDat" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="zzbundleDesc" Type="Edm.String" Nullable="false" MaxLength="250"/>
+<Property Name="modifiedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="deletedAt" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="deletedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<NavigationProperty Name="to_serviceBundleServ" Relationship="ZPM_SERVICES_V2_SRV.serviceBundle_to_serviceBundleServ" FromRole="FromRole_serviceBundle_to_serviceBundleServ" ToRole="ToRole_serviceBundle_to_serviceBundleServ"/>
+</EntityType>
+<EntityType Name="serviceHierarchy" sap:content-version="1">
+<Key>
+<PropertyRef Name="idServiceFrom"/>
+<PropertyRef Name="idServiceTo"/>
+</Key>
+<Property Name="idServiceFrom" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Srv From"/>
+<Property Name="idServiceTo" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Srv To"/>
+<Property Name="relType" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="RelType"/>
+<Property Name="failProp" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="FailureProp"/>
+<Property Name="deletion" Type="Edm.Boolean" Nullable="false" sap:label="Deletion Flag"/>
+<Property Name="createdBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="createdAt" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Time Stamp"/>
+<Property Name="modifiedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="modifiedAt" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Time Stamp"/>
+</EntityType>
+<EntityType Name="characteristic" sap:content-version="1">
+<Key>
+<PropertyRef Name="characteristicId"/>
+<PropertyRef Name="class"/>
+</Key>
+<Property Name="dynamicSearch" Type="Edm.String" Nullable="false" MaxLength="132" sap:label="Value"/>
+<Property Name="caseSensitive" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="defaultvalueFrom" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="parentCharacteristic" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="defaultvalueTo" Type="Edm.String" Nullable="false" MaxLength="70"/>
+<Property Name="isVisible" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="characteristicId" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="class" Type="Edm.String" Nullable="false" MaxLength="18"/>
+<Property Name="frontendCondition" Type="Edm.String" Nullable="false" sap:label="String"/>
+<Property Name="currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency"/>
+<Property Name="dataType" Type="Edm.String" Nullable="false" MaxLength="20"/>
+<Property Name="description" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="hasAdditionalValues" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="hasListOfValues" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="isIntervalValuesAllowed" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="isNegativeValuesAllowed" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="isRequired" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+<Property Name="numberOfCharacters" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Number of characters"/>
+<Property Name="numberOfDecimals" Type="Edm.String" Nullable="false" MaxLength="2"/>
+<Property Name="parentClass" Type="Edm.String" Nullable="false" MaxLength="18"/>
+<Property Name="referenceTable" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="type" Type="Edm.String" Nullable="false" MaxLength="100"/>
+<Property Name="unitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Technical"/>
+<Property Name="valueAssignment" Type="Edm.String" Nullable="false" MaxLength="20"/>
+<NavigationProperty Name="to_AllowedValues" Relationship="ZPM_SERVICES_V2_SRV.characteristic_to_allowedValue" FromRole="FromRole_characteristic_to_allowedValue" ToRole="ToRole_characteristic_to_allowedValue"/>
+</EntityType>
+<EntityType Name="classification" sap:content-version="1">
+<Key>
+<PropertyRef Name="ClassId"/>
+</Key>
+<Property Name="ClassId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<NavigationProperty Name="to_Characteristics" Relationship="ZPM_SERVICES_V2_SRV.classification_to_characteristic" FromRole="FromRole_classification_to_characteristic" ToRole="ToRole_classification_to_characteristic"/>
+</EntityType>
+<EntityType Name="characteristicAllowedValue" sap:content-version="1">
+<Key>
+<PropertyRef Name="characteristic"/>
+<PropertyRef Name="class"/>
+<PropertyRef Name="counter"/>
+</Key>
+<Property Name="characteristic" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="class" Type="Edm.String" Nullable="false" MaxLength="18"/>
+<Property Name="counter" Type="Edm.Int32" Nullable="false"/>
+<Property Name="description" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="type" Type="Edm.String" Nullable="false" MaxLength="100"/>
+<Property Name="value" Type="Edm.String" Nullable="false" MaxLength="30"/>
+</EntityType>
+<EntityType Name="serviceOperationStatusLog" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="changeCounter"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="changeCounter" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Change number"/>
+<Property Name="author" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
+<Property Name="comment" Type="Edm.String" MaxLength="255" sap:label="Comments"/>
+<Property Name="reasonId" Type="Edm.String" MaxLength="2" sap:label="Status reason"/>
+<Property Name="authorId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name"/>
+<Property Name="reasonDescription" Type="Edm.String" MaxLength="255" sap:label="Comments"/>
+<Property Name="createdAt" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="status" Type="Edm.String" MaxLength="60" sap:label="Short Descript."/>
+<Property Name="statusId" Type="Edm.String" MaxLength="4" sap:label="Opertative status"/>
+</EntityType>
+<EntityType Name="serviceLog" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="counter"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="counter" Type="Edm.Int16" Nullable="false" sap:label="Int2"/>
+<Property Name="user" Type="Edm.String" MaxLength="12" sap:label="User"/>
+<Property Name="userName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
+<Property Name="firstName" Type="Edm.String" MaxLength="40" sap:label="First Name"/>
+<Property Name="lastName" Type="Edm.String" MaxLength="40" sap:label="Last Name"/>
+<Property Name="changedAt" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="changeDescription" Type="Edm.String" MaxLength="60" sap:label="Short text"/>
+<Property Name="oldValue" Type="Edm.String" MaxLength="254" sap:label="Old Value"/>
+<Property Name="newValue" Type="Edm.String" MaxLength="254" sap:label="New Value"/>
+<Property Name="oldValueDescription" Type="Edm.String" MaxLength="30" sap:label="Description"/>
+<Property Name="newValueDescription" Type="Edm.String" MaxLength="30" sap:label="Description"/>
+<Property Name="characteristicId" Type="Edm.String" MaxLength="30" sap:label="Characteristic"/>
+<Property Name="characteristic" Type="Edm.String" MaxLength="30" sap:label="30 Characters"/>
+<Property Name="objectId" Type="Edm.String" MaxLength="30" sap:label="30 Characters"/>
+<Property Name="objectIdBundle" Type="Edm.String" MaxLength="30" sap:label="30 Characters"/>
+</EntityType>
+<EntityType Name="hardcodes" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="inputEntities" Type="Edm.String" Nullable="false" sap:label="String"/>
+<Property Name="returnJson" Type="Edm.String" Nullable="false" sap:label="String"/>
+<NavigationProperty Name="to_service" Relationship="ZPM_SERVICES_V2_SRV.service_to_hardcodes" FromRole="ToRole_service_to_hardcodes" ToRole="FromRole_service_to_hardcodes"/>
+</EntityType>
+<EntityType Name="serviceBundleServ" sap:content-version="1">
+<Key>
+<PropertyRef Name="zzidIntern"/>
+<PropertyRef Name="zzbunIdIntern"/>
+</Key>
+<Property Name="zzidIntern" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="zzbunIdIntern" Type="Edm.String" Nullable="false" MaxLength="15"/>
+<Property Name="zzservid" Type="Edm.String" Nullable="false" MaxLength="200" sap:label="Description"/>
+<Property Name="zzmarkdel" Type="Edm.Boolean" Nullable="false" sap:label="Deletion block"/>
+<Property Name="zzbundleDesc" Type="Edm.String" Nullable="false" MaxLength="250"/>
+<Property Name="zzclass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="createDat" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="createdBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="modifieDat" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp"/>
+<Property Name="modifiedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="deletedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="deletedAt" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp"/>
+</EntityType>
+<EntityType Name="realEstateContract" sap:content-version="1">
+<Key>
+<PropertyRef Name="customerId"/>
+<PropertyRef Name="sellerId"/>
+<PropertyRef Name="contractId"/>
+</Key>
+<Property Name="customerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="sellerId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/>
+<Property Name="contractId" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Contract number"/>
+<Property Name="contractDescription" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Contract Name"/>
+</EntityType>
+<EntityType Name="serviceView" sap:content-version="1">
+<Key>
+<PropertyRef Name="requestId"/>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="locationId"/>
+</Key>
+<Property Name="requestId" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Id request"/>
+<Property Name="zcompliance" Type="Edm.Boolean" sap:label="Compliance Check"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="locationId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional Loc."/>
+<Property Name="lastReadyInvoiceDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="stopInvoiceDate" Type="Edm.DateTime" Precision="7" sap:label="Date"/>
+<Property Name="startDate" Type="Edm.String" MaxLength="8"/>
+<Property Name="endDate" Type="Edm.String" MaxLength="8"/>
+<Property Name="contractEndDate" Type="Edm.DateTime" Precision="7"/>
+<Property Name="createdOn" Type="Edm.DateTime" Precision="7"/>
+<Property Name="serviceName" Type="Edm.String" MaxLength="200" sap:label="Description"/>
+<Property Name="legacyId" Type="Edm.String" MaxLength="20" sap:label="Legacy for service"/>
+<Property Name="catalogId" Type="Edm.String" MaxLength="18" sap:label="Service Catalog Elem"/>
+<Property Name="catalogName" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+<Property Name="catalogClass" Type="Edm.String" MaxLength="18" sap:label="Class"/>
+<Property Name="catalogClassDescription" Type="Edm.String" MaxLength="40" sap:label="Keyword"/>
+<Property Name="instanceClass" Type="Edm.String" MaxLength="18" sap:label="Class"/>
+<Property Name="instanceClassDescription" Type="Edm.String" MaxLength="40" sap:label="Keyword"/>
+<Property Name="companyCode" Type="Edm.String" MaxLength="4" sap:label="Company Code"/>
+<Property Name="companyName" Type="Edm.String" MaxLength="25" sap:label="Company Name"/>
+<Property Name="customerId" Type="Edm.String" MaxLength="10" sap:label="BusinessPartner"/>
+<Property Name="customerName" Type="Edm.String" MaxLength="40"/>
+<Property Name="businessLine" Type="Edm.String" MaxLength="10" sap:label="Business Line"/>
+<Property Name="opportunity" Type="Edm.String" MaxLength="100" sap:label="Opportunity"/>
+<Property Name="agreement" Type="Edm.String" MaxLength="20" sap:label="Agreement"/>
+<Property Name="opeContract" Type="Edm.String" MaxLength="64" sap:label="Ope. contract"/>
+<Property Name="operativeContract" Type="Edm.String" MaxLength="30" sap:label="Operative Contract"/>
+<Property Name="contractNumber" Type="Edm.String" MaxLength="70" sap:label="Contract number"/>
+<Property Name="modifiedAt" Type="Edm.String" MaxLength="14" sap:label="Creation time"/>
+<Property Name="operativeStatus" Type="Edm.String" MaxLength="4" sap:label="Opertative status"/>
+<Property Name="operativeStatusDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript."/>
+<Property Name="invoiceStatus" Type="Edm.String" MaxLength="25" sap:label="Invoincing status"/>
+<Property Name="invoiceStatusDescription" Type="Edm.String" MaxLength="80" sap:label="Invoicing Status Des"/>
+<Property Name="locationName" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+</EntityType>
+<EntityType Name="multiAttributes" sap:content-version="1">
+<Key>
+<PropertyRef Name="cont"/>
+</Key>
+<Property Name="cont" Type="Edm.Int32" Nullable="false" sap:label="Number"/>
+<Property Name="serviceIdList" Type="Edm.String" Nullable="false" sap:label="String"/>
+<NavigationProperty Name="to_ServiceAttributes" Relationship="ZPM_SERVICES_V2_SRV.multiAttributes_to_ServiceAttributes" FromRole="FromRole_multiAttributes_to_ServiceAttributes" ToRole="ToRole_multiAttributes_to_ServiceAttributes"/>
+</EntityType>
+<EntityType Name="serviceType" sap:content-version="1">
+<Key>
+<PropertyRef Name="instanceClass"/>
+</Key>
+<Property Name="instanceClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="instanceClassDecription" Type="Edm.String" MaxLength="40" sap:label="Keyword"/>
+</EntityType>
+<EntityType Name="company" sap:content-version="1">
+<Key>
+<PropertyRef Name="id"/>
+</Key>
+<Property Name="id" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/>
+<Property Name="name" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Company Name"/>
+<Property Name="country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/>
+</EntityType>
+<EntityType Name="availableEquipmentVh" sap:content-version="1">
+<Key>
+<PropertyRef Name="equipmentId"/>
+</Key>
+<Property Name="equipmentDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/>
+<Property Name="equipmentId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Equipment"/>
+<Property Name="locationDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/>
+<Property Name="locationId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional loc."/>
+<Property Name="statusId" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Status"/>
+<Property Name="statusDescription" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Description"/>
+<Property Name="ownerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Contact Person"/>
+<Property Name="ownerName" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Name 1"/>
+<Property Name="product" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material"/>
+<Property Name="productName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/>
+<Property Name="productClass" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="productClassDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Keyword"/>
+</EntityType>
+<EntityType Name="productClass" sap:content-version="1">
+<Key>
+<PropertyRef Name="productClassId"/>
+</Key>
+<Property Name="productClassId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Class"/>
+<Property Name="productClassDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Keyword"/>
+</EntityType>
+<EntityType Name="equipmentStatus" sap:content-version="1">
+<Key>
+<PropertyRef Name="equipmentStatusId"/>
+</Key>
+<Property Name="equipmentStatusId" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Status"/>
+<Property Name="equipmentStatusDescription" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Description"/>
+</EntityType>
+<EntityType Name="userProfile" sap:content-version="1">
+<Key>
+<PropertyRef Name="userId"/>
+</Key>
+<Property Name="userId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User"/>
+<Property Name="decimalSeparator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Flag"/>
+<Property Name="groupSeparator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Flag"/>
+<Property Name="dateFormat" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short text"/>
+<Property Name="timeFormat" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short text"/>
+</EntityType>
+<EntityType Name="meter" sap:content-version="1">
+<Key>
+<PropertyRef Name="locationId"/>
+<PropertyRef Name="meterId"/>
+</Key>
+<Property Name="locationId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Functional loc."/>
+<Property Name="meterId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Equipment"/>
+<Property Name="meterDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+</EntityType>
+<EntityType Name="equipmentFormFactor" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="equipmentId"/>
+</Key>
+<Property Name="availableSurface" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Available Surface(m2)"/>
+<Property Name="equipmentDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/>
+<Property Name="weight" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Weight(Kg)"/>
+<Property Name="availableWeight" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Available Weight(Kg)"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+<Property Name="availableWindload" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Available Windload(N)"/>
+<Property Name="equipmentId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Equipment"/>
+<Property Name="surface" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Surface(m2)"/>
+<Property Name="isformfactor" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="flag to check whether form factor equipment"/>
+<Property Name="windload" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Windload(N)"/>
+</EntityType>
+<EntityType Name="serviceCatalog" sap:content-version="1">
+<Key>
+<PropertyRef Name="catalogId"/>
+</Key>
+<Property Name="catalogId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Service Catalog Elem"/>
+<NavigationProperty Name="to_CatalogAttributes" Relationship="ZPM_SERVICES_V2_SRV.serviceCatalog_to_serviceAttribute" FromRole="FromRole_serviceCatalog_to_serviceAttribute" ToRole="ToRole_serviceCatalog_to_serviceAttribute"/>
+</EntityType>
+<EntityType Name="failurePropagationType" sap:content-version="1">
+<Key>
+<PropertyRef Name="failurePropagationTypeId"/>
+</Key>
+<Property Name="failurePropagationTypeId" Type="Edm.String" Nullable="false" MaxLength="2"/>
+<Property Name="failurePropagationTypeDesc" Type="Edm.String" MaxLength="60"/>
+</EntityType>
+<EntityType Name="serviceToServiceRelation" sap:content-version="1">
+<Key>
+<PropertyRef Name="nodeId"/>
+<PropertyRef Name="parentId"/>
+</Key>
+<Property Name="nodeId" Type="Edm.String" Nullable="false" MaxLength="15" sap:hierarchy-node-for="nodeId" sap:label="Intern id"/>
+<Property Name="parentId" Type="Edm.String" Nullable="false" MaxLength="15" sap:hierarchy-parent-node-for="nodeId" sap:label="Intern id"/>
+<Property Name="nodeLevel" Type="Edm.Byte" Nullable="false" sap:hierarchy-level-for="nodeId" sap:label="Int."/>
+<Property Name="drillState" Type="Edm.String" Nullable="false" MaxLength="8" sap:hierarchy-drill-state-for="nodeId" sap:label="Drill State"/>
+<Property Name="serviceName" Type="Edm.String" MaxLength="200" sap:label="Description"/>
+<Property Name="parentServiceName" Type="Edm.String" MaxLength="200" sap:label="Description"/>
+<Property Name="relationTypeId" Type="Edm.String" MaxLength="2" sap:label="RelType"/>
+<Property Name="relationTypeDescription" Type="Edm.String" MaxLength="20" sap:label="RelTypeDes"/>
+<Property Name="failurePropagationTypeId" Type="Edm.String" MaxLength="2" sap:label="FailureProp"/>
+<Property Name="failurePropagationTypeDesc" Type="Edm.String" MaxLength="20" sap:label="FailPropDesc"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="Deletion Flag"/>
+<Property Name="rootServiceId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Intern id"/>
+</EntityType>
+<EntityType Name="externalProject" sap:content-version="1">
+<Key>
+<PropertyRef Name="idRequest"/>
+<PropertyRef Name="serviceId"/>
+</Key>
+<Property Name="idRequest" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Id request"/>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="30"/>
+<Property Name="appType" Type="Edm.String" Nullable="false" MaxLength="3"/>
+<Property Name="externalSystem" Type="Edm.String" Nullable="false" MaxLength="255"/>
+<Property Name="url" Type="Edm.String" Nullable="false" MaxLength="255"/>
+<Property Name="isDeleted" Type="Edm.Boolean" Nullable="false" sap:label="Delete indicator"/>
+</EntityType>
+<EntityType Name="serviceRelationType" sap:content-version="1">
+<Key>
+<PropertyRef Name="relationTypeId"/>
+</Key>
+<Property Name="relationTypeId" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="RelType"/>
+<Property Name="relationTypeDescription" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="RelTypeDes"/>
+</EntityType>
+<EntityType Name="tarificationTool" sap:content-version="1">
+<Key>
+<PropertyRef Name="serviceId"/>
+<PropertyRef Name="siteId"/>
+<PropertyRef Name="commercialElementId"/>
+<PropertyRef Name="priceBookEntry"/>
+</Key>
+<Property Name="serviceId" Type="Edm.String" Nullable="false" MaxLength="15"/>
+<Property Name="siteId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Functional loc."/>
+<Property Name="commercialElementId" Type="Edm.String" Nullable="false" MaxLength="36"/>
+<Property Name="commercialElementDescription" Type="Edm.String" Nullable="false" MaxLength="500"/>
+<Property Name="priceBookEntry" Type="Edm.String" Nullable="false" MaxLength="36"/>
+<Property Name="alias" Type="Edm.String" Nullable="false" MaxLength="500"/>
+<Property Name="priceBookName" Type="Edm.String" Nullable="false" MaxLength="255"/>
+<Property Name="priceBookCode" Type="Edm.String" Nullable="false" MaxLength="15"/>
+<Property Name="commercialElementCode" Type="Edm.String" Nullable="false" MaxLength="15"/>
+</EntityType>
+<ComplexType Name="terminationReason">
+<Property Name="key" Type="Edm.String" MaxLength="2" sap:label="Status reason"/>
+<Property Name="description" Type="Edm.String" MaxLength="255" sap:label="Comments"/>
+</ComplexType>
+<ComplexType Name="nextOpStatus">
+<Property Name="plant" Type="Edm.String" MaxLength="4" sap:label="Planning plant"/>
+<Property Name="fromStatusId" Type="Edm.String" MaxLength="4" sap:label="Status ID"/>
+<Property Name="fromStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."/>
+<Property Name="toStatusId" Type="Edm.String" MaxLength="4" sap:label="Status ID"/>
+<Property Name="toStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."/>
+<Property Name="isInitialStatus" Type="Edm.Boolean" sap:label="TRUE"/>
+<Property Name="isAutoTransitionActive" Type="Edm.Boolean" sap:label="TRUE"/>
+</ComplexType>
+<ComplexType Name="boolean">
+<Property Name="boole" Type="Edm.Boolean" sap:label="TRUE"/>
+</ComplexType>
+<ComplexType Name="serviceUpdateMessage">
+<Property Name="ServiceId" Type="Edm.String" MaxLength="15" sap:label="Intern id"/>
+<Property Name="UpdateFlag" Type="Edm.Boolean" sap:label="Boolean Variable (X=true, -=false, space=unknown)"/>
+<Property Name="Message" Type="Edm.String" sap:label="STR_LIGHT"/>
+</ComplexType>
+<Association Name="service_to_serviceEquipment" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceEquipment"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceEquipment" Multiplicity="*" Role="ToRole_service_to_serviceEquipment"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceEquipment">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceEquipment">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceContact" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceContact"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceContact" Multiplicity="*" Role="ToRole_service_to_serviceContact"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceContact">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceContact">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceNote" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceNote"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceNote" Multiplicity="*" Role="ToRole_service_to_serviceNote"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceNote">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceNote">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_reserveConfiguration" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="0..1" Role="FromRole_service_to_reserveConfiguration"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceReservedConfiguration" Multiplicity="1" Role="ToRole_service_to_reserveConfiguration"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_reserveConfiguration">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_reserveConfiguration">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceAlias" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceAlias"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceAlias" Multiplicity="*" Role="ToRole_service_to_serviceAlias"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceAlias">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceAlias">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_customerPo" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_customerPo"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceCustomerPo" Multiplicity="*" Role="ToRole_service_to_customerPo"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_customerPo">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_customerPo">
+<PropertyRef Name="sellerId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceAttribute" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="0..1" Role="FromRole_service_to_serviceAttribute"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceAttribute" Multiplicity="*" Role="ToRole_service_to_serviceAttribute"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceAttribute">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceAttribute">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceRequest" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceRequest"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceRequest" Multiplicity="*" Role="ToRole_service_to_serviceRequest"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceRequest">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceRequest">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceLog" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="0..1" Role="FromRole_service_to_serviceLog"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceLog" Multiplicity="*" Role="ToRole_service_to_serviceLog"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceLog">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceLog">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_ServiceOperationStatusLog" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="0..1" Role="FromRole_service_to_ServiceOperationStatusLog"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceOperationStatusLog" Multiplicity="*" Role="ToRole_service_to_ServiceOperationStatusLog"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_ServiceOperationStatusLog">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_ServiceOperationStatusLog">
+<PropertyRef Name="statusId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_hardcodes" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_hardcodes"/>
+<End Type="ZPM_SERVICES_V2_SRV.hardcodes" Multiplicity="*" Role="ToRole_service_to_hardcodes"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_hardcodes">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_hardcodes">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceHierarchyFrom" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_serviceHierarchyFrom"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceHierarchy" Multiplicity="*" Role="ToRole_service_to_serviceHierarchyFrom"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceHierarchyFrom">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceHierarchyFrom">
+<PropertyRef Name="idServiceFrom"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceHierarchyTo" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_serviceHierarchyTo"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceHierarchy" Multiplicity="*" Role="ToRole_service_to_serviceHierarchyTo"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceHierarchyTo">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceHierarchyTo">
+<PropertyRef Name="idServiceTo"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_oneServiceLog" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="0..1" Role="FromRole_service_to_oneServiceLog"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceLog" Multiplicity="1" Role="ToRole_service_to_oneServiceLog"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_oneServiceLog">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_oneServiceLog">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_meter" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_meter"/>
+<End Type="ZPM_SERVICES_V2_SRV.meter" Multiplicity="*" Role="ToRole_service_to_meter"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_meter">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_meter">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_formfactor" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_formfactor"/>
+<End Type="ZPM_SERVICES_V2_SRV.equipmentFormFactor" Multiplicity="*" Role="ToRole_service_to_formfactor"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_formfactor">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_formfactor">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceToServiceRelation" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_serviceToServiceRelation"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceToServiceRelation" Multiplicity="*" Role="ToRole_service_to_serviceToServiceRelation"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceToServiceRelation">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceToServiceRelation">
+<PropertyRef Name="rootServiceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_externalProject" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_externalProject"/>
+<End Type="ZPM_SERVICES_V2_SRV.externalProject" Multiplicity="*" Role="ToRole_service_to_externalProject"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_externalProject">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_externalProject">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_tarificationTool" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="1" Role="FromRole_service_to_tarificationTool"/>
+<End Type="ZPM_SERVICES_V2_SRV.tarificationTool" Multiplicity="*" Role="ToRole_service_to_tarificationTool"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_tarificationTool">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_tarificationTool">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="service_to_serviceLocation" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="FromRole_service_to_serviceLocation"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceLocation" Multiplicity="*" Role="ToRole_service_to_serviceLocation"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_service_to_serviceLocation">
+<PropertyRef Name="serviceId"/>
+</Principal>
+<Dependent Role="ToRole_service_to_serviceLocation">
+<PropertyRef Name="serviceId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="multiAttributes_to_ServiceAttributes" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.multiAttributes" Multiplicity="1" Role="FromRole_multiAttributes_to_ServiceAttributes"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceAttribute" Multiplicity="*" Role="ToRole_multiAttributes_to_ServiceAttributes"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_multiAttributes_to_ServiceAttributes">
+<PropertyRef Name="cont"/>
+</Principal>
+<Dependent Role="ToRole_multiAttributes_to_ServiceAttributes">
+<PropertyRef Name="counter"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="serviceCatalog_to_service" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.serviceCatalog" Multiplicity="1" Role="FromRole_serviceCatalog_to_service"/>
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="ToRole_serviceCatalog_to_service"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_serviceCatalog_to_service">
+<PropertyRef Name="catalogId"/>
+</Principal>
+<Dependent Role="ToRole_serviceCatalog_to_service">
+<PropertyRef Name="catalogId"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="serviceCatalog_to_serviceAttribute" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.serviceCatalog" Multiplicity="1" Role="FromRole_serviceCatalog_to_serviceAttribute"/>
+<End Type="ZPM_SERVICES_V2_SRV.catalogAttribute" Multiplicity="*" Role="ToRole_serviceCatalog_to_serviceAttribute"/>
+</Association>
+<Association Name="classification_to_characteristic" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.classification" Multiplicity="0..1" Role="FromRole_classification_to_characteristic"/>
+<End Type="ZPM_SERVICES_V2_SRV.characteristic" Multiplicity="*" Role="ToRole_classification_to_characteristic"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_classification_to_characteristic">
+<PropertyRef Name="ClassId"/>
+</Principal>
+<Dependent Role="ToRole_classification_to_characteristic">
+<PropertyRef Name="class"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="classification_to_service" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.classification" Multiplicity="0..1" Role="FromRole_classification_to_service"/>
+<End Type="ZPM_SERVICES_V2_SRV.service" Multiplicity="*" Role="ToRole_classification_to_service"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_classification_to_service">
+<PropertyRef Name="ClassId"/>
+</Principal>
+<Dependent Role="ToRole_classification_to_service">
+<PropertyRef Name="instanceClass"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="classification_to_serviceAttribute" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.classification" Multiplicity="0..1" Role="FromRole_classification_to_serviceAttribute"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceAttribute" Multiplicity="*" Role="ToRole_classification_to_serviceAttribute"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_classification_to_serviceAttribute">
+<PropertyRef Name="ClassId"/>
+</Principal>
+<Dependent Role="ToRole_classification_to_serviceAttribute">
+<PropertyRef Name="instanceClass"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="serviceType_to_characteristics" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.serviceType" Multiplicity="0..1" Role="FromRole_serviceType_to_characteristics"/>
+<End Type="ZPM_SERVICES_V2_SRV.characteristic" Multiplicity="*" Role="ToRole_serviceType_to_characteristics"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_serviceType_to_characteristics">
+<PropertyRef Name="instanceClass"/>
+</Principal>
+<Dependent Role="ToRole_serviceType_to_characteristics">
+<PropertyRef Name="class"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="serviceType_to_productClass" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.serviceType" Multiplicity="1" Role="FromRole_serviceType_to_productClass"/>
+<End Type="ZPM_SERVICES_V2_SRV.productClass" Multiplicity="*" Role="ToRole_serviceType_to_productClass"/>
+</Association>
+<Association Name="characteristic_to_allowedValue" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.characteristic" Multiplicity="0..1" Role="FromRole_characteristic_to_allowedValue"/>
+<End Type="ZPM_SERVICES_V2_SRV.characteristicAllowedValue" Multiplicity="*" Role="ToRole_characteristic_to_allowedValue"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_characteristic_to_allowedValue">
+<PropertyRef Name="characteristicId"/>
+<PropertyRef Name="class"/>
+</Principal>
+<Dependent Role="ToRole_characteristic_to_allowedValue">
+<PropertyRef Name="characteristic"/>
+<PropertyRef Name="class"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="characteristic_to_serviceAttribute" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.characteristic" Multiplicity="0..1" Role="FromRole_characteristic_to_serviceAttribute"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceAttribute" Multiplicity="*" Role="ToRole_characteristic_to_serviceAttribute"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_characteristic_to_serviceAttribute">
+<PropertyRef Name="characteristicId"/>
+<PropertyRef Name="class"/>
+</Principal>
+<Dependent Role="ToRole_characteristic_to_serviceAttribute">
+<PropertyRef Name="characteristic"/>
+<PropertyRef Name="instanceClass"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="serviceBundle_to_serviceBundleServ" sap:content-version="1">
+<End Type="ZPM_SERVICES_V2_SRV.serviceBundle" Multiplicity="1" Role="FromRole_serviceBundle_to_serviceBundleServ"/>
+<End Type="ZPM_SERVICES_V2_SRV.serviceBundleServ" Multiplicity="*" Role="ToRole_serviceBundle_to_serviceBundleServ"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_serviceBundle_to_serviceBundleServ">
+<PropertyRef Name="zzbunIdIntern"/>
+</Principal>
+<Dependent Role="ToRole_serviceBundle_to_serviceBundleServ">
+<PropertyRef Name="zzbunIdIntern"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<EntityContainer Name="ZPM_SERVICES_V2_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="services" EntityType="ZPM_SERVICES_V2_SRV.service" sap:content-version="1"/>
+<EntitySet Name="serviceLocations" EntityType="ZPM_SERVICES_V2_SRV.serviceLocation" sap:content-version="1"/>
+<EntitySet Name="invoiceStatuses" EntityType="ZPM_SERVICES_V2_SRV.invoiceStatus" sap:content-version="1"/>
+<EntitySet Name="operationalStatuses" EntityType="ZPM_SERVICES_V2_SRV.operationalStatus" sap:content-version="1"/>
+<EntitySet Name="serviceEquipments" EntityType="ZPM_SERVICES_V2_SRV.serviceEquipment" sap:content-version="1"/>
+<EntitySet Name="serviceContacts" EntityType="ZPM_SERVICES_V2_SRV.serviceContact" sap:content-version="1"/>
+<EntitySet Name="catalogAttributes" EntityType="ZPM_SERVICES_V2_SRV.catalogAttribute" sap:content-version="1"/>
+<EntitySet Name="serviceNotes" EntityType="ZPM_SERVICES_V2_SRV.serviceNote" sap:content-version="1"/>
+<EntitySet Name="serviceReservedConfigurations" EntityType="ZPM_SERVICES_V2_SRV.serviceReservedConfiguration" sap:content-version="1"/>
+<EntitySet Name="serviceAliases" EntityType="ZPM_SERVICES_V2_SRV.serviceAlias" sap:content-version="1"/>
+<EntitySet Name="serviceCustomerPos" EntityType="ZPM_SERVICES_V2_SRV.serviceCustomerPo" sap:content-version="1"/>
+<EntitySet Name="serviceAttributes" EntityType="ZPM_SERVICES_V2_SRV.serviceAttribute" sap:content-version="1"/>
+<EntitySet Name="serviceRequests" EntityType="ZPM_SERVICES_V2_SRV.serviceRequest" sap:content-version="1"/>
+<EntitySet Name="serviceBundles" EntityType="ZPM_SERVICES_V2_SRV.serviceBundle" sap:content-version="1"/>
+<EntitySet Name="serviceHierarchies" EntityType="ZPM_SERVICES_V2_SRV.serviceHierarchy" sap:content-version="1"/>
+<EntitySet Name="characteristics" EntityType="ZPM_SERVICES_V2_SRV.characteristic" sap:content-version="1"/>
+<EntitySet Name="classifications" EntityType="ZPM_SERVICES_V2_SRV.classification" sap:content-version="1"/>
+<EntitySet Name="characteristicAllowedValues" EntityType="ZPM_SERVICES_V2_SRV.characteristicAllowedValue" sap:content-version="1"/>
+<EntitySet Name="serviceOperationStatusLogs" EntityType="ZPM_SERVICES_V2_SRV.serviceOperationStatusLog" sap:content-version="1"/>
+<EntitySet Name="serviceLogs" EntityType="ZPM_SERVICES_V2_SRV.serviceLog" sap:content-version="1"/>
+<EntitySet Name="hardcodes" EntityType="ZPM_SERVICES_V2_SRV.hardcodes" sap:content-version="1"/>
+<EntitySet Name="serviceBundleServSet" EntityType="ZPM_SERVICES_V2_SRV.serviceBundleServ" sap:content-version="1"/>
+<EntitySet Name="realEstateContracts" EntityType="ZPM_SERVICES_V2_SRV.realEstateContract" sap:content-version="1"/>
+<EntitySet Name="servicesView" EntityType="ZPM_SERVICES_V2_SRV.serviceView" sap:content-version="1"/>
+<EntitySet Name="multiAttributes" EntityType="ZPM_SERVICES_V2_SRV.multiAttributes" sap:content-version="1"/>
+<EntitySet Name="serviceTypes" EntityType="ZPM_SERVICES_V2_SRV.serviceType" sap:content-version="1"/>
+<EntitySet Name="companies" EntityType="ZPM_SERVICES_V2_SRV.company" sap:content-version="1"/>
+<EntitySet Name="availableEquipmentsVh" EntityType="ZPM_SERVICES_V2_SRV.availableEquipmentVh" sap:content-version="1"/>
+<EntitySet Name="productClasses" EntityType="ZPM_SERVICES_V2_SRV.productClass" sap:content-version="1"/>
+<EntitySet Name="equipmentStatuses" EntityType="ZPM_SERVICES_V2_SRV.equipmentStatus" sap:content-version="1"/>
+<EntitySet Name="userProfiles" EntityType="ZPM_SERVICES_V2_SRV.userProfile" sap:content-version="1"/>
+<EntitySet Name="meters" EntityType="ZPM_SERVICES_V2_SRV.meter" sap:content-version="1"/>
+<EntitySet Name="equipmentFormFactors" EntityType="ZPM_SERVICES_V2_SRV.equipmentFormFactor" sap:content-version="1"/>
+<EntitySet Name="serviceCatalogs" EntityType="ZPM_SERVICES_V2_SRV.serviceCatalog" sap:content-version="1"/>
+<EntitySet Name="failurePropagationTypes" EntityType="ZPM_SERVICES_V2_SRV.failurePropagationType" sap:content-version="1"/>
+<EntitySet Name="serviceToServiceRelations" EntityType="ZPM_SERVICES_V2_SRV.serviceToServiceRelation" sap:content-version="1"/>
+<EntitySet Name="externalProjects" EntityType="ZPM_SERVICES_V2_SRV.externalProject" sap:content-version="1"/>
+<EntitySet Name="serviceRelationTypes" EntityType="ZPM_SERVICES_V2_SRV.serviceRelationType" sap:content-version="1"/>
+<EntitySet Name="tarificationTools" EntityType="ZPM_SERVICES_V2_SRV.tarificationTool" sap:content-version="1"/>
+<AssociationSet Name="classification_to_serviceAttribute_Assoc" Association="ZPM_SERVICES_V2_SRV.classification_to_serviceAttribute" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="classifications" Role="FromRole_classification_to_serviceAttribute"/>
+<End EntitySet="serviceAttributes" Role="ToRole_classification_to_serviceAttribute"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceAttribute_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceAttribute" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceAttribute"/>
+<End EntitySet="serviceAttributes" Role="ToRole_service_to_serviceAttribute"/>
+</AssociationSet>
+<AssociationSet Name="service_to_hardcodesSet" Association="ZPM_SERVICES_V2_SRV.service_to_hardcodes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_hardcodes"/>
+<End EntitySet="hardcodes" Role="ToRole_service_to_hardcodes"/>
+</AssociationSet>
+<AssociationSet Name="service_to_reserveConfiguration_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_reserveConfiguration" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_reserveConfiguration"/>
+<End EntitySet="serviceReservedConfigurations" Role="ToRole_service_to_reserveConfiguration"/>
+</AssociationSet>
+<AssociationSet Name="service_to_tarificationToolSet" Association="ZPM_SERVICES_V2_SRV.service_to_tarificationTool" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_tarificationTool"/>
+<End EntitySet="tarificationTools" Role="ToRole_service_to_tarificationTool"/>
+</AssociationSet>
+<AssociationSet Name="characteristic_to_allowedValue_AssocSet" Association="ZPM_SERVICES_V2_SRV.characteristic_to_allowedValue" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="characteristics" Role="FromRole_characteristic_to_allowedValue"/>
+<End EntitySet="characteristicAllowedValues" Role="ToRole_characteristic_to_allowedValue"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceLocation_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceLocation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceLocation"/>
+<End EntitySet="serviceLocations" Role="ToRole_service_to_serviceLocation"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceNote_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceNote" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceNote"/>
+<End EntitySet="serviceNotes" Role="ToRole_service_to_serviceNote"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceLog_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceLog" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceLog"/>
+<End EntitySet="serviceLogs" Role="ToRole_service_to_serviceLog"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceAlias_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceAlias" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceAlias"/>
+<End EntitySet="serviceAliases" Role="ToRole_service_to_serviceAlias"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceHierarchyFromSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceHierarchyFrom" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceHierarchyFrom"/>
+<End EntitySet="serviceHierarchies" Role="ToRole_service_to_serviceHierarchyFrom"/>
+</AssociationSet>
+<AssociationSet Name="serviceCatalog_to_service_AssocSet" Association="ZPM_SERVICES_V2_SRV.serviceCatalog_to_service" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="serviceCatalogs" Role="FromRole_serviceCatalog_to_service"/>
+<End EntitySet="services" Role="ToRole_serviceCatalog_to_service"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceContact_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceContact" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceContact"/>
+<End EntitySet="serviceContacts" Role="ToRole_service_to_serviceContact"/>
+</AssociationSet>
+<AssociationSet Name="classification_to_characteristic_AssocSe" Association="ZPM_SERVICES_V2_SRV.classification_to_characteristic" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="classifications" Role="FromRole_classification_to_characteristic"/>
+<End EntitySet="characteristics" Role="ToRole_classification_to_characteristic"/>
+</AssociationSet>
+<AssociationSet Name="serviceType_to_characteristics_AssocSet" Association="ZPM_SERVICES_V2_SRV.serviceType_to_characteristics" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="serviceTypes" Role="FromRole_serviceType_to_characteristics"/>
+<End EntitySet="characteristics" Role="ToRole_serviceType_to_characteristics"/>
+</AssociationSet>
+<AssociationSet Name="serviceType_to_productClass_AssocSet" Association="ZPM_SERVICES_V2_SRV.serviceType_to_productClass" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="serviceTypes" Role="FromRole_serviceType_to_productClass"/>
+<End EntitySet="productClasses" Role="ToRole_serviceType_to_productClass"/>
+</AssociationSet>
+<AssociationSet Name="service_to_meter_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_meter" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_meter"/>
+<End EntitySet="meters" Role="ToRole_service_to_meter"/>
+</AssociationSet>
+<AssociationSet Name="service_to_customerPo_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_customerPo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_customerPo"/>
+<End EntitySet="serviceCustomerPos" Role="ToRole_service_to_customerPo"/>
+</AssociationSet>
+<AssociationSet Name="multiAttributes_to_ServiceAttributesSet" Association="ZPM_SERVICES_V2_SRV.multiAttributes_to_ServiceAttributes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="multiAttributes" Role="FromRole_multiAttributes_to_ServiceAttributes"/>
+<End EntitySet="serviceAttributes" Role="ToRole_multiAttributes_to_ServiceAttributes"/>
+</AssociationSet>
+<AssociationSet Name="classification_to_service_AssocSet" Association="ZPM_SERVICES_V2_SRV.classification_to_service" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="classifications" Role="FromRole_classification_to_service"/>
+<End EntitySet="services" Role="ToRole_classification_to_service"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceEquipment_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceEquipment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceEquipment"/>
+<End EntitySet="serviceEquipments" Role="ToRole_service_to_serviceEquipment"/>
+</AssociationSet>
+<AssociationSet Name="serviceCatalog_to_serviceAttribute_Assoc" Association="ZPM_SERVICES_V2_SRV.serviceCatalog_to_serviceAttribute" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="serviceCatalogs" Role="FromRole_serviceCatalog_to_serviceAttribute"/>
+<End EntitySet="catalogAttributes" Role="ToRole_serviceCatalog_to_serviceAttribute"/>
+</AssociationSet>
+<AssociationSet Name="serviceBundle_to_serviceBundleServSet" Association="ZPM_SERVICES_V2_SRV.serviceBundle_to_serviceBundleServ" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="serviceBundles" Role="FromRole_serviceBundle_to_serviceBundleServ"/>
+<End EntitySet="serviceBundleServSet" Role="ToRole_serviceBundle_to_serviceBundleServ"/>
+</AssociationSet>
+<AssociationSet Name="characteristic_to_serviceAttribute_Assoc" Association="ZPM_SERVICES_V2_SRV.characteristic_to_serviceAttribute" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="characteristics" Role="FromRole_characteristic_to_serviceAttribute"/>
+<End EntitySet="serviceAttributes" Role="ToRole_characteristic_to_serviceAttribute"/>
+</AssociationSet>
+<AssociationSet Name="service_to_oneServiceLog_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_oneServiceLog" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_oneServiceLog"/>
+<End EntitySet="serviceLogs" Role="ToRole_service_to_oneServiceLog"/>
+</AssociationSet>
+<AssociationSet Name="service_to_externalProjectSet" Association="ZPM_SERVICES_V2_SRV.service_to_externalProject" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_externalProject"/>
+<End EntitySet="externalProjects" Role="ToRole_service_to_externalProject"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceHierarchyToSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceHierarchyTo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceHierarchyTo"/>
+<End EntitySet="serviceHierarchies" Role="ToRole_service_to_serviceHierarchyTo"/>
+</AssociationSet>
+<AssociationSet Name="service_to_ServiceOperationStatusLog_Ass" Association="ZPM_SERVICES_V2_SRV.service_to_ServiceOperationStatusLog" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_ServiceOperationStatusLog"/>
+<End EntitySet="serviceOperationStatusLogs" Role="ToRole_service_to_ServiceOperationStatusLog"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceRequest_AssocSet" Association="ZPM_SERVICES_V2_SRV.service_to_serviceRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceRequest"/>
+<End EntitySet="serviceRequests" Role="ToRole_service_to_serviceRequest"/>
+</AssociationSet>
+<AssociationSet Name="service_to_formfactorSet" Association="ZPM_SERVICES_V2_SRV.service_to_formfactor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_formfactor"/>
+<End EntitySet="equipmentFormFactors" Role="ToRole_service_to_formfactor"/>
+</AssociationSet>
+<AssociationSet Name="service_to_serviceToServiceRelation_Asso" Association="ZPM_SERVICES_V2_SRV.service_to_serviceToServiceRelation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="services" Role="FromRole_service_to_serviceToServiceRelation"/>
+<End EntitySet="serviceToServiceRelations" Role="ToRole_service_to_serviceToServiceRelation"/>
+</AssociationSet>
+<FunctionImport Name="getNextOpStatuses" ReturnType="Collection(ZPM_SERVICES_V2_SRV.nextOpStatus)" m:HttpMethod="GET"/>
+<FunctionImport Name="setOpStatus" ReturnType="ZPM_SERVICES_V2_SRV.boolean" m:HttpMethod="GET">
+<Parameter Name="serviceId" Type="Edm.String" Mode="In" MaxLength="15"/>
+<Parameter Name="opStatusId" Type="Edm.String" Mode="In" MaxLength="4"/>
+<Parameter Name="comment" Type="Edm.String" Mode="In" MaxLength="255"/>
+<Parameter Name="reasonCode" Type="Edm.String" Mode="In" MaxLength="2"/>
+</FunctionImport>
+<FunctionImport Name="getTerminationReasons" ReturnType="Collection(ZPM_SERVICES_V2_SRV.terminationReason)" m:HttpMethod="GET"/>
+<FunctionImport Name="getProductClassForServiceType" ReturnType="Collection(ZPM_SERVICES_V2_SRV.productClass)" EntitySet="productClasses" m:HttpMethod="GET">
+<Parameter Name="serviceType" Type="Edm.String" Mode="In" MaxLength="18" sap:label="Class"/>
+</FunctionImport>
+<FunctionImport Name="onPowerRechargeMethodChange" ReturnType="Collection(ZPM_SERVICES_V2_SRV.serviceUpdateMessage)" m:HttpMethod="POST">
+<Parameter Name="powerRechargeMethod" Type="Edm.Decimal" Mode="In" Precision="1" Scale="0" sap:label="PRM"/>
+<Parameter Name="requestId" Type="Edm.String" Mode="In" MaxLength="25"/>
+</FunctionImport>
+</EntityContainer>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.TextArrangement" EnumMember="com.sap.vocabularies.UI.v1.TextArrangementType/"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.UI.v1.Hidden" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.UI.v1.HiddenFilter" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.UI.v1.IsImageURL" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.Maximum" Path=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.Minimum" Path=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.MultipleOf" Path=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.Pattern" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.DerivedDefaultValue" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.DerivedFilterDefaultValue" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.FieldControl" EnumMember="com.sap.vocabularies.Common.v1.FieldControlType/"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.FilterDefaultValue" Path=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarDate" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarHalfyear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarQuarter" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarWeek" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearHalfyear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearQuarter" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearWeek" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDayOfCalendarMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDayOfCalendarYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDigitSequence" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalPeriod" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYearPeriod" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYearVariant" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsUpperCase" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.Masked" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.MaxOccurs" Int="0"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.MinOccurs" Int="0"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.RelatedRecursiveHierarchy" AnnotationPath=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.SemanticObject" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.TextFormat" EnumMember="com.sap.vocabularies.Common.v1.TextFormatType/"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListWithFixedValues" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.DerivedDefaultValue" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.DerivedFilterDefaultValue" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.FieldControl" EnumMember="com.sap.vocabularies.Common.v1.FieldControlType/"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.FilterDefaultValue" Path=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarDate" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarHalfyear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarQuarter" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarWeek" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearHalfyear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearQuarter" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsCalendarYearWeek" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDayOfCalendarMonth" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDayOfCalendarYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsDigitSequence" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalPeriod" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYear" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYearPeriod" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsFiscalYearVariant" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.IsUpperCase" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.Masked" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.MaxOccurs" Int="0"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.MinOccurs" Int="0"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.RelatedRecursiveHierarchy" AnnotationPath=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.SemanticObject" String=""/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.Text" String="Start Date"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.TextFormat" EnumMember="com.sap.vocabularies.Common.v1.TextFormatType/"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListWithFixedValues" Bool="false"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.Contacts">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.Facets">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.FilterFacets">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.GeoLocations">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.HeaderFacets">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.Identification">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+<Collection>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="serviceId"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=" Value : serviceName,"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="catalogName"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="customerName"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="opStatusDescription"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="invoiceStatusDescription"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="legacyId"/>
+</Record>
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path="companyName"/>
+</Record>
+</Collection>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.QuickCreateFacets">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.QuickViewFacets">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.SelectionFields">
+<Collection>
+<PropertyPath>serviceId</PropertyPath>
+<PropertyPath>customerId</PropertyPath>
+<PropertyPath>catalogId</PropertyPath>
+<PropertyPath>operativeStatus</PropertyPath>
+<PropertyPath>legacyId</PropertyPath>
+</Collection>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.StatusInfo">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.AllowedValues">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="Org.OData.Validation.V1.DerivedTypeConstraint">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.Attributes">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListReferences">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.Attributes">
+<Collection>
+<PropertyPath/>
+</Collection>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListReferences">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.Badge">
+<Record Type="com.sap.vocabularies.UI.v1.BadgeType">
+<PropertyValue Property="HeadLine">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="Title">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="ImageUrl" String=""/>
+<PropertyValue Property="TypeImageUrl" String=""/>
+<PropertyValue Property="MainInfo">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="SecondaryInfo">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.Chart">
+<Record Type="com.sap.vocabularies.UI.v1.ChartDefinitionType">
+<PropertyValue Property="Title" String=""/>
+<PropertyValue Property="Description" String=""/>
+<PropertyValue Property="ChartType" EnumMember=""/>
+<PropertyValue Property="Measures">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="MeasureAttributes">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="Dimensions">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="DimensionAttributes">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="Actions">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint">
+<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
+<PropertyValue Property="Title" String=""/>
+<PropertyValue Property="Description" String=""/>
+<PropertyValue Property="LongDescription" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="TargetValue" Path=""/>
+<PropertyValue Property="ForecastValue" Path=""/>
+<PropertyValue Property="ValueFormat">
+<Record Type="com.sap.vocabularies.UI.v1.NumberFormat">
+<PropertyValue Property="Visualization" EnumMember=""/>
+<PropertyValue Property="SampleSize" Path=""/>
+<PropertyValue Property="ReferencePeriod">
+<Record Type="com.sap.vocabularies.UI.v1.ReferencePeriod">
+<PropertyValue Property="Description" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityCalculation">
+<Record Type="com.sap.vocabularies.UI.v1.CriticalityCalculationType">
+<PropertyValue Property="AcceptanceRangeLowValue" Path=""/>
+<PropertyValue Property="AcceptanceRangeHighValue" Path=""/>
+<PropertyValue Property="ToleranceRangeLowValue" Path=""/>
+<PropertyValue Property="ToleranceRangeHighValue" Path=""/>
+<PropertyValue Property="DeviationRangeLowValue" Path=""/>
+<PropertyValue Property="DeviationRangeHighValue" Path=""/>
+<PropertyValue Property="ImprovementDirection" EnumMember=""/>
+<PropertyValue Property="Trend" EnumMember=""/>
+<PropertyValue Property="TrendCalculation">
+<Record Type="com.sap.vocabularies.UI.v1.TrendCalculationType">
+<PropertyValue Property="ReferenceValue" Path=""/>
+<PropertyValue Property="IsRelativeDifference" Bool="false"/>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.FieldGroup">
+<Record Type="com.sap.vocabularies.UI.v1.FieldGroupType">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Data">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.GeoLocation">
+<Record Type="com.sap.vocabularies.UI.v1.GeoLocationType"/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.HeaderInfo">
+<Record Type="com.sap.vocabularies.UI.v1.HeaderInfoType">
+<PropertyValue Property="TypeName" String=""/>
+<PropertyValue Property="TypeNamePlural" String=""/>
+<PropertyValue Property="Title">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="Description">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="ImageUrl" String=""/>
+<PropertyValue Property="TypeImageUrl" String=""/>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.MediaResource">
+<Record Type="com.sap.vocabularies.UI.v1.MediaResourceType">
+<PropertyValue Property="Url" String=""/>
+<PropertyValue Property="ContentType" String=""/>
+<PropertyValue Property="ByteSize" Int="0"/>
+<PropertyValue Property="Thumbnail">
+<Record Type="com.sap.vocabularies.UI.v1.ImageType">
+<PropertyValue Property="Url" String=""/>
+<PropertyValue Property="Width" String=""/>
+<PropertyValue Property="Height" String=""/>
+<PropertyValue Property="Title">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+<PropertyValue Property="Description">
+<Record Type="com.sap.vocabularies.UI.v1.DataField">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="Criticality" EnumMember=""/>
+<PropertyValue Property="CriticalityRepresentation" EnumMember=""/>
+<PropertyValue Property="IconUrl" String=""/>
+<PropertyValue Property="Value" Path=""/>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.PresentationVariant">
+<Record Type="com.sap.vocabularies.UI.v1.PresentationVariantType">
+<PropertyValue Property="ID" String=""/>
+<PropertyValue Property="Text" String=""/>
+<PropertyValue Property="MaxItems" Int="0"/>
+<PropertyValue Property="GroupBy">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="TotalBy">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="Total">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="IncludeGrandTotal" Bool="false"/>
+<PropertyValue Property="InitialExpansionLevel" Int="0"/>
+<PropertyValue Property="Visualizations">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="RequestAtLeast">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.SelectionPresentationVariant">
+<Record Type="com.sap.vocabularies.UI.v1.SelectionPresentationVariantType">
+<PropertyValue Property="ID" String=""/>
+<PropertyValue Property="Text" String=""/>
+<PropertyValue Property="SelectionVariant">
+<Record Type="com.sap.vocabularies.UI.v1.SelectionVariantType">
+<PropertyValue Property="ID" String=""/>
+<PropertyValue Property="Text" String=""/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="FilterExpression" String=""/>
+<PropertyValue Property="SelectOptions">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="PresentationVariant">
+<Record Type="com.sap.vocabularies.UI.v1.PresentationVariantType">
+<PropertyValue Property="ID" String=""/>
+<PropertyValue Property="Text" String=""/>
+<PropertyValue Property="MaxItems" Int="0"/>
+<PropertyValue Property="GroupBy">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="TotalBy">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="Total">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="IncludeGrandTotal" Bool="false"/>
+<PropertyValue Property="InitialExpansionLevel" Int="0"/>
+<PropertyValue Property="Visualizations">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="RequestAtLeast">
+<Collection/>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service">
+<Annotation Term="com.sap.vocabularies.UI.v1.SelectionVariant">
+<Record Type="com.sap.vocabularies.UI.v1.SelectionVariantType">
+<PropertyValue Property="ID" String=""/>
+<PropertyValue Property="Text" String=""/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+<PropertyValue Property="FilterExpression" String=""/>
+<PropertyValue Property="SelectOptions">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="CollectionPath" PropertyPath="invoiceStatusId"/>
+<PropertyValue Property="CollectionRoot" PropertyPath="invoiceStatuses"/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/invoiceStatus">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListMapping">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListMappingType">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="CollectionPath" String=""/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="CollectionPath" String=""/>
+<PropertyValue Property="CollectionRoot" String=""/>
+<PropertyValue Property="SearchSupported" Bool="false"/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPM_SERVICES_V2_SRV.service/startDate">
+<Annotation Term="com.sap.vocabularies.Common.v1.ValueListMapping">
+<Record Type="com.sap.vocabularies.Common.v1.ValueListMappingType">
+<PropertyValue Property="Label" String=""/>
+<PropertyValue Property="CollectionPath" String=""/>
+<PropertyValue Property="Parameters">
+<Collection/>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://scc:50000/sap/opu/odata/sap/ZPM_SERVICES_V2_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://scc:50000/sap/opu/odata/sap/ZPM_SERVICES_V2_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

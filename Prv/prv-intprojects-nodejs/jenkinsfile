@@ -1,0 +1,5 @@
+@Library('piper-lib-os') _
+node(){
+  env.NODEJS_HOME = "${tool 'nodejs'}"
+  env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+  sh 'npm --version'

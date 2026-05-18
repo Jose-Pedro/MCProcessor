@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:smarttable="sap.ui.comp.smarttable" displayBlock="true">
+	<Dialog id="_IDGenDialog1" title="{i18n>servicesList}">
+		<content>
+            <smarttable:SmartTable 
+                id="serviceListTable" 
+                tableType="Table"
+                entitySet="Services"
+                width="100%" 
+                direction="Column" 
+                fitContainer="true" 
+                placeToolbarInTable="true" 
+                persistencyKey="serviceListTable" 
+                customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 7, 'gap': 0, 'truncateLabel': false}}}"
+                header="{i18n>services}"
+                enableAutoColumnWidth="true"
+                beforeRebindTable="onBeforeRebindServiceList" 
+                enableAutoBinding="true">
+                <table:Table id="_IDGenTable" rowMode="Auto" selectionMode="None" >
+                    <table:rowMode>
+                        <rowmodes:Auto id="_IDGenAuto2" xmlns:rowmodes="sap.ui.table.rowmodes" minRowCount="10" />
+                    </table:rowMode>
+                </table:Table>
+            </smarttable:SmartTable>                            
+		</content>
+        <footer>
+            <Toolbar id="_IDGenToolbar3">
+                <content>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer9" />
+			        <Button id ="serviceListClose" text="{i18n>close}" type="Emphasized" press="onCloseDialog" > 
+                        <customData>
+                            <core:CustomData key="dialogName" value="_serviceListDialog" />
+                        </customData>
+			        </Button>
+                </content>
+            </Toolbar>
+        </footer>
+	</Dialog>
+</core:FragmentDefinition>

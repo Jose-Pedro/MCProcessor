@@ -1,0 +1,223 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.reqCreation.blocks.requestConfigur"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" expandable="true" expand="onExpandRequestConfigur"  expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="requestConfigurPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="requestConfigurToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="requestConfigurTitle" text="{i18n>requestConfigur}"/>
+                <ToolbarSpacer id="requestConfigur_IDGenToolbarSpacer3"/>
+                <Button id="closeBlockrequestConfigur" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/requestConfigur/complete} === true}"/>
+                <OverflowToolbarButton id="buttonrequestConfigurForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/requestConfigur/reopen} === true}"/>
+                <ObjectStatus id="requestConfigur_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="requestConfigurForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="requestConfigur_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="requestConfigur_IDGenGroup1" >
+                        <smartform:GroupElement id="requestConfigur_IDGenGroupElement1">
+                            <smartfield:SmartField id="siteSurveyWillBeNeeded" value="{BlockProvision/siteSurveyWillBeNeeded}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestConfigur_IDGenGroupElement2">
+                            
+                            <smartfield:SmartField id="preferredProvider" value="{RequestProvision/preferredProvider}" change="onFieldpreferredProviderChange" textInEditModeSource="ValueListNoValidation" />
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+            
+            <smartform:SmartForm editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}" id="requestConfigurationCommentsForm">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="requestConfigurationCommentsFormColumnLayout" columnsM="1" columnsL="1" columnsXL="1" labelCellsLarge="12"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="requestConfigurationCommentsFormGroup">                
+                        <smartform:GroupElement id="requestConfigurationCommentsFormGroupElement">
+                            <smartfield:SmartField id="commentsConfig" value="{comments}" change="onFieldChange" app:multiLineSettings="{cols: 2000, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>                
+                </smartform:groups>
+            </smartform:SmartForm>
+            <smarttable:SmartTable
+                id="OTRequestRequestDocumentsPerBlockDefaultValid"
+                width="100%"
+                direction="Column"
+                fitContainer="true"
+                visible="true"
+                showTablePersonalisation="false"
+                editTogglable="false"
+                editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+                fieldChange="onDocumentsPerBlockDefaultValidFieldChange"
+                header="{i18n>DefaultValidators}"
+                showFullScreenButton="true"
+                requestAtLeastFields="requestId,responsibleId,cellnexResponsibleFC,subcontractorResponsibleFC,agencyResponsibleFC,customerResponsibleFC,cellnexResponsibleName,subcontractorResponsibleName,agencyResponsibleName,customerResponsibleName"
+                enableAutoColumnWidth="true"
+                enableAutoBinding="false"
+                app:useSmartField="true"
+                tableBindingPath="RequestDocumentsPerBlockDefaultValid"
+                customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 7, 'gap': 0, 'truncateLabel': false}}}"
+                entitySet="RequestDocumentsPerBlockDefaultValid">
+                <smarttable:customToolbar>
+                    <OverflowToolbar id="OverflowToolbarOTRequestRequestDocumentsPerBlockDefaultValid" design="Transparent">
+                        <ToolbarSpacer id="ToolbarSpacerOTRequestRequestDocumentsPerBlockDefaultValid" />
+                        <OverflowToolbar  id="OverflowToolbar2OTRequestRequestDocumentsPerBlockDefaultValid" design="Transparent">
+                            <ToolbarSpacer id="ToolbarSpacer2OTRequestRequestDocumentsPerBlockDefaultValid" />
+                            <ToolbarSeparator  id="ToolbarSeparatorOTRequestRequestDocumentsPerBlockDefaultValid"/>
+                            <OverflowToolbarButton
+                                id="deleteDocument"
+                                icon="sap-icon://delete"
+                                press="onApproveDeleteAllDocumentsDefault"
+                                enabled="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+                            />
+                            <OverflowToolbarButton
+                                id="addDDefaultDocuments"
+                                icon="sap-icon://arrow-bottom"
+                                press="onResetAllDocumentsDefault"
+                                enabled="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+                            />
+                            <Button
+                                id="addDocument"
+                                text="{i18n>add}"
+                                type="Emphasized"
+                                press="onShowAddDocumentPerBlockValidDialog"
+                                enabled="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+                            />
+                        </OverflowToolbar>
+                    </OverflowToolbar>
+                </smarttable:customToolbar>
+                <table:Table id="tableOTRequestRequestDocumentsPerBlockDefaultValid"
+                    rowMode="Fixed"
+                    rowActionCount="1"
+                    selectionMode="Multi">
+                    <table:Column id="ColumnDocumentOTRequestRequestDocumentsPerBlockDefaultValid" width="15%">
+                        <Label id="LabelDocumentOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>Document}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "documentId", "leadingProperty":"documentId", "columnIndex" : "0"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxDocumentOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="SmartFieldDocumentOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{documentId}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="ColumnResponsibleOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label id="LabelResponsibleOTRequestRequestDocumentsPerBlockDefaultValid"  text="{i18n>Responsible}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "responsibleId", "leadingProperty":"responsibleId", "columnIndex" : "1"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox  id="HBoxResponsibleOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="smartfieldResponsibleOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{responsibleId}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="ColumnResponsibleTypeOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label id="LabelResponsibleTypeOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>responsibleType}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "subcontractorId", "leadingProperty":"subcontractorId", "columnIndex" : "2"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxResponsibleTypeOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="smartfieldResponsibleTypeOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{subcontractorId}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="ColumnResponsibleDefaultOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label id="LabelResponsibleDefaultOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>Responsible}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "responsibleDefault", "leadingProperty":"responsibleDefault", "columnIndex" : "3"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxResponsibleDefaultOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="smartfieldResponsibleDefaultcellnexResponsibleOTRequestRequestDocumentsPerBlockDefaultValid" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{cellnexResponsible}' />
+                                <smartfield:SmartField id="smartfieldResponsibleDefaultsubcoResponsibleOTRequestRequestDocumentsPerBlockDefaultValid" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{subcontractorResponsible}' />
+                                <smartfield:SmartField id="smartfieldResponsibleDefaultagencyResponsibleOTRequestRequestDocumentsPerBlockDefaultValid" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{agencyResponsible}' />
+                                <smartfield:SmartField id="smartfieldResponsibleDefaultcustomerResponsibleOTRequestRequestDocumentsPerBlockDefaultValid"  fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{customerResponsible}' />
+                            </HBox>
+                        </table:template> 
+                    </table:Column>
+                    <table:Column id="ColumnCellnexValidatorOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label id="LabelCellnexValidatorOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>CellnexValidator}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "cellnexValidation", "leadingProperty":"cellnexValidation", "columnIndex" : "4"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxcellnexValidationOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="SmartFieldcellnexValidationOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{cellnexValidation}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="ColumnsubcontractorValidationOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label id="LabelsubcontractorValidationOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>SubcontractorValidator}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "subcontractorValidation", "leadingProperty":"subcontractorValidation", "columnIndex" : "5"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxsubcontractorValidationOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="SmartFieldsubcontractorValidationOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{subcontractorValidation}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column id="ColumnCustomerValidatorOTRequestRequestDocumentsPerBlockDefaultValid">
+                        <Label  id="LabelCustomerValidatorOTRequestRequestDocumentsPerBlockDefaultValid" text="{i18n>CustomerValidator}" />
+                        <table:customData>
+                            <core:CustomData key="p13nData" value='\{"columnKey": "customerValidation", "leadingProperty":"customerValidation", "columnIndex" : "6"}' />
+                        </table:customData>
+                        <table:template>
+                            <HBox id="HBoxcustomerValidationOTRequestRequestDocumentsPerBlockDefaultValid">
+                                <smartfield:SmartField id="SmartFieldcustomerValidationOTRequestRequestDocumentsPerBlockDefaultValid" changeModelValue="onDocumentsPerBlockDefaultValidFieldChange" value='{customerValidation}' />
+                            </HBox>
+                        </table:template>
+                    </table:Column>
+
+                    <table:rowMode>
+                        <rowmodes:Interactive id="rowmodesOTRequestRequestDocumentsPerBlockDefaultValid"
+                            xmlns:rowmodes="sap.ui.table.rowmodes"
+                            minRowCount="6"
+                            rowCount="6"
+                        />
+                    </table:rowMode>
+                    <table:rowActionTemplate>
+                        <table:RowAction id="RowActionOTRequestRequestDocumentsPerBlockDefaultValid">
+                            <table:items>
+                                <table:RowActionItem id="RowActionItemOTRequestRequestDocumentsPerBlockDefaultValid"
+                                    type="Delete"
+                                    icon="sap-icon://delete"
+                                    press="onCallActionCancelDocumentsPerBlocksDefaultValid"
+                                    visible="{deleteEnabled}"
+                                />
+                            </table:items>
+                        </table:RowAction>
+                    </table:rowActionTemplate>
+                </table:Table>
+            </smarttable:SmartTable>
+            <core:ComponentContainer id="requestConfigurUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%" 
+                >
+                <core:customData> 
+                    <core:CustomData key="blockId" value="{ID}" />
+                    <core:CustomData key="parentType" value="30" />
+                </core:customData>
+            </core:ComponentContainer>
+      
+        </content>
+    </Panel>              
+</mvc:View>

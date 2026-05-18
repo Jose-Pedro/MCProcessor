@@ -1,0 +1,162 @@
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:core="sap.ui.core"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    id="request" 
+    controllerName="prvintprojectsui5.controller.detail" 
+    >
+<f:DynamicPage
+    id="mainPage"
+    stickySubheaderProvider="requestFlow"
+    class="sapUiNoContentPadding prvbtsRequestFlow"
+    toggleHeaderOnTitleClick="{/titleClickable}"
+    showFooter="true">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="DetailPageRequestTitleId">
+                <f:heading>
+                    <HBox id="_IDGenHBox11" alignItems="Center" >
+                        <Title id="DetailPageRequestTitle" text="{code}" wrapping="true" />
+                        <Button id="_IDGenButton5" icon="sap-icon://copy" type="Transparent" customdata:copyData="{code}" class="sapUiTinyMarginEndBegin" press="onCopy" />
+                    </HBox>
+                </f:heading>
+                <f:breadcrumbs>     
+                    <Breadcrumbs id="_IDGenBreadcrumbs1" currentLocationText="{i18n>projectDetail}">
+                        <Link id="_IDback" text="{i18n>title}" press="onNavBack" />
+                    </Breadcrumbs>
+                </f:breadcrumbs>
+                <f:expandedContent>
+                    <HBox id="_IDGenHBox12" alignItems="Center" >
+                        <Text id="_IDSalesForceRequest_ID" text="{siteId}" />
+                        <Button id="_IDGenButton6" icon="sap-icon://copy" type="Transparent" class="sapUiTinyMarginEndBegin" customdata:copyData="{siteId}" press="onCopy" />
+                    </HBox>
+                </f:expandedContent>
+                <f:snappedContent>
+                    <HBox id="_IDGenHBox13" alignItems="Center" >
+                        <Text id="_IDSalesForceRequest1_ID" text="{siteId}" />
+                        <Button id="_IDGenButton7" icon="sap-icon://copy" type="Transparent" class="sapUiTinyMarginEndBegin" customdata:copyData="{siteId}" press="onCopy"/>
+                    </HBox>
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title id="_IDSalesForceRequestTitle2_ID" text="{siteName}" />
+                </f:snappedTitleOnMobile>
+                <f:actions>
+                    <Button id="messagePopoverWaringBtn" icon="sap-icon://alert" type="Neutral" text="{= ${messageWarnings>/}.length }" visible="{= ${messageWarnings>/}.length > 0 }" ariaHasPopup="Dialog" press="onMessageWaringsPopoverPress"  />
+                    <Button id="_IDGenButton1" text="{= ${i18n>optionLinkedRequest} + ' (' + ${count>/linkedRequestCount} + ')'}" type="Ghost"  press="onLinkedRequest" visible="{configuration>/requestActions/linkedProjects}"/>
+                    <Button id="_IDGenButton" text="{i18n>responsibles}" type="Ghost"  press="onAssignResponsibles" visible="{configuration>/requestActions/responsibles}"/>
+                    <MenuButton id="_IDGenMenuButton1" text="{i18n>site}" type="Ghost"  enabled="{= ${siteId} !== null &amp;&amp; ${siteId} !== true}">
+                        <Menu id="_IDGenMenu3" itemSelected="onMenuSiteAction">
+                            <MenuItem id="_IDGenMenuItem2" text="{i18n>site}"  press="onSiteNav" />
+                            <MenuItem id="_IDGenMenuItem3" text="{i18n>siteInfo}" press="onSiteInfoNav"/>
+                        </Menu>
+                    </MenuButton>
+                    <Button id="_IDGenButton2" text="{i18n>inventory}" type="Ghost"  press="onInventoryNav" enabled="{= ${siteId} !== null &amp;&amp; ${siteId} !== true}" />
+                       
+                    <MenuButton id="_IDGenMenuButton2" text="{i18n>services}" type="Ghost"    enabled="{= ${siteId} !== null &amp;&amp; ${siteId} !== true}">
+                        <Menu id="_IDGenMenu4" itemSelected="onMenuServicesAction">
+                            <MenuItem id="_IDGenMenuItem4" text="{i18n>services}"  press="onServiceNav"/>
+                            <MenuItem id="_IDGenMenuItem5" text="{i18n>servicesList}" press="onServiceListNav"/>
+                        </Menu>
+                    </MenuButton>
+                    <Button id="_IDGenButton3" text="{i18n>workOrders}" type="Ghost" press="onWONav" visible="{configuration>/requestActions/workOrders}"/>
+                    <Button id="_IDGenButton4" text="{i18n>chat}" type="Ghost"   press="onShowChat"/>
+                    <Button id="_IDGenButton8" text="{i18n>log}" type="Ghost"  press="onShowChangeLog" visible="{configuration>/requestActions/log}"/>
+                    <Button id="_IDGenButton9" text="{i18n>requestDocumentList}" type="Ghost"  press="onShowDocumentList" visible="{configuration>/requestActions/projectDocuments}"/> 
+                    <Button id="_IDGenButton10" text="{i18n>onShowOtDocumentList}" type="Ghost"  press="onShowOtDocumentList" visible="{configuration>/requestActions/opentextDocuments}"/> 
+                    <Button id="buttonConsolidationId" type="Ghost" text="{i18n>consolidation}" press="onConsolidationNav" visible="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} &amp;&amp; ${siteId} !== null &amp;&amp; ${siteId} !== '' &amp;&amp; ${configuration>/requestActions/opentextDocuments} === true}" enabled="true"/>                
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+ <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader1" pinnable="true" >
+                <MessageStrip id="_IDGenMessageStrip" visible="{= ${status} === ${configuration>/constants/REQUEST_CANCELLED}}" text="{i18n>messageProjectCancel} {CancellationReasons/name}"  class="sapUiTinyMargin">
+					<link>
+						<Link id="linkCancelRequestId" text="{i18n>seeComment}" press="onClickCommentsCancel"/>
+					</link>
+                </MessageStrip>
+                <MessageStrip id="_IDGenMessageStrip1" visible="{= ${status} === ${configuration>/constants/REQUEST_ON_HOLD}}" text="{i18n>messageProjectOnHold} {OnHoldReasons/name}"  class="sapUiTinyMargin">
+					<link>
+						<Link id="linkCommentsonHoldId" text="{i18n>seeComment}" press="onClickCommentsOnHold"/>
+					</link>
+                </MessageStrip>
+                <FlexBox id="_IDGenFlexBox" direction="Row" justifyContent="SpaceBetween" width="100%" >
+                    <HBox id="detail_IDGenHBox">
+                        <Avatar id="_IDGenAvatar" displayShape="Circle" src="{prmdet>/Characterization/imageSource}" initials="{prmdet>/Characterization/initials}" backgroundColor="Accent6" displaySize="L" class="sapUiSmallMarginEnd" />
+                        <VBox id="_IDGenVBox2" >
+                            <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>siteName}" text="{Site/siteName} / {Site/legacyCode}" class="sapUiTinyMarginEndBottom" />
+                            <ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>siteCity}" text="{Site/city} {Site/postalCode}" class="sapUiTinyMarginEndBottom" />
+                            <ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>creationConfig}" text="{creationConfig}" class="sapUiTinyMarginEndBottom" />
+                            <ObjectAttribute id="_IDGenObjectAttribute3" title="{i18n>projectObjective}" text="{RequestProvision/ProjectObjectives/name}" class="sapUiTinyMarginEndBottom" />
+                        </VBox>
+                    </HBox>
+                    <VBox id="detail_IDGenVBox3" >
+                        <Label id="_IDGenLabel" text="{i18n>status}" textAlign="Right" width="100%" />
+                        <ObjectStatus id="_IDGenObjectStatus" text="{RequestStatus/name}" icon="{path:'status', formatter: '.statusIconFormatter' }" state="{path: 'status', formatter:'.statusStateFormatter'}" class="sapMObjectStatusLarge"/>
+                    </VBox>
+                </FlexBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="requestFlow" select="onPhaseSelectionChange" expandable="false" expanded="{device>/isNoPhone}" tabDensityMode="Compact" tabsOverflowMode= "StartAndEnd" >
+                <items>
+                    <IconTabFilter id="reqCreationFilter" icon="{configuration>/Phases/reqCreation/status}" key="reqCreation" design="Horizontal" text="{i18n>reqCreation}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '01' &amp;&amp; ${configuration>/Phases/reqCreation/enabled} === true }" visible="{configuration>/Phases/reqCreation/visible}" >
+                            <!-- <mvc:XMLView id="reqCreation" viewName="prvintprojectsui5.view.phases.reqCreation.reqCreation" visible="{= ${configuration>/stepper/lastActivePhase} >= '01' &amp;&amp; ${configuration>/Phases/reqCreation/visible} === true }"/>                      -->
+                    </IconTabFilter>
+                    <IconTabFilter id="feasibilCheckFilter" icon="{configuration>/Phases/feasibilCheck/status}" key="feasibilCheck" design="Horizontal" text="{i18n>feasibilCheck}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '02' &amp;&amp; ${configuration>/Phases/feasibilCheck/enabled} === true }" visible="{configuration>/Phases/feasibilCheck/visible}" >
+                            <!-- <mvc:XMLView id="feasibilCheck" viewName="prvintprojectsui5.view.phases.feasibilCheck.feasibilCheck" visible="{= ${configuration>/stepper/lastActivePhase} >= '02' &amp;&amp; ${configuration>/Phases/feasibilCheck/visible} === true }"/> -->
+                    </IconTabFilter>
+                    <IconTabFilter id="siteSurveyFilter" icon="{configuration>/Phases/siteSurvey/status}" key="siteSurvey" design="Horizontal" text="{i18n>siteSurvey}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '03' &amp;&amp; ${configuration>/Phases/siteSurvey/enabled} === true }" visible="{configuration>/Phases/siteSurvey/visible}" >
+                            <!-- <mvc:XMLView id="siteSurvey" viewName="prvintprojectsui5.view.phases.siteSurvey.siteSurvey" visible="{= ${configuration>/stepper/lastActivePhase} >= '03' &amp;&amp; ${configuration>/Phases/siteSurvey/visible} === true }"/> -->
+                    </IconTabFilter> 
+                    <IconTabFilter id="techCostAnalysFilter" icon="{configuration>/Phases/techCostAnalys/status}" key="techCostAnalys" design="Horizontal" text="{i18n>techCostAnalys}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '04' &amp;&amp; ${configuration>/Phases/techCostAnalys/enabled} === true }" visible="{configuration>/Phases/techCostAnalys/visible}" >
+                            <!-- <mvc:XMLView id="techCostAnalys" viewName="prvintprojectsui5.view.phases.techCostAnalys.techCostAnalys" visible="{= ${configuration>/stepper/lastActivePhase} >= '04' &amp;&amp; ${configuration>/Phases/techCostAnalys/visible} === true }"/> -->
+                    </IconTabFilter>
+                    <IconTabFilter id="custOfferAcceptFilter" icon="{configuration>/Phases/custOfferAccept/status}" key="custOfferAccept" design="Horizontal" text="{i18n>custOfferAccept}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '05' &amp;&amp; ${configuration>/Phases/custOfferAccept/enabled} === true }" visible="{configuration>/Phases/custOfferAccept/visible}" >                       
+                            <!-- <mvc:XMLView id="custOfferAccept" viewName="prvintprojectsui5.view.phases.custOfferAccept.custOfferAccept" visible="{= ${configuration>/stepper/lastActivePhase} >= '05' &amp;&amp; ${configuration>/Phases/custOfferAccept/visible} === true }"/>                        -->
+                    </IconTabFilter>
+                    <IconTabFilter id="manageAdaptFilter" icon="{configuration>/Phases/manageAdapt/status}" key="manageAdapt" design="Horizontal" text="{i18n>manageAdapt}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '06' &amp;&amp; ${configuration>/Phases/manageAdapt/enabled} === true }" visible="{configuration>/Phases/manageAdapt/visible}" >
+                            <!-- <mvc:XMLView id="manageAdapt" viewName="prvintprojectsui5.view.phases.manageAdapt.manageAdapt" visible="{= ${configuration>/stepper/lastActivePhase} >= '06' &amp;&amp; ${configuration>/Phases/manageAdapt/visible} === true }"/> -->
+                    </IconTabFilter>
+                    <IconTabFilter id="instCustEquipFilter" icon="{configuration>/Phases/instCustEquip/status}" key="instCustEquip" design="Horizontal" text="{i18n>instCustEquip}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '07' &amp;&amp; ${configuration>/Phases/instCustEquip/enabled} === true }" visible="{configuration>/Phases/instCustEquip/visible}" >
+                            <!-- <mvc:XMLView id="instCustEquip" viewName="prvintprojectsui5.view.phases.instCustEquip.instCustEquip" visible="{= ${configuration>/stepper/lastActivePhase} >= '07' &amp;&amp; ${configuration>/Phases/instCustEquip/visible} === true }"/> -->
+                    </IconTabFilter>
+                    <IconTabFilter id="finalValidationFilter" icon="{configuration>/Phases/finalValidation/status}" key="finalValidation" design="Horizontal" text="{i18n>finalValidation}" enabled="{= ${configuration>/stepper/lastActivePhase} >= '08' &amp;&amp; ${configuration>/Phases/finalValidation/enabled} === true }" visible="{configuration>/Phases/finalValidation/visible}" >
+                            <!-- <mvc:XMLView id="finalValidation" viewName="prvintprojectsui5.view.phases.finalValidation.finalValidation" visible="{= ${configuration>/stepper/lastActivePhase} >= '08' &amp;&amp; ${configuration>/Phases/finalValidation/visible} === true }"/> -->
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+        <f:footer>
+            <OverflowToolbar id="_IDGenOverflowToolbar">
+                <Button
+                    id="detailViewshowMessagesBtn"
+                    icon="sap-icon://message-popup"
+                    text="{= ${message>/}.length }"
+                    visible="{= ${message>/}.length > 0 }"
+                    type="Neutral"
+                    press="onMessagePopoverPress" />
+                <Button id="cancelRequest" type="Reject" text="{i18n>cancelRequest}" press="onCancelRequest" enabled="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} || ${status} === ${configuration>/constants/REQUEST_REOPENED}}" visible="{configuration>/requestActions/cancel}"/>
+                <ToolbarSpacer id="detial_IDGenToolbarSpacer2"/>
+                <Button id="PhaseCloseButton" type="Ghost" text="{i18n>closePhase}" press="onClosePhase" visible="{= ${configuration>/showClosePhase} === true &amp;&amp; ${status} === ${configuration>/constants/REQUEST_INPROGRESS} &amp;&amp; ${configuration>/requestActions/closePhase} === true }" />
+                <Button id="LaunchRenegotiateContractWithLandlords"  text="{i18n>LaunchRenegotiateContractWithLandlords}" visible="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} &amp;&amp; ${siteId} !== null &amp;&amp; ${siteId} !== '' &amp;&amp; ${configuration>/requestActions/launchRenegos} === true }" press="onLaunchRenegos" type="Transparent" />
+                <Button id="goToPermit" type="Ghost" text="{i18n>onGotoPermit}" press="onLaunchPermit" visible="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} &amp;&amp; ${siteId} !== null &amp;&amp; ${siteId} !== '' &amp;&amp; ${configuration>/requestActions/launchPermits} === true }" />
+                <Button id="onHoldRequest" type="Ghost" text="{path:'status', formatter: '.onHoldButtonTextFormatter'}" press="onHoldRequest" enabled="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} || ${status} === ${configuration>/constants/REQUEST_ON_HOLD}}" visible="{configuration>/requestActions/onHold}"/>
+                <Button id="takeOwnership" type="Ghost" text="{i18n>takeOwnership}" press="onTakeOwnership" visible="{= ${status} === ${configuration>/constants/REQUEST_INPROGRESS} &amp;&amp; ${configuration>/takeOwnerShip} === true &amp;&amp; ${configuration>/requestActions/takeOwnerShip} === true}" />
+                <Button id="reopenRequest" type="Ghost" text="{i18n>reopen}" press="onReopenRequest" visible="{= (${status} === ${configuration>/constants/REQUEST_CANCELLED} || ${status} === ${configuration>/constants/REQUEST_COMPLETED}) &amp;&amp; ${configuration>/requestActions/reopen} === true}" />
+                <Button id="closeRequest" type="Ghost" text="{i18n>close}" press="onCloseRequest" visible="{= ${status} === ${configuration>/constants/REQUEST_REOPENED} &amp;&amp; ${configuration>/requestActions/close} === true}" />
+				<Button id="confirmService" text="{i18n>confirmService}" type="Emphasized" visible="{= ${servicesUpdated} === false &amp;&amp; ${configuration>/editMode} === true &amp;&amp; (${configuration>/stepper/firstActivePhase} === 'instCustEquip' || ${configuration>/stepper/firstActivePhase} === 'manageAdapt' || ${configuration>/stepper/firstActivePhase} === 'finalValidation') &amp;&amp; ${configuration>/requestActions/confirms} === true}" press="onConfirmServices" />
+				<Button id="confirmDocuments" text="{i18n>confirmDocuments}" type="Emphasized" visible="{= ${documentUpdated} === false &amp;&amp; ${configuration>/editMode} === true &amp;&amp; (${configuration>/stepper/firstActivePhase} === 'instCustEquip' || ${configuration>/stepper/firstActivePhase} === 'manageAdapt' || ${configuration>/stepper/firstActivePhase} === 'finalValidation') &amp;&amp; ${configuration>/requestActions/confirms} === true}" press="onConfirmDocuments" />
+				<Button id="confirmInventory" text="{i18n>confirmInventory}" type="Emphasized" visible="{= ${inventoryUpdated} === false &amp;&amp; ${configuration>/editMode} === true &amp;&amp; (${configuration>/stepper/firstActivePhase} === 'instCustEquip' || ${configuration>/stepper/firstActivePhase} === 'manageAdapt' || ${configuration>/stepper/firstActivePhase} === 'finalValidation') &amp;&amp; ${configuration>/requestActions/confirms} === true}" press="onConfirmInventory" />
+                <Button id="goToTop" icon="sap-icon://back-to-top" press="onGoToTop" type="Emphasized"/>
+					
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,84 @@
+/* hide uploadset illustration*/
+.sapMIllustratedMessage.sapMIllustratedMessage-Scene .sapMTitle {
+    display:none;
+}
+
+/* disable padding uploadset illustration text */
+.sapMIllustratedMessage {
+    padding: 0rem;
+}
+
+/* hide uploadset illustration text */
+.sapMIllustratedMessage.sapMIllustratedMessage-Scene .sapMIllustratedMessageMainContent {
+    display: none;
+}
+
+.sapMIllustratedMessage.sapMIllustratedMessage-Scene .sapMIllustratedMessageAdditionalContent {
+    margin-bottom: 0rem;
+}
+
+/* Set Min Height for uploadset nodata page to avoid size change on files deletion */
+.sapMUCNoDataPage {
+    min-height: 10px;
+}
+
+/* Set Min Height for uploadset nodata page to avoid size change on files deletion in launchpad*/
+.sapMUS .sapMUCNoDataPage {
+    min-height: 10px;
+    height: 100px;
+}
+
+/* Ñapa styles for ñapa icontabbar */
+.prvbtsRequestFlow .sapMITBItem:focus .sapMITBFilterIcon::after {
+    border: 0px solid transparent !important;
+}
+ 
+.prvbtsRequestFlow  .sapMITBHead {
+    /* padding-top: 0 !important; */
+}
+ 
+.prvbtsRequestFlow .sapMITBHorizontal.sapMITBFilter {
+    height: 35px !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBHorizontal.sapMITBFilter .sapMITBTab,
+.prvbtsRequestFlow .sapMITBHorizontalWrapper {
+    height: 32px !important;
+}
+.prvbtsRequestFlow .sapMITBHorizontal.sapMITBFilter .sapMITBTab {
+    width: 16px !important;
+}
+.prvbtsRequestFlow .sapMITBFilterIcon {
+    /* height: 16px; */
+    width: 16px !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBCount {
+    height: 4px !important;
+}
+ 
+.prvbtsRequestFlow .sapMITH .sapMITBContentArrow {
+    margin: 0px !important;
+    height: 2px !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBHorizontal.sapMITBFilter .sapMITBContentArrow {
+    width: 100% !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBFilterIcon {
+    border: 0px solid transparent !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBSelected .sapMITBFilterIcon {
+    color: #406a07!important;
+    background: transparent !important;
+}
+ 
+.prvbtsRequestFlow .sapMITBFilterIcon {
+    font-size: 14px !important;
+}
+
+.noPrvbtsRequestFlow .sapMITBHorizontal.sapMITBFilter .sapMITBContentArrow {
+    width: 100% !important;
+}

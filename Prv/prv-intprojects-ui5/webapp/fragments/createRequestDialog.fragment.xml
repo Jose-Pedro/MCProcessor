@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="createRequestDialog" title="{i18n>createRequest}" >
+        <content>
+            <smartform:SmartForm id="createRequestForm" editable="true">
+                <smartform:groups> 
+                    <smartform:Group id="_IDGenGroupRequestCreation" >
+                        <smartform:GroupElement id="_IDGenGroupElement7">
+                            <smartfield:SmartField id="requestedDateCreation" 
+                            value="{requestedDate}"
+                            mandatory="{=${configuration>/creationParametrization/default/requestedDate/mandatory} === true}" 
+                            visible="{=${configuration>/creationParametrization/default/requestedDate/visible} === true}" 
+                            editable="{=${configuration>/creationParametrization/default/requestedDate/editable} === true}"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="_IDGenGroupElement8">
+                            <smartfield:SmartField id="siteIdCreation" 
+                            value="{siteId}"
+                            mandatory="{=${configuration>/creationParametrization/default/siteId/mandatory} === true}" 
+                            visible="{=${configuration>/creationParametrization/default/siteId/visible} === true}"
+                            editable="{=${configuration>/creationParametrization/default/siteId/editable} === true}"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="_IDGenGroupElement9">
+                            <smartfield:SmartField id="preferredProviderCreation" 
+                            value="{preferredProvider}"
+                            mandatory="{=${configuration>/creationParametrization/default/preferredProvider/mandatory} === true}" 
+                            visible="{=${configuration>/creationParametrization/default/preferredProvider/visible} === true}"
+                            editable="{=${configuration>/creationParametrization/default/preferredProvider/editable} === true}"
+                            fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="_IDGenGroupElement10Creation">
+                            <smartfield:SmartField id="projectObjectiveCreation"
+                            fetchValueListReadOnly="true"
+                            value="{projectObjective}"
+                            mandatory="{=${configuration>/creationParametrization/default/projectObjective/mandatory} === true}" 
+                            visible="{=${configuration>/creationParametrization/default/projectObjective/visible} === true}"
+                            editable="{=${configuration>/creationParametrization/default/projectObjective/editable} === true}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar">
+				<content>
+					<Button id="createRequestMessagePopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverSearchPress" />
+					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
+					<Button id="createreqCreationeBtn"
+                            type="Emphasized"
+							text="{i18n>create}"
+							press="onCreateRequest" />
+					<Button id="createRequestCancelBtn"
+                            text="{i18n>cancel}"
+                            type="Transparent"
+                            press="onCloseCreateDialog" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

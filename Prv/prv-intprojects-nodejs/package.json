@@ -1,0 +1,139 @@
+{
+  "name": "prv-intprojects-nodejs",
+  "version": "1.0.0",
+  "description": "Internal projects module",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.1",
+    "@cap-js/audit-logging": ">=0",
+    "@sap-cloud-sdk/connectivity": "^4.0.2",
+    "@sap-cloud-sdk/http-client": "^4.0.2",
+    "@sap-cloud-sdk/resilience": "^4.0.2",
+    "@sap/cds": "^8",
+    "@sap/cds-dk": "^8",
+    "@sap/hana-client": "^2.24.26",
+    "@sap/textbundle": "^5.4.0",
+    "@sap/xssec": "^4",
+    "express": "^4",
+    "passport": "^0.7.0",
+    "formdata-node": "^6.0.3"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.10.0",
+    "@cap-js/sqlite": "^1"
+  },
+  "overrides": {
+    "better-sqlite3": "^12.0.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "default_env_install": "cf install-plugin DefaultEnv -f",
+    "default_env": "cf default-env prv-intprojects-nodejs-srv && cp ./default-env.json ./db/default-env.json && cp ./default-env.json ./srv/default-env.json",
+    "kill_4004_pcdsort": "kill $(lsof -t -i:4004)"
+  },
+  "engine": {
+    "node": "^22.21.1" 
+  },
+  "cds": {
+    "cov2ap": {
+      "plugin": true
+    },
+    "query": {
+      "limit": {
+        "default": 100,
+        "max": 9999
+      }
+    },
+    "i18n": {
+      "folders": [
+        "_i18n",
+        "i18n",
+        " assets/i18n"
+      ]
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
+    "requires": {
+      "db": {
+        "kind": "hana",
+        "pool": {
+          "max": 500,
+          "acquireTimeoutMillis": 5000,
+          "idleTimeoutMillis": 15000,
+          "testOnBorrow": true,
+          "evictionRunIntervalMillis": 30000
+        }
+      },
+      "Agora-CmmOpenText-HTTP": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "Agora-CmmOpenText-HTTP",
+          "requestTimeout": 30000
+        }
+      },
+      "Agora-CmmOpenTextClientCred-HTTP": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "Agora-CmmOpenTextClientCred-HTTP",
+          "requestTimeout": 30000
+        }
+      },
+      "ZTIS_F4HELP_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/ZTIS_F4HELP_SRV",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "Cellnex-SAPERP-HTTP",
+          "path": "/sap/opu/odata/sap/ZTIS_F4HELP_SRV"
+        }
+      },
+      "ZTIS_SRV_SERVICES_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/ZTIS_SRV_SERVICES_SRV",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "Cellnex-SAPERP-HTTP",
+          "path": "/sap/opu/odata/sap/ZTIS_SRV_SERVICES_SRV"
+        }
+      },
+      "ZTIS_ODATA_SERVICES_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/ZTIS_ODATA_SERVICES_SRV",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "Cellnex-SAPERP-HTTP",
+          "path": "/sap/opu/odata/sap/ZTIS_ODATA_SERVICES_SRV"
+        }
+      },
+      "ZPM_SERVICES_V2_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/ZPM_SERVICES_V2_SRV",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "Cellnex-SAPERP-HTTP",
+          "path": "/sap/opu/odata/sap/ZPM_SERVICES_V2_SRV"
+        }      
+      },
+      "connectivity": true,
+      "destinations": true,
+      "[hybrid]": {
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    }
+  }
+}

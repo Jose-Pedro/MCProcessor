@@ -1,0 +1,13 @@
+<mvc:View 
+    controllerName="prvintprojectsui5.controller.phases.manageAdapt.manageAdapt" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:upload="sap.m.upload"
+    displayBlock="true">
+    <mvc:XMLView id="kickOffView" viewName="prvintprojectsui5.view.phases.manageAdapt.blocks.kickOff"/>
+    <mvc:XMLView id="universalWorksView" viewName="prvintprojectsui5.view.phases.manageAdapt.blocks.universalWorks"/>
+    <mvc:XMLView id="dismantleWorksView" viewName="prvintprojectsui5.view.phases.manageAdapt.blocks.dismantleWorks"/>
+    <mvc:XMLView id="validDocumentView" viewName="prvintprojectsui5.view.phases.manageAdapt.blocks.validDocument"/>
+    <Label id="manageAdapt_IDGenLabel1" class="sapUiLargeMarginBottom"></Label>
+</mvc:View>

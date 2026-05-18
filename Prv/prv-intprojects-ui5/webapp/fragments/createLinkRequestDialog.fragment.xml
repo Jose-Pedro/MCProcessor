@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:table="sap.ui.table"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    controllerName="prv-provision-ui5.controller.request"
+    height="100%"
+    displayBlock="true"
+>
+    <Dialog
+        id="createLinkRequestDialog"
+        title="{i18n>titleCreateLR}"
+        afterClose="onCreateLinkRequestDialogAfterClose"
+        contentWidth="70%"
+    >
+        <content>
+            <VBox id="_IDGenVBox15">
+                <smartFilterBar:SmartFilterBar
+                    id="createDtLinkedRequestFilter"
+                    entitySet="DtLinkedRequestPossibleChildrenRequestList"
+                    persistencyKey="createDtLinkedRequestFilter"
+                    enableBasicSearch="true"
+                    filterBarExpanded="true"
+                    showGoOnFB="true"
+                    class="sapContrastPlus"
+                >
+                    <smartFilterBar:layoutData>
+                        <FlexItemData
+                            id="_IDGenFlexItemData"
+                            shrinkFactor="0"
+                        />
+                    </smartFilterBar:layoutData>
+                </smartFilterBar:SmartFilterBar>
+                <smartTable:SmartTable
+                    width="auto"
+                    id="createLinkedRequestTable"
+                    enableAutoColumnWidth="true"
+                    entitySet="DtLinkedRequestPossibleChildrenRequestList"
+                    smartFilterId="createDtLinkedRequestFilter"
+                    direction="Column"
+                    fitContainer="true"
+                    placeToolbarInTable="true"
+                    customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 7, 'gap': 0, 'truncateLabel': false}}}"
+                    tableType="Table"
+                    header="{i18n>tableHeaderCreateLR}"
+                    enableAutoBinding="true"
+                    persistencyKey="createLinkedRequestTable"
+                    customdata:useSmartToggle="true"
+                    requestAtLeastFields="requestID,sharedDocumentTypeId,sharedDocument"
+                    beforeRebindTable="onBeforeRebindCreateLinkedRequestTable"
+                    customdata:useSmartField="true"
+                    editable="true"
+                >
+                    <smartTable:customToolbar>
+                        <OverflowToolbar
+                            id="_IDGenOverflowToolbar5"
+                            design="Transparent"
+                        >
+                            <ToolbarSpacer id="_IDGenToolbarSpacer15" />
+                            <Button
+                                id="_IDGenButton13"
+                                type="Emphasized"
+                                text="{i18n>buttonLinkLR}"
+                                icon="sap-icon://chain-link"
+                                tooltip="{i18n>tooltipLinkLR}"
+                                press="onCreateLinkedRequest"
+                            />
+                            <ToolbarSeparator id="_IDGenToolbarSeparator1" />
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                </smartTable:SmartTable>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar id="_IDGenToolbar6">
+                <content>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer16" />
+                    <ToolbarSpacer id="_IDGenToolbarSpacer17" />
+                    <Button
+                        id="closeLinkedRequestDialog_2"
+                        text="{i18n>close}"
+                        type="Ghost"
+                        press="onDestroyDialog"
+                        ariaHasPopup="Dialog"
+                    >
+                        <customData>
+                            <core:CustomData key="dialogName" value="oCreateLink" />
+                        </customData>
+			        </Button>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

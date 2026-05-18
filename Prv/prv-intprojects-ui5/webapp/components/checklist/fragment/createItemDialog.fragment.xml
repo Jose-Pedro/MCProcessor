@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="addChecklistItem" title="{i18n>addChecklistItem}" >
+        <content>
+            <smartform:SmartForm id="addChecklistForm" editable="true" entityType="ChecklistItems">
+                <smartform:layout>
+                        <smartform:ColumnLayout columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group >
+                        <smartform:GroupElement>
+                            <smartfield:SmartField  id="formChecklistItemType" value='{type_ID}'/>
+                        </smartform:GroupElement>      
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar>
+				<content>
+					<ToolbarSpacer />
+					<Button id="Add"
+                            type="Emphasized"
+							text="{i18n>add}"
+							press="onAddChecklistItem" />
+					<Button id="cancel"
+                            type="Transparent"
+                            text="{i18n>cancel}"
+                            press="onCloseChecklistItem" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

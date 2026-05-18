@@ -1,0 +1,42 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="cancelWorkDialog" title="{i18n>cancelWork}" >
+        <content>
+	        <smartform:SmartForm id="cancelWorkForm" editable="true" >
+                <smartform:groups> 
+                    <smartform:Group >
+                        <smartform:GroupElement>
+                            <smartfield:SmartField id="workCancellationReason" value='{comments}' customdata:multiLineSettings="{cols: 60, rows: 5}" />
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar>
+				<content>
+					<Button id="cancelWorkPopupBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer />
+					<Button id="confirmCancelWorkBtn"
+                            type="Emphasized"
+							text="{i18n>confirm}"
+							press="onConfirmOnCancelWork" />
+					<Button id="cancelCancelWorkBtn"
+                            text="{i18n>cancel}"
+                            type="Transparent"
+                            press="onCancelCancelWork" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

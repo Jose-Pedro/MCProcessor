@@ -1,0 +1,105 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.reqCreation.blocks.site"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="sitePanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="siteToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="siteTitle" text="{i18n>site}"/>
+                <ToolbarSpacer id="site_IDGenToolbarSpacer3"/>
+                <Button id="closeBlockSite" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/site/complete} === true}"/>
+                <OverflowToolbarButton id="buttonSiteForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/site/reopen} === true}"/>
+                <ObjectStatus id="site_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="siteForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="site_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="site_IDGenGroup1" >
+                        <smartform:GroupElement id="site_IDGenGroupElement1">
+                            <smartfield:SmartField id="siteId" value="{siteId}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <!-- <smartform:GroupElement id="AOTYPEGenGroupElement01">
+                            <smartfield:SmartField id="AOTYPEId" value="{AOTYPE}" change="onFieldChange"/>
+                        </smartform:GroupElement> -->
+                        <smartform:GroupElement id="site_IDGenGroupElement2">
+                            <smartfield:SmartField id="siteName" value="{Site/siteName}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement3">
+                            <smartfield:SmartField id="company" value="{Site/company}" change="onFieldChange" />
+                        </smartform:GroupElement> 
+                        <smartform:GroupElement id="site_IDGenGroupElement4">
+                            <smartfield:SmartField id="managingCompany" value="{Site/managingCompany}" change="onFieldChange" />
+                        </smartform:GroupElement> 
+                        <smartform:GroupElement id="site_IDGenGroupElement5"> 
+                            <smartfield:SmartField id="cellnexZone" value="{Site/cellnexZone}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement6">
+                            <smartfield:SmartField id="zone" value="{Site/zone}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement7">
+                            <smartfield:SmartField id="abfZone" value="{Site/abfZone}" change="onFieldChange" />
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement8">
+                            <smartfield:SmartField id="infraOrigin" value="{Site/infraOrigin}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement9">
+                            <smartfield:SmartField id="infraOwnership" value="{Site/infraOwnership}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement10">
+                            <smartfield:SmartField id="infraStatus" value="{Site/infraStatus}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement111">
+                            <smartfield:SmartField id="street" value="{Site/street} {Site/houseNumber} {Site/floor}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement11"> 
+                            <smartfield:SmartField id="postalCode" value="{Site/postalCode}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement12">
+                            <smartfield:SmartField id="marketableId" value="{Site/marketableId}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement13">
+                            <smartfield:SmartField id="cellnexProject" value="{Site/cellnexProject}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement15">
+                            <smartfield:SmartField id="exploited" value="{Site/exploited}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement16">
+                            <smartfield:SmartField id="productionZoneResponsible" value="{Site/productionZoneResponsible}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement17">
+                            <smartfield:SmartField id="siteManagerZoneResponsible" value="{Site/siteManagerZoneResponsible}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement18">
+                            <smartfield:SmartField id="productionRegionManager" value="{Site/productionRegionManager}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement19">
+                            <smartfield:SmartField id="regionSiteManager" value="{Site/regionSiteManager}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement20">
+                            <smartfield:SmartField id="productionManager" value="{Site/productionManager}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement21">
+                            <smartfield:SmartField id="siteManager" value="{Site/siteManager}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="site_IDGenGroupElement22">
+                            <smartfield:SmartField id="landlordName" value="{Site/landlordName}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+        </content>
+    </Panel>              
+</mvc:View>

@@ -1,0 +1,254 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:table="sap.ui.table"
+    xmlns:upload="sap.m.upload" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <Dialog  contentHeight="75%" contentWidth="75%" id="validatorsDocumentFlowDialog_dpr" title="{i18n>Document}: {documentNameVF} -- Responsible: {approverTypeName}  {subcoTypeName} - {responsibleDefaultNameVF}" >
+        <content>
+            <Panel width="auto" expandable="true" expanded="{= ${stepId} === ${configuration>/constants/VALIDATOR_RESPONSIBLE}}" visible="true" id="responsibleValidation_dpr" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar7" design="Transparent" class="sapMShowEmpty-CTX">
+                        <Title id="_IDGenTitle3" text="{i18n>Responsible}"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer21"/>
+                    </OverflowToolbar>
+                </headerToolbar>    
+                <smartform:SmartForm   id="validatorsDocumentFlowFormResponsible_dpr" editable="{= ${stepId} === ${configuration>/constants/VALIDATOR_RESPONSIBLE}}" >
+                    <smartform:layout>
+                            <smartform:ColumnLayout id="_IDGenColumnLayout" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                    </smartform:layout>
+                    <smartform:groups> 
+                        <smartform:Group id="_IDGenGroup2" >
+                            <smartform:GroupElement id="_IDGenGroupElement11">
+                                <smartfield:SmartField id="IPD_contactEmail" change="onFieldChange" value='{contactEmail}' />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement12">
+                                <smartfield:SmartField id="IPD_contactPhone" change="onFieldChange" value='{contactPhone}' />
+                            </smartform:GroupElement>        
+                        </smartform:Group >
+                        
+                        <smartform:Group id="_IDGenGroup21">
+                            <smartform:GroupElement id="_IDGenGroupElement13">
+                                <smartfield:SmartField change="onFieldchange" id="IPD_documentsResponsibleComments2" value="{documentsResponsibleComments}"/>
+                            </smartform:GroupElement>        
+                        </smartform:Group >
+                        <smartform:Group id="_IDGenGroup2123" >
+                            <smartform:GroupElement id="_IDGenGroupElement140211">
+                                <smartfield:SmartField  id="IPD_startDate1" value="{path: 'startDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="_IDGenGroupElement150211">
+                                <smartfield:SmartField  change="onFieldchange" id="IPD_limitSubmissionDate1" value="{path: 'limitSubmissionDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement >
+                            <smartform:GroupElement id="_IDGenGroupElement16211">
+                                <smartfield:SmartField  change="onFieldchange" id="IPD_expectedSubmissionDate1" value="{path: 'expectedSubmissionDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement17211">
+                                <smartfield:SmartField  change="onFieldchange" id="IPD_submissionDate1" value="{path: 'submissionDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="_IDGenGroupElement18011">
+                                <smartfield:SmartField  change="onFieldchange" id="IPD_customerInformDate1"   value="{path: 'customerInformDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="_IDGenGroupElement19011">
+                                <smartfield:SmartField  change="onFieldchange" id="IPD_expirationDate1" value="{path: 'expirationDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement200111">
+                                <smartfield:SmartField  id="IPD_endDate1" change="onFieldchange" value="{path: 'endDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', pattern: 'dd/MM/yyyy', UTC: true }}" />
+                            </smartform:GroupElement>
+                        </smartform:Group >
+                    </smartform:groups>               
+                </smartform:SmartForm>
+                <MessageStrip id="_IDGenMessageStrip2" text="{i18n>mandatoryDocument}" type="Information" showIcon="true" class="sapUiMediumMarginBottom" visible="{= ${stepId} === ${configuration>/constants/VALIDATOR_RESPONSIBLE} &amp;&amp; ${Documents}.length === 0}" />
+                <upload:UploadSet
+                    id="docPerRequestdocFlowResponsibleUpload"
+                    uploadEnabled="{= ${stepId} === ${configuration>/constants/VALIDATOR_RESPONSIBLE} &amp;&amp; ${buttonCompleteVF} === true }"
+                    instantUpload="false"
+                    terminationEnabled="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+              </Panel>
+            <Panel width="auto" expandable="true" expanded="{= ${stepId} === ${configuration>/constants/VALIDATOR_CELLNEX}}" visible="{= ${cellnexValidationVF} === true }" id="cellnexValidation" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar8" design="Transparent" class="sapMShowEmpty-CTX">
+                        <Title id="_IDGenTitle4" text="{i18n>Cellnex}"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer22"/>
+                    </OverflowToolbar>
+                </headerToolbar>  
+                <smartform:SmartForm title="{i18n>Cellnex}" id="validatorsDocumentFlowFormCellnex_dpr"  editable="{= ${stepId} === ${configuration>/constants/VALIDATOR_CELLNEX}}" >
+                    <smartform:layout>
+                            <smartform:ColumnLayout id="_IDGenColumnLayout2" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                    </smartform:layout>
+                    <smartform:groups> 
+                        <smartform:Group id="_IDGenGroup6" >
+                            <smartform:GroupElement id="_IDGenGroupElement18">
+                                <smartfield:SmartField fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" change="onFieldChange" id="IPD_cellnexValidator" value='{cellnexValidator}' />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement19">
+                                <smartfield:SmartField change="onFieldChange" id="IPD_cellnexValidation" value='{cellnexValidation}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement20">
+                                <smartfield:SmartField change="onFieldChange" id="IPD_cellnexValidationDate1" value='{cellnexValidationDate}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement21">
+                                <smartfield:SmartField change="onFieldChange" id="IPD_cellnexComment" value='{cellnexComment}' />
+                            </smartform:GroupElement>            
+                        </smartform:Group >
+                        </smartform:groups> 
+                </smartform:SmartForm>
+                <upload:UploadSet
+                    id="docPerRequestdocFlowCellnexUpload"
+                    uploadEnabled="{= ${stepId} === ${configuration>/constants/VALIDATOR_CELLNEX} &amp;&amp; ${buttonCompleteVF} === true }"
+                    instantUpload="false"
+                    terminationEnabled="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+             </Panel>
+            <Panel width="auto" expandable="true" expanded="{= ${stepId} === ${configuration>/constants/VALIDATOR_SUBCO}}" visible="{= ${subcontractorValidationVF}  === true }" id="subcoValidation" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar9" design="Transparent" class="sapMShowEmpty-CTX">
+                        <Title id="_IDGenTitle5" text="{i18n>Subcontractor}"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer23"/>
+                    </OverflowToolbar>
+                </headerToolbar>  
+                <smartform:SmartForm id="validatorsDocumentFlowFormSubco_dpr"  editable="{= ${stepId} === ${configuration>/constants/VALIDATOR_SUBCO}}" >
+                    <smartform:layout>
+                            <smartform:ColumnLayout id="_IDGenColumnLayout3" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                    </smartform:layout>
+                    <smartform:groups> 
+                        <smartform:Group id="_IDGenGroup7" >
+                            <smartform:GroupElement id="_IDGenGroupElement22">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_subcontractorValidator" value='{subcontractorValidator}' />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement23">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_subcontractorValidation" value='{subcontractorValidation}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement24">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_subcontractorValidationDate1" value='{subcontractorValidationDate}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement25">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_subcontractorComment" value='{subcontractorComment}' />
+                            </smartform:GroupElement>            
+                        </smartform:Group >
+                    </smartform:groups> 
+                </smartform:SmartForm>
+                <upload:UploadSet
+                    id="docPerRequestdocFlowSubcontractorUpload"                    
+                    uploadEnabled="{= ${stepId} === ${configuration>/constants/VALIDATOR_SUBCO} &amp;&amp; ${buttonCompleteVF} === true }"
+                    instantUpload="false"
+                    terminationEnabled="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+            </Panel>
+            <Panel width="auto" expandable="true" expanded="{= ${stepId} === ${configuration>/constants/VALIDATOR_CUSTOMER}}" visible="{= ${customerValidationVF}  === true }" id="customerValidation" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar10" design="Transparent" class="sapMShowEmpty-CTX">
+                        <Title id="_IDGenTitle6" text="{i18n>customer}"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer24"/>
+                      </OverflowToolbar>
+                </headerToolbar> 
+                <smartform:SmartForm  id="validatorsDocumentFlowFormCustomer_dpr"  editable="{= ${stepId} === ${configuration>/constants/VALIDATOR_CUSTOMER}}" >
+                    <smartform:layout>
+                            <smartform:ColumnLayout id="_IDGenColumnLayout4" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                    </smartform:layout>                     
+                <smartform:groups> 
+                    <smartform:Group id="_IDGenGroup8" >
+                        <smartform:GroupElement id="_IDGenGroupElement26">
+                            <smartfield:SmartField  fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" change="onFieldChange" id="IPD_customerValidator"  value='{customerValidator}' />
+                        </smartform:GroupElement>  
+                        <smartform:GroupElement id="_IDGenGroupElement27">
+                            <smartfield:SmartField  change="onFieldChange" id="IPD_customerValidation" value='{customerValidation}' />
+                        </smartform:GroupElement>      
+                        <smartform:GroupElement id="_IDGenGroupElement28">
+                            <smartfield:SmartField  change="onFieldChange" id="IPD_customerValidationDate1" value='{customerValidationDate}' />
+                        </smartform:GroupElement>      
+                        <smartform:GroupElement id="_IDGenGroupElement29">
+                            <smartfield:SmartField  change="onFieldChange" id="IPD_customerComment"  value='{customerComment}' />
+                        </smartform:GroupElement>          
+                    </smartform:Group >
+                     </smartform:groups> 
+                </smartform:SmartForm>
+                
+                <upload:UploadSet
+                    id="docPerRequestdocFlowCustomerUpload"
+                    uploadEnabled="{= ${stepId} === ${configuration>/constants/VALIDATOR_CUSTOMER} &amp;&amp; ${buttonCompleteVF} === true }"
+                    instantUpload="false"
+                    terminationEnabled="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+            </Panel>
+            <Panel width="auto" expandable="true" visible="{= ${siteOwnerValidationVF}  === true }" expanded="{= ${stepId} === ${configuration>/constants/VALIDATOR_SITE_OWNER}}" id="siteOwnerValidation" class="sapUiResponsiveMargin">
+                <headerToolbar> 
+                    <OverflowToolbar id="_IDGenOverflowToolbar11" design="Transparent" class="sapMShowEmpty-CTX">
+                        <Title id="_IDGenTitle7" text="{i18n>SiteOwner}"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer25"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <smartform:SmartForm  id="validatorsDocumentFlowFormSiteOwner_dpr"  editable="{= ${stepId} === ${configuration>/constants/VALIDATOR_SITE_OWNER}}" >
+                    <smartform:layout>
+                            <smartform:ColumnLayout id="_IDGenColumnLayout5" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                    </smartform:layout>
+                    <smartform:groups> 
+                        <smartform:Group id="_IDGenGroup9" >
+                            <smartform:GroupElement id="_IDGenGroupElement30">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_siteOwnerValidator" value='{siteOwnerValidator}' />
+                            </smartform:GroupElement>  
+                            <smartform:GroupElement id="_IDGenGroupElement31">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_siteOwnerValidation" value='{siteOwnerValidation}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement32">
+                                <smartfield:SmartField  change="onFieldChange" id="IPD_siteOwnerValidationDate1" value='{siteOwnerValidationDate}' />
+                            </smartform:GroupElement>      
+                            <smartform:GroupElement id="_IDGenGroupElement33">
+                                <smartfield:SmartField  change="onFieldChange"  id="IPD_siteOwnerComment" value='{siteOwnerComment}' />
+                            </smartform:GroupElement>    
+                                
+                                     
+                        </smartform:Group >
+                    </smartform:groups> 
+                </smartform:SmartForm>
+                <upload:UploadSet
+                    id="docPerRequestdocFlowSiteOwnerUpload"
+                    uploadEnabled="{= ${stepId} === ${configuration>/constants/VALIDATOR_SITE_OWNER} &amp;&amp; ${buttonCompleteVF} === true }"
+                    instantUpload="false"
+                    terminationEnabled="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+            </Panel>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar10">
+				<content>
+					<Button id="onCancelDPRDocumentIDPBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />                    
+                    <Button id="_IDGenButton14" type="Reject" visible="{= ${buttonCompleteVF}  === true }" text="{i18n>reject}" press="onCallActionCancelInstancesPerDocuments" />  
+					<ToolbarSpacer id="_IDGenToolbarSpacer26" />
+					<Button id="_IDGenButton15" visible="{= ${buttonCompleteVF}  === true }" type="Emphasized" text="{i18n>nextStep}" press="onCallActionNextStep" />
+					<Button id="_IDGenButton16"  type="Transparent" text="{i18n>close}" press="onCloseDialog" >
+                        <customData>
+                                <core:CustomData key="dialogName" value="_validatorsDetailsDialog" />
+                        </customData>
+                    </Button>
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

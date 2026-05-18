@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="onHoldRequestDialog" title="{i18n>onHoldRequest}" >
+        <content>
+	        <smartform:SmartForm id="onHoldRequestForm" editable="true">
+                <smartform:groups> 
+                    <smartform:Group id="onHoldRequestDialog_group">
+                        <smartform:GroupElement id="onHoldRequestDialog_groupElement1">
+                            <smartfield:SmartField id="onHoldReason" value="{onHoldReason}" entitySet="Requests" mandatory="true" editable="true"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="onHoldRequestDialog_groupElement2">
+                            <smartfield:SmartField id="onHoldComments" value="{onHoldComments}" entitySet="Requests" editable="true" customdata:multiLineSettings="{cols: 60, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar id="onHoldRequestDialog_Toolbar">
+				<content>
+					<Button id="onHoldPopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer id="onHoldRequestDialog_ToolbarSpacer1"/>
+					<Button id="confirmHoldRequest"
+                            type="Emphasized"
+							text="{i18n>confirm}"
+							press="onHoldRequestConfirm" />
+					<Button id="cancelHoldRequest"
+                            text="{i18n>cancel}"
+                            type="Transparent"
+                            press="onHoldRequestCancel" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

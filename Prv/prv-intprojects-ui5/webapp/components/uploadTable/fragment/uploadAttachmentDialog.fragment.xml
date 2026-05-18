@@ -1,0 +1,40 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    templateShareable="false" 
+    class="sapUiTinyMarginTop">
+	<Dialog title="{i18n>AddAttachment}" contentWidth="34rem" contentHeight="18rem" class="sapUiSmallMargin">
+		<content>
+			<Toolbar class="sapUiTinyMargin" style="Clear">
+				<Title text="{i18n>Attachments}"/>
+				<ToolbarSpacer/>
+				<Button text="{i18n>Browse}" press=".onAttachmentUploadDialogBrowse" />
+			</Toolbar>
+			<Table backgroundDesign="Solid" width="auto" fixedLayout="false" class="sapUiTinyMargin sapUiTableBorderVisible" items="{path: 'AttachmentsPendingUpload>/filesToUpload', templateShareable:false}">
+				<columns>
+					<Column><Text text="{i18n>filename}"/></Column>
+					<Column><Label text="{i18n>Document}" required="true"/></Column>
+					<Column/>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{AttachmentsPendingUpload>fileName}"/>
+							<ComboBox items="{path: 'AttachmentDocumentTypes', templateShareable:false}" selectedKey="{AttachmentsPendingUpload>documentId}" selectionChange=".onAttachmentUploadDialogAttachmentTypeSelectionChange"
+                                valueState="{=${AttachmentsPendingUpload>documentId} ? 'None' : 'Error'}" valueStateText="{i18n>DocumentTypeMandatory}">
+								<core:ListItem key="{documentId}" text="{documentName}"/>
+							</ComboBox>
+							<Button icon="sap-icon://decline" press=".onAttachmentUploadDialogRemoveFile" tooltip="{i18n>DeleteFile}" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<beginButton>
+			<Button text="{i18n>add}" type="Emphasized" press=".onAttachmentUploadDialogAddFiles"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>cancel}" press=".onAttachmentUploadDialogClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

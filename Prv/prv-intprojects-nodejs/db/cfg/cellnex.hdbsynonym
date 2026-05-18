@@ -1,0 +1,701 @@
+{
+    "REQUEST_HEAD": {
+        "target": {
+            "object": "REQUEST_HEAD"
+        }
+    },
+    "REQUEST_CHAR_PRO": {
+        "target": {
+            "object": "REQUEST_CHAR_PRO"
+        }
+    },
+    "PHASE_HEAD": {
+        "target": {
+            "object": "PHASE_HEAD"
+        }
+    },
+    "BLOCK_HEAD": {
+        "target": {
+            "object": "BLOCK_HEAD"
+        }
+    },
+    "BLOCKS_PROVISIONING": {
+        "target": {
+            "object": "BLOCKS_PROVISIONING"
+        }
+    },
+    "DOCUMENTS_PER_BLOCK": {
+        "target": {
+            "object": "DOCUMENTS_PER_BLOCK"
+        }
+    },
+    "INSTANCES_PER_DOCUMENT": {
+        "target": {
+            "object": "INSTANCES_PER_DOCUMENT"
+        }
+    },
+    "WF_DETAIL_DOCUMENTS": {
+        "target": {
+            "object": "WF_DETAIL_DOCUMENTS"
+        }
+    },
+    "MASTER_MS_CONTRACT_RESTRICTIONS": {
+        "target": {
+            "object": "MASTER_MS_CONTRACT_RESTRICTIONS"
+        }
+    },
+    "SC_SELECT_OPTIONS_V2": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V2"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_MASTER": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_MASTER"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_TRANSLATE": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_TRANSLATE"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_CONFIGURATION": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_CONFIGURATION"
+        }
+    },
+    "SC_SELECT_DEPENDENCES": {
+        "target": {
+            "object": "SC_SELECT_DEPENDENCES"
+        }
+    },
+    "COMMERCIAL_PROGRAMS_MASTER": {
+        "target": {
+            "object": "COMMERCIAL_PROGRAMS_MASTER"
+        }
+    },
+    "CUSTOMERS_PER_COMMPROGRAM": {
+        "target": {
+            "object": "CUSTOMERS_PER_COMMPROGRAM"
+        }
+    },
+    "PROCESS": {
+        "target": {
+            "object": "PROCESS"
+        }
+    },
+    "PHASE": {
+        "target": {
+            "object": "PHASE"
+        }
+    },
+    "PHASE_DEPENDENCE": {
+        "target": {
+            "object": "PHASE_DEPENDENCE"
+        }
+    },
+    "PHASE_PARALLEL": {
+        "target": {
+            "object": "PHASE_PARALLEL"
+        }
+    },
+    "BLOCK": {
+        "target": {
+            "object": "BLOCK"
+        }
+    },
+    "BLOCK_DEPENDENCE": {
+        "target": {
+            "object": "BLOCK_DEPENDENCE"
+        }
+    },
+    "MASTER_PROCESS": {
+        "target": {
+            "object": "MASTER_PROCESS"
+        }
+    },
+    "MASTER_PHASE": {
+        "target": {
+            "object": "MASTER_PHASE"
+        }
+    },
+    "MASTER_BLOCK": {
+        "target": {
+            "object": "MASTER_BLOCK"
+        }
+    },
+    "RESPONSIBLE_APPROVAL_FLOW": {
+        "target": {
+            "object": "RESPONSIBLE_APPROVAL_FLOW"
+        }
+    },
+    "REQUEST_TYPE": {
+        "target": {
+            "object": "REQUEST_TYPE"
+        }
+    },
+    "STATUS_HEAD": {
+        "target": {
+            "object": "STATUS_HEAD"
+        }
+    },"STATUS_TEXTS": {
+        "target": {
+            "object": "STATUS_TEXTS"
+        }
+    },
+    "V_EMAIL_LOGIN_USER": {
+        "target": {
+            "object": "V_EMAIL_LOGIN_USER"
+        }
+    },
+    "CONTEXT_USER_V": {
+        "target": {
+            "object": "CONTEXT_USER_V"
+        }
+    },
+    "US_USER_IAS_V": {
+        "target": {
+            "object": "US_USER_IAS_V"
+        }
+    },
+    "US_USERS_IAS": {
+        "target": {
+            "object": "US_USERS_IAS"
+        }
+    },
+    "US_ROLES_AGR": {
+        "target": {
+            "object": "US_ROLES_AGR"
+        }
+    },
+    "US_BUKS": {
+        "target": {
+            "object": "US_BUKS"
+        }
+    },
+    "US_COUNTRIES_V": {
+        "target": {
+            "object": "US_COUNTRIES_V"
+        }
+    },
+    "US_ZAGENCY": {
+        "target": {
+            "object": "US_ZAGENCY"
+        }
+    },
+    "US_ZCUSTOMER": {
+        "target": {
+            "object": "US_ZCUSTOMER"
+        }
+    },
+    "US_ZVENDOR": {
+        "target": {
+            "object": "US_ZVENDOR"
+        }
+    },
+    "US_COUNTRIES": {
+        "target": {
+            "object": "US_COUNTRIES"
+        }
+    }, 
+    "WF_ACTIONS_LOG": {
+        "target": {
+            "object": "WF_ACTIONS_LOG"
+        }
+    }, 
+     "DT_LINKED_REQUEST": {
+        "target": {
+            "object": "DT_LINKED_REQUEST"
+        }
+    }, 
+    "JOINT_PROJECT": {
+        "target": {
+            "object": "JOINT_PROJECT"
+        }
+    }, 
+    "MANAGE_BUDGET": {
+        "target": {
+            "object": "MANAGE_BUDGET"
+        }
+    }, 
+    "REQUEST_DOCUMENTS_PER_BLOCK_DEFAUL_VALID": {
+        "target": {
+            "object": "REQUEST_DOCUMENTS_PER_BLOCK_DEFAUL_VALID"
+        }
+    }, 
+    "WF_CHAT": {
+        "target": {
+            "object": "WF_CHAT"
+        }
+    }, 
+    "MILESTONES_CONFIGURATION": {
+        "target": {
+            "object": "MILESTONES_CONFIGURATION"
+        }
+    }, 
+    "MILESTONES_TEXTS": {
+        "target": {
+            "object": "MILESTONES_TEXTS"
+        }
+    }, 
+    "PROVISIONAL_DOCUMENTS_PER_BLOCK": {
+        "target": {
+            "object": "PROVISIONAL_DOCUMENTS_PER_BLOCK"
+        }
+    }, 
+    "PROVISIONAL_INSTANCE_PER_DOCUMENT": {
+        "target": {
+            "object": "PROVISIONAL_INSTANCE_PER_DOCUMENT"
+        }
+    }, 
+    "COST_OBJECT": {
+        "target": {
+            "object": "COST_OBJECT"
+        }
+    }, 
+    "COST_OBJECT_TEXTS": {
+        "target": {
+            "object": "COST_OBJECT_TEXTS"
+        }
+    }, 
+    "SEARCH_TYPES": {
+        "target": {
+            "object": "SEARCH_TYPES"
+        }
+    }, 
+    "SEARCH_TYPES_TEXTS": {
+        "target": {
+            "object": "SEARCH_TYPES_TEXTS"
+        }
+    }, 
+    "REQUEST_STATUS": {
+        "target": {
+            "object": "REQUEST_STATUS"
+        }
+    }, 
+    "REQUEST_STATUS_TEXTS": {
+        "target": {
+            "object": "REQUEST_STATUS_TEXTS"
+        }
+    }, 
+    "PHASE_STATUS": {
+        "target": {
+            "object": "PHASE_STATUS"
+        }
+    }, 
+    "PHASE_STATUS_TEXTS": {
+        "target": {
+            "object": "PHASE_STATUS_TEXTS"
+        }
+    }, 
+    "BLOCK_STATUS": {
+        "target": {
+            "object": "BLOCK_STATUS"
+        }
+    }, 
+    "BLOCK_STATUS_TEXTS": {
+        "target": {
+            "object": "BLOCK_STATUS_TEXTS"
+        }
+    }, 
+    "DOCUMENT_FLOW_STATUS": {
+        "target": {
+            "object": "DOCUMENT_FLOW_STATUS"
+        }
+    }, 
+    "DOCUMENT_FLOW_STATUS_TEXTS": {
+        "target": {
+            "object": "DOCUMENT_FLOW_STATUS_TEXTS"
+        }
+    }, 
+    "SCREEN_CONTROLS": {
+        "target": {
+            "object": "SCREEN_CONTROLS"
+        }
+    }, 
+    "SCREEN_CONTROL_PROCESS": {
+        "target": {
+            "object": "SCREEN_CONTROL_PROCESS"
+        }
+    }, 
+    "SCREEN_CONTROL_FIELDS": {
+        "target": {
+            "object": "SCREEN_CONTROL_FIELDS"
+        }
+    }, 
+    "SCREEN_CONTROL_IASGROUPS": {
+        "target": {
+            "object": "SCREEN_CONTROL_IASGROUPS"
+        }
+    }, 
+    "SCREEN_CONTROL_DISPLAY_TYPES": {
+        "target": {
+            "object": "SCREEN_CONTROL_DISPLAY_TYPES"
+        }
+    }, 
+    "SCREEN_CONTROL_IASGROUPS_TEXTS": {
+        "target": {
+            "object": "SCREEN_CONTROL_IASGROUPS_TEXTS"
+        }
+    }, 
+    "SCREEN_CONTROL_DISPLAY_TYPES_TEXTS": {
+        "target": {
+            "object": "SCREEN_CONTROL_DISPLAY_TYPES_TEXTS"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_REQUEST":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_REQUEST"
+        }
+    },
+    "OT_DOCUMENTS_CONSOLIDATION":{
+        "target":{
+            "object":"OT_DOCUMENTS_CONSOLIDATION"
+        }
+    },
+    "DOCUMENT_FLOW_VALIDATORS":{
+        "target":{
+            "object":"DOCUMENT_FLOW_VALIDATORS"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_PROCESS":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_PROCESS"
+        }
+    },
+    "DOCUMENT_FLOWS":{
+        "target":{
+            "object":"DOCUMENT_FLOWS"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_CONFIG":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_CONFIG"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_BLOCK":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_BLOCK"
+        }
+    },
+    "DOCUMENT_FLOWS_HIDDEN_PER_ROLE":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_HIDDEN_PER_ROLE"
+        }
+    },
+    "BIM_BUSINESS_PARTNERS_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_BUSINESS_PARTNERS_PER_AGREEMENT"
+        }
+    },
+    "BIM_AGREEMENTS":{
+        "target":{
+            "object":"BIM_AGREEMENTS"
+        }
+    },
+    "BIM_COMPANIES_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_COMPANIES_PER_AGREEMENT"
+        }
+    },
+    "BIM_SITE_BUNDLES_HEADER":{
+        "target":{
+            "object":"BIM_SITE_BUNDLES_HEADER"
+        }
+    },
+    "BIM_SITES_PER_BUNDLE":{
+        "target":{
+            "object":"BIM_SITES_PER_BUNDLE"
+        }
+    },
+    "BIM_PRICEBOOK_HEAD":{
+        "target":{
+            "object":"BIM_PRICEBOOK_HEAD"
+        }
+    },
+    "BIM_COMMERCIAL_ELEMENTS":{
+        "target":{
+            "object":"BIM_COMMERCIAL_ELEMENTS"
+        }
+    },
+    "SALESFORCE_REQUEST_UPDATE_STATUS":{
+        "target":{
+            "object":"SALESFORCE_REQUEST_UPDATE_STATUS"
+        }
+    },
+    "BIM_COMMERCIAL_REQUEST_HEAD":{
+        "target":{
+            "object":"BIM_COMMERCIAL_REQUEST_HEAD"
+        }
+    },
+    "BIM_COMMERCIAL_REQUEST_QUOTE_HEAD":{
+        "target":{
+            "object":"BIM_COMMERCIAL_REQUEST_QUOTE_HEAD"
+        }
+    },
+    "BIM_SALESFORCE_CREATE_NOTIFICATION":{
+        "target":{
+            "object":"BIM_SALESFORCE_CREATE_NOTIFICATION"
+        }
+    },
+    "BIM_BTS_PROJECT_TYPE_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_BTS_PROJECT_TYPE_PER_AGREEMENT"
+        }
+    },
+    "GET_ACTIVE_BUSINESS_SWITCH":{
+        "target":{
+            "object":"GET_ACTIVE_BUSINESS_SWITCH"
+        }
+    },
+    "BIM_SITE_BUNDLES_CONFIGURATIONS":{
+        "target":{
+            "object":"BIM_SITE_BUNDLES_CONFIGURATIONS"
+        }
+    },
+    "BIM_SERVICES_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_SERVICES_PER_AGREEMENT"
+        }
+    },
+    "BIM_STANDARD_CONFIGURATION_HEADERS":{
+        "target":{
+            "object":"BIM_STANDARD_CONFIGURATION_HEADERS"
+        }
+    },
+    "BIM_ELEMENTS_PER_CONFIGURATION":{
+        "target":{
+            "object":"BIM_ELEMENTS_PER_CONFIGURATION"
+        }
+    },
+    "BIM_ELEMENTS":{
+        "target":{
+            "object":"BIM_ELEMENTS"
+        }
+    },
+    "WORKS":{
+        "target":{
+            "object":"WORKS"
+        }
+    },
+    "PROJECT_OBJECTIVES":{
+        "target":{
+            "object":"PROJECT_OBJECTIVES"
+        }
+    },
+    "PROJECT_OBJECTIVES_TEXTS":{
+        "target":{
+            "object":"PROJECT_OBJECTIVES_TEXTS"
+        }
+    },
+    "WORK_TYPES":{
+        "target":{
+            "object":"WORK_TYPES"
+        }
+    },
+    "WORK_TYPES_TEXTS":{
+        "target":{
+            "object":"WORK_TYPES_TEXTS"
+        }
+    },
+    "WORK_PARENT_TYPES":{
+        "target":{
+            "object":"WORK_PARENT_TYPES"
+        }
+    },
+    "WORK_PARENT_TYPES_TEXTS":{
+        "target":{
+            "object":"WORK_PARENT_TYPES_TEXTS"
+        }
+    },
+    "WORK_CONFIGS":{
+        "target":{
+            "object":"WORK_CONFIGS"
+        }
+    },
+    "WORK_CONFIG_OBJECTIVES":{
+        "target":{
+            "object":"WORK_CONFIG_OBJECTIVES"
+        }
+    },
+    "WORK_CONFIG_PROCESSES":{
+        "target":{
+            "object":"WORK_CONFIG_PROCESSES"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_FLOWS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_FLOWS"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_DEFAULTS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_DEFAULTS"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_DEFAULTS_TEXTS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_DEFAULTS_TEXTS"
+        }
+    },
+    "CHECKLIST_ITEM":{
+        "target":{
+            "object":"CHECKLIST_ITEM"
+        }
+    },
+    "CHECKLIST_FIELDTYPE":{
+        "target":{
+            "object":"CHECKLIST_FIELDTYPE"
+        }
+    },
+    "CHECKLIST_FIELDTYPE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_FIELDTYPE_TEXTS"
+        }
+    },
+    "CHECKLIST_ITEMTYPE":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPE"
+        }
+    },
+    "CHECKLIST_ITEMTYPE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPE_TEXTS"
+        }
+    },
+    "CHECKLIST_ITEMTYPEVALUE":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPEVALUE"
+        }
+    },
+    "CHECKLIST_ITEMTYPEVALUE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPEVALUE_TEXTS"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATION":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATION"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONBLOCK":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONBLOCK"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONPROCESS":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONPROCESS"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONTYPE":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONTYPE"
+        }
+    },
+    "BUT000":{
+        "target":{
+            "object":"BUT000"
+        }
+    },
+    "BUT100":{
+        "target":{
+            "object":"BUT100"
+        }
+    },
+    "VIBDAO":{
+        "target":{
+            "object":"VIBDAO"
+        }
+    },
+    "VIBDBE":{
+        "target":{
+            "object":"VIBDBE"
+        }
+    },
+    "VICNCN":{
+        "target":{
+            "object":"VICNCN"
+        }
+    },
+    "VZOBJECT":{
+        "target":{
+            "object":"VZOBJECT"
+        }
+    },
+    "VIBPOBJREL":{
+      "target":{
+         "object":"VIBPOBJREL"
+      }
+    },
+    "VIBDOBJREL":{
+      "target":{
+         "object":"VIBDOBJREL"
+      }
+    },
+    "VIBDOBJASS":{
+      "target":{
+         "object":"VIBDOBJASS"
+      }
+    },
+    "ZRETOAALIAS":{
+      "target":{
+         "object":"ZRETOAALIAS"
+      }
+    },
+    "ZRECOAVALUES":{
+      "target":{
+         "object":"ZRECOAVALUES"
+      }
+    },
+    "ZRECOAVALUEST":{
+      "target":{
+         "object":"ZRECOAVALUEST"
+      }
+    },
+    "IFLOT":{
+      "target":{
+         "object":"IFLOT"
+      }
+    },
+    "ILOA":{
+      "target":{
+         "object":"ILOA"
+      }
+    },
+    "ADRC":{
+      "target":{
+         "object":"ADRC"
+      }
+    },
+    "T001":{
+      "target":{
+         "object":"T001"
+      }
+    },
+    "T005U":{
+      "target":{
+         "object":"T005U"
+      }
+    },
+    "ZPMSITESERV":{
+      "target":{
+         "object":"ZPMSITESERV"
+      }
+    },
+    "ZPMSERVLOC":{
+      "target":{
+         "object":"ZPMSERVLOC"
+      }
+    },
+    "CVI_CUST_LINK":{
+      "target":{
+         "object":"CVI_CUST_LINK"
+      }
+    },
+    "ZPMSERVCHNGS":{
+      "target":{
+         "object":"ZPMSERVCHNGS"
+      }
+    }
+}

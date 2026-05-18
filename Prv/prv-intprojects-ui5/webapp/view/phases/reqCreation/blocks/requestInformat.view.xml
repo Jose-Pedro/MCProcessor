@@ -1,0 +1,64 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.reqCreation.blocks.requestInformat"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="requestInformatPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="_IDGenOverflowToolbar1" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="_IDGenTitle1" text="{i18n>requestInformat}"/>
+                <ToolbarSpacer id="_IDGenToolbarSpacer3"/>
+                <!-- <Switch  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= ${status} !== 40}"/> -->
+                <Button id="closeBlockrequestInformat" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/requestInformat/complete} === true}"/>
+                <OverflowToolbarButton id="buttonrequestInformatForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/reqCreation/requestInformat/reopen} === true}"/>
+                <ObjectStatus id="_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="requestInformatForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="_IDGenGroup1" >
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement1">
+                            <smartfield:SmartField id="requestedDate" value="{RequestProvision/requestedDate}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement2">
+                            <smartfield:SmartField id="createdAt" value="{createdAt}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement3">
+                            <smartfield:SmartField id="requestType" value="{requestType}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement4">
+                            <smartfield:SmartField id="description" value="{description}" change="onFieldChange" app:multiLineSettings="{cols: 60, rows: 4}"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement5">
+                            <smartfield:SmartField id="requester" value="{RequestProvision/requester}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement6">
+                            <smartfield:SmartField id="manager" value="{manager}" change="onFieldChangeManager" textInEditModeSource="ValueList"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_IDGenGroupElement7">
+                            <smartfield:SmartField id="PMOManager" value="{RequestProvision/PMOManager}" change="onFieldChange" textInEditModeSource="ValueList"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_projectObjective">
+                            <smartfield:SmartField id="projectObjective" value="{RequestProvision/projectObjective}" change="onFieldChange" textInEditModeSource="ValueList"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="requestInformatForm_moaOperation">
+                            <smartfield:SmartField id="moaOperation" value="{RequestProvision/moaOperation}" change="onFieldChange" textInEditModeSource="ValueList"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+        </content>
+    </Panel>              
+</mvc:View>

@@ -1,0 +1,105 @@
+
+###
+### VARIABLES
+###
+@host = cnx-dev-cf-prv-prv-intprojects-nodejs-srv.cfapps.eu20.hana.ondemand.com
+
+@tenantPath = /258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~16a0de86-31f2-484e-b68d-9ec9b31a89cf~
+@servicePath = /odata/v2/service/project
+@serviceRoot = {{host}}{{servicePath}}
+
+# Credenciales OAuth2
+@clientid = sb-prv-intprojects-nodejs-CNX-DEV-CF-Prv!t6193
+@clientsecret = c2ItcHJ2LWludHByb2plY3RzLW5vZGVqcy1DTlgtREVWLUNGLVBydiF0NjE5MzphYjdmMDk0OC02MzZkLTQ5NzYtYjU2YS1jMmM4OTRmYWVmOWUkOHV6NHVYX3dmVjJaYkduNjV4RHpibmd5WEhfNk9wc25EaXBUZlI0SWZYdz0=
+@uaaAuth = {{clientid}}:{{clientsecret}}
+@uaaUrl = https://cnx-dev-cf.authentication.eu20.hana.ondemand.com
+
+###
+### 1. Obtener Token OAuth2 (client_credentials)
+###
+POST {{uaaUrl}}/oauth/token
+Authorization: Basic c2ItcHJ2LWludHByb2plY3RzLW5vZGVqcy1DTlgtREVWLUNGLVBydiF0NjE5MzphYjdmMDk0OC02MzZkLTQ5NzYtYjU2YS1jMmM4OTRmYWVmOWUkOHV6NHVYX3dmVjJaYkduNjV4RHpibmd5WEhfNk9wc25EaXBUZlI0SWZYdz0=
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id={{clientid}}&client_secret={{clientsecret}}
+
+
+> {%
+  // BAS/REST Client: a veces response.body es string; lo normalizamos
+  let token = null;
+  try {
+    if (response.body && typeof response.body === 'object') {
+      token = response.body.access_token;
+    } else if (response.body && typeof response.body === 'string') {
+      token = JSON.parse(response.body).access_token;
+    }
+  } catch (e) {
+    console.log('No se pudo parsear el cuerpo:', e);
+  }
+
+  if (!token) {
+    console.log('Status:', response.status);
+    console.log('Headers:', response.headers);
+    console.log('Body:', response.body);
+    throw new Error('No se pudo obtener access_token. Revisa URL, clientid/secret y Content-Type.');
+  }
+
+  // Guardar variable global
+  client.global.set('jwt', token);
+  console.log('JWT guardado. Longitud =', token.length);
+%}
+
+
+###
+### 1.b (opcional) Verificar que {{jwt}} existe con un GET
+###
+GET {{serviceRoot}}/Blocks?$top=1
+Authorization: Bearer {{jwt}}
+Accept: application/json
+
+
+###
+### 2. Ejecutar $batch usando Authorization: Bearer
+### (Nota: tu CAP NO usa CSRF porque tu servicio NO lo expone en $metadata)
+###
+POST {{serviceRoot}}/$batch
+Authorization: Bearer {{jwt}}
+Accept: application/json
+Content-Type: multipart/mixed; boundary=batch_12345
+
+--batch_12345
+Content-Type: multipart/mixed; boundary=changeset_67890
+
+
+--changeset_67890
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+MERGE Blocks(guid'e78917b0-22ec-4807-bc94-02541b2ad06d') HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{"comments":"wew",
+ "__metadata":{
+    "type":"project.Blocks",
+    "uri":"{{serviceRoot}}/Blocks(guid'e78917b0-22ec-4807-bc94-02541b2ad06d')"
+ }
+}
+
+--changeset_67890
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+MERGE BlockProvision(guid'e78917b0-22ec-4807-bc94-02541b2ad06d') HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{"realEstateFeasibilityExplanation":"23",
+ "__metadata":{
+    "type":"project.BlockProvision",
+    "uri":"{{serviceRoot}}/BlockProvision(guid'e78917b0-22ec-4807-bc94-02541b2ad06d')"
+ }
+}
+
+--changeset_67890--
+--batch_12345--

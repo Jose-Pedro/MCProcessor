@@ -1,0 +1,44 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.reqCreation.blocks.customers"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+        <Panel width="auto" expandable="true" expanded="true" id="customersPanel" class="sapUiResponsiveMargin">
+            <headerToolbar>
+                <OverflowToolbar id="customersPanelToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                    <Title id="panelTitle" text="{i18n>customers}"/>
+                    <ToolbarSpacer id="_customersPanelToolbarSpacer"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <content>
+                <smarttable:SmartTable 
+                    id="siteCustomersTable" 
+                    tableType="Table"
+                    entitySet="CustomersSet"
+                    width="100%" 
+                    direction="Column" 
+                    fitContainer="true" 
+                    placeToolbarInTable="true" 
+                    persistencyKey="changeLogTable" 
+                    beforeRebindTable="onBeforeRebindTable"
+                    enableCopy="false"
+                    showPasteButton="false"
+                    enableAutoColumnWidth="true" 
+                    enableAutoBinding="false"
+                    requestAtLeastFields="ID">
+                    <table:Table id="siteCustomersInternalTable" rowMode="Auto" selectionMode="None" >
+                        <table:rowMode>
+                            <rowmodes:Interactive id="siteCustomersTableRowMode" xmlns:rowmodes="sap.ui.table.rowmodes" minRowCount="1" rowCount="3"/>
+                        </table:rowMode>
+                    </table:Table>
+                </smarttable:SmartTable> 
+            </content>
+    </Panel>                                        
+</mvc:View>

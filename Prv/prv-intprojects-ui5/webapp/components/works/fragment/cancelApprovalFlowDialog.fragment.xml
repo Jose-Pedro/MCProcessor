@@ -1,0 +1,42 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="cancelApprovalFlowDialog" title="{i18n>cancelDocument}" >
+        <content>
+	        <smartform:SmartForm id="cancelWorkApprovalFlowForm" editable="true" >
+                <smartform:groups> 
+                    <smartform:Group >
+                        <smartform:GroupElement>
+                            <smartfield:SmartField id="cancellationReason" value='{cancellationReason}' entitySet="Blocks"  customdata:multiLineSettings="{cols: 60, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar>
+				<content>
+					<Button id="cancelWorkApprovalFlowPopupBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer />
+					<Button id="confirmCancelApprovalFlowBtn"
+                            type="Emphasized"
+							text="{i18n>confirm}"
+							press="onConfirmOnCancelDocument" />
+					<Button id="cancelCancelApprovalFlowBtn"
+                            text="{i18n>cancel}"
+                            type="Transparent"
+                            press="onCancelCancelDocument" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

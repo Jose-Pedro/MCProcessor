@@ -1,0 +1,14 @@
+{
+    "external-cellnex-hdi-service": {
+        "object_owner": {
+            "container_roles": [
+                "CELLNEX_EXTERNAL_USER_OWNER#"
+            ]
+        },
+        "application_user": {
+            "container_roles": [
+                "CELLNEX_EXTERNAL_USER_RUNTIME"
+            ]
+        }
+    }
+}

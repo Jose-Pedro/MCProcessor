@@ -1,0 +1,132 @@
+_schema-version: 3.3.0
+ID: prv-intprojects-nodejs
+version: 1.0.0
+description: "Internal projects module service"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: prv-intprojects-nodejs-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      stack: cflinuxfs4
+      disk-quota: 2048M
+      memory: 2048M
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: prv-intprojects-nodejs-auth
+      - name: prv-intprojects-nodejs-db
+      - name: prv-intprojects-nodejs-connectivity
+      - name: prv-intprojects-nodejs-destination
+      - name: cmm-cloud-logging
+      - name: prv-intprojects-nodejs-logging
+      # - name: prv-intprojects-nodejs-auditlog
+
+  - name: prv-intprojects-nodejs-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      app-name: prv-intprojects-nodejs-db
+    requires:
+      - name: prv-intprojects-nodejs-db
+        properties:
+          TARGET_CONTAINER: ~{hdi-service-name}
+      - name: cmm-ddl-hana-hdi-db
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: external-cellnex-hdi-service
+          service: ~{cellnex-container-name}
+
+  - name: prv-intprojects-nodejs-content
+    type: com.sap.application.content
+    requires:
+      - name: prv-intprojects-nodejs-auth
+        parameters:
+          service-key:
+            name: prv-intprojectsbind-nodejs-auth-key
+      - name: prv-intprojects-nodejs-destination
+        parameters:
+          content-target: true
+      - name: srv-api
+    parameters:
+      content:
+        subaccount:
+          existing_destinations_policy: update
+          destinations:
+            - Name: Agora-prvintprojects-HTTP
+              Description: HANA Access Automatic Configuration Data
+              URL: ~{srv-api/srv-url}
+              ServiceInstanceName: prv-intprojects-nodejs-auth
+              ServiceKeyName: prv-intprojectsbind-nodejs-auth-key
+              Authentication: OAuth2UserTokenExchange
+              WebIDEEnabled: "true"
+              HTML5.DynamicDestination: "true"
+              WebIDEUsage: "odata_gen,odata_xs"
+              TrustAll: "true"
+    build-parameters:
+      no-source: true
+
+resources:
+  - name: prv-intprojects-nodejs-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: prv-intprojects-nodejs-${org}-${space}
+        tenant-mode: dedicated
+  - name: prv-intprojects-nodejs-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
+  - name: cmm-ddl-hana-hdi-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      service-name: cmm-ddl-hana-hdi-db
+      config:
+        schema: CELLNEX
+    properties:
+      cellnex-container-name: ${service-name}
+  - name: prv-intprojects-nodejs-connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: prv-intprojects-nodejs-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: cmm-cloud-logging # Definición del servicio de Cloud logging
+    type: org.cloudfoundry.existing-service
+    optional: true
+  - name: prv-intprojects-nodejs-logging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
+  # - name: prv-intprojects-nodejs-auditlog
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: auditlog
+  #     service-plan: lite

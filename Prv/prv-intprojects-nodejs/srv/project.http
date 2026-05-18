@@ -1,0 +1,1721 @@
+@server=http://localhost:4004
+@credencialsAdmin = Authorization: Basic JDIEZCRI:Hijosdeputa.01
+
+### SearchByRequests
+# @name SearchByRequests_GET
+GET {{server}}/service/project/SearchByRequests
+{{credencialsAdmin}}
+
+
+### SearchByTasks
+# @name SearchByTasks_GET
+GET {{server}}/service/project/SearchByTasks
+{{credencialsAdmin}}
+
+
+### Requests
+# @name Requests_GET
+GET {{server}}/service/project/Requests
+{{credencialsAdmin}}
+
+
+### Requests
+# @name Requests_POST
+POST {{server}}/service/project/Requests
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "27030032-96b0-40b1-a77d-3084a33dcb08",
+  "assignationDate": "2019-05-11T00:00:00.000Z",
+  "cancellationComments": "cancellationComments-27030032",
+  "cancellationPhaseID": "cancellationPhaseID-27030032",
+  "cancellationReason": "cancellationReason-27030032",
+  "company": "company-27030032",
+  "country": "032",
+  "createdAt": "2005-02-06",
+  "createdBy": "createdBy-27030032",
+  "deletedAt": "2000-04-23T00:00:00.000Z",
+  "deletedBy": "deletedBy-27030032",
+  "closedAt": "2010-11-03T00:00:00.000Z",
+  "changedAt": "2007-12-25T00:00:00.000Z",
+  "changedBy": "changedBy-27030032",
+  "processFlowId": "ocessFlowId-27030032",
+  "code": "code-27030032",
+  "description": "description-27030032",
+  "manager": "manager-27030032",
+  "status": 91,
+  "requestType": 27,
+  "role": "role-27030032",
+  "siteId": "siteId-27030032",
+  "opentAt": "2007-06-07T00:00:00.000Z",
+  "onHoldComments": "onHoldComments-27030032",
+  "onHoldPhaseId": "onHoldPhaseId-27030032",
+  "onHoldReason": "onHoldReason-27030032",
+  "workflowName": "workflowName-27030032",
+  "creationConfig": "creationConfig-27030032",
+  "RequestProvision": {
+    "ID": "18717504-259e-4d82-b00c-d54892a26a15"
+  },
+  "ProcessTypes": {
+    "code": "ProcessTypes-7424548"
+  },
+  "RequestTypes": {
+    "REQUEST_TYPE": 1580929
+  },
+  "RequestStatus": {
+    "code": 28808726
+  },
+  "OnHoldReasons": {
+    "code": 29644679
+  },
+  "CancellationReasons": {
+    "code": 11633109
+  },
+  "Managers": {
+    "userId": "Managers-14727170"
+  },
+  "Site": {
+    "siteId": "Sites-24401136"
+  }
+}
+
+
+### Requests
+# @name Requests_PATCH
+PATCH {{server}}/service/project/Requests/27030032-96b0-40b1-a77d-3084a33dcb08
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "27030032-96b0-40b1-a77d-3084a33dcb08",
+  "assignationDate": "2019-05-11T00:00:00.000Z",
+  "cancellationComments": "cancellationComments-27030032",
+  "cancellationPhaseID": "cancellationPhaseID-27030032",
+  "cancellationReason": "cancellationReason-27030032",
+  "company": "company-27030032",
+  "country": "032",
+  "createdAt": "2005-02-06",
+  "createdBy": "createdBy-27030032",
+  "deletedAt": "2000-04-23T00:00:00.000Z",
+  "deletedBy": "deletedBy-27030032",
+  "closedAt": "2010-11-03T00:00:00.000Z",
+  "changedAt": "2007-12-25T00:00:00.000Z",
+  "changedBy": "changedBy-27030032",
+  "processFlowId": "ocessFlowId-27030032",
+  "code": "code-27030032",
+  "description": "description-27030032",
+  "manager": "manager-27030032",
+  "status": 91,
+  "requestType": 27,
+  "role": "role-27030032",
+  "siteId": "siteId-27030032",
+  "opentAt": "2007-06-07T00:00:00.000Z",
+  "onHoldComments": "onHoldComments-27030032",
+  "onHoldPhaseId": "onHoldPhaseId-27030032",
+  "onHoldReason": "onHoldReason-27030032",
+  "workflowName": "workflowName-27030032",
+  "creationConfig": "creationConfig-27030032",
+  "RequestProvision": {
+    "ID": "18717504-259e-4d82-b00c-d54892a26a15"
+  },
+  "ProcessTypes": {
+    "code": "ProcessTypes-7424548"
+  },
+  "RequestTypes": {
+    "REQUEST_TYPE": 1580929
+  },
+  "RequestStatus": {
+    "code": 28808726
+  },
+  "OnHoldReasons": {
+    "code": 29644679
+  },
+  "CancellationReasons": {
+    "code": 11633109
+  },
+  "Managers": {
+    "userId": "Managers-14727170"
+  },
+  "Site": {
+    "siteId": "Sites-24401136"
+  }
+}
+
+
+### Requests
+# @name Requests_DELETE
+DELETE {{server}}/service/project/Requests/27030032-96b0-40b1-a77d-3084a33dcb08
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### RequestProvision
+# @name RequestProvision_GET
+GET {{server}}/service/project/RequestProvision
+{{credencialsAdmin}}
+
+
+### RequestProvision
+# @name RequestProvision_POST
+POST {{server}}/service/project/RequestProvision
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "18717504-259e-4d82-b00c-d54892a26a15",
+  "requestedDate": "2017-03-26",
+  "requester": "requester-18717504",
+  "forecastDone": true,
+  "PMOManager": "PMOManager-18717504",
+  "preferredProvider": "preferredProvider-18717504",
+  "classification": 89,
+  "salesforceRequestId": "salesforceRequestId-18717504",
+  "Requests": {
+    "ID": "27030032-96b0-40b1-a77d-3084a33dcb08"
+  },
+  "Classifications": {
+    "code": 2163723
+  },
+  "PreferredProviders": {
+    "code": "PreferredProviders-11397201"
+  },
+  "PMOManagers": {
+    "userId": "PMOManagers-31378376"
+  },
+  "Requesters": {
+    "userId": "Requesters-31512437"
+  }
+}
+
+
+### RequestProvision
+# @name RequestProvision_PATCH
+PATCH {{server}}/service/project/RequestProvision/18717504-259e-4d82-b00c-d54892a26a15
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "18717504-259e-4d82-b00c-d54892a26a15",
+  "requestedDate": "2017-03-26",
+  "requester": "requester-18717504",
+  "forecastDone": true,
+  "PMOManager": "PMOManager-18717504",
+  "preferredProvider": "preferredProvider-18717504",
+  "classification": 89,
+  "salesforceRequestId": "salesforceRequestId-18717504",
+  "Requests": {
+    "ID": "27030032-96b0-40b1-a77d-3084a33dcb08"
+  },
+  "Classifications": {
+    "code": 2163723
+  },
+  "PreferredProviders": {
+    "code": "PreferredProviders-11397201"
+  },
+  "PMOManagers": {
+    "userId": "PMOManagers-31378376"
+  },
+  "Requesters": {
+    "userId": "Requesters-31512437"
+  }
+}
+
+
+### RequestProvision
+# @name RequestProvision_DELETE
+DELETE {{server}}/service/project/RequestProvision/18717504-259e-4d82-b00c-d54892a26a15
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### Phases
+# @name Phases_GET
+GET {{server}}/service/project/Phases
+{{credencialsAdmin}}
+
+
+### Phases
+# @name Phases_POST
+POST {{server}}/service/project/Phases
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "16656119-e8ee-4aa9-83e2-e4753223eeb0",
+  "createdAt": "2005-12-31T00:00:00.000Z",
+  "createdBy": "createdBy-16656119",
+  "deleted": false,
+  "deletedAt": "2012-08-11T00:00:00.000Z",
+  "deletedBy": "deletedBy-16656119",
+  "closedAt": "2016-01-02T00:00:00.000Z",
+  "processFlowId": "processFlowId-16656119",
+  "changedAt": "2010-05-12T00:00:00.000Z",
+  "changedBy": "changedBy-16656119",
+  "owner": "owner-16656119",
+  "status": 2,
+  "requestId": "16656119-f038-4cc3-936c-e21882281364",
+  "openAt": "2021-12-28T00:00:00.000Z",
+  "Requests": {
+    "ID": "27030032-96b0-40b1-a77d-3084a33dcb08"
+  },
+  "PhaseStatus": {
+    "code": 27139505
+  }
+}
+
+
+### Phases
+# @name Phases_PATCH
+PATCH {{server}}/service/project/Phases/16656119-e8ee-4aa9-83e2-e4753223eeb0
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "16656119-e8ee-4aa9-83e2-e4753223eeb0",
+  "createdAt": "2005-12-31T00:00:00.000Z",
+  "createdBy": "createdBy-16656119",
+  "deleted": false,
+  "deletedAt": "2012-08-11T00:00:00.000Z",
+  "deletedBy": "deletedBy-16656119",
+  "closedAt": "2016-01-02T00:00:00.000Z",
+  "processFlowId": "processFlowId-16656119",
+  "changedAt": "2010-05-12T00:00:00.000Z",
+  "changedBy": "changedBy-16656119",
+  "owner": "owner-16656119",
+  "status": 2,
+  "requestId": "16656119-f038-4cc3-936c-e21882281364",
+  "openAt": "2021-12-28T00:00:00.000Z",
+  "Requests": {
+    "ID": "27030032-96b0-40b1-a77d-3084a33dcb08"
+  },
+  "PhaseStatus": {
+    "code": 27139505
+  }
+}
+
+
+### Phases
+# @name Phases_DELETE
+DELETE {{server}}/service/project/Phases/16656119-e8ee-4aa9-83e2-e4753223eeb0
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### Blocks
+# @name Blocks_GET
+GET {{server}}/service/project/Blocks
+{{credencialsAdmin}}
+
+
+### Blocks
+# @name Blocks_POST
+POST {{server}}/service/project/Blocks
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "18211325-4a39-4975-83e0-3c9617df8558",
+  "activated": true,
+  "status": 95,
+  "comments": "comments-1821132",
+  "createdAt": "2017-11-07T00:00:00.000Z",
+  "createdBy": "createdBy-1821132",
+  "deletedAt": "2005-01-13T00:00:00.000Z",
+  "deletedBy": "deletedBy-1821132",
+  "closedAt": "2001-09-15",
+  "processFlowId": "processFlowId-1821132",
+  "modifiedAt": "2019-12-30T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-1821132",
+  "phaseId": "1821132f-17ff-461a-846f-aa8b382bd010",
+  "role": "role-1821132",
+  "openAt": "2020-10-07",
+  "mandatory": "2",
+  "owner": "owner-1821132",
+  "Phases": {
+    "ID": "16656119-e8ee-4aa9-83e2-e4753223eeb0"
+  },
+  "BlockProvision": {
+    "ID": "16016326-624d-4574-a5b1-500fee5e94c4"
+  },
+  "BlockStatus": {
+    "code": 29900951
+  }
+}
+
+
+### Blocks
+# @name Blocks_PATCH
+PATCH {{server}}/service/project/Blocks/18211325-4a39-4975-83e0-3c9617df8558
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "18211325-4a39-4975-83e0-3c9617df8558",
+  "activated": true,
+  "status": 95,
+  "comments": "comments-1821132",
+  "createdAt": "2017-11-07T00:00:00.000Z",
+  "createdBy": "createdBy-1821132",
+  "deletedAt": "2005-01-13T00:00:00.000Z",
+  "deletedBy": "deletedBy-1821132",
+  "closedAt": "2001-09-15",
+  "processFlowId": "processFlowId-1821132",
+  "modifiedAt": "2019-12-30T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-1821132",
+  "phaseId": "1821132f-17ff-461a-846f-aa8b382bd010",
+  "role": "role-1821132",
+  "openAt": "2020-10-07",
+  "mandatory": "2",
+  "owner": "owner-1821132",
+  "Phases": {
+    "ID": "16656119-e8ee-4aa9-83e2-e4753223eeb0"
+  },
+  "BlockProvision": {
+    "ID": "16016326-624d-4574-a5b1-500fee5e94c4"
+  },
+  "BlockStatus": {
+    "code": 29900951
+  }
+}
+
+
+### Blocks
+# @name Blocks_DELETE
+DELETE {{server}}/service/project/Blocks/18211325-4a39-4975-83e0-3c9617df8558
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### BlockProvision
+# @name BlockProvision_GET
+GET {{server}}/service/project/BlockProvision
+{{credencialsAdmin}}
+
+
+### BlockProvision
+# @name BlockProvision_POST
+POST {{server}}/service/project/BlockProvision
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "16016326-624d-4574-a5b1-500fee5e94c4",
+  "accepted": "16326",
+  "acceptedDate": "2013-06-25",
+  "activationReason": "activationReason-16016326",
+  "assignedResponsible": "assignedResponsible-16016326",
+  "automaticManualResponse": "automaticManualResponse-16016326",
+  "status": 51,
+  "documentsUpdated": "16326",
+  "inventoryUpdated": "16326",
+  "servicesUpdated": "16326",
+  "completedBy": "completedBy-16016326",
+  "completedDate": "2000-08-23",
+  "createdAt": "2000-07-12T00:00:00.000Z",
+  "createdBy": "createdBy-16016326",
+  "currency": "326",
+  "deleted": true,
+  "deletedAt": "2017-02-06T00:00:00.000Z",
+  "deletedBy": "deletedBy-16016326",
+  "closedAt": "2020-01-25T00:00:00.000Z",
+  "expectedDate": "2014-02-08",
+  "expectedStartDate": "2003-12-04",
+  "expectedEndDate": "2001-06-07",
+  "visitNeeded": "16326",
+  "changedAt": "2011-03-10T00:00:00.000Z",
+  "changedBy": "changedBy-16016326",
+  "plannedDate": "2017-01-09",
+  "plannedKickoffDate": "2019-08-01",
+  "planningRating": "planningRating-16016326",
+  "externalResponsible": "externalResponsible-16016326",
+  "rejectionReason": "rejectionReason-16016326",
+  "renegoNeeded": "16326",
+  "realEndDate": "2001-01-17",
+  "realStartDate": "2007-04-30",
+  "internalResponsible": "internalResponsible-16016326",
+  "siteSurveyDate": "2017-10-04",
+  "sendOfferDate": "2019-07-15",
+  "startDate": "2005-04-20",
+  "endDate": "2011-11-30",
+  "siteSurveyWillBeNeeded": "16326",
+  "subcontractorType": 37,
+  "managerValidation": "managerValidation-16016326",
+  "managerValidationDate": "2018-06-13",
+  "kickOffVisitNeeded": "kickOffVisitNeeded-16016326",
+  "overallFeasibility": "overallFeasibility-16016326",
+  "overallFeasibilityRisk": "overallFeasibilityRisk-16016326",
+  "permitsNeeded": "16326",
+  "permitsFeasibility": "permitsFeasibility-16016326",
+  "realStateFeasibility": "realStateFeasibility-16016326",
+  "realStateFeasibilityRisk": "realStateFeasibilityRisk-16016326",
+  "Blocks": {
+    "ID": "18211325-4a39-4975-83e0-3c9617df8558"
+  },
+  "BlockStatus": {
+    "code": 29900951
+  },
+  "SiteSurveyNeeded": {
+    "code": 19922522
+  },
+  "ApproverTypes": {
+    "code": "ApproverTypes-11705145"
+  },
+  "SubcoTypes": {
+    "code": 27176030
+  }
+}
+
+
+### BlockProvision
+# @name BlockProvision_PATCH
+PATCH {{server}}/service/project/BlockProvision/16016326-624d-4574-a5b1-500fee5e94c4
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "16016326-624d-4574-a5b1-500fee5e94c4",
+  "accepted": "16326",
+  "acceptedDate": "2013-06-25",
+  "activationReason": "activationReason-16016326",
+  "assignedResponsible": "assignedResponsible-16016326",
+  "automaticManualResponse": "automaticManualResponse-16016326",
+  "status": 51,
+  "documentsUpdated": "16326",
+  "inventoryUpdated": "16326",
+  "servicesUpdated": "16326",
+  "completedBy": "completedBy-16016326",
+  "completedDate": "2000-08-23",
+  "createdAt": "2000-07-12T00:00:00.000Z",
+  "createdBy": "createdBy-16016326",
+  "currency": "326",
+  "deleted": true,
+  "deletedAt": "2017-02-06T00:00:00.000Z",
+  "deletedBy": "deletedBy-16016326",
+  "closedAt": "2020-01-25T00:00:00.000Z",
+  "expectedDate": "2014-02-08",
+  "expectedStartDate": "2003-12-04",
+  "expectedEndDate": "2001-06-07",
+  "visitNeeded": "16326",
+  "changedAt": "2011-03-10T00:00:00.000Z",
+  "changedBy": "changedBy-16016326",
+  "plannedDate": "2017-01-09",
+  "plannedKickoffDate": "2019-08-01",
+  "planningRating": "planningRating-16016326",
+  "externalResponsible": "externalResponsible-16016326",
+  "rejectionReason": "rejectionReason-16016326",
+  "renegoNeeded": "16326",
+  "realEndDate": "2001-01-17",
+  "realStartDate": "2007-04-30",
+  "internalResponsible": "internalResponsible-16016326",
+  "siteSurveyDate": "2017-10-04",
+  "sendOfferDate": "2019-07-15",
+  "startDate": "2005-04-20",
+  "endDate": "2011-11-30",
+  "siteSurveyWillBeNeeded": "16326",
+  "subcontractorType": 37,
+  "managerValidation": "managerValidation-16016326",
+  "managerValidationDate": "2018-06-13",
+  "kickOffVisitNeeded": "kickOffVisitNeeded-16016326",
+  "overallFeasibility": "overallFeasibility-16016326",
+  "overallFeasibilityRisk": "overallFeasibilityRisk-16016326",
+  "permitsNeeded": "16326",
+  "permitsFeasibility": "permitsFeasibility-16016326",
+  "realStateFeasibility": "realStateFeasibility-16016326",
+  "realStateFeasibilityRisk": "realStateFeasibilityRisk-16016326",
+  "Blocks": {
+    "ID": "18211325-4a39-4975-83e0-3c9617df8558"
+  },
+  "BlockStatus": {
+    "code": 29900951
+  },
+  "SiteSurveyNeeded": {
+    "code": 19922522
+  },
+  "ApproverTypes": {
+    "code": "ApproverTypes-11705145"
+  },
+  "SubcoTypes": {
+    "code": 27176030
+  }
+}
+
+
+### BlockProvision
+# @name BlockProvision_DELETE
+DELETE {{server}}/service/project/BlockProvision/16016326-624d-4574-a5b1-500fee5e94c4
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### LocalDocuments
+# @name LocalDocuments_GET
+GET {{server}}/service/project/LocalDocuments
+{{credencialsAdmin}}
+
+
+### LocalDocuments
+# @name LocalDocuments_POST
+GET {{server}}/odata/v2/service/project/Blocks(guid'5be3b1ab-f416-4cb5-a8cc-6e82203e1773')/Documents
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "612325c4-08e9-4432-ac9b-676251148a89",
+  "blockId": "6123259f-50fa-4452-b91f-f3dd5243e6a6",
+  "instanceId": "61232528-7249-45b9-bca1-f587ac9b732c",
+  "requestId": "612325c8-e750-41b3-a70d-184749f20d96",
+  "requestCode": "requestCode-612325",
+  "docType": "docType-612325",
+  "stepId": "stepId-612325",
+  "field": "field-612325",
+  "documentName": "documentName-612325",
+  "version": "ion-612325",
+  "fileUrl": "fileUrl-612325",
+  "user": "user-612325",
+  "documentCreationDate": "documentCreationDate-612325",
+  "subType": "subType-612325",
+  "subTypeLvl2": "subTypeLvl2-612325",
+  "createdAt": "2013-02-19T00:00:00.000Z",
+  "createdBy": "createdBy-612325",
+  "deleted": false,
+  "deletedBy": "deletedBy-612325",
+  "modifiedAt": "2006-03-21T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-612325",
+  "documentId": "documentId-612325",
+  "OTDocumentId": 19,
+  "blockName": "blockName-612325",
+  "phaseName": "phaseName-612325",
+  "finalDocument": false,
+  "mediaType": "mediaType-612325",
+  "virtMediaType": "virtMediaType-612325"
+}
+
+
+### LocalDocuments
+# @name LocalDocuments_PATCH
+PATCH {{server}}/service/project/LocalDocuments/612325c4-08e9-4432-ac9b-676251148a89
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "612325c4-08e9-4432-ac9b-676251148a89",
+  "blockId": "6123259f-50fa-4452-b91f-f3dd5243e6a6",
+  "instanceId": "61232528-7249-45b9-bca1-f587ac9b732c",
+  "requestId": "612325c8-e750-41b3-a70d-184749f20d96",
+  "requestCode": "requestCode-612325",
+  "docType": "docType-612325",
+  "stepId": "stepId-612325",
+  "field": "field-612325",
+  "documentName": "documentName-612325",
+  "version": "ion-612325",
+  "fileUrl": "fileUrl-612325",
+  "user": "user-612325",
+  "documentCreationDate": "documentCreationDate-612325",
+  "subType": "subType-612325",
+  "subTypeLvl2": "subTypeLvl2-612325",
+  "createdAt": "2013-02-19T00:00:00.000Z",
+  "createdBy": "createdBy-612325",
+  "deleted": false,
+  "deletedBy": "deletedBy-612325",
+  "modifiedAt": "2006-03-21T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-612325",
+  "documentId": "documentId-612325",
+  "OTDocumentId": 19,
+  "blockName": "blockName-612325",
+  "phaseName": "phaseName-612325",
+  "finalDocument": false,
+  "mediaType": "mediaType-612325",
+  "virtMediaType": "virtMediaType-612325"
+}
+
+
+### LocalDocuments
+# @name LocalDocuments_DELETE
+DELETE {{server}}/service/project/LocalDocuments/612325c4-08e9-4432-ac9b-676251148a89
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### Documents
+# @name Documents_GET
+GET {{server}}/service/project/Documents
+{{credencialsAdmin}}
+
+
+### Documents
+# @name Documents_POST
+POST {{server}}/service/project/Documents
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "22535559-cae3-410e-8f56-f5b6c132ff06",
+  "blockId": "22535559-2915-409e-987f-1579a0a732e2",
+  "instanceId": "22535559-ac6e-445b-97b9-40e0779e2a12",
+  "requestId": "22535559-d9ec-4aaa-82a0-a3d464f78eca",
+  "requestCode": "requestCode-22535559",
+  "docType": "docType-22535559",
+  "stepId": "stepId-22535559",
+  "field": "field-22535559",
+  "documentName": "documentName-22535559",
+  "version": "n-22535559",
+  "fileUrl": "fileUrl-22535559",
+  "user": "user-22535559",
+  "documentCreationDate": "documentCreationDate-22535559",
+  "subType": "subType-22535559",
+  "subTypeLvl2": "subTypeLvl2-22535559",
+  "createdAt": "2005-02-07T00:00:00.000Z",
+  "createdBy": "createdBy-22535559",
+  "deleted": false,
+  "deletedBy": "deletedBy-22535559",
+  "modifiedAt": "2018-04-29T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-22535559",
+  "documentId": "documentId-22535559",
+  "OTDocumentId": 2,
+  "blockName": "blockName-22535559",
+  "phaseName": "phaseName-22535559",
+  "finalDocument": false,
+  "mediaType": "mediaType-22535559",
+  "virtMediaType": "virtMediaType-22535559"
+}
+
+
+### Documents
+# @name Documents_PATCH
+PATCH {{server}}/service/project/Documents/22535559-cae3-410e-8f56-f5b6c132ff06
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "22535559-cae3-410e-8f56-f5b6c132ff06",
+  "blockId": "22535559-2915-409e-987f-1579a0a732e2",
+  "instanceId": "22535559-ac6e-445b-97b9-40e0779e2a12",
+  "requestId": "22535559-d9ec-4aaa-82a0-a3d464f78eca",
+  "requestCode": "requestCode-22535559",
+  "docType": "docType-22535559",
+  "stepId": "stepId-22535559",
+  "field": "field-22535559",
+  "documentName": "documentName-22535559",
+  "version": "n-22535559",
+  "fileUrl": "fileUrl-22535559",
+  "user": "user-22535559",
+  "documentCreationDate": "documentCreationDate-22535559",
+  "subType": "subType-22535559",
+  "subTypeLvl2": "subTypeLvl2-22535559",
+  "createdAt": "2005-02-07T00:00:00.000Z",
+  "createdBy": "createdBy-22535559",
+  "deleted": false,
+  "deletedBy": "deletedBy-22535559",
+  "modifiedAt": "2018-04-29T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-22535559",
+  "documentId": "documentId-22535559",
+  "OTDocumentId": 2,
+  "blockName": "blockName-22535559",
+  "phaseName": "phaseName-22535559",
+  "finalDocument": false,
+  "mediaType": "mediaType-22535559",
+  "virtMediaType": "virtMediaType-22535559"
+}
+
+
+### Documents
+# @name Documents_DELETE
+DELETE {{server}}/service/project/Documents/22535559-cae3-410e-8f56-f5b6c132ff06
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### DocumentsPerBlocks
+# @name DocumentsPerBlocks_GET
+GET {{server}}/service/project/DocumentsPerBlocks
+{{credencialsAdmin}}
+
+
+### DocumentsPerBlocks
+# @name DocumentsPerBlocks_POST
+POST {{server}}/service/project/DocumentsPerBlocks
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "DocumentsPerBlocks-5146434",
+  "blockId": "blockId-5146434",
+  "createdAt": "2001-07-12T00:00:00.000Z",
+  "createdBy": "createdBy-5146434",
+  "deleted": true,
+  "deletedAt": "2002-07-06T00:00:00.000Z",
+  "deletedBy": "deletedBy-5146434",
+  "modifiedAt": "2004-05-02T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-5146434",
+  "order": 38,
+  "responsibleId": "responsibleId-5146434",
+  "subcontractorId": "subcontractorId-5146434",
+  "responsibleDefault": "responsibleDefault-5146434",
+  "cellnexValidation": "on-5146434",
+  "customerValidation": "on-5146434",
+  "subcontractorValidation": "on-5146434",
+  "siteOwnerValidation": "on-5146434",
+  "documentId": "documentId-5146434",
+  "typeId": "typeId-5146434",
+  "status": 18,
+  "jointProjectId": "jointProjectId-5146434",
+  "masterBlock_id": "Block_id-5146434",
+  "Blocks": {
+    "ID": "18211325-4a39-4975-83e0-3c9617df8558"
+  },
+  "InstancesPerDocuments": {
+    "ID": "InstancesPerDocuments-5985073"
+  },
+  "ApproverTypes": {
+    "code": "ApproverTypes-11705145"
+  },
+  "SubcoTypes": {
+    "code": 27176030
+  }
+}
+
+
+### DocumentsPerBlocks
+# @name DocumentsPerBlocks_PATCH
+PATCH {{server}}/service/project/DocumentsPerBlocks/DocumentsPerBlocks-5146434
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "DocumentsPerBlocks-5146434",
+  "blockId": "blockId-5146434",
+  "createdAt": "2001-07-12T00:00:00.000Z",
+  "createdBy": "createdBy-5146434",
+  "deleted": true,
+  "deletedAt": "2002-07-06T00:00:00.000Z",
+  "deletedBy": "deletedBy-5146434",
+  "modifiedAt": "2004-05-02T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-5146434",
+  "order": 38,
+  "responsibleId": "responsibleId-5146434",
+  "subcontractorId": "subcontractorId-5146434",
+  "responsibleDefault": "responsibleDefault-5146434",
+  "cellnexValidation": "on-5146434",
+  "customerValidation": "on-5146434",
+  "subcontractorValidation": "on-5146434",
+  "siteOwnerValidation": "on-5146434",
+  "documentId": "documentId-5146434",
+  "typeId": "typeId-5146434",
+  "status": 18,
+  "jointProjectId": "jointProjectId-5146434",
+  "masterBlock_id": "Block_id-5146434",
+  "Blocks": {
+    "ID": "18211325-4a39-4975-83e0-3c9617df8558"
+  },
+  "InstancesPerDocuments": {
+    "ID": "InstancesPerDocuments-5985073"
+  },
+  "ApproverTypes": {
+    "code": "ApproverTypes-11705145"
+  },
+  "SubcoTypes": {
+    "code": 27176030
+  }
+}
+
+
+### DocumentsPerBlocks
+# @name DocumentsPerBlocks_DELETE
+DELETE {{server}}/service/project/DocumentsPerBlocks/DocumentsPerBlocks-5146434
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### InstancesPerDocuments
+# @name InstancesPerDocuments_GET
+GET {{server}}/service/project/InstancesPerDocuments
+{{credencialsAdmin}}
+
+
+### InstancesPerDocuments
+# @name InstancesPerDocuments_POST
+POST {{server}}/service/project/InstancesPerDocuments
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "InstancesPerDocuments-5985073",
+  "cellnexComment": "cellnexComment-5985073",
+  "cellnexValidation": "cellnexValidation-5985073",
+  "cellnexValidationDate": "2016-02-18",
+  "cellnexValidator": "cellnexValidator-5985073",
+  "contactEmail": "contactEmail-5985073",
+  "contactPhone": "contactPhone-5985073",
+  "createdAt": "2016-08-01T00:00:00.000Z",
+  "createdBy": "createdBy-5985073",
+  "customerComment": "customerComment-5985073",
+  "customerValidation": "customerValidation-5985073",
+  "customerValidationDate": "2001-06-12",
+  "customerValidator": "customerValidator-5985073",
+  "deleted": false,
+  "deletedAt": "2003-05-21T00:00:00.000Z",
+  "deletedBy": "deletedBy-5985073",
+  "jointProjectId": "jointProjectId-5985073",
+  "requestCodeOrigin": "requestCodeOrigin-5985073",
+  "endDate": "2001-04-11",
+  "instanceId": "instanceId-5985073",
+  "modifiedAt": "2009-10-04T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-5985073",
+  "siteOwnerComment": "siteOwnerComment-5985073",
+  "siteOwnerValidation": "siteOwnerValidation-5985073",
+  "siteOwnerValidationDate": "2004-05-01",
+  "siteOwnerValidator": "siteOwnerValidator-5985073",
+  "startDate": "2004-11-20",
+  "subcontractorComment": "subcontractorComment-5985073",
+  "subcontractorValidation": "subcontractorValidation-5985073",
+  "subcontractorValidationDate": "2001-05-17",
+  "subcontractorValidator": "subcontractorValidator-5985073",
+  "submissionDate": "2004-08-06T00:00:00.000Z",
+  "tasksActivated": false,
+  "version": "version-5985073",
+  "blockId": "blockId-5985073",
+  "stepId": "stepId-5985073",
+  "stepName": "stepName-5985073",
+  "assignedRole": "assignedRole-5985073",
+  "expectedSubmissionDate": "2002-05-14",
+  "expectedCustValidationDate": "2010-07-22T00:00:00.000Z",
+  "expectedCellValidationDate": "2016-06-08T00:00:00.000Z",
+  "expirationDate": "2004-02-13",
+  "plannedSubmissionDate": "2006-01-14T00:00:00.000Z",
+  "cancellationReason": "cancellationReason-5985073",
+  "modifiedBulkAt": "2004-09-04T00:00:00.000Z",
+  "modifiedBulkBy": "modifiedBulkBy-5985073",
+  "createdBulkAt": "2012-05-23T00:00:00.000Z",
+  "createdBulkBy": "createdBulkBy-5985073",
+  "deletedBulkAt": "2008-09-12T00:00:00.000Z",
+  "deletedBulkBy": "deletedBulkBy-5985073",
+  "assignedResponsible": "assignedResponsible-5985073",
+  "assignedSubcontractor": "assignedSubcontractor-5985073",
+  "forecastNA": false,
+  "taskCode": "taskCode-5985073",
+  "DocumentsPerBlocks": {
+    "ID": "DocumentsPerBlocks-5146434"
+  },
+  "DocumentFlowResponsibleVendors": {
+    "userId": "CacheR3Entities-22355427",
+    "entityType": "CacheR3Entities-22355427",
+    "code": "CacheR3Entities-22355427"
+  }
+}
+
+
+### InstancesPerDocuments
+# @name InstancesPerDocuments_PATCH
+PATCH {{server}}/service/project/InstancesPerDocuments/InstancesPerDocuments-5985073
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "InstancesPerDocuments-5985073",
+  "cellnexComment": "cellnexComment-5985073",
+  "cellnexValidation": "cellnexValidation-5985073",
+  "cellnexValidationDate": "2016-02-18",
+  "cellnexValidator": "cellnexValidator-5985073",
+  "contactEmail": "contactEmail-5985073",
+  "contactPhone": "contactPhone-5985073",
+  "createdAt": "2016-08-01T00:00:00.000Z",
+  "createdBy": "createdBy-5985073",
+  "customerComment": "customerComment-5985073",
+  "customerValidation": "customerValidation-5985073",
+  "customerValidationDate": "2001-06-12",
+  "customerValidator": "customerValidator-5985073",
+  "deleted": false,
+  "deletedAt": "2003-05-21T00:00:00.000Z",
+  "deletedBy": "deletedBy-5985073",
+  "jointProjectId": "jointProjectId-5985073",
+  "requestCodeOrigin": "requestCodeOrigin-5985073",
+  "endDate": "2001-04-11",
+  "instanceId": "instanceId-5985073",
+  "modifiedAt": "2009-10-04T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-5985073",
+  "siteOwnerComment": "siteOwnerComment-5985073",
+  "siteOwnerValidation": "siteOwnerValidation-5985073",
+  "siteOwnerValidationDate": "2004-05-01",
+  "siteOwnerValidator": "siteOwnerValidator-5985073",
+  "startDate": "2004-11-20",
+  "subcontractorComment": "subcontractorComment-5985073",
+  "subcontractorValidation": "subcontractorValidation-5985073",
+  "subcontractorValidationDate": "2001-05-17",
+  "subcontractorValidator": "subcontractorValidator-5985073",
+  "submissionDate": "2004-08-06T00:00:00.000Z",
+  "tasksActivated": false,
+  "version": "version-5985073",
+  "blockId": "blockId-5985073",
+  "stepId": "stepId-5985073",
+  "stepName": "stepName-5985073",
+  "assignedRole": "assignedRole-5985073",
+  "expectedSubmissionDate": "2002-05-14",
+  "expectedCustValidationDate": "2010-07-22T00:00:00.000Z",
+  "expectedCellValidationDate": "2016-06-08T00:00:00.000Z",
+  "expirationDate": "2004-02-13",
+  "plannedSubmissionDate": "2006-01-14T00:00:00.000Z",
+  "cancellationReason": "cancellationReason-5985073",
+  "modifiedBulkAt": "2004-09-04T00:00:00.000Z",
+  "modifiedBulkBy": "modifiedBulkBy-5985073",
+  "createdBulkAt": "2012-05-23T00:00:00.000Z",
+  "createdBulkBy": "createdBulkBy-5985073",
+  "deletedBulkAt": "2008-09-12T00:00:00.000Z",
+  "deletedBulkBy": "deletedBulkBy-5985073",
+  "assignedResponsible": "assignedResponsible-5985073",
+  "assignedSubcontractor": "assignedSubcontractor-5985073",
+  "forecastNA": false,
+  "taskCode": "taskCode-5985073",
+  "DocumentsPerBlocks": {
+    "ID": "DocumentsPerBlocks-5146434"
+  },
+  "DocumentFlowResponsibleVendors": {
+    "userId": "CacheR3Entities-22355427",
+    "entityType": "CacheR3Entities-22355427",
+    "code": "CacheR3Entities-22355427"
+  }
+}
+
+
+### InstancesPerDocuments
+# @name InstancesPerDocuments_DELETE
+DELETE {{server}}/service/project/InstancesPerDocuments/InstancesPerDocuments-5985073
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### Chats
+# @name Chats_GET
+GET {{server}}/service/project/Chats
+{{credencialsAdmin}}
+
+
+### Chats
+# @name Chats_POST
+POST {{server}}/service/project/Chats
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "Chats-129107",
+  "userId": "Chats-129107",
+  "date": "2003-12-20T00:00:00.000Z",
+  "text": "text-129107",
+  "readed": false
+}
+
+
+### Chats
+# @name Chats_PATCH
+PATCH {{server}}/service/project/Chats(ID='Chats-129107',userId='Chats-129107',date=2003-12-20T00:00:00.000Z)
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "ID": "Chats-129107",
+  "userId": "Chats-129107",
+  "date": "2003-12-20T00:00:00.000Z",
+  "text": "text-129107",
+  "readed": false
+}
+
+
+### Chats
+# @name Chats_DELETE
+DELETE {{server}}/service/project/Chats(ID='Chats-129107',userId='Chats-129107',date=2003-12-20T00:00:00.000Z)
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### BlockStatus
+# @name BlockStatus_GET
+GET {{server}}/service/project/BlockStatus
+{{credencialsAdmin}}
+
+
+### DocumentFlows
+# @name DocumentFlows_GET
+GET {{server}}/service/project/DocumentFlows
+{{credencialsAdmin}}
+
+
+### DocumentFlowStatus
+# @name DocumentFlowStatus_GET
+GET {{server}}/service/project/DocumentFlowStatus
+{{credencialsAdmin}}
+
+
+### OnHoldReasons
+# @name OnHoldReasons_GET
+GET {{server}}/service/project/OnHoldReasons
+{{credencialsAdmin}}
+
+
+### PhaseStatus
+# @name PhaseStatus_GET
+GET {{server}}/service/project/PhaseStatus
+{{credencialsAdmin}}
+
+
+### ProcessTypes
+# @name ProcessTypes_GET
+GET {{server}}/service/project/ProcessTypes
+{{credencialsAdmin}}
+
+
+### RequestStatus
+# @name RequestStatus_GET
+GET {{server}}/service/project/RequestStatus
+{{credencialsAdmin}}
+
+
+### RequestTypes
+# @name RequestTypes_GET
+GET {{server}}/service/project/RequestTypes
+{{credencialsAdmin}}
+
+
+### SearchTypes
+# @name SearchTypes_GET
+GET {{server}}/service/project/SearchTypes
+{{credencialsAdmin}}
+
+
+### StatusHead
+# @name StatusHead_GET
+GET {{server}}/service/project/StatusHead
+{{credencialsAdmin}}
+
+
+### TaskTypes
+# @name TaskTypes_GET
+GET {{server}}/service/project/TaskTypes
+{{credencialsAdmin}}
+
+
+### CancellationReasons
+# @name CancellationReasons_GET
+GET {{server}}/service/project/CancellationReasons
+{{credencialsAdmin}}
+
+
+### ChangesLog
+# @name ChangesLog_GET
+GET {{server}}/service/project/ChangesLog
+{{credencialsAdmin}}
+
+
+### Classifications
+# @name Classifications_GET
+GET {{server}}/service/project/Classifications
+{{credencialsAdmin}}
+
+
+### PreferredProviders
+# @name PreferredProviders_GET
+GET {{server}}/service/project/PreferredProviders
+{{credencialsAdmin}}
+
+
+### ApproverTypes
+# @name ApproverTypes_GET
+GET {{server}}/service/project/ApproverTypes
+{{credencialsAdmin}}
+
+
+### SubcoTypes
+# @name SubcoTypes_GET
+GET {{server}}/service/project/SubcoTypes
+{{credencialsAdmin}}
+
+
+### YesNoFields
+# @name YesNoFields_GET
+GET {{server}}/service/project/YesNoFields
+{{credencialsAdmin}}
+
+
+### Sites
+# @name Sites_GET
+GET {{server}}/service/project/Sites
+{{credencialsAdmin}}
+
+
+### DocumentFlowDocumentId
+# @name DocumentFlowDocumentId_GET
+GET {{server}}/service/project/DocumentFlowDocumentId
+{{credencialsAdmin}}
+
+
+### PMOManagers
+# @name PMOManagers_GET
+GET {{server}}/service/project/PMOManagers
+{{credencialsAdmin}}
+
+
+### Managers
+# @name Managers_GET
+GET {{server}}/service/project/Managers
+{{credencialsAdmin}}
+
+
+### Requesters
+# @name Requesters_GET
+GET {{server}}/service/project/Requesters
+{{credencialsAdmin}}
+
+
+### InternalUsers
+# @name InternalUsers_GET
+GET {{server}}/service/project/InternalUsers
+{{credencialsAdmin}}
+
+
+### ExternalUsers
+# @name ExternalUsers_GET
+GET {{server}}/service/project/ExternalUsers
+{{credencialsAdmin}}
+
+
+### CacheR3Entities
+# @name CacheR3Entities_GET
+GET {{server}}/service/project/CacheR3Entities
+{{credencialsAdmin}}
+
+
+### CacheR3Entities
+# @name CacheR3Entities_POST
+POST {{server}}/service/project/CacheR3Entities
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "userId": "CacheR3Entities-22355427",
+  "entityType": "CacheR3Entities-22355427",
+  "code": "CacheR3Entities-22355427",
+  "name": "name-22355427",
+  "createdAt": "2013-02-15T00:00:00.000Z"
+}
+
+
+### CacheR3Entities
+# @name CacheR3Entities_PATCH
+PATCH {{server}}/service/project/CacheR3Entities(userId='CacheR3Entities-22355427',entityType='CacheR3Entities-22355427',code='CacheR3Entities-22355427')
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "userId": "CacheR3Entities-22355427",
+  "entityType": "CacheR3Entities-22355427",
+  "code": "CacheR3Entities-22355427",
+  "name": "name-22355427",
+  "createdAt": "2013-02-15T00:00:00.000Z"
+}
+
+
+### CacheR3Entities
+# @name CacheR3Entities_DELETE
+DELETE {{server}}/service/project/CacheR3Entities(userId='CacheR3Entities-22355427',entityType='CacheR3Entities-22355427',code='CacheR3Entities-22355427')
+Content-Type: application/json
+{{credencialsAdmin}}
+
+
+### singleRequestProcess
+# @name singleRequestProcess_GET
+GET {{server}}/service/project/singleRequestProcess
+{{credencialsAdmin}}
+
+
+### lastActivePhases
+# @name lastActivePhases_GET
+GET {{server}}/service/project/lastActivePhases
+{{credencialsAdmin}}
+
+
+### firstInprogressPhase
+# @name firstInprogressPhase_GET
+GET {{server}}/service/project/firstInprogressPhase
+{{credencialsAdmin}}
+
+
+### getRequestAllowedActions
+# @name getRequestAllowedActions_POST
+POST {{server}}/service/project/getRequestAllowedActions
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{}
+
+
+### getBlocksAllowedActions
+# @name getBlocksAllowedActions_POST
+POST {{server}}/service/project/getBlocksAllowedActions
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+  "requestId": "29330082-55da-4e85-9f82-25b06f57d324"
+}
+
+
+### getDefaultCreationFields
+# @name getDefaultCreationFields_POST
+POST {{server}}/service/project/getDefaultCreationFields
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{}
+
+
+### refreshR3EntitiesCache
+# @name refreshR3EntitiesCache_POST
+POST {{server}}/service/project/refreshR3EntitiesCache
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{}
+
+### linkRequestsDetailed
+# @name linkRequestsDetailed_POST
+POST {{server}}/odata/v2/service/project/linkRequestsDetailed
+Content-Type: application/json
+{{credencialsAdmin}}
+
+{
+    "parentRequestID": "INT.UK.0000006",
+    "parentInstanceID": "051ecd60-893b-433c-a5db-9cf576caef15",
+    "parentWorkflowID": "150",
+    "children": "[{\"childRequestID\":\"COL.NEW.UK.0001809\",\"childInstanceID\":\"0004eb30-1eb7-4a19-b276-d9636e4b3f14\",\"childWorkflowID\":\"20\"}]",
+    "associationType": NULL
+}
+
+### linkRequestsDetailed
+# @name SearchDtLinkedRequestSet_GET
+
+GET {{server}}/odata/v2/service/project/SearchDtLinkedRequestSet?$skip=0&$top=100&$filter=parentInstanceID%20eq%20%27051ecd60-893b-433c-a5db-9cf576caef15%27&$select=childRequestID%2crequestTypeName%2csiteID%2cstatusName%2cstatusCritical%2crequestType%2cchildInstanceID&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+### Get DtLinkedRequestPossibleChildrenRequestList
+
+# @name DtLinkedRequestPossibleChildrenRequestList_GET
+GET {{server}}/odata/v2/service/project/DtLinkedRequestPossibleChildrenRequestList?$skip=0&$top=139&$filter=parentInstanceID%20eq%20guid%27051ecd60-893b-433c-a5db-9cf576caef15%27%20and%20siteID%20eq%20%27UK-00-000061%27&$select=requestCode%2csiteID%2crequestTypeName%2cstatusName%2cstatusCritical%2cprocessFlowID%2crequestID%2csharedDocumentTypeId%2csharedDocument&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+### Get DtLinkedRequestPossibleChildrenRequestList
+
+# @name DtLinkedRequestPossibleChildrenRequestList_GET
+GET {{server}}/odata/v2/service/project/DtLinkedRequestPossibleChildrenRequestList?$skip=0&$top=139&$filter=(requestType%20eq%204%20and%20parentInstanceID%20eq%20guid%27051ecd60-893b-433c-a5db-9cf576caef15%27)%20and%20siteID%20eq%20%27UK-00-000061%27&$select=requestCode%2csiteID%2crequestTypeName%2cstatusName%2cstatusCritical%2cprocessFlowID%2crequestID%2csharedDocumentTypeId%2csharedDocument&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+
+### Get DtLinkedRequestPossibleChildrenRequestList
+
+# @name DtLinkedRequestPossibleChildrenRequestList_GET
+GET {{server}}/odata/v2/service/project/DtLinkedRequestPossibleChildrenRequestList?$skip=0&$top=139&$filter=(requestType%20eq%204%20and%20parentInstanceID%20eq%20guid%27051ecd60-893b-433c-a5db-9cf576caef15%27)%20and%20siteID%20eq%20%27UK-00-000061%27&$select=requestCode%2csiteID%2crequestTypeName%2cstatusName%2cstatusCritical%2cprocessFlowID%2crequestID%2csharedDocumentTypeId%2csharedDocument&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+
+
+### PATCH BlocksResponsibles
+
+# @name BlocksResponsibles_PATCH
+PATCH {{server}}/odata/v2/service/project/BlocksResponsibles(guid'3165a1f2-4d24-477d-809e-2e9f786f7724') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1755679309111-414
+Content-Length: 311
+{{credencialsAdmin}}
+
+{"approverType":"1","__metadata":{"type":"project.BlocksResponsibles","uri":"https://port8080-workspaces-ws-w68d6.eu20.applicationstudio.cloud.sap,agora-prvintprojects-http.dest:443/destinations/Agora-prvintprojects-HTTP/odata/v2/service/project/BlocksResponsibles(guid'3165a1f2-4d24-477d-809e-2e9f786f7724')"}}
+
+
+#### get Generic Task Type
+GET {{server}}/odata/v2/service/project/TaskCategories
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Requests(guid'051ecd60-893b-433c-a5db-9cf576caef15')/DocumentsPerRequest?$skip=0&$top=104&$orderby=documentId%20asc&$filter=requestId%20eq%20051ecd60-893b-433c-a5db-9cf576caef15%20and%20phaseFlowId%20eq%20%27feasibilCheck%27&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2ccandidateId%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cphaseId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Requests(guid'051ecd60-893b-433c-a5db-9cf576caef15')/DocumentsPerRequest?$skip=0&$top=104&$orderby=documentId%20asc&$filter=requestId%20eq%20%27051ecd60-893b-433c-a5db-9cf576caef15%27%20and%20phaseFlowId%20eq%20%27requestCreat%27&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2ccandidateId%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cphaseId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF&$inlinecount=allpages HTTP/1.1
+{{credencialsAdmin}}
+
+
+
+
+#### get DocumentsPerRequest 
+PATCH {{server}}/odata/v2/service/project/DocumentsPerRequest('18fc5169-1052-42fe-9e3f-f2b611631531')
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1758192190886-856
+Content-Length: 326
+{{credencialsAdmin}}
+
+{"subcontractorResponsible":"177485"}
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/newRequestDocument?requestId=guid'051ecd60-893b-433c-a5db-9cf576caef15'&phaseId='feasibilCheck'&blockId='realEstate'&documentId='AAO' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1758639047247-390
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Blocks_addDocumentPerBlock?ID=guid'3165a1f2-4d24-477d-809e-2e9f786f7724'&documentId='S3CL' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1759755723618-556
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+PATCH  {{server}}/odata/v2/service/project/InstancesPerDocuments('159a559a-2b2a-48d4-b349-a65f60b13915') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1759154676485-789
+Content-Length: 330
+{{credencialsAdmin}}
+
+{"endDate":"\/Date(1759104000000)\/","__metadata":{"type":"project.InstancesPerDocuments","uri":"https://port8080-workspaces-ws-w68d6.eu20.applicationstudio.cloud.sap,agora-prvintprojects-http.dest:443/destinations/Agora-prvintprojects-HTTP/odata/v2/service/project/InstancesPerDocuments('159a559a-2b2a-48d4-b349-a65f60b13915')"}}
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Requests(guid'fb270072-afbb-4bf7-82a5-0d50a118705b')/RequestDocumentsPerBlockDefaultValid?
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/DocumentsPerBlocks_docFlowFirstSave?ID='1eb03a9c-b27d-46b6-a765-d064a30c9f23' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1759767066856-540
+{{credencialsAdmin}}
+
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/DocumentsPerBlocks_cancel?ID='1eb03a9c-b27d-46b6-a765-d064a30c9f23'&cancellationReason='test' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1759768712869-685
+{{credencialsAdmin}}
+
+#### get DocumentsPerRequest 
+DELETE {{server}}/odata/v2/service/project/Documents(guid'23b574e9-a466-4110-9eaf-a555e9ab0a3c') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-ID: id-1760104729083-451
+{{credencialsAdmin}}
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/InstancesPerDocuments('db38b8b6-6e8e-4eb5-a2d3-5b5ba687cbe2')/LocalDocuments HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760105302291-472
+Content-Length: 254
+{{credencialsAdmin}}
+
+{"requestId":"051ecd60-893b-433c-a5db-9cf576caef15","blockId":"3165a1f2-4d24-477d-809e-2e9f786f7724","requestCode":"INT.UK.0000006","documentName":"fundosvirtuaiszoom.webp","documentId":"S3CL","finalDocument":false,"mediaType":"image/webp","stepId":"10"}
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/LocalDocuments HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760109256106-518
+Content-Length: 374
+
+{"requestId":"051ecd60-893b-433c-a5db-9cf576caef15","instanceId":null,"blockId":"3165a1f2-4d24-477d-809e-2e9f786f7724","requestCode":"INT.UK.0000006","blockName":"checkPrevious","docType":"Support Document","documentName":"zoom4.png","subType":"Support Document","subTypeLvl2":"Support Document","documentId":"Support Document","finalDocument":false,"mediaType":"image/png"}
+
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Blocks_close?ID=guid'3165a1f2-4d24-477d-809e-2e9f786f7724' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760109256106-518
+Content-Length: 374
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Works HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760349500355-270
+Content-Length: 70
+{{credencialsAdmin}}
+
+{"parentId":"ccfa1dce-ce4a-484a-9fbc-01380c31a673","parentType_ID":30}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Works_complete?ID=guid'c0d6fbed-0173-48e3-ac88-6341b9b70ac2' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760350362960-310
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Works_reopen?ID=guid'c0d6fbed-0173-48e3-ac88-6341b9b70ac2' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760350362960-310
+{{credencialsAdmin}}
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/Works_cancel?ID=guid'c0d6fbed-0173-48e3-ac88-6341b9b70ac2' HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760350362960-310
+{{credencialsAdmin}}
+####
+POST {{server}}/odata/v2/service/project/LocalDocuments HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760709380773-522
+Content-Length: 353
+{{credencialsAdmin}}
+
+{"documentName":"ML.png","mediaType":"image/png","instanceId":null,"requestId":"8b3fd589-1be2-4112-ae62-70818e2d7e1a","requestCode":"INT.UK.0000058","blockId":"5be3b1ab-f416-4cb5-a8cc-6e82203e1773","blockName":"checkPrevious","docType":"Offer","subType":"Accelerated access offer","subTypeLvl2":"Offer customer","documentId":"AAO","finalDocument":false}
+
+#### get DocumentsPerRequest 
+PATCH  {{server}}/odata/v2/service/project/Works(guid'3e8f5305-040f-4f28-888a-c498170254e1') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760355317839-712
+Content-Length: 300
+
+{"type_ID":30,"__metadata":{"type":"project.Works","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~e51bff70-477d-4da6-a2e5-9667f01512ee~/odata/v2/service/project/Works(guid'3e8f5305-040f-4f28-888a-c498170254e1')"}}
+
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Requests(4770cdcc-5eff-4354-9bcc-cf21850d1b4b)/ChangesLog?$skip=0&$top=134&$select=changeDate%2cuserId%2cuserAction%2cuserActionName%2cphaseName%2cblockName%2cfieldName%2cfieldDescription%2coldValue%2coldValueDescription%2cnewValue%2cnewValueDescription%2cdocumentName%2cworkType_ID%2ctype%2fname%2cID&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Blocks(guid'ccfa1dce-ce4a-484a-9fbc-01380c31a673')/DocumentsPerBlocks?$skip=0&$top=103&$select=documentId%2cstatus%2cresponsibleDefault%2cInstancesPerDocuments%2fcellnexValidator%2cInstancesPerDocuments%2fsubcontractorValidator%2cInstancesPerDocuments%2fcustomerValidator%2cInstancesPerDocuments%2fsiteOwnerValidator%2cInstancesPerDocuments%2fDocuments%2cInstancesPerDocuments%2fcancellationReason%2cdeleted%2corder%2cactivated%2cInstancesPerDocuments%2fstartDate%2cInstancesPerDocuments%2fdocumentNameVF%2cInstancesPerDocuments%2fresponsibleDefaultNameVF%2cInstancesPerDocuments%2fapproverTypeName%2cInstancesPerDocuments%2fsubcoTypeName%2cInstancesPerDocuments%2fsubmissionDate%2cID%2cApproverTypes%2fname%2cSubcoTypes%2fname%2cDocumentFlowResponsibles%2fname%2cDocumentsPerBlockDocumentIdVh%2fdocumentName%2cblockId%2cresponsibleId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName%2csubcontractorId%2cstepIdVF%2ccellnexValidation%2ccustomerValidation%2csubcontractorValidation%2csiteOwnerValidation%2cInstancesPerDocuments%2fcellnexValidationVF%2cInstancesPerDocuments%2fcustomerValidationVF%2cInstancesPerDocuments%2fsubcontractorValidationVF%2cInstancesPerDocuments%2fsiteOwnerValidationVF%2ccellnexValidationVF%2ccustomerValidationVF%2csubcontractorValidationVF%2csiteOwnerValidationVF%2cinstanceId&$expand=InstancesPerDocuments%2cInstancesPerDocuments%2fDocuments&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+
+
+#### get DocumentsPerRequest 
+POST {{server}}/odata/v2/service/project/ChecklistItems HTTP/1.1
+sap-cancel-on-close: false
+Content-Type: application/json
+Content-ID: id-1760553620950-409
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Length: 110
+
+{"block_ID":"91b685ce-0b85-4dbb-b751-3d7e18edd04f","__metadata":{"type":"project.ChecklistItems"},"type_ID":1}
+
+#### get DocumentsPerRequest 
+PATCH  {{server}}/odata/v2/service/project/ChecklistItems(guid'b7524225-b579-4f7f-a816-77d97688f408') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760633626836-1345
+Content-Length: 318
+
+{"pickList":2,"__metadata":{"type":"project.ChecklistItems","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~6fb242d8-81c9-4820-9261-d36eaf0fd524~/odata/v2/service/project/ChecklistItems(guid'b7524225-b579-4f7f-a816-77d97688f408')"}}
+
+
+
+#### get DocumentsPerRequest 
+DELETE {{server}}/odata/v2/service/project/ChecklistItems(guid'b7524225-b579-4f7f-a816-77d97688f408') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-ID: id-1760635435252-1743
+
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Blocks(guid'91b685ce-0b85-4dbb-b751-3d7e18edd04f')/Checklist?$skip=0&$top=104&$select=description%2cintegerValue%2cID%2ctype_ID%2cbooleanValue%2cstringValue%2cdateValue%2cdecimalValue%2cpickList%2cbooleanValueFC%2cdateValueFC%2cintegerValueFC%2cdecimalValueFC%2cpickListFC%2crowStatus&$expand=type%2ctype%2fvalues&$inlinecount=allpages HTTP/1.1
+sap-cancel-on-close: true
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+
+
+#### get DocumentsPerRequest 
+PATCH  {{server}}/odata/v2/service/project/ChecklistItems(guid'52566c81-738b-49c3-a591-3a16c7b948dd') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1760970628834-1741
+Content-Length: 318
+
+{"pickList":2,"__metadata":{"type":"project.ChecklistItems","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~6fb242d8-81c9-4820-9261-d36eaf0fd524~/odata/v2/service/project/ChecklistItems(guid'52566c81-738b-49c3-a591-3a16c7b948dd')"}}
+
+
+#### activate blocks
+PATCH  {{server}}/odata/v2/service/project/Blocks(guid'A6EE69FC-58C2-420A-93C8-5936C4E76CFF') HTTP/1.1
+sap-cancel-on-close: false
+sap-contextid-accept: header
+Accept: application/json
+Accept-Language: en
+DataServiceVersion: 2.0
+MaxDataServiceVersion: 2.0
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Content-ID: id-1768900674874-371
+Content-Length: 306
+
+{"activated":true,"__metadata":{"type":"project.Blocks","uri":"https://cnx-dev-cf.cpp.cfapps.eu20.hana.ondemand.com/258fd37c-1e79-47bb-b5b3-74f56a591495.prvintprojectsui5.prvintprojectsui5/~868bbfc1-0e35-4078-b212-a06d85e1c2c8~/odata/v2/service/project/Blocks(guid'A6EE69FC-58C2-420A-93C8-5936C4E76CFF')"}}
+
+
+
+#### get DocumentsPerRequest 
+GET {{server}}/odata/v2/service/project/Requests(guid'ED06C48C-941F-4AC3-9FB1-5BB7CAC463C4')/RequestDocumentsPerBlockDefaultValid?$skip=0&$top=120&$select=documentId%2cresponsibleId%2csubcontractorId%2cresponsibleDefault%2ccellnexValidation%2csubcontractorValidation%2ccustomerValidation%2crequestId%2ccellnexResponsibleFC%2csubcontractorResponsibleFC%2cagencyResponsibleFC%2ccustomerResponsibleFC%2ccellnexResponsibleName%2csubcontractorResponsibleName%2cagencyResponsibleName%2ccustomerResponsibleName&$inlinecount=allpages

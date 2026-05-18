@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="addDocumentPerBlockDialog" title="{i18n>addDocument}" >
+        <content>
+            <smartform:SmartForm id="addDocumentForm" editable="true" entityType="Blocks">
+                <smartform:layout>
+                        <smartform:ColumnLayout columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group >
+                        <smartform:GroupElement>
+                            <smartfield:SmartField  id="formDocumentId" value='{documentId}' entitySet="Blocks"/>
+                        </smartform:GroupElement>      
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar>
+				<content>
+					
+					<ToolbarSpacer />
+					<Button id="create"
+                            type="Emphasized"
+							text="{i18n>addDocumentFlow}"
+							press="onAddDocFlow" />
+					<Button id="cancel"
+                            type="Transparent"
+                            text="{i18n>cancel}"
+                            press="onCloseAddDocumentDialog" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,117 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:table="sap.ui.table"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    controllerName="prvintprojectsui5.controller.request"
+    displayBlock="true">
+    <Dialog id="linkedRequestDialog" title="{i18n>titleLR}" afterClose="onLinkedRequestDialogAfterClose">
+        <content>
+            <VBox id="_IDGenVBox14">
+                <smartTable:SmartTable
+                    width="auto"
+                    id="linkedRequestTable"
+                    entitySet="SearchDtLinkedRequestSet"
+                    smartFilterId="dtLinkedRequestFilter"
+                    tableType="ResponsiveTable"
+                    header="{i18n>tableHeaderLR}"
+                    showRowCount="true"
+                    persistencyKey="linkedRequestTable"
+                    enableAutoBinding="true"
+                    enableAutoColumnWidth="true"
+                    editTogglable="false"
+                    customdata:useSmartToggle="true"
+                    requestAtLeastFields="requestType,childInstanceID,parentInstanceID,linkID"
+                    beforeRebindTable="onBeforeRebindLinkedRequestTable"
+                    editable="false"
+                    >
+                    
+                    <smartTable:customToolbar>
+                        <OverflowToolbar id="_IDGenOverflowToolbar2" design="Transparent">
+                            <ToolbarSpacer id="_IDGenToolbarSpacer12"/>
+                            <Button
+                                id="createLink"
+                                text="Link Request"
+                                type="Emphasized"
+                                press="onCreateLinkRequest"
+                                ariaHasPopup="Dialog"/>
+                            <Button id="UnlinkRequest"
+                                text="Unlink"
+                                icon="sap-icon://broken-link"
+                                tooltip="Delete linked request"
+                                press="onUpdateLinkedProjectUnlink"
+                            />
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                    <Table
+                        id="idLinkedRequestList"
+                        mode="SingleSelectMaster"
+                        sticky="ColumnHeaders,HeaderToolbar"
+                    >
+                    <columns>
+                            
+                            <Column id="_IDGenColumn98">
+                                <Text id="_IDGenText3"
+                                    text="{i18n>projectID}"
+                                />
+                                <customData>
+                                    <core:CustomData
+                                        key="p13nData"
+                                        value='{"columnKey": "childRequestID", "leadingProperty": "childRequestID", "sortProperty": "childRequestID","columnIndex": 0}'
+                                    />
+                                </customData>
+                            </Column>
+
+                            
+                        </columns>
+
+                        <ColumnListItem id="LinkedRequestTableListItemId" type="Active">
+                           <cells>
+                            
+                                    <Link
+                                        id="agoraProject"
+                                        text="{path: 'childRequestID'}"
+                                        press=".navToAgoraProject"
+                                    />
+
+                            </cells>
+                        </ColumnListItem>
+                    </Table>
+           
+                    <!-- layout data used to make the table growing but the filter bar fixed -->
+                    <smartTable:layoutData>
+                        <FlexItemData
+                            id="_IDGenFlexItemData2"
+                            growFactor="1"
+                            baseSize="0%"
+                        />
+                    </smartTable:layoutData>
+
+                </smartTable:SmartTable>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar id="_IDGenToolbar5">
+                <content>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer13"/>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer14"/>
+                  
+                    <Button
+                        id="closeLinkedRequestDialog"
+                        text="{i18n>close}"
+                        type="Emphasized"
+                        press="onDestroyDialog" 
+                        ariaHasPopup="Dialog">
+                         <customData>
+                            <core:CustomData key="dialogName" value="oLinkedRequest" />
+                        </customData>
+			        </Button>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

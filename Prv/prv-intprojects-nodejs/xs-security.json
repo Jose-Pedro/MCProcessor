@@ -1,0 +1,150 @@
+{
+  "xsappname": "prv-intprojects-nodejs",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.TIS_PRO_COLOCATION_READ_ONLY",
+      "description": "TIS_PRO_COLOCATION_READ_ONLY"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_WF_PRO_IntProjectsMgr",
+      "description": "TIS_WF_PRO_IntProjectsMgr"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_WF_PRO_Requester",
+      "description": "TIS_WF_PRO_Requester"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_WF_PRO_Subcontractor",
+      "description": "TIS_WF_PRO_Subcontractor"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_Cellnex",
+      "description": "TIS_Cellnex"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_Overview_IntProjects",
+      "description": "TIS_Overview_IntProjects"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_WF_PRO_REACTIVATE_REQUEST",
+      "description": "TIS_WF_PRO_REACTIVATE_REQUEST"
+    },
+    {
+      "name": "$XSAPPNAME.TIS_WF_PRO_ColocationMgr",
+      "description": "TIS_WF_PRO_ColocationMgr"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "INTPR_TIS_PRO_COLOCATION_READ_ONLY",
+      "scope-references": [
+        "$XSAPPNAME.TIS_PRO_COLOCATION_READ_ONLY"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_IntProjectsMgr",
+      "scope-references": [
+        "$XSAPPNAME.TIS_WF_PRO_IntProjectsMgr"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_Requester",
+      "scope-references": [
+        "$XSAPPNAME.TIS_WF_PRO_Requester"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_Subcontractor",
+      "scope-references": [
+        "$XSAPPNAME.TIS_WF_PRO_Subcontractor"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_Cellnex",
+      "scope-references": [
+        "$XSAPPNAME.TIS_Cellnex"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_Overview_IntProjects",
+      "scope-references": [
+        "$XSAPPNAME.TIS_Overview_IntProjects"
+      ],
+      "description": "generated"
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_REACTIVATE_REQUEST",
+      "scope-references": [
+        "$XSAPPNAME.TIS_WF_PRO_REACTIVATE_REQUEST"
+      ],
+      "description": "generated"
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "INTPR_TIS_PRO_COLOCATION_READ_ONLY",
+      "description": "Read only user",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_PRO_COLOCATION_READ_ONLY"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_IntProjectsMgr",
+      "description": "Internal projects manager collection",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_WF_PRO_IntProjectsMgr"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_Requester",
+      "description": "Internal projects requester user collection",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_WF_PRO_Requester"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_Subcontractor",
+      "description": "Internal projects subcontractor user",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_WF_PRO_Subcontractor"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_Cellnex",
+      "description": "Internal user",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_Cellnex"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_Overview_IntProjects",
+      "description": "Internal projects user",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_Overview_IntProjects"
+      ]
+    },
+    {
+      "name": "INTPR_TIS_WF_PRO_REACTIVATE_REQUEST",
+      "description": "BTS reopener user",
+      "role-template-references": [
+        "$XSAPPNAME.INTPR_TIS_WF_PRO_REACTIVATE_REQUEST"
+      ]
+    }
+  ],
+  "authorities-inheritance": false,
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.applicationstudio.cloud.sap/**",
+      "https://*.cfapps.eu20.hana.ondemand.com/**",
+      "http://localhost:5000/INTPR_TIS_WF_PRO_IntProjectsMgr"
+    ],
+    "credential-types": [ "binding-secret" ]
+  }
+}

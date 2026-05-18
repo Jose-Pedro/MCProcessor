@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    displayBlock="true">
+    <Dialog id="addDocumentPerRequestDialog" title="{i18n>addDocument}" beforeOpen="onBeforeOpenAddDocumentPerRequest">
+        <content>
+            <VBox id="_IDGenVBox17" class="sapUiSmallMargin">
+                <f:SimpleForm id="addDocumentPerRequestForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" >
+                    <f:content>
+                        <Label id="_IDGenLabel16" text="Phase" />
+                        <Select id="phasePerProcess" 
+                            beforeOpen=""
+                            selectedKey="{configuration>/addDocument/phaseId}" forceSelection="false" change="onPhasePerProcessChange" items="{ path: '/PhasesPerProcess', sorter: { path: 'phaseOrder', descending: false}}">
+                            <core:ListItem id="_IDGenListItem" key="{phaseProcessFlowId}" text="{phaseName}" />
+                        </Select>
+                        <Label id="_IDGenLabel17" text="Block" />
+                        <Select id="blockPerProcess"  enabled="{= ${configuration>/addDocument/phaseId} !== undefined }"  selectedKey="{configuration>/addDocument/blockId}" forceSelection="false" change="onBlockPerProcessChange" items="{/BlocksPerProcess}">
+                            <core:ListItem id="_IDGenListItem1" key="{blockProcessFlowId}" text="{blockName}" />
+                        </Select>
+                        <Label id="_IDGenLabel19" text="DocumentId" />
+                        <Select id="documentIdPerProcess" enabled="{= ${configuration>/addDocument/blockId} !== undefined }"  selectedKey="{configuration>/addDocument/documentId}" forceSelection="false" items="{/DocumentsPerProcess}">
+                            <core:ListItem id="_IDGenListItem3" key="{documentId}" text="{documentName}" />
+                        </Select>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar8">
+				<content>
+					
+					<ToolbarSpacer id="_IDGenToolbarSpacer19" />
+					<Button 
+                        id="createDocumentPerRequest"
+                        type="Emphasized"
+                        text="{i18n>addDocumentFlow}"
+                        press="onAddDocFlowPerRequest"
+                        enabled="{= ${configuration>/addDocument/phaseId} !== undefined  &amp;&amp; ${configuration>/addDocument/blockId} !== undefined &amp;&amp; ${configuration>/addDocument/documentId} !== undefined}"
+                    >
+                        <customData>
+                            <core:CustomData key="dialogName" value="_addDocumentPerRequestDialog" />
+                        </customData>
+                    </Button>    
+                    <Button
+                        id="cancelDocumentPerRequest"
+                        type="Transparent"
+                        text="{i18n>cancel}"
+                        press="onCloseDialog"
+                    >
+                        <customData>
+                            <core:CustomData key="dialogName" value="_addDocumentPerRequestDialog" />
+                        </customData>
+                    </Button>
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

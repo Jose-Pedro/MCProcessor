@@ -1,0 +1,232 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:table="sap.ui.table"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="documentList" title="{i18n>requestDocumentList}" >
+        <content>
+            <IconTabBar xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="requestProjectDocumentsFlowFilter" headerMode="Inline" expandable="false" select="onRequestDocumentsPhaseSelect" expanded="{device>/isNoPhone}" tabDensityMode="Compact" tabsOverflowMode= "StartAndEnd" >
+                <items>
+                    <IconTabFilter id="AllFilterProjectDocument" icon="" key="All" text="{i18n>allDocuments}"/>
+                    <IconTabFilter id="requestCreationRespFilterProjectDocument" icon="" key="reqCreation" text="{i18n>reqCreation}"/>
+                    <IconTabFilter id="feasibilCheckRespFilterProjectDocument" icon="" key="feasibilCheck" text="{i18n>feasibilCheck}"/>
+                    <IconTabFilter id="siteSurveyRespFilterProjectDocument" icon="" key="siteSurvey" text="{i18n>siteSurvey}"/>
+                    <IconTabFilter id="techCostAnalysRespFilterProjectDocument" icon="" key="techCostAnalys" text="{i18n>techCostAnalys}"/>
+                    <IconTabFilter id="customerOfferRespFilterProjectDocument" icon="" key="custOfferAccept" text="{i18n>custOfferAccept}"/>
+                    <IconTabFilter id="manageAdaptRespFilterProjectDocument" icon="" key="manageAdapt" text="{i18n>manageAdapt}"/>
+                    <IconTabFilter id="customerInstallationRespFilterProjectDocument" icon="" key="instCustEquip" text="{i18n>instCustEquip}"/>
+                    <IconTabFilter id="finalRespValidationRespFilterProjectDocument" icon="" key="finalValidation" text="{i18n>finalValidation}"/>
+                </items>
+                <content>
+                    <smarttable:SmartTable
+                        id="requestDocumentList"
+                        tableType="Table"
+                        entitySet="DocumentsPerRequest"
+                        width="100%"
+                        direction="Column"
+                        fitContainer="true"
+                        placeToolbarInTable="true"
+                        customdata:useSmartField="true"
+                        header="{i18n>documents}"
+                        enableAutoColumnWidth="true"
+                        enableAutoBinding="true"
+                        editable="{= ${configuration>/editMode} === true}"
+                        showFullScreenButton="true"
+                        requestAtLeastFields="deleted,order,InstancesPerDocuments/startDate,InstancesPerDocuments/submissionDate,ID,ApproverTypes/name,SubcoTypes/name,DocumentFlowResponsibles/name,DocumentsPerBlockDocumentIdVh/documentName,blockId,phaseId,responsibleId,responsibleDefault,cellnexResponsibleFC,subcontractorResponsibleFC,agencyResponsibleFC,customerResponsibleFC,cellnexResponsibleName,subcontractorResponsibleName,agencyResponsibleName,customerResponsibleName,subcontractorId,documentId,stepIdVF,cellnexValidation,customerValidation,subcontractorValidation,siteOwnerValidation,InstancesPerDocuments/cancellationReason,InstancesPerDocuments/cellnexValidationVF,InstancesPerDocuments/customerValidationVF,InstancesPerDocuments/subcontractorValidationVF,InstancesPerDocuments/siteOwnerValidationVF,cellnexValidationVF,customerValidationVF,subcontractorValidationVF,siteOwnerValidationVF"
+                        showTablePersonalisation="false"
+                        tableBindingPath="DocumentsPerRequest"
+                        fieldChange="onDocumentsPerRequestFieldChange"
+                        beforeRebindTable="onBeforeRequestDocumentsRebind">
+                        <smarttable:customToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar4" design="Transparent">
+                                    <Title id="_IDGenTitle2" text="{i18n>documents}" />
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer10" />
+                                    <Button id="requestAddDcoument" text="{i18n>add}" type="Emphasized" press="onShowAddDocumentPerRequestDialog" enabled = "{= ${configuration>/editMode} === true}"/>
+                                </OverflowToolbar>
+                        </smarttable:customToolbar>
+                        <table:Table id="_IDGenTable2"
+                            rowMode="Fixed"
+                            fixedColumnCount="2"
+                            rowActionCount="2"
+                            cellClick="onCellClicked"
+                            selectionMode="Single" >
+                            <table:Column id="_IDGenColumn4">
+                                <Label id="_IDGenLabel6" text="{i18n>Document}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "documentId", "leadingProperty":"documentId", "columnIndex" : "1"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox16" class="sapUiTinyMarginEnd">
+                                        <ObjectStatus id="_IDGenObjectStatus3" class="sapUiTinyMarginEnd" text="{documentNameVF}" state="None" />
+                                        <ObjectStatus id="_IDGenObjectStatus4" class="sapUiTinyMarginEnd" text="{i18n>Version}: {InstancesPerDocuments/version}" state="None" />
+                                        <smartfield:SmartField id="_IDGenSmartField1" class="sapUiTinyMarginEnd" value='{candidateId}' editable="false"/>
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn5">
+                                <Label id="_IDGenLabel7" text="{i18n>status}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "status", "leadingProperty":"status", "columnIndex" : "2"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox6" class="sapUiTinyMarginEnd">
+                                        <HBox id="_IDGenHBox6" >
+                                            <ObjectStatus id="_IDGenObjectStatus5" class="sapUiTinyMarginEnd" text="{statusTextVF}" icon="{statusIconVF}" state="{statusStateVF}" />
+                                        </HBox>
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn6">
+                                <Label id="_IDGenLabel8" text="{i18n>Responsible}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "responsibleDefault", "leadingProperty":"responsibleDefault", "columnIndex" : "3"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox7" class="sapUiTinyMarginEnd">
+                                        <HBox id="_IDGenHBox7"  class="sapUiTinyMarginEnd">
+                                            <smartfield:SmartField id="_IDGenSmartField2" class="sapUiTinyMarginEnd" changeModelValue="onDocumentsPerRequestFieldChange" value='{responsibleId}' />
+                                            <smartfield:SmartField id="_IDGenSmartField3" class="sapUiTinyMarginEnd" visible="{= ${responsibleId} !== ${configuration>/constants/ASSIGNED_RESP_CELLNEX}}" changeModelValue="onDocumentsPerRequestFieldChange" value='{subcontractorId}'/>
+                                        </HBox>
+                                        <HBox id="_IDGenHBox8" >
+                                            <smartfield:SmartField id="_IDGenSmartField4" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerRequestFieldChange" class="sapUiTinyMarginEnd" value='{cellnexResponsible}' />
+                                            <smartfield:SmartField id="_IDGenSmartField5" changeModelValue="onDocumentsPerRequestFieldChange" class="sapUiTinyMarginEnd" value='{subcontractorResponsible}' />
+                                            <smartfield:SmartField id="_IDGenSmartField6" changeModelValue="onDocumentsPerRequestFieldChange" class="sapUiTinyMarginEnd" value='{agencyResponsible}' />
+                                            <smartfield:SmartField id="_IDGenSmartField7" changeModelValue="onDocumentsPerRequestFieldChange" class="sapUiTinyMarginEnd" value='{customerResponsible}' />
+                                        </HBox>
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn7">
+                                <Label id="_IDGenLabel9" text="{i18n>CellnexValidator}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/cellnexValidator", "leadingProperty":"InstancesPerDocuments/cellnexValidator", "columnIndex" : "4"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox8" class="sapUiTinyMarginEnd">
+                                        <smartfield:SmartField id="_IDGenSmartField8" changeModelValue="onDocumentsPerRequestFieldChange" value='{cellnexValidationVF}' />
+                                        <smartfield:SmartField id="_IDGenSmartField9" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerRequestFieldChange" value='{InstancesPerDocuments/cellnexValidator}' />
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn8">
+                                <Label id="_IDGenLabel10" text="{i18n>SubcontractorValidator}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/subcontractorValidator", "leadingProperty":"InstancesPerDocuments/subcontractorValidator", "columnIndex" : "5"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox9" class="sapUiTinyMarginEnd">
+                                        <smartfield:SmartField id="_IDGenSmartField10" changeModelValue="onDocumentsPerRequestFieldChange" value='{subcontractorValidationVF}' />
+                                        <smartfield:SmartField id="_IDGenSmartField11" changeModelValue="onDocumentsPerRequestFieldChange" value='{InstancesPerDocuments/subcontractorValidator}' />
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn9">
+                                <Label id="_IDGenLabel11" text="{i18n>CustomerValidator}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/customerValidator", "leadingProperty":"InstancesPerDocuments/customerValidator", "columnIndex" : "5"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox10" class="sapUiTinyMarginEnd">
+                                        <smartfield:SmartField id="_IDGenSmartField12" change="onDocumentsPerRequestFieldChange" value='{customerValidationVF}' />
+                                        <smartfield:SmartField id="_IDGenSmartField13" fetchValueListReadOnly="true" textInEditModeSource="ValueListNoValidation" changeModelValue="onDocumentsPerRequestFieldChange" value='{InstancesPerDocuments/customerValidator}' />
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn10" visible="false">
+                                <Label id="_IDGenLabel12" text="{i18n>SiteOwnerValidator}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/siteOwnerValidator", "leadingProperty":"InstancesPerDocuments/siteOwnerValidator", "columnIndex" : "6"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox11" class="sapUiTinyMarginEnd">
+                                        <smartfield:SmartField id="_IDGenSmartField14" changeModelValue="onDocumentsPerRequestFieldChange" value='{siteOwnerValidationVF}' />
+                                        <smartfield:SmartField id="_IDGenSmartField15" changeModelValue="onDocumentsPerRequestFieldChange" value='{InstancesPerDocuments/siteOwnerValidator}' />
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn11">
+                                <Label id="_IDGenLabel13" text="{i18n>validationStatus}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "cellnexStatusTextVF", "leadingProperty":"InstancesPerDocuments/siteOwnerValidator", "columnIndex" : "7"}' />
+                                </table:customData>
+                                <table:template>
+                                    <VBox id="_IDGenVBox12">
+                                        <HBox id="_IDGenHBox10" >
+                                            <ObjectStatus id="_IDGenObjectStatus6" icon="{cellnexStatusIconVF}" state="{cellnexStatusStateVF}" visible="{cellnexValidationVF}" />
+                                            <ObjectStatus id="_IDGenObjectStatus7" text="{i18n>cellnex} {cellnexStatusTextVF} {path: 'InstancesPerDocuments/cellnexValidationDate', formatter: '.validationDateformatter'}" state="None" visible="{cellnexValidationVF}" class="sapUiTinyMarginStart"/>
+                                        </HBox>
+                                        <HBox id="_IDGenHBox14" >
+                                            <ObjectStatus id="_IDGenObjectStatus8" icon="{subcontractorStatusIconVF}" state="{subcontractorStatusStateVF}" visible="{subcontractorValidationVF}"/>
+                                            <ObjectStatus id="_IDGenObjectStatus9" text="{i18n>subcontractor} {subcontractorStatusTextVF} {path: 'InstancesPerDocuments/subcontractorValidationDate', formatter: '.validationDateformatter'}" state="None" visible="{subcontractorValidationVF}" class="sapUiTinyMarginStart"/>
+                                        </HBox>
+                                        <HBox id="_IDGenHBox15" >
+                                            <ObjectStatus id="_IDGenObjectStatus10" icon="{customerStatusIconVF}" state="{customerStatusStateVF}" visible="{customerValidationVF}"/>                        
+                                            <ObjectStatus id="_IDGenObjectStatus11" text="{i18n>customer} {customerStatusTextVF} {path: 'InstancesPerDocuments/customerValidationDate', formatter: '.validationDateformatter'}" state="None" visible="{customerValidationVF}" class="sapUiTinyMarginStart"/>                        
+                                        </HBox>
+                                    </VBox>
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn12">
+                                <Label id="_IDGenLabel14" text="{i18n>documents}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/Documents", "leadingProperty":"InstancesPerDocuments/Documents", "columnIndex" : "8"}' />
+                                </table:customData>
+                                <table:template>
+                                    <Button id="DocumentPerListDialogResponsibleDefaultOt" press="onShowOtDocumentsFlow" visible="{= ${InstancesPerDocuments/Documents}.length > 0 &amp;&amp; ${canDownload} === true }" icon="sap-icon://documents" />                  
+                                </table:template>
+                            </table:Column>
+                            <table:Column id="_IDGenColumn13">
+                                <Label id="_IDGenLabel15" text="{i18n>cancellationReason}" />
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "InstancesPerDocuments/cancellationReason", "leadingProperty":"InstancesPerDocuments/cancellationReason", "columnIndex" : "9"}' />
+                                </table:customData>
+                                <table:template>
+                                    <ExpandableText id="_IDGenExpandableText" class="sapUiTinyMarginBottom sapUiTinyMarginTop" text="{InstancesPerDocuments/cancellationReason}" overflowMode="Popover" maxCharacters="40"/>
+                                </table:template>
+                            </table:Column>
+                            <table:rowMode>
+                                <rowmodes:Interactive id="_IDGenInteractive2" 
+                                    xmlns:rowmodes="sap.ui.table.rowmodes"
+                                    minRowCount="1"
+                                    rowContentHeight="80"
+                                    rowCount="4"
+                                />
+                            </table:rowMode>
+                            <table:rowActionTemplate>
+                                <table:RowAction id="_IDGenRowAction">
+                                    <table:items>
+                                        <table:RowActionItem id="_IDGenRowActionItem" visible="{= ${status} !== ${configuration>/constants/STATUS_CANCELLED} &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${canDelete} === true }" type="Delete" icon="sap-icon://decline" press="onCallActionCancelDocumentsPerBlocks" />
+                                        <table:RowActionItem id="_IDGenRowActionItem1" type="Navigation" icon="sap-icon://begin" visible="{= ${stepIdVF} === ${configuration>/constants/VALIDATOR_NOT_INI} &amp;&amp; ${status} === ${configuration>/constants/STATUS_NOT_INIT} &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${canInit} === true }" press="onCallActionStartDocumentFlow" />
+                                        <table:RowActionItem id="_IDGenRowActionItem2" type="Navigation" icon="sap-icon://feeder-arrow" visible="{= ${stepIdVF} !== ${configuration>/constants/VALIDATOR_NOT_INI} &amp;&amp; ${canSee} === true }" press="onShowValidatorsDetailsDialog" />
+                                    </table:items>
+                                </table:RowAction>
+                            </table:rowActionTemplate>
+                        </table:Table>
+                    </smarttable:SmartTable>
+                </content>
+            </IconTabBar>
+        </content>
+        <footer>
+			<Toolbar id="_IDGenToolbar4">
+				<content>
+					<Button id="documentListPopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer id="_IDGenToolbarSpacer11" />
+					<Button id="documentListCloseButton" type="Emphasized" text="{i18n>close}" press="onCloseDialog" >
+                        <customData>
+                            <core:CustomData key="dialogName" value="_documentListDialog" />
+                        </customData>
+			        </Button>
+                    
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

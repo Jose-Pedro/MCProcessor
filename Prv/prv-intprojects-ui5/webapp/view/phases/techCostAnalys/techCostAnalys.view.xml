@@ -1,0 +1,17 @@
+<mvc:View 
+    controllerName="prvintprojectsui5.controller.phases.techCostAnalys.techCostAnalys" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:upload="sap.m.upload"
+    displayBlock="true">
+    <mvc:XMLView id="dashboardView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.dashboard"/>
+    <mvc:XMLView id="doTechDocView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.doTechDoc"/>
+    <mvc:XMLView id="energyStudyView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.energyStudy"/>
+    <mvc:XMLView id="manageRefundsView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.manageRefunds"/>
+    <mvc:XMLView id="costInfraWorksView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.costInfraWorks"/>
+    <mvc:XMLView id="costMoveCustView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.costMoveCust"/>
+    <mvc:XMLView id="techCostAnalys_globalResultView" viewName="prvintprojectsui5.view.phases.techCostAnalys.blocks.globalResult"/>
+    <!-- <mvc:XMLView id="requestConfigurView" viewName="prvintprojectsui5.view.phases.reqCreation.blocks.requestConfigur"/> -->
+    <Label id="techCostAnalys_IDGenLabel1" class="sapUiLargeMarginBottom"></Label>
+</mvc:View>

@@ -1,0 +1,192 @@
+<mvc:View 
+    xmlns:core="sap.ui.core"
+    controllerName="prvintprojectsui5.components.works.controller.Component"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:table="sap.ui.table"
+    xmlns:m="sap.m"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <smartTable:SmartTable
+        id="worksTable"
+        entitySet="Works"
+        tableBindingPath="Works"
+        enableAutoBinding="false"
+        fitContainer="true" 
+        width="100%"
+        direction="Column"
+        enableAutoColumnWidth="false"
+        tableType="Table"
+        header="{i18n>works}"
+        useVariantManagement="true"
+        persistencyKey="worksTable"
+        ignoreFromPersonalisation="ID,endDate,expectedEndDate,realEndDate,responsibleType,externalType,parentType_ID,comments,parentId,documentId,internalResponsible,externalResponsible,responsibleTypeFC,externalTypeFC,internalResponsibleFC,externalResponsibleFC,statusFC,descriptionFC,commentsFC,startDateFC,endDateFC,expectedStartDateFC,expectedEndDateFC,realStartDateFC,realEndDateFC,hasAuthVF,statusName,responsibleTypeName,externalTypeName,internalResponsibleName,externalResponsibleName"
+        useTablePersonalisation="true"
+        showTablePersonalisation="false"
+        customdata:p13nDialogSettings="{group:{visible:false}}"
+        editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"
+        editTogglable="false"
+        showPasteButton="false"
+        enableCopy="false"
+        customdata:useSmartField="true"
+        requestAtLeastFields="ID,status_ID,parentID,comments,endDate,statusFC,descriptionFC,responsibleType,externalType,responsibleTypeName,externalTypeName,internalResponsible,externalResponsible,internalResponsibleName,externalResponsibleName,responsibleTypeFC,externalTypeFC,internalResponsibleFC,externalResponsibleFC,commentsFC,startDateFC,endDateFC,expectedStartDateFC,expectedEndDateFC,realStartDateFC,realEndDateFC,hasAuthVF,LocalizedWorkTypesName/name"
+        beforeRebindTable="onBeforeRebindTable"        
+        fieldChange="onFieldChange"> 
+        <smartTable:customToolbar>
+            <m:OverflowToolbar id="workTableToolbar" design="Transparent">
+                <m:ToolbarSpacer id="workTableToolbar1"/>
+                <m:Button id="workTableToolbarBtnAdd" text="{i18n>create}" type="Emphasized" press="createWork" enabled = "{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"/>
+                <m:OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onP13nDialog"/>
+                <!-- <m:Button id="workTableToolbarBtnComplete" text="{i18n>complete}" type="Ghost" press="completeWork" enabled = "false"/>
+                <m:Button id="workTableToolbarBtnReopen" text="{i18n>reopen}" type="Ghost" press="reopenWork" enabled = "false"/>
+                <m:Button id="workTableToolbarBtnCancel" text="{i18n>cancel}" type="Ghost" press="cancelWork" enabled = "false"/> -->
+            </m:OverflowToolbar>
+        </smartTable:customToolbar>
+            <!-- rowSelectionChange="onWorkRowSelectionChange" -->
+        <table:Table id="worksInnerTable"
+            rowMode="Fixed"
+            fixedColumnCount="2"
+            rowActionCount="2"
+            cellClick="onCellClicked"
+            selectionMode="None" >
+            <table:Column id="workStatus" width="3rem" sortProperty="status" filterProperty="status" >
+                <m:Label id="workStatusLabel" text="{i18n>status}"/>
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "status", "filterProperty":"status", "leadingProperty":"status", "sortProperty":"status", "type":"number", "columnIndex" : "1"\}' />
+                </table:customData>
+                <table:template>
+                    <m:ObjectStatus id="workWorksObjectStatus" text="{statusName}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }" />                                
+                </table:template>
+            </table:Column>
+            <table:Column id="workType" width="10rem" sortProperty="type_ID" filterProperty="type_ID" >
+                <m:Label id="workTypeLabel" text="{i18n>type}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "type_ID", "leadingProperty":"type_ID", "sortProperty":"type_ID", "columnIndex" : "2"}' />
+                </table:customData>
+                <table:template>
+                    <smartfield:SmartField id="workTypeIDField" value='{type_ID}' change="onFieldChange"/>
+                </table:template>
+            </table:Column>
+            <table:Column id="workDescription" width="10rem" sortProperty="description" filterProperty="description" >
+                <m:Label id="workDesciptionLabel" text="{i18n>description}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "description", "leadingProperty":"description", "sortProperty":"description", "columnIndex" : "3"}' />
+                </table:customData>
+                <table:template>
+                    <smartfield:SmartField id="workDescriptionField" value='{description}' change="onFieldChange" width="100%" />
+                </table:template>
+            </table:Column>
+            <table:Column>
+                <m:Label text="{i18n>Responsible}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "responsibleDefault", "leadingProperty":"responsibleDefault", "columnIndex" : "4"}' />
+                </table:customData>
+                <table:template>
+                    <m:VBox class="sapUiTinyMarginEnd">
+                        <m:HBox class="sapUiTinyMarginEnd">
+                            <smartfield:SmartField class="sapUiTinyMarginEnd" value='{responsibleType}' changeModelValue="onFieldChange"/>
+                            <smartfield:SmartField class="sapUiTinyMarginEnd" value='{externalType}' changeModelValue="onFieldChange" visible="{= ${responsibleId} !== ${configuration>/constants/ASSIGNED_RESP_CELLNEX}}" />
+                        </m:HBox>
+                        <m:HBox>
+                            <smartfield:SmartField value='{internalResponsible}' changeModelValue="onFieldChange" class="sapUiTinyMarginEnd"  />
+                            <smartfield:SmartField value='{externalResponsible}' changeModelValue="onFieldChange" class="sapUiTinyMarginEnd"  />
+                        </m:HBox>
+                    </m:VBox>
+                </table:template>
+            </table:Column>
+            <table:Column id="workDate" width="12rem" sortProperty="startDate" filterProperty="startDate" >
+                <m:Label id="workDateColumnLabel" text="{i18n>dates}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "startDate", "leadingProperty":"startDate", "sortProperty":"startDate", "columnIndex" : "5"}' />
+                </table:customData>
+                <table:template>
+                    <m:VBox id="_IDGenVBox3" class="sapUiTinyMarginEnd">
+                        <m:HBox id="_IDGenHBox"  alignItems="Center">
+                            <smartfield:SmartLabel id="workStartDateLabel" labelFor="workStartDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workStartDateField" value='{startDate}' change="onFieldChange" />
+                        </m:HBox>
+                        <m:HBox id="_IDGenHBox1" alignItems="Center">
+                            <smartfield:SmartLabel id="workEndDateFieldLabel" labelFor="workEndDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workEndDateField" value='{endDate}' change="onFieldChange" />
+                        </m:HBox>
+                    </m:VBox>
+                </table:template>
+            </table:Column>
+            <table:Column id="workExpectedDate" width="12rem" sortProperty="expectedStartDate" filterProperty="expectedStartDate" >
+                <m:Label id="workExpectedDateColumnLabel" text="{i18n>expetectedDates}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "expectedStartDate", "leadingProperty":"expectedStartDate", "sortProperty":"expectedStartDate", "columnIndex" : "6"}' />
+                </table:customData>
+                <table:template>
+                    <m:VBox id="_IDGenVBox4" class="sapUiTinyMarginEnd">
+                        <m:HBox id="_IDGenHBox2"  alignItems="Center">
+                            <smartfield:SmartLabel id="workExpectedDateLabel" labelFor="workExpectedStartDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workExpectedStartDateField" value='{expectedStartDate}' change="onFieldChange" />
+                        </m:HBox>
+                        <m:HBox id="_IDGenHBox3" alignItems="Center">
+                            <smartfield:SmartLabel id="workExpectedEndDateLabel" labelFor="workExpectedEndDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workExpectedEndDateField" value='{expectedEndDate}' change="onFieldChange" />
+                        </m:HBox>
+                    </m:VBox>
+                </table:template>
+            </table:Column>
+            <table:Column id="workRealDate" width="12rem" sortProperty="realStartDate" filterProperty="realStartDate" >
+                <m:Label id="workRealDateColumnLabel" text="{i18n>realDates}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "realStartDate", "leadingProperty":"realStartDate", "sortProperty":"realStartDate", "columnIndex" : "7"}' />
+                </table:customData>
+                <table:template>
+                    <m:VBox id="_IDGenVBox5" class="sapUiTinyMarginEnd">
+                        <m:HBox id="_IDGenHBox4"  alignItems="Center">
+                            <smartfield:SmartLabel id="workRealDateLabel" labelFor="workRealDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workRealDateField" value='{realStartDate}' change="onFieldChange" />
+                        </m:HBox>
+                        <m:HBox id="_IDGenHBox5" alignItems="Center">
+                            <smartfield:SmartLabel id="workRealEndDateLabel" labelFor="workRealEndDateField" class="sapUiTinyMarginEnd"/>
+                            <smartfield:SmartField id="workRealEndDateField" value='{realEndDate}' change="onFieldChange" />
+                        </m:HBox>
+                    </m:VBox>
+                </table:template>
+            </table:Column>
+            <table:Column id="workComments" width="12rem">
+                <m:Label id="workCommentsLabel" text="{i18n>comments}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "Comments", "leadingProperty":"Comments", "columnIndex" : "8"}' />
+                </table:customData>
+                <table:template>
+                    <m:HBox id="_IDGenHBox9" alignContent="Center">
+                    <m:Button id="workWorkCommentsBtn" icon="sap-icon://edit" visible="{= ${status} === ${configuration>/constants/STATUS_IN_PROGRESS} &amp;&amp; ${hasAuthVF} === true }" press="onWorkEditComments" class="sapUiTinyMarginEnd"/>
+                    <m:ExpandableText id="workCancellatioReasonText" class="sapUiTinyMarginEnd" text="{comments}" overflowMode="Popover" maxCharacters="30"/>
+                    </m:HBox>
+                </table:template>
+            </table:Column>
+            <table:Column id="workDocummentsBtn" width="3rem">
+                <m:Label id="workDocumentsLabel" text="{i18n>documents}" />
+                <table:customData>
+                    <core:CustomData key="p13nData" value='\{"columnKey": "documents", "leadingProperty":"documents", "columnIndex" : "9"}' />
+                </table:customData>
+                <table:template>
+                    <m:Button id="workWorkDocummentsBtn" icon="sap-icon://add-document" enabled="{= ${hasAuthVF} === true }" press="onWorkDocuments"/>
+                </table:template>
+            </table:Column>
+            <table:rowActionTemplate>
+                <table:RowAction>
+                    <table:items>
+                        <table:RowActionItem icon="sap-icon://sys-add" text="{i18n>complete}" visible="{= ${status} !== ${configuration>/constants/STATUS_COMPLETED} &amp;&amp; ${status} !== ${configuration>/constants/STATUS_CANCELLED} &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${hasAuthVF} === true }" press="onRowActionCompleteWork" />
+                        <table:RowActionItem icon="sap-icon://edit" text="{i18n>reopen}" visible="{= ${status} !== ${configuration>/constants/STATUS_IN_PROGRESS} &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${hasAuthVF} === true }" press="onRowActionReopenWork" />
+                        <table:RowActionItem icon="sap-icon://decline" text="{i18n>cancel}" visible="{= ${status} !== ${configuration>/constants/STATUS_COMPLETED} &amp;&amp; ${status} !== ${configuration>/constants/STATUS_CANCELLED} &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${hasAuthVF} === true }" press="onRowActionCancelWork" />
+                    </table:items>
+                </table:RowAction>
+            </table:rowActionTemplate>
+            <table:rowMode>
+                <rowmodes:Interactive id="_IDGenInteractive"
+                    xmlns:rowmodes="sap.ui.table.rowmodes"
+                    minRowCount="1"
+                    rowContentHeight="80"
+                    rowCount="3"
+                />
+            </table:rowMode>
+        </table:Table>
+    </smartTable:SmartTable>
+</mvc:View>

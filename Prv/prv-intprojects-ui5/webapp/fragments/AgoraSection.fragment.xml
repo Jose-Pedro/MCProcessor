@@ -1,0 +1,8 @@
+<core:FragmentDefinition height="100%" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:site360="com.cellnex.variantstable.controls.Site360.controls">
+	<VBox id="AgoraSection_IDGenVBox4">
+    <site360:ProcessesTable.Component id="_IDGenProcessesTable.Component"   entity="{company}" site="{siteId}" area="PROVISION" country="{country}"/>
+    <site360:ProcessesTable.Component id="_IDGenProcessesTable.Component1"  entity="{company}" site="{siteId}" area="MAINTENANCE" country="{country}"/>							
+	<site360:ProcessesTable.Component id="_IDGenProcessesTable.Component2"   entity="{company}" site="{SiteId}" area="PERMITS" country="{country}"/>
+</VBox>
+</core:FragmentDefinition>

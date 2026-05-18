@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+    width="5%"
+    height="5%"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:upload="sap.m.upload"
+    displayBlock="true">
+    <Popover  id="approvalFlowAttachmentsPopup"  >
+        <content>
+            <upload:UploadSet
+                    id="approvalFlowAttachmentsPopupUploader"
+                    uploadEnabled="false"
+                    instantUpload="false"
+                    terminationEnabled="false"
+                    uploadButtonInvisible="true"
+                    afterItemAdded="onAfterItemAddedValidators"
+                    uploadCompleted="onUploadCompleted"
+                    mode="None">
+                </upload:UploadSet>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,45 @@
+# Additive local-integration UI5 config used by the prv-intprojects-app umbrella.
+# Proxies OData traffic to the local CAP backend on http://localhost:4004 instead of the CF dev URL.
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: prvintprojectsui5
+type: application
+framework:
+  name: SAPUI5
+  version: 1.136.2
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ushell
+    - name: themelib_sap_horizon
+server:
+  customMiddleware:
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          theme: sap_horizon
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: true
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /odata
+            url: http://localhost:4004
+          - path: /v2/restriction
+            url: http://localhost:4004
+          - path: /callOT
+            url: http://localhost:4004

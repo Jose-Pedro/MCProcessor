@@ -1,0 +1,106 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.techCostAnalys.blocks.costMoveCust"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" visible="{=${configuration>/processInfo/techCostAnalys/costMoveCust/VISIBLE_ON} === 'X'}" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="costMoveCustPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="costMoveCustToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="costMoveCustTitle" text="{i18n>costMoveCust}"/>
+                <ToolbarSpacer id="costMoveCust_IDGenToolbarSpacer3"/>
+                <smartfield:SmartLabel id="costMoveCust_IDGenSmartLabel" labelFor="selectAssignedResponsible"/>
+                <smartfield:SmartField id="selectAssignedResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/assignedResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="costMoveCust_IDGenSmartLabel1" labelFor="selectSucontractorResponsible"/>
+                <smartfield:SmartField id="selectSucontractorResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/subcontractorType}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onSubcoTypeChange"/>
+                <smartfield:SmartLabel id="costMoveCust_IDGenSmartLabel2" labelFor="selectExternalResponsible"/>
+                <smartfield:SmartField id="selectExternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/externalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="costMoveCust_IDGenSmartLabel3" labelFor="selectInternalResponsible"/>
+                <smartfield:SmartField id="selectInternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/internalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" textInEditModeSource="ValueListNoValidation"/>
+                <ToolbarSpacer id="costMoveCust_IDGenToolbarSpacer5"/>
+                <Switch id="costMoveCust_IDGenSwitch"  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/techCostAnalys/costMoveCust/activate} === true }"/>
+                <Button id="closeBlockcostMoveCust" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/techCostAnalys/costMoveCust/complete} === true}"/>
+                <OverflowToolbarButton id="buttoncostMoveCustForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/techCostAnalys/costMoveCust/reopen} === true}"/>
+                <ObjectStatus id="costMoveCust_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="costMoveCustForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="costMoveCust_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="costMoveCust_IDGenGroup1" >
+                        <smartform:GroupElement id="costMoveCust_IDGenGroupElement12">
+                                <smartfield:SmartField id="openAt" value="{openAt}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="costMoveCust_IDGenGroupElement13">
+                                <smartfield:SmartField id="completedDate" value="{BlockProvision/completedDate}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="costMoveCust_IDGenGroupElement14">
+                                <smartfield:SmartField id="totalCost" value="{BlockProvision/totalCost}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="costMoveCust_IDGenGroupElement15">
+                                <smartfield:SmartField id="currency" value="{BlockProvision/currency}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+            
+            <smartform:SmartForm editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}" id="costMoveCustCommentsFormForm">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="costMoveCustCommentsFormFormColumnLayout" columnsM="1" columnsL="1" columnsXL="1" labelCellsLarge="12"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="costMoveCustCommentsFormFormGroup">                
+                        <smartform:GroupElement id="costMoveCustCommentsFormFormGroupElement">
+                            <smartfield:SmartField id="costMoveCustCommentsConfig" value="{comments}" change="onFieldChange" app:multiLineSettings="{cols: 2000, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>                
+                </smartform:groups>
+            </smartform:SmartForm>
+            <core:ComponentContainer id="costMoveCustChecklist" usage="checklist"
+                name="prvintprojectsui5.components.checklist"
+                component="prvintprojectsui5.components.checklist"
+                visible="{= ${checklistVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="costMoveCustWorks" usage="works"
+                name="prvintprojectsui5.components.works"
+                component="prvintprojectsui5.components.works"
+                propagateModel="true"
+                visible="{= ${worksVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="costMoveCustApprovalFlow" usage="approvalFlow"
+                name="prvintprojectsui5.components.approvalFlow"
+                component="prvintprojectsui5.components.approvalFlow"
+                visible="{= ${dpbVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="costMoveCustUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%"  
+
+                >
+            </core:ComponentContainer>
+
+        </content>
+    </Panel>              
+</mvc:View>

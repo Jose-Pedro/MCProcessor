@@ -1,0 +1,246 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "prvintprojectsui5",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.2",
+      "toolsId": "e1be2f1d-5dea-401a-ab8a-8c86875b7481"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v2/service/project/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ODATA_RESTRICTION": {
+        "uri": "/v2/restriction/",
+        "type": "OData",
+        "settings": {
+            "odataVersion": "2.0"
+        }
+      },
+      "configuration": {
+        "uri": "model/configuration.json",
+        "type": "JSON"
+      },
+      "OTDocumentViewer": {
+        "uri": "model/otdocumentviewer.json",
+        "type": "JSON"
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "buildtosuit-manage": {
+          "semanticObject": "InternalProject",
+          "action": "manage",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": true,
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {
+          "lazy": true
+        },
+        "sap.suite.ui.generic.template": {
+          "lazy": true
+        },
+        "sap.ui.comp": {
+          "lazy": true
+        },
+        "sap.ui.generic.app": {
+          "lazy": true
+        },
+        "sap.ui.table": {
+          "lazy": true
+        },
+        "sap.ushell": {
+          "lazy": true
+        }
+      }
+    },
+    "resourceRoots": {
+      "com.cellnex.variantstable": "../../cmm-variantstable-ui5.comcellnexvariantstable"
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": false
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "prvintprojectsui5.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "InlineRepeat",
+          "earlyRequests": true
+        }
+      },
+      "configuration": {
+        "preload": true,
+        "dataSource": "configuration"
+      },
+      "ODATA_RESTRICTION": {
+        "dataSource": "ODATA_RESTRICTION",
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "earlyTokenRequest": true,
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+              "sap-documentation": "heading"
+          }
+        }
+      },
+      "OTDocumentViewer": {
+        "preload": true,
+        "dataSource": "OTDocumentViewer"
+      },
+      "viewModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "preload": true,
+        "settings": {
+          "selectedTabKey": "searchByRequests"
+        }
+      },
+      "OPENTEXT": {        
+        "uri": "/CmmOpentextSrv"      
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "prvintprojectsui5.view",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "Routesearch",
+          "pattern": ":?query:",
+          "target": [
+            "Targetsearch"
+          ]
+        },
+        {
+          "name": "Routedetail",
+          "pattern": "detail/{requestId}",
+          "target": [
+            "TargetdetailView"
+          ]
+        }
+      ],
+      "targets": {
+        "Targetsearch": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "id": "search",
+          "name": "search"
+        },
+        "TargetdetailView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "id": "detail",
+          "name": "detail"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "prvintprojectsui5.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
+    "componentUsages": {
+      "approvalFlow": {
+          "name": "prvintprojectsui5.components.approvalFlow",
+          "settings": {},
+          "lazy": true,
+          "componentData":true
+      },
+      "works": {
+          "name": "prvintprojectsui5.components.works",
+          "settings": {},
+          "lazy": true,
+          "componentData":true
+      },
+      "checklist": {
+          "name": "prvintprojectsui5.components.checklist",
+          "settings": {},
+          "lazy": true,
+          "componentData":true
+      },
+      "uploadTable": {
+          "name": "prvintprojectsui5.components.uploadTable",
+          "settings": {},
+          "lazy": true,
+          "componentData":true
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "prvintprojectsui5"
+  }
+}

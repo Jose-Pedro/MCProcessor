@@ -1,0 +1,47 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <Dialog id="changeLogDialog" title="{i18n>changeLog}">
+        <content>
+            <smartfilterbar:SmartFilterBar id="changeLogFilter" class="sapContrastPlus" persistencyKey="changeLogFilter" filterBarExpanded="true" showGoOnFB="true" entitySet="ChangesLog"/>
+            <smarttable:SmartTable 
+                id="changeLogTable" 
+                tableType="Table"
+                entitySet="ChangesLog"
+                smartFilterId="changeLogFilter"
+                width="100%" 
+                direction="Column" 
+                fitContainer="true" 
+                placeToolbarInTable="true" 
+                persistencyKey="changeLogTable" 
+                customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 7, 'gap': 0, 'truncateLabel': false}}}"
+                header="{i18n>changeLog}"
+                enableAutoColumnWidth="true" 
+                enableAutoBinding="true"
+                requestAtLeastFields="ID">
+                <table:Table id="_IDGenTable1" rowMode="Auto" selectionMode="None" >
+                    <table:rowMode>
+                        <rowmodes:Auto id="_IDGenAuto" xmlns:rowmodes="sap.ui.table.rowmodes" minRowCount="10" />
+                    </table:rowMode>
+                </table:Table>
+            </smarttable:SmartTable>                            
+        </content>
+        <footer>
+            <Toolbar id="ChangeLog_IDGenToolbar1">
+                <content>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer6" />
+                    <Button id="closeChangeLog" text="{i18n>close}" type="Emphasized" press="onCloseDialog">
+                        <customData>
+                            <core:CustomData key="dialogName" value="changeLogDialog" />
+                        </customData>
+                    </Button>
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

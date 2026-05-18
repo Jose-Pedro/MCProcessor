@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    displayBlock="true">
+    <Dialog id="cancelRequestDialog" title="{i18n>cancelRequest}" >
+        <content>
+	        <smartform:SmartForm id="cancelRequestForm" editable="true">
+                <smartform:groups> 
+                    <smartform:Group id="cancelResultDialog_group">
+                        <smartform:GroupElement id="cancelResultDialog_groupElement1">
+                            <smartfield:SmartField id="requestCancellationReason" value="{cancellationReason}" entitySet="Requests" mandatory="true" editable="true"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="cancelResultDialog_groupElement2">
+                            <smartfield:SmartField id="requestCancellationComments" value="{cancellationComments}" entitySet="Requests" editable="true" customdata:multiLineSettings="{cols: 60, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group >
+                </smartform:groups> 
+            </smartform:SmartForm>
+        </content>
+        <footer>
+			<Toolbar id="cancelRequestDialog_toolbar">
+				<content>
+					<Button id="cancellationReasonPopoverBtn"
+						visible="{= ${message>/}.length > 0}"
+                        icon="sap-icon://message-popup"
+                        type="Neutral"
+						text="{= ${message>/}.length }"
+						press="onMessagePopoverPress" />
+					<ToolbarSpacer id="cancelRequestDialog_ToolbarSpacer1" />
+					<Button id="confirmCancelRequest"
+                            type="Emphasized"
+							text="{i18n>confirm}"
+							press="onCancelRequestConfirm" />
+					<Button id="cancelCancelRequest"
+                            text="{i18n>cancel}"
+                            type="Transparent"
+                            press="onCancelRequestCancel" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:smartlist="sap.ui.comp.smartlist">
+	<Popover
+		id="chatPopover"
+		contentMinWidth="50em"
+		showHeader="false"
+		resizable="true"
+		placement="VerticalPreferredBottom">
+		<subHeader>
+			<FeedInput id="_IDGenFeedInput1" post="onPostChat" maxLength="2500"  class="sapUiSmallMarginTopBottom" />
+		</subHeader>
+		<smartlist:SmartList 
+			id="chatList" 
+			entitySet="Chats"
+			selectFields="ID,userId,date,text,readed"
+			header="{i18n>Chat}" 
+			showRowCount="false" 
+			showFullScreenButton="false" 
+			enableAutoBinding="true" 
+			beforeRebindList="onBeforeRebindChatList">
+			<smartlist:listItemTemplate>
+				<FeedListItem id="_IDGenFeedListItem"
+					maxCharacters="200"
+					sender="{userId}"
+					timestamp="{date}"
+					text="{text}" />
+			</smartlist:listItemTemplate>
+		</smartlist:SmartList>
+	</Popover>
+</core:FragmentDefinition>

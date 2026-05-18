@@ -1,0 +1,10 @@
+<mvc:View 
+    controllerName="prvintprojectsui5.controller.phases.finalValidation.finalValidation" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:upload="sap.m.upload"
+    displayBlock="true">
+    <mvc:XMLView id="validDocumentView" viewName="prvintprojectsui5.view.phases.finalValidation.blocks.validDocument"/>
+    <Label id="finalValidation_IDGenLabel1" class="sapUiLargeMarginBottom"></Label>
+</mvc:View>

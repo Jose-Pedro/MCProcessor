@@ -1,0 +1,76 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "prvintprojectsui5.components.works",
+        "type": "Component",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "achievements": [],
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v2/service/project/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "fullWidth": true,
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "prvintprojectsui5.components.works.view.Component",
+            "type": "XML",
+            "async": true
+        },
+        "dependencies": {
+            "minUI5Version": "1.136.2",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.ui.comp": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "properties": {
+            "blockId": {
+                "type": "string",
+                "defaultValue": null,
+                "bindable": true
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "prvintprojectsui5.components.works.i18n.i18n"
+                }
+            }
+        }
+    }
+}

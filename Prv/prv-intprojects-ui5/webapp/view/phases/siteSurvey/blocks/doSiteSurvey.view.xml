@@ -1,0 +1,99 @@
+<mvc:View
+    controllerName="prvintprojectsui5.controller.phases.siteSurvey.blocks.doSiteSurvey"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout" 
+    xmlns:table="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"  
+    displayBlock="true">
+
+    <Panel width="auto" visible="{=${configuration>/processInfo/siteSurvey/doSiteSurvey/VISIBLE_ON} === 'X'}" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS}}" id="doSiteSurveyPanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="doSiteSurveyToolbar" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="doSiteSurveyTitle" text="{i18n>doSiteSurvey}"/>
+                <ToolbarSpacer id="doSiteSurvey_IDGenToolbarSpacer3"/>
+                <smartfield:SmartLabel id="doSiteSurvey_IDGenSmartLabel" labelFor="selectAssignedResponsible"/>
+                <smartfield:SmartField id="selectAssignedResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/assignedResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="doSiteSurvey_IDGenSmartLabel1" labelFor="selectSucontractorResponsible"/>
+                <smartfield:SmartField id="selectSucontractorResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/subcontractorType}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onSubcoTypeChange"/>
+                <smartfield:SmartLabel id="doSiteSurvey_IDGenSmartLabel2" labelFor="selectExternalResponsible"/>
+                <smartfield:SmartField id="selectExternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/externalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="doSiteSurvey_IDGenSmartLabel3" labelFor="selectInternalResponsible"/>
+                <smartfield:SmartField id="selectInternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/internalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" textInEditModeSource="ValueListNoValidation"/>
+                <ToolbarSpacer id="doSiteSurvey_IDGenToolbarSpacer5"/>
+                <Switch id="doSiteSurvey_IDGenSwitch"  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/siteSurvey/doSiteSurvey/activate} === true }"/>
+                <Button id="closeBlockdoSiteSurvey" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/siteSurvey/doSiteSurvey/complete} === true}"/>
+                <OverflowToolbarButton id="buttondoSiteSurveyForm" press="onEditBlock" icon="sap-icon://edit" enabled="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}"  visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/siteSurvey/doSiteSurvey/reopen} === true}"/>
+                <ObjectStatus id="doSiteSurvey_IDGenObjectStatus1" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="doSiteSurveyForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="doSiteSurvey_IDGenColumnLayout1" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups> 
+                    <smartform:Group id="doSiteSurvey_IDGenGroup1" >
+                        <smartform:GroupElement id="doSiteSurvey_IDGenGroupElement12">
+                                <smartfield:SmartField id="plannedDate" value="{BlockProvision/plannedDate}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                        <smartform:GroupElement id="doSiteSurvey_IDGenGroupElement13">
+                                <smartfield:SmartField id="siteSurveyDate" value="{BlockProvision/siteSurveyDate}" change="onFieldChange"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+            <smartform:SmartForm editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}" id="doSiteSurveyCommentsFormForm">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="doSiteSurveyCommentsFormFormColumnLayout" columnsM="1" columnsL="1" columnsXL="1" labelCellsLarge="12"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="doSiteSurveyCommentsFormFormGroup">                
+                        <smartform:GroupElement id="doSiteSurveyCommentsFormFormGroupElement">
+                            <smartfield:SmartField id="doSiteSurveyCommentsConfig" value="{comments}" change="onFieldChange" app:multiLineSettings="{cols: 2000, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>                
+                </smartform:groups>
+            </smartform:SmartForm>
+            <core:ComponentContainer id="doSiteSurveyChecklist" usage="checklist"
+                name="prvintprojectsui5.components.checklist"
+                component="prvintprojectsui5.components.checklist"
+                visible="{= ${checklistVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="doSiteSurveyWorks" usage="works"
+                name="prvintprojectsui5.components.works"
+                component="prvintprojectsui5.components.works"
+                propagateModel="true"
+                visible="{= ${worksVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="doSiteSurveyApprovalFlow" usage="approvalFlow"
+                name="prvintprojectsui5.components.approvalFlow"
+                component="prvintprojectsui5.components.approvalFlow"
+                visible="{= ${dpbVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="doSiteSurveyUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%"  
+
+                >
+            </core:ComponentContainer>
+
+        </content>
+    </Panel>              
+</mvc:View>

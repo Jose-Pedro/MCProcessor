@@ -1,0 +1,119 @@
+<mvc:View 
+    id="realEstate" 
+    controllerName="prvintprojectsui5.controller.phases.feasibilCheck.blocks.realEstate"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core"
+    xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+    xmlns:upload="sap.m.upload"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+    xmlns:table="sap.ui.table"
+    displayBlock="true">
+    <Panel width="auto" visible="{=${configuration>/processInfo/feasibilCheck/realEstate/VISIBLE_ON} === 'X'}" expandable="true" expanded="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} }" id="realEstatePanel" class="sapUiResponsiveMargin">
+        <headerToolbar>
+            <OverflowToolbar id="realEstate_IDGenOverflowToolbar2" design="Transparent" class="sapMShowEmpty-CTX">
+                <Title id="realEstate_IDGenTitle3" text="{i18n>realEstate}"/>
+                <ToolbarSpacer id="realEstate_IDGenToolbarSpacer4"/>
+                <smartfield:SmartLabel id="realEstate_IDGenSmartLabel" labelFor="selectAssignedResponsible"/>
+                <smartfield:SmartField id="selectAssignedResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/assignedResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="realEstate_IDGenSmartLabel1" labelFor="selectSucontractorResponsible"/>
+                <smartfield:SmartField id="selectSucontractorResponsible" width="8rem" fetchValueListReadOnly="true" value="{BlockProvision/subcontractorType}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onSubcoTypeChange"/>
+                <smartfield:SmartLabel id="realEstate_IDGenSmartLabel2" labelFor="selectExternalResponsible"/>
+                <smartfield:SmartField id="selectExternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/externalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" />
+                <smartfield:SmartLabel id="realEstate_IDGenSmartLabel3" labelFor="selectInternalResponsible"/>
+                <smartfield:SmartField id="selectInternalResponsible" fetchValueListReadOnly="true" value="{BlockProvision/internalResponsible}" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}" change="onFieldChange" textInEditModeSource="ValueListNoValidation"/>
+                <ToolbarSpacer id="realEstate_IDGenToolbarSpacer5"/>
+                <Switch id="realEstate_IDGenSwitch"  customTextOn=" " customTextOff=" "  state="{activated}" visible="{= ${mandatory} !== 'X'}" change="onActiveChange" enabled="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/realEstate/activate} === true }"/>
+                <Button id="closeBlock" press="onCloseBlock" text="{i18n>complete}" visible="{= (${status} === ${configuration>/constants/BLOCK_NOTINITIALIZED} || ${status} === ${configuration>/constants/BLOCK_INPROGRESS} ) &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/realEstate/complete} === true}"/>
+                <OverflowToolbarButton id="buttonrealEstateForm" press="onEditBlock" icon="sap-icon://edit" visible="{= ${status} === ${configuration>/constants/BLOCK_COMPLETED}  &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true &amp;&amp; ${configuration>/blockActions/feasibilCheck/realEstate/reopen} === true}"/>
+                <ObjectStatus id="realEstate_IDGenObjectStatus2" text="{BlockStatus/name}" state="{path: 'status', formatter:'.statusStateFormatter'}" icon="{path:'status', formatter: '.statusIconFormatter' }"/>                
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <smartform:SmartForm id="realEstateForm" editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${activated} === true &amp;&amp; ${configuration>/editMode} === true}">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="realEstate_IDGenColumnLayout" columnsM="2" columnsL="3" columnsXL="6" labelCellsLarge="2"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="realEstate_IDGenGroup2">
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement12">
+                                    <smartfield:SmartField id="startDate2" value="{openAt}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement13">
+                                    <smartfield:SmartField id="completedDate1" value="{BlockProvision/completedDate}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement14">
+                                    <smartfield:SmartField id="completedBy2" value="{BlockProvision/completedBy}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement15">
+                                <smartfield:SmartField id="realEstate_heritageEndDate" value="{BlockProvision/heritageEndDate}" change="onFieldChange"/>
+                            </smartform:GroupElement>                          
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement16"> 
+                                <smartMultiInput:SmartMultiInput id="contractRestrictionId" value="{ContractRestrictions/contractRestrictionIdUI}" selectionFinish="onMultiSelectionFinish" selectionChange="onMultiSelectionChange" modelContextChange="onMultiInit" />
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement17">
+                                    <smartfield:SmartField id="renegoNeeded" value="{BlockProvision/renegoNeeded}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement18">
+                                    <smartfield:SmartField id="realStateFeasibility" value="{BlockProvision/realStateFeasibility}" change="onFieldChange"/>
+                            </smartform:GroupElement>
+                            <smartform:GroupElement id="realEstate_IDGenGroupElement19">
+                                    <smartfield:SmartField id="realEstateFeasibilityExplanation" value="{BlockProvision/realEstateFeasibilityExp}" change="onFieldChange"/>
+                            </smartform:GroupElement>                          
+                    </smartform:Group>
+                </smartform:groups>
+            </smartform:SmartForm>
+            
+            <smartform:SmartForm editable="{= ${status} === ${configuration>/constants/BLOCK_INPROGRESS} &amp;&amp; ${configuration>/editMode} === true}" id="realEstateCommentsFormForm">
+                <smartform:layout>
+                    <smartform:ColumnLayout id="realEstateCommentsFormFormColumnLayout" columnsM="1" columnsL="1" columnsXL="1" labelCellsLarge="12"/>
+                </smartform:layout>
+                <smartform:groups>
+                    <smartform:Group id="realEstateCommentsFormFormGroup">                
+                        <smartform:GroupElement id="realEstateCommentsFormFormGroupElement">
+                            <smartfield:SmartField id="realEstateCommentsConfig" value="{comments}" change="onFieldChange" customdata:multiLineSettings="{cols: 2000, rows: 5}"/>
+                        </smartform:GroupElement>
+                    </smartform:Group>                
+                </smartform:groups>
+            </smartform:SmartForm>
+            <core:ComponentContainer id="realStateChecklist" usage="checklist"
+                name="prvintprojectsui5.components.checklist"
+                component="prvintprojectsui5.components.checklist"
+                visible="{= ${checklistVisibleVF} === true}"
+                propagateModel="true"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="realStateWorks" usage="works"
+                name="prvintprojectsui5.components.works"
+                component="prvintprojectsui5.components.works"
+                propagateModel="true"
+                visible="{= ${worksVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="realEstateApprovalFlow" usage="approvalFlow"
+                name="prvintprojectsui5.components.approvalFlow"
+                component="tu.namespace.tucomponente"
+                propagateModel="true"
+                visible="{= ${dpbVisibleVF} === true}"
+                height="100%"
+                width="100%" >
+            </core:ComponentContainer>
+            <core:ComponentContainer id="realEstateUploadTable" usage="uploadTable"
+                name="prvintprojectsui5.components.uploadTable"
+                component="prvintprojectsui5.components.uploadTable"
+                propagateModel="true"
+                height="100%"
+                width="100%"  
+
+                >
+            </core:ComponentContainer>
+
+        </content>
+    </Panel>
+
+</mvc:View>

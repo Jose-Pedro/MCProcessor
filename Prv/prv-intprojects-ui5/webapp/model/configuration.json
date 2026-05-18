@@ -1,0 +1,183 @@
+{
+    "stepper": {
+        "lastActivePhase": "",
+        "firstActivePhase": ""
+    },
+    "refreshAll": false,
+    "editMode": false,
+    "selectedPhaseId": "",
+    "showClosePhase": false,
+    "takeOwnerShip": false,
+    "hasSite": true,
+    "processInfo":[],
+    "editable": {
+        "requestInformat": true,
+        "site": true,
+        "requestConfigur": true,
+        "universalWorks": true,
+        "dismantleWorks": true,
+        "kickOff": true,
+        "checkPrevious": true,
+        "realEstate": true,
+        "permits": true,
+        "feasibilCheck_globalResult": true,
+        "doSiteSurvey": true,
+        "validationBlock": true,
+        "manageRefunds": true,
+        "doTechDoc": true,
+        "energyStudy": true,
+        "techCostAnalys_globalResult": true,
+        "dashboard": true,
+        "acceptBuildOffe": true,
+        "instCustEquip_validDocument": true,
+        "instalService": true,
+        "finalValidation_validDocument": true
+    },
+    "Phases": {
+        "reqCreation": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "feasibilCheck": {
+            "status": "",
+            "enabled": true,
+            "visible": true 
+        },
+        "siteSurvey": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "techCostAnalys": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "custOfferAccept": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "manageAdapt": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "instCustEquip": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        },
+        "finalValidation": {
+            "status": "",
+            "enabled": true,
+            "visible": true
+        }    
+    },
+    "constants": {
+        "REQUEST_NOTINITIALIZED" : 2,
+        "REQUEST_INPROGRESS" : 7,
+        "REQUEST_CANCELLED" : 4,
+        "REQUEST_COMPLETED" : 3,
+        "REQUEST_ON_HOLD" : 12,
+        "REQUEST_REOPENED" : 32,
+        "PHASE_NOTINITIALIZED" : 2,
+        "PHASE_INPROGRESS" : 7,
+        "PHASE_CANCELLED" : 4,
+        "PHASE_COMPLETED" : 3,
+        "PHASE_REQUEST_CREATION" : "reqCreation",
+        "PHASE_MANAGE_CANDIDATES" : "manageCandidate",
+        "PHASE_BUILD_SITE" : "buildSite",
+        "BLOCK_NOTINITIALIZED" : 2,
+        "BLOCK_INPROGRESS" : 7,
+        "BLOCK_CANCELLED" : 4,
+        "BLOCK_COMPLETED" : 3,
+        "BLOCK_KICKOFF" : "kickOff",
+        "ACTION_PHASE_CLOSE" : "close",
+        "ACTION_BLOCK_CLOSE" : "close",
+        "ACTION_REQUEST_COMPLETED" : "requestCompleted",
+        "FC_MANDATORY" : 7,
+        "FC_OPTIONAL" : 3,
+        "FC_READONLY" : 1,
+        "FC_HIDDEN" : 0,
+        "ASSIGNED_RESP_CELLNEX" : "1",
+        "ASSIGNED_RESP_SUBCO" : "2",
+        "SUBCO_TYPE_CUSTOMER" : 2,
+        "SUBCO_TYPE_VENDOR" : 3,
+        "SUBCO_TYPE_AGENCY" : 4,
+        "VALIDATOR_NOT_INI" : "0",
+        "VALIDATOR_RESPONSIBLE" : "10",
+        "VALIDATOR_CELLNEX" : "20",
+        "VALIDATOR_SUBCO" : "30",
+        "VALIDATOR_CUSTOMER" : "40",
+        "VALIDATOR_SITE_OWNER" : "50",
+        "VALIDATOR_CANCELLED" : "999",
+        "VALIDATOR_COMPLETED" : "100",
+        "STATUS_NOT_INIT" : 2,
+        "STATUS_IN_PROGRESS" : 7,
+        "STATUS_COMPLETED" : 3,
+        "STATUS_CANCELLED" : 4,        
+        "CELLNEX_USER_ROL" : "TIS_Cellnex",
+        "MANAGER_USER_ROL" : "TIS_WF_PRO_ColocationMgr",
+        "VENDOR_MANAGER_USER_ROL" : "TIS_WF_PRO_SuppColoMng",
+        "VENDOR_USER_ROL" : "TIS_WF_PRO_Subcontractor",
+        "AGENCY_USER_ROL" : "TIS_WF_PRO_AgencyRead",
+        "CUTOMER_USER_ROL" : "TIS_WF_PRO_Customer",
+        "SEARCH_BY_ROL" : 0
+    },
+    "supportDocuments":{
+        "PT": {
+            "documentId": "SupportDocument",
+            "documentType": "Support Document",
+            "documentSubType": "Support Document",
+            "documentSubTypeLvl2": "Support Document"
+        },
+        "FR": {
+            "documentId": "EBI",
+            "documentType": "Initial Request",
+            "documentSubType": "EBI",
+            "documentSubTypeLvl2": "Initial Request"
+        },
+        "CH": {
+            "documentId": "SupportDocument",
+            "documentType": "Support Document",
+            "documentSubType": "Support Document",
+            "documentSubTypeLvl2": "Support Document"
+        },
+        "GB": {
+            "documentId": "SupportDocument",
+            "documentType": "Support Document",
+            "documentSubType": "Support Document",
+            "documentSubTypeLvl2": "Support Document"
+        },
+        "ES": {
+            "documentId": "Support Document",
+            "documentType": "Support Document",
+            "documentSubType": "Documento de soporte",
+            "documentSubTypeLvl2": "Support Document"
+        },
+        "IT": {
+            "documentId": "Support DocumentIT",
+            "documentType": "Support Document",
+            "documentSubType": "Assenso alla presentazione",
+            "documentSubTypeLvl2": "Support Document"
+        }
+    },
+    "addDocument": {
+        "phaseId": "",
+        "blockId": "",
+        "canidateId": "",
+        "documentId": "",
+        "hasCandidate": false
+    },
+    "creationParametrization": {        
+    },
+    "compomentUsages": {
+        "universalWorks": {
+            "parentType": "30",
+            "phaseType": "manageAdapt",
+            "blockType": "universalWorks"
+        }
+    }
+}

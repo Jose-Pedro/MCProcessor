@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    displayBlock="true">
+    <Dialog id="addDocumentPerBlockDialog" title="{i18n>addDocument}" >
+        <content>
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" >
+                <form:content>
+                    <Label text="{i18n>Document}" />
+                    <Select id="addDocumentFormDocumentId" selectedKey="{allowedDocuments>/documentId}" items='{allowedDocuments>/documents}'>
+                        <core:Item key="{allowedDocuments>documentId}" text="{allowedDocuments>documentName}" />
+                    </Select>
+                </form:content>
+            </form:SimpleForm>
+        </content>
+        <footer>
+			<Toolbar>
+				<content>
+					<ToolbarSpacer />
+					<Button id="create"
+                            type="Emphasized"
+							text="{i18n>addDocumentFlow}"
+							press="onAddDocFlow" />
+					<Button id="cancel"
+                            type="Transparent"
+                            text="{i18n>cancel}"
+                            press="onCloseAddDocumentDialog" />
+				</content>
+			</Toolbar>        
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

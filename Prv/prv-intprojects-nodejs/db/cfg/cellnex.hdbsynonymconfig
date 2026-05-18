@@ -1,0 +1,851 @@
+{
+    "REQUEST_HEAD": {
+        "target": {
+            "object": "REQUEST_HEAD",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "REQUEST_CHAR_PRO": {
+        "target": {
+            "object": "REQUEST_CHAR_PRO",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "PHASE_HEAD": {
+        "target": {
+            "object": "PHASE_HEAD",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "BLOCK_HEAD": {
+        "target": {
+            "object": "BLOCK_HEAD",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "BLOCKS_PROVISIONING": {
+        "target": {
+            "object": "BLOCKS_PROVISIONING",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENTS_PER_BLOCK": {
+        "target": {
+            "object": "DOCUMENTS_PER_BLOCK",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "INSTANCES_PER_DOCUMENT": {
+        "target": {
+            "object": "INSTANCES_PER_DOCUMENT",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "WF_DETAIL_DOCUMENTS": {
+        "target": {
+            "object": "WF_DETAIL_DOCUMENTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "MASTER_MS_CONTRACT_RESTRICTIONS": {
+        "target": {
+            "object": "MASTER_MS_CONTRACT_RESTRICTIONS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "SC_SELECT_OPTIONS_V2": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V2",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_MASTER": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_MASTER",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_TRANSLATE": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_TRANSLATE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "SC_SELECT_OPTIONS_V3_CONFIGURATION": {
+        "target": {
+            "object": "SC_SELECT_OPTIONS_V3_CONFIGURATION",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "SC_SELECT_DEPENDENCES": {
+        "target": {
+            "object": "SC_SELECT_DEPENDENCES",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "COMMERCIAL_PROGRAMS_MASTER": {
+        "target": {
+            "object": "COMMERCIAL_PROGRAMS_MASTER",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "CUSTOMERS_PER_COMMPROGRAM": {
+        "target": {
+            "object": "CUSTOMERS_PER_COMMPROGRAM",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "PROCESS": {
+        "target": {
+            "object": "PROCESS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "PHASE": {
+        "target": {
+            "object": "PHASE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "PHASE_DEPENDENCE": {
+        "target": {
+            "object": "PHASE_DEPENDENCE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "PHASE_PARALLEL": {
+        "target": {
+            "object": "PHASE_PARALLEL",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "BLOCK": {
+        "target": {
+            "object": "BLOCK",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "BLOCK_DEPENDENCE": {
+        "target": {
+            "object": "BLOCK_DEPENDENCE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "MASTER_PROCESS": {
+        "target": {
+            "object": "MASTER_PROCESS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "MASTER_PHASE": {
+        "target": {
+            "object": "MASTER_PHASE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "MASTER_BLOCK": {
+        "target": {
+            "object": "MASTER_BLOCK",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "RESPONSIBLE_APPROVAL_FLOW": {
+        "target": {
+            "object": "RESPONSIBLE_APPROVAL_FLOW",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "REQUEST_TYPE": {
+        "target": {
+            "object": "REQUEST_TYPE",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"STATUS_HEAD": {
+        "target": {
+            "object": "STATUS_HEAD",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"STATUS_TEXTS": {
+        "target": {
+            "object": "STATUS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"GROUPS": {
+        "target": {
+            "object": "GROUPS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"USERS_GROUPS": {
+        "target": {
+            "object": "USERS_GROUPS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"USERS": {
+        "target": {
+            "object": "USERS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"FIELDS_EDIT_BY_GROUPS": {
+        "target": {
+            "object": "FIELDS_EDIT_BY_GROUPS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_ROLES_AGORA": {
+        "target": {
+            "object": "US_ROLES_AGORA",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"V_EMAIL_LOGIN_USER": {
+        "target": {
+            "object": "V_EMAIL_LOGIN_USER",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"CONTEXT_USER_V": {
+        "target": {
+            "object": "CONTEXT_USER_V",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_USER_IAS_V": {
+        "target": {
+            "object": "US_USER_IAS_V",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_USERS_IAS": {
+        "target": {
+            "object": "US_USERS_IAS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_ROLES_AGR": {
+        "target": {
+            "object": "US_ROLES_AGR",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_BUKS": {
+        "target": {
+            "object": "US_BUKS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_COUNTRIES_V": {
+        "target": {
+            "object": "US_COUNTRIES_V",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_ZAGENCY": {
+        "target": {
+            "object": "US_ZAGENCY",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_ZCUSTOMER": {
+        "target": {
+            "object": "US_ZCUSTOMER",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_ZVENDOR": {
+        "target": {
+            "object": "US_ZVENDOR",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"US_COUNTRIES": {
+        "target": {
+            "object": "US_COUNTRIES",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"WF_ACTIONS_LOG": {
+        "target": {
+            "object": "WF_ACTIONS_LOG",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"DT_LINKED_REQUEST": {
+        "target": {
+            "object": "DT_LINKED_REQUEST",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },"JOINT_PROJECT": {
+        "target": {
+            "object": "JOINT_PROJECT",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "MANAGE_BUDGET": {
+        "target": {
+            "object": "MANAGE_BUDGET",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "REQUEST_DOCUMENTS_PER_BLOCK_DEFAUL_VALID": {
+        "target": {
+            "object": "REQUEST_DOCUMENTS_PER_BLOCK_DEFAUL_VALID",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "WF_CHAT": {
+        "target": {
+            "object": "WF_CHAT",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "MILESTONES_CONFIGURATION": {
+        "target": {
+            "object": "MILESTONES_CONFIGURATION",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "MILESTONES_TEXTS": {
+        "target": {
+            "object": "MILESTONES_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "PROVISIONAL_DOCUMENTS_PER_BLOCK": {
+        "target": {
+            "object": "PROVISIONAL_DOCUMENTS_PER_BLOCK",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "PROVISIONAL_INSTANCE_PER_DOCUMENT": {
+        "target": {
+            "object": "PROVISIONAL_INSTANCE_PER_DOCUMENT",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "COST_OBJECT": {
+        "target": {
+            "object": "COST_OBJECT",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "COST_OBJECT_TEXTS": {
+        "target": {
+            "object": "COST_OBJECT_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SEARCH_TYPES": {
+        "target": {
+            "object": "SEARCH_TYPES",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SEARCH_TYPES_TEXTS": {
+        "target": {
+            "object": "SEARCH_TYPES_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "REQUEST_STATUS": {
+        "target": {
+            "object": "REQUEST_STATUS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "REQUEST_STATUS_TEXTS": {
+        "target": {
+            "object": "REQUEST_STATUS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "PHASE_STATUS": {
+        "target": {
+            "object": "PHASE_STATUS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "PHASE_STATUS_TEXTS": {
+        "target": {
+            "object": "PHASE_STATUS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "BLOCK_STATUS": {
+        "target": {
+            "object": "BLOCK_STATUS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "BLOCK_STATUS_TEXTS": {
+        "target": {
+            "object": "BLOCK_STATUS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOW_STATUS": {
+        "target": {
+            "object": "DOCUMENT_FLOW_STATUS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "DOCUMENT_FLOW_STATUS_TEXTS": {
+        "target": {
+            "object": "DOCUMENT_FLOW_STATUS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROLS": {
+        "target": {
+            "object": "SCREEN_CONTROLS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_PROCESS": {
+        "target": {
+            "object": "SCREEN_CONTROL_PROCESS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_FIELDS": {
+        "target": {
+            "object": "SCREEN_CONTROL_FIELDS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_IASGROUPS": {
+        "target": {
+            "object": "SCREEN_CONTROL_IASGROUPS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_DISPLAY_TYPES": {
+        "target": {
+            "object": "SCREEN_CONTROL_DISPLAY_TYPES",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_IASGROUPS_TEXTS": {
+        "target": {
+            "object": "SCREEN_CONTROL_IASGROUPS_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    }, 
+    "SCREEN_CONTROL_DISPLAY_TYPES_TEXTS": {
+        "target": {
+            "object": "SCREEN_CONTROL_DISPLAY_TYPES_TEXTS",
+            "grantor": "external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_REQUEST":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_REQUEST",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "OT_DOCUMENTS_CONSOLIDATION":{
+        "target":{
+            "object":"OT_DOCUMENTS_CONSOLIDATION",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOW_VALIDATORS":{
+        "target":{
+            "object":"DOCUMENT_FLOW_VALIDATORS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_PROCESS":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_PROCESS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS":{
+        "target":{
+            "object":"DOCUMENT_FLOWS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_CONFIG":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_CONFIG",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS_PER_BLOCK":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_PER_BLOCK",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "DOCUMENT_FLOWS_HIDDEN_PER_ROLE":{
+        "target":{
+            "object":"DOCUMENT_FLOWS_HIDDEN_PER_ROLE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_COMMERCIAL_REQUEST_HEAD":{
+        "target":{
+            "object":"BIM_COMMERCIAL_REQUEST_HEAD",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_COMMERCIAL_REQUEST_QUOTE_HEAD":{
+        "target":{
+            "object":"BIM_COMMERCIAL_REQUEST_QUOTE_HEAD",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_BUSINESS_PARTNERS_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_BUSINESS_PARTNERS_PER_AGREEMENT",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_AGREEMENTS":{
+        "target":{
+            "object":"BIM_AGREEMENTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_COMPANIES_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_COMPANIES_PER_AGREEMENT",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_SITE_BUNDLES_HEADER":{
+        "target":{
+            "object":"BIM_SITE_BUNDLES_HEADER",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_SITES_PER_BUNDLE":{
+        "target":{
+            "object":"BIM_SITES_PER_BUNDLE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_PRICEBOOK_HEAD":{
+        "target":{
+            "object":"BIM_PRICEBOOK_HEAD",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_COMMERCIAL_ELEMENTS":{
+        "target":{
+            "object":"BIM_COMMERCIAL_ELEMENTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "SALESFORCE_REQUEST_UPDATE_STATUS":{
+        "target":{
+            "object":"SALESFORCE_REQUEST_UPDATE_STATUS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_SALESFORCE_CREATE_NOTIFICATION":{
+        "target":{
+            "object":"BIM_SALESFORCE_CREATE_NOTIFICATION",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_BTS_PROJECT_TYPE_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_BTS_PROJECT_TYPE_PER_AGREEMENT",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "GET_ACTIVE_BUSINESS_SWITCH":{
+        "target":{
+            "object":"GET_ACTIVE_BUSINESS_SWITCH",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_SITE_BUNDLES_CONFIGURATIONS":{
+        "target":{
+            "object":"BIM_SITE_BUNDLES_CONFIGURATIONS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_SERVICES_PER_AGREEMENT":{
+        "target":{
+            "object":"BIM_SERVICES_PER_AGREEMENT",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_STANDARD_CONFIGURATION_HEADERS":{
+        "target":{
+            "object":"BIM_STANDARD_CONFIGURATION_HEADERS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_ELEMENTS_PER_CONFIGURATION":{
+        "target":{
+            "object":"BIM_ELEMENTS_PER_CONFIGURATION",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORKS":{
+        "target":{
+            "object":"WORKS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "PROJECT_OBJECTIVES":{
+        "target":{
+            "object":"PROJECT_OBJECTIVES",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "PROJECT_OBJECTIVES_TEXTS":{
+        "target":{
+            "object":"PROJECT_OBJECTIVES_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_TYPES":{
+        "target":{
+            "object":"WORK_TYPES",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_TYPES_TEXTS":{
+        "target":{
+            "object":"WORK_TYPES_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_PARENT_TYPES":{
+        "target":{
+            "object":"WORK_PARENT_TYPES",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_PARENT_TYPES_TEXTS":{
+        "target":{
+            "object":"WORK_PARENT_TYPES_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIGS":{
+        "target":{
+            "object":"WORK_CONFIGS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIG_OBJECTIVES":{
+        "target":{
+            "object":"WORK_CONFIG_OBJECTIVES",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIG_PROCESSES":{
+        "target":{
+            "object":"WORK_CONFIG_PROCESSES",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_FLOWS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_FLOWS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_DEFAULTS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_DEFAULTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "WORK_CONFIG_DOCUMENT_DEFAULTS_TEXTS":{
+        "target":{
+            "object":"WORK_CONFIG_DOCUMENT_DEFAULTS_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BIM_ELEMENTS":{
+        "target":{
+            "object":"BIM_ELEMENTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEM":{
+        "target":{
+            "object":"CHECKLIST_ITEM",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_FIELDTYPE":{
+        "target":{
+            "object":"CHECKLIST_FIELDTYPE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_FIELDTYPE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_FIELDTYPE_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMTYPE":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMTYPE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPE_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMTYPEVALUE":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPEVALUE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMTYPEVALUE_TEXTS":{
+        "target":{
+            "object":"CHECKLIST_ITEMTYPEVALUE_TEXTS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATION":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATION",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONBLOCK":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONBLOCK",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONPROCESS":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONPROCESS",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "CHECKLIST_ITEMCONFIGURATIONTYPE":{
+        "target":{
+            "object":"CHECKLIST_ITEMCONFIGURATIONTYPE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BUT000":{
+        "target":{
+            "object":"BUT000",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "BUT100":{
+        "target":{
+            "object":"BUT100",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "VIBDAO":{
+        "target":{
+            "object":"VIBDAO",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "VIBDBE":{
+        "target":{
+            "object":"VIBDBE",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "VICNCN":{
+        "target":{
+            "object":"VICNCN",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "VZOBJECT":{
+        "target":{
+            "object":"VZOBJECT",
+            "grantor":"external-cellnex-hdi-service"
+        }
+    },
+    "VIBPOBJREL":{
+      "target":{
+         "object":"VIBPOBJREL",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "VIBDOBJREL":{
+      "target":{
+         "object":"VIBDOBJREL",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "VIBDOBJASS":{
+      "target":{
+         "object":"VIBDOBJASS",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZRETOAALIAS":{
+      "target":{
+         "object":"ZRETOAALIAS",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZRECOAVALUES":{
+      "target":{
+         "object":"ZRECOAVALUES",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZRECOAVALUEST":{
+      "target":{
+         "object":"ZRECOAVALUEST",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "IFLOT":{
+      "target":{
+         "object":"IFLOT",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ILOA":{
+      "target":{
+         "object":"ILOA",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ADRC":{
+      "target":{
+         "object":"ADRC",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "T001":{
+      "target":{
+         "object":"T001",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "T005U":{
+      "target":{
+         "object":"T005U",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZPMSITESERV":{
+      "target":{
+         "object":"ZPMSITESERV",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZPMSERVLOC":{
+      "target":{
+         "object":"ZPMSERVLOC",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "CVI_CUST_LINK":{
+      "target":{
+         "object":"CVI_CUST_LINK",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    },
+    "ZPMSERVCHNGS":{
+      "target":{
+         "object":"ZPMSERVCHNGS",
+         "grantor":"external-cellnex-hdi-service"
+      }
+    }
+}
