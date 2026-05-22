@@ -1,31 +1,49 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "_comment": "Non-secret config for the remote Execution Engine. The API key is NEVER stored here; it must live in the User environment variable AIROUTER_API_KEY. Update via: [Environment]::SetEnvironmentVariable('AIROUTER_API_KEY', '<new-key>', 'User')",
-  "provider": "airouter",
-  "baseUrl": "https://api.airouter.ch/v1",
-  "apiKeyEnvVar": "AIROUTER_API_KEY",
-  "api": "openai-completions",
-  "models": [
-    {
-      "id": "Qwen3.6",
-      "displayName": "Qwen3.6 (airouter.ch)",
-      "contextWindow": 262144,
-      "maxTokens": 65536,
-      "reasoning": true,
-      "input": ["text", "image"],
-      "cost": { "input": 0, "output": 0 },
-      "compat": { "supportsUsageInStreaming": true },
-      "role": "remote-execution-engine",
-      "notes": "Primary coding engine for complex multi-file work. Routed to ONLY after the local ensemble has exhausted its capability (see AGENTS.md > Token discipline > rule 7)."
-    }
-  ],
-  "endpoints": {
-    "models": "/models",
-    "chatCompletions": "/chat/completions",
-    "embeddings": "/embeddings"
-  },
-  "defaults": {
-    "temperature": 0.2,
-    "stream": false
-  }
+﻿{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "_comment":  "Non-secret config for the remote Execution Engine. The API key is NEVER stored here; it must live in the User environment variable AIROUTER_API_KEY. Update via: [Environment]::SetEnvironmentVariable(\u0027AIROUTER_API_KEY\u0027, \u0027\u003cnew-key\u003e\u0027, \u0027User\u0027)",
+    "provider":  "airouter",
+    "baseUrl":  "https://api.airouter.ch/v1",
+    "apiKeyEnvVar":  "AIROUTER_API_KEY",
+    "api":  "openai-completions",
+    "current":  "Qwen3.6",
+    "models":  [
+                   {
+                       "id":  "Qwen3.6",
+                       "displayName":  "Qwen3.6 (airouter.ch)",
+                       "contextWindow":  262144,
+                       "maxTokens":  65536,
+                       "reasoning":  true,
+                       "input":  [
+                                     "text",
+                                     "image"
+                                 ],
+                       "cost":  {
+                                    "input":  0,
+                                    "output":  0
+                                },
+                       "compat":  {
+                                      "supportsUsageInStreaming":  true
+                                  },
+                       "role":  "remote-master",
+                       "status":  "current",
+                       "smokedAt":  "2026-05-22",
+                       "notes":  "Bootstrap default. Heavy reasoning model. The weekly review script may flag a better candidate."
+                   }
+               ],
+    "endpoints":  {
+                      "models":  "/models",
+                      "chatCompletions":  "/chat/completions",
+                      "embeddings":  "/embeddings"
+                  },
+    "defaults":  {
+                     "temperature":  0.2,
+                     "stream":  false
+                 },
+    "weeklyReview":  {
+                         "cadenceDays":  7,
+                         "lastRun":  "2026-05-22T18:30:36",
+                         "smokePrompt":  "Reply with exactly the JSON object {\"ok\":true,\"who\":\"\u003cmodel name as you know yourself\u003e\"}. No other text.",
+                         "smokeMaxTokens":  1024,
+                         "logPath":  ".augment/.remote-master-reviews.jsonl"
+                     }
 }

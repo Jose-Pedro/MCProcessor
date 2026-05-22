@@ -30,6 +30,9 @@ param(
     [Parameter(ParameterSetName='Chat')]
     [string]$OutputFile = '',
 
+    [Parameter(ParameterSetName='Chat')]
+    [string]$Model = '',
+
     [Parameter(ParameterSetName='Models')]
     [switch]$ListModels,
 
@@ -69,7 +72,13 @@ $headers = @{
 }
 
 $base = $cfg.baseUrl.TrimEnd('/')
-$model = $cfg.models[0].id
+if (-not [string]::IsNullOrEmpty($Model)) {
+    $model = $Model
+} elseif ($cfg.current) {
+    $model = $cfg.current
+} else {
+    $model = $cfg.models[0].id
+}
 
 function Mask([string]$s) {
     if ([string]::IsNullOrEmpty($s)) { return '<empty>' }
