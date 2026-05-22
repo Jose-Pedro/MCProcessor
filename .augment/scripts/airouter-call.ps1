@@ -24,6 +24,12 @@ param(
     [Parameter(ParameterSetName='Chat')]
     [double]$Temperature = 0.2,
 
+    [Parameter(ParameterSetName='Chat')]
+    [string]$Tag = 'unspecified',
+
+    [Parameter(ParameterSetName='Chat')]
+    [string]$OutputFile = '',
+
     [Parameter(ParameterSetName='Models')]
     [switch]$ListModels,
 
@@ -69,6 +75,36 @@ function Mask([string]$s) {
     if ([string]::IsNullOrEmpty($s)) { return '<empty>' }
     if ($s.Length -le 8) { return '<short>' }
     return $s.Substring(0,3) + '...' + $s.Substring($s.Length-2) + " (len=$($s.Length))"
+}
+
+function Write-BudgetRecord {
+    param(
+        [string]$Tag = 'unspecified',
+        [string]$Model,
+        [int]$LatencyMs = 0,
+        [string]$Status = 'ok',
+        [string]$ErrorMsg = '',
+        $Usage = $null
+    )
+    try {
+        $budgetPath = Join-Path $scriptDir '..\.airouter-budget.jsonl'
+        $rec = [ordered]@{
+            ts                 = (Get-Date).ToString('s')
+            tag                = $Tag
+            model              = $Model
+            status             = $Status
+            latency_ms         = $LatencyMs
+            prompt_tokens      = if ($Usage) { [int]$Usage.prompt_tokens } else { 0 }
+            completion_tokens  = if ($Usage) { [int]$Usage.completion_tokens } else { 0 }
+            reasoning_tokens   = if ($Usage -and $Usage.completion_tokens_details) { [int]$Usage.completion_tokens_details.reasoning_tokens } else { 0 }
+            text_tokens        = if ($Usage -and $Usage.completion_tokens_details) { [int]$Usage.completion_tokens_details.text_tokens } else { 0 }
+            total_tokens       = if ($Usage) { [int]$Usage.total_tokens } else { 0 }
+            error              = $ErrorMsg
+        }
+        Add-Content -Path $budgetPath -Value ($rec | ConvertTo-Json -Depth 4 -Compress) -Encoding UTF8
+    } catch {
+        Write-Host "WARN: budget record append failed: $($_.Exception.Message)" -ForegroundColor DarkYellow
+    }
 }
 
 if ($Probe) {
@@ -142,8 +178,24 @@ try {
             "prompt={0}  completion={1}  total={2}" -f $usage.prompt_tokens, $usage.completion_tokens, $usage.total_tokens
         }
     }
+    $statusLabel = if ([string]::IsNullOrWhiteSpace($text)) { 'empty' } else { 'ok' }
+    Write-BudgetRecord -Tag $Tag -Model $model -LatencyMs ([int]$sw.Elapsed.TotalMilliseconds) -Status $statusLabel -Usage $usage
+    if ($OutputFile) {
+        $out = [ordered]@{
+            ts                = (Get-Date).ToString('s')
+            tag               = $Tag
+            model             = $model
+            status            = $statusLabel
+            latency_ms        = [int]$sw.Elapsed.TotalMilliseconds
+            response          = $text
+            reasoning         = $reasoning
+            usage             = $usage
+        }
+        $out | ConvertTo-Json -Depth 8 | Set-Content -Path $OutputFile -Encoding UTF8
+    }
 } catch {
     Write-Host "CALL FAILED: $($_.Exception.Message)" -ForegroundColor Red
     if ($_.ErrorDetails) { $_.ErrorDetails.Message }
+    Write-BudgetRecord -Tag $Tag -Model $model -LatencyMs 0 -Status 'error' -ErrorMsg $_.Exception.Message
     exit 1
 }

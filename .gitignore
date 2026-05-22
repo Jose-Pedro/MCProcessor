@@ -112,11 +112,17 @@
 **/*.taroutput
 
 # ============================================================
-# Augment session artifacts (keep SESSION_LOG.md, ignore caches)
+# Augment session artifacts (keep SESSION_LOG.md + SESSION_BOOTSTRAP.md,
+# ignore caches and high-churn local-only telemetry)
 # ============================================================
 .augment/*.tmp
 .augment/cache/
 .augment/.cache/
+.augment/.airouter-budget.jsonl
+.augment/clone-agent/.state.json
+.augment/clone-agent/.worker.lock
+.augment/clone-agent/worker.log
+.augment/clone-agent/results/
 
 # ============================================================
 # Local tooling cache
