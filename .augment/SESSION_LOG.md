@@ -5,6 +5,70 @@ Update protocol is defined in `/AGENTS.md`. Newest entry on top.
 
 ## Entries
 
+### 2026-05-22 16:50 — Workspace migrated to `OneDrive\GODMODE\Codebase`; old `Documentos\GODMODE` kept read-only as 24-48h safety net
+- **Goal:** move the active workspace out of `OneDrive\Documentos\GODMODE\Codebase`
+  (deep, accented-name parent path that interacts badly with various tooling)
+  into a shallower `OneDrive\GODMODE\Codebase` while ensuring the cold-path
+  pipeline, all three mirror tiers, the scheduled task, and git push
+  continue to work end-to-end from the new location.
+- **Done:**
+  - User copied entire `GODMODE` tree (26 GB / 73,512 files) from
+    `OneDrive\Documentos\GODMODE` to `OneDrive\GODMODE`. Both copies
+    have intact `.git`, `.augment`, `AGENTS.md`.
+  - Phase A — sanitized new copy:
+    - Verified git state: branch `main`, HEAD `43014b6`, remote
+      `https://github.com/Jose-Pedro/MCProcessor.git`, clean.
+    - Deleted all 185 `node_modules/` directories (78,521 files /
+      685 MB) from new copy in 18.2 s. Reversible via `npm install`
+      per sub-project. Prevents OneDrive from churning on small files
+      and removes the `Prv/.../sap__cds` junction-loop risk.
+  - Phase B — cutover (no source edits required; both
+    `register-nightly-task.ps1` and `cold-path-distill.ps1` use
+    `$PSScriptRoot` so they auto-adapt):
+    - Re-registered `AugmentColdPathDistill` scheduled task to point at
+      `C:\Users\zeped\OneDrive\GODMODE\Codebase\.augment\scripts\cold-path-distill.ps1`.
+      Next run 2026-05-23 02:00.
+    - Ran cold-path from new location end-to-end: 7 new raw lines
+      distilled (Qwen), embedded (nomic), tier-3a Seagate mirror OK,
+      tier-3c Catel mirror OK. Tier 3b is implicit (new location is
+      already inside personal OneDrive).
+    - Committed memory output + pushed from new copy:
+      `82622ce chore(memory): cold-path run from new workspace location
+      (post-migration)` → `origin/main`.
+  - Old copy `OneDrive\Documentos\GODMODE` left untouched on disk as
+    a 24-48 h safety net (per user decision). To be deleted only after
+    1-2 successful nightly runs from the new location.
+- **Files touched:**
+  - `.augment/SESSION_LOG.md` (this entry, written via old copy then
+    sync'd to new copy + committed from new copy).
+  - `.augment/memory/distilled/2026-05-22.zepedro.jsonl`,
+    `.augment/memory/index/2026-05-22.zepedro.vec.jsonl`,
+    `.augment/memory/today.index.json`,
+    `.augment/memory/.state/distilled.json` (all in new copy, via the
+    post-migration cold-path run).
+  - 185 `node_modules/` directories deleted from new copy only.
+  - Windows Scheduled Task `AugmentColdPathDistill` re-registered.
+- **State:** complete (infra side). Manual follow-ups remain for the
+  user: close this VS Code window and reopen at the new path; paste
+  `LAPTOP_AGENT_BOOTSTRAP.md` boot message into the fresh Augment chat;
+  decide on Phase C (old-copy deletion) after 24-48 h of green runs.
+- **Next step:** user reopens VS Code at `OneDrive\GODMODE\Codebase`
+  and bootstraps a fresh agent there. Then resume normal work
+  (L0 — airouter budget tracker, 2nd airouter key wiring, etc.).
+- **Notes:**
+  - `work` VS Code tunnel auto-follows whichever folder VS Code on
+    CHost was last opened at; reopen at the new path and the tunnel
+    redirects automatically for Juan's incoming connections.
+  - Both copies still have a 1-line `.gitignore` dirty diff predating
+    the migration; not introduced here, not blocking.
+  - Optional hardening: add `node_modules/` to OneDrive's per-folder
+    exclusion list (Settings → Sync and backup → Manage backup) so
+    future `npm install` runs inside the OneDrive tree don't re-pollute
+    the cloud sync. Not done in this session.
+  - Path resolution in both scripts uses `$PSScriptRoot` → migrating
+    to any future location is a no-op as long as `.augment/scripts/`
+    sits at the expected `<repo>/.augment/scripts/` relative path.
+
 ### 2026-05-22 15:10 — VS Code Remote Tunnel proved; Tier 3c Catel OneDrive mirror live; laptop now has full project context via Catel mirror
 - **Goal:** unblock the laptop so zepedro (and Juan later) can work
   against the project state without needing RDP-into-CHost to work.
