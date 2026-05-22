@@ -1,3 +1,2 @@
 ﻿{"id":"970b43f77347","ts":"2026-05-22T17:45:09","enqueued_by":"zepedro","enqueued_on":"-WORK","kind":"smoketest","tag":"clone-agent-e2e","max_tokens":512,"system":"","prompt":"In one short sentence, what is the capital of Portugal?"}
 {"id":"a71431345141","ts":"2026-05-22T17:45:43","enqueued_by":"zepedro","enqueued_on":"-WORK","kind":"smoketest","tag":"clone-agent-e2e","max_tokens":1024,"system":"","prompt":"In one short sentence, what is the capital of Portugal?"}
-{"id":"f2330dff081e","ts":"2026-05-22T17:58:40","enqueued_by":"zepedro","enqueued_on":"FLYING","kind":"roundtrip","tag":"laptop-roundtrip","max_tokens":256,"system":"","prompt":"Reply with exactly: pong from CHost via airouter"}

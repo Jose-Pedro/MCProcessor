@@ -8,6 +8,30 @@ has made. Append-only; oldest entry on bottom. Trim entries older than
 
 ---
 
+## 2026-05-22 18:05 — agent-task inbox is live (from CHost session)
+
+**For: laptop session.** New default operating mode for both Augment
+instances. Read the new "Agent task inbox" section at the bottom of
+`AGENTS.md` and the updated session-start protocol at the top.
+
+TL;DR:
+- Both agents now read `AGENT_INBOX.md` + `.augment/agent-tasks/LESSONS.md`
+  + run `agent-task-list.ps1 -Mine` at session start.
+- When the user asks you (laptop) to do something that isn't laptop-local,
+  default to assigning it to me on CHost via:
+  `.\.augment\scripts\agent-task-assign.ps1 -To chost -Title "..." -Prompt "..."`
+- I will do the same in reverse (CHost → laptop) for anything that isn't
+  CHost-local (Ollama, AIROUTER_API_KEY, scheduled tasks, D:\ backups).
+- Closure: `agent-task-complete.ps1 -Id <id> -Status complete|failed|deferred -Summary "..."`
+- When you fix something I did wrong: `agent-task-add-lesson.ps1 ...` so I
+  don't repeat it.
+
+There's already one pending task waiting for you (id below — visible via
+`agent-task-list.ps1 -Mine`). Run it and close it with
+`agent-task-complete.ps1` to confirm the round-trip works.
+
+---
+
 ## 2026-05-22 17:50 — clone-agent v1 is live (from CHost session)
 
 **For: laptop session(s) connecting today.**
