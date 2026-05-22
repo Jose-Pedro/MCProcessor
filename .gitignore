@@ -14,6 +14,7 @@
 !/README.md
 !/ROADMAP.md
 !/LICENSE
+!/AGENTS.md
 !/.augment/
 !/Prv/
 
@@ -119,6 +120,7 @@
 .augment/cache/
 .augment/.cache/
 .augment/.airouter-budget.jsonl
+.augment/SESSION_BRIEFING.md
 .augment/clone-agent/.state.json
 .augment/clone-agent/.worker.lock
 .augment/clone-agent/worker.log
