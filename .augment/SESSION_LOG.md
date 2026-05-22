@@ -5,6 +5,69 @@ Update protocol is defined in `/AGENTS.md`. Newest entry on top.
 
 ## Entries
 
+### 2026-05-22 11:45 — Phase 0 closed: cold-path distill + nightly task + Tier 3a backup
+- **Goal:** stand up the full write-now/index-later memory pipeline
+  (raw -> distilled -> embedded -> Seagate mirror), automate it nightly,
+  and validate end-to-end on real data so future sessions can read prior
+  context without manual intervention.
+- **Done:**
+  - Verified hot path: `memory-append.ps1` produced 3 entries today in
+    `.augment/memory/raw/2026-05-22.zepedro.jsonl` (decision +2 facts).
+  - Verified cold path end-to-end (3 production runs, all green):
+    - Phase 1 (Qwen distill): ~18-28 s per run incl. model load.
+    - Phase 2 (nomic embed): ~3-4 s, dim=768.
+    - Phase 3a (Seagate mirror): added new code path; tested both
+      drive-present (robocopy exit=1, success) and drive-absent
+      (`-BackupRoot Z:\...` -> silent skip log) branches.
+    - Idempotency: re-run with no new entries exits in <1 s.
+  - Registered Windows Scheduled Task `AugmentColdPathDistill`:
+    daily 02:00 local, WakeToRun=True, StartWhenAvailable=True,
+    LogonType=Interactive (no admin needed; CHost is always-logged-in).
+    NextRunTime confirmed = 23/05/2026 02:00.
+  - Resolved D11 (Tier 3a backup): Seagate at `D:` (1863 GB, 1007 GB
+    free), sometimes-plugged, backup root `D:\Backups\MCProcessor\`.
+    First mirror succeeded: 49 KB across raw/distilled/index/.state.
+  - AGENTS.md step 5 rewritten to document the locked-in Seagate path
+    and sometimes-plugged contract.
+- **Files touched:**
+  - `.augment/scripts/cold-path-distill.ps1` (added `-SkipBackup`,
+    `-BackupRoot` params + Phase 3a robocopy block)
+  - `.augment/scripts/register-nightly-task.ps1` (switched LogonType
+    from S4U to Interactive — S4U needs admin)
+  - `AGENTS.md` (step 5 of cold-path flow)
+  - `.augment/memory/raw/2026-05-22.zepedro.jsonl` (3 entries)
+  - `.augment/memory/distilled/2026-05-22.zepedro.jsonl` (3 entries)
+  - `.augment/memory/index/2026-05-22.zepedro.vec.jsonl` (3 vectors)
+  - `.augment/memory/.state/distilled.json`,
+    `.augment/memory/today.index.json`,
+    `.augment/memory/.cold-path.log`
+  - `D:\Backups\MCProcessor\.augment\memory\**` (full mirror)
+- **State:** complete for Phase 0. One sub-step intentionally not
+  exercised: cold-path Phase 3b (git auto-commit/push) — code present
+  but never run live, since every run today used `-SkipGit`.
+- **Next step:** in the next session, validate Phase 3b by running
+  `cold-path-distill.ps1` once without `-SkipGit` (will auto-commit
+  today's memory artifacts and push to `origin/main`). Then proceed to
+  Juan onboarding (chost-juan tunnel + add `juan` to default
+  `-Architects` list + his raw JSONL stream).
+- **Notes:**
+  - Two-model coexistence on CHost (Intel Iris Xe, ~1 GB VRAM) is
+    impossible — confirmed by Ollama eviction logs. Mandatory batching
+    (all-writer-then-all-embed) is encoded in the script and must stay.
+  - `OLLAMA_MAX_LOADED_MODELS=2` and `OLLAMA_NUM_PARALLEL=1` are set in
+    User-scope env vars; Ollama must be restarted (kill + relaunch tray)
+    to pick them up after any future change.
+  - First real nightly run is tonight at 02:00 — tomorrow check
+    `.augment/memory/.cold-path.log` for the 02:00 timestamp to confirm
+    Task Scheduler actually fired.
+  - Interactive LogonType means the 02:00 task only fires when user
+    `zeped` is logged on. CHost is "always on, always logged in" by
+    design; if that ever changes, re-register from an elevated shell
+    and switch back to S4U.
+  - Source/destination byte mismatch (~147 bytes) on first Seagate
+    mirror is expected — `.cold-path.log` gets two more lines written
+    AFTER robocopy completes; next run reconciles.
+
 ### 2026-05-12 09:10 — Installed VS Code Speech extension (dictation for chat)
 - **Goal:** give the user a speech-to-text path so they can dictate into
   the Augment chat box and any other VS Code text input without keyboard.
