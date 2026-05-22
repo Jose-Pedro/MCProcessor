@@ -23,9 +23,14 @@ next `git pull` / OneDrive sync.
 
 ## R2. Delegation workflow (counterpart-first, review-loop)
 
-Every user request from José or Juan follows this loop. Do **not**
-shortcut it to "do it yourself" except for the CHost-local exceptions
-in §R2.5 below.
+This rule is **symmetric**: both agents run the identical loop with
+roles reversed. When José types into the CHost session, "counterpart"
+= laptop agent. When Juan types into the laptop session, "counterpart"
+= CHost agent. The `-To <other>` argument in every command below
+resolves accordingly per `AUGMENT_AGENT_HOST` / `COMPUTERNAME`.
+
+Every user request follows this loop. Do **not** shortcut it to
+"do it yourself" except for the single-host exceptions in §R2.5 below.
 
 1. **Assign first, act never.** Forward the request to the counterpart
    via `.\.augment\scripts\agent-task-assign.ps1 -To <other>

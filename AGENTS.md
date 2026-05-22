@@ -300,7 +300,10 @@ Two Augment Agent instances run against this workspace: one on CHost
 collaborate through a file-based inbox under `.augment/agent-tasks/`.
 
 **Default mode is counterpart-first.** Every user request follows the
-review-loop in `.augment/rules/agent-operating-rules.md` §R2. Summary:
+review-loop in `.augment/rules/agent-operating-rules.md` §R2. The rule
+is **symmetric** — when José types into the CHost session, the
+counterpart is the laptop agent; when Juan types into the laptop
+session, the counterpart is the CHost agent. Summary:
 
 1. **Assign first.** Forward the user's request verbatim to the
    counterpart via `agent-task-assign.ps1 -To <other> -Title "..."
