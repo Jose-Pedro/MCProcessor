@@ -120,6 +120,8 @@
 .augment/cache/
 .augment/.cache/
 .augment/.airouter-budget.jsonl
+.augment/.auto-checkpoint.state.json
+.augment/.auto-checkpoint.log
 .augment/SESSION_BRIEFING.md
 .augment/clone-agent/.state.json
 .augment/clone-agent/.worker.lock
