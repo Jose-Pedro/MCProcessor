@@ -190,8 +190,9 @@ if (-not $SkipCatel) {
                 if ($LASTEXITCODE -ge 8) { $allOK = $false; Log "tier-3c mirror: $($p.Src) -> $($p.Dst) FAILED (robocopy exit=$LASTEXITCODE)" }
             }
             $singles = @(
-                @{ Src = (Join-Path $repoRoot '.augment\SESSION_LOG.md'); Dst = (Join-Path $dotAug 'SESSION_LOG.md') },
-                @{ Src = (Join-Path $repoRoot 'AGENTS.md');               Dst = (Join-Path $CatelMirrorRoot 'AGENTS.md') }
+                @{ Src = (Join-Path $repoRoot '.augment\SESSION_LOG.md');            Dst = (Join-Path $dotAug 'SESSION_LOG.md') },
+                @{ Src = (Join-Path $repoRoot '.augment\LAPTOP_AGENT_BOOTSTRAP.md'); Dst = (Join-Path $dotAug 'LAPTOP_AGENT_BOOTSTRAP.md') },
+                @{ Src = (Join-Path $repoRoot 'AGENTS.md');                          Dst = (Join-Path $CatelMirrorRoot 'AGENTS.md') }
             )
             foreach ($s in $singles) {
                 if (Test-Path $s.Src) { Copy-Item -Path $s.Src -Destination $s.Dst -Force }

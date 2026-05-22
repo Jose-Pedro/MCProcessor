@@ -5,6 +5,211 @@ Update protocol is defined in `/AGENTS.md`. Newest entry on top.
 
 ## Entries
 
+### 2026-05-22 15:10 — VS Code Remote Tunnel proved; Tier 3c Catel OneDrive mirror live; laptop now has full project context via Catel mirror
+- **Goal:** unblock the laptop so zepedro (and Juan later) can work
+  against the project state without needing RDP-into-CHost to work.
+  Architecture decision: laptop runs its own VS Code + own Augment as
+  a sibling agent, reading shared state from disk (not via tunnel).
+- **Done:**
+  - Confirmed CHost has a pre-registered VS Code tunnel named `work`
+    (Microsoft Remote Tunnels), `Connected`, service installed.
+    Accessible via `https://vscode.dev/tunnel/work` or VS Code
+    Remote-Tunnels extension. Documented but not used as the primary
+    laptop path.
+  - Decision: tunnel = fallback when synchronous co-presence is
+    needed; default = laptop-local sibling agent, no tunnel.
+  - Added Tier 3c backup to `cold-path-distill.ps1`: mirrors
+    `.augment/memory/**`, `.augment/SESSION_LOG.md`, `.augment/scripts/**`,
+    `.augment/config/**`, and `AGENTS.md` to the Catel OneDrive folder
+    `%USERPROFILE%\OneDrive - Palácio dos Afetos lda\MCProcessor\`.
+    Path auto-resolved at runtime from HKCU OneDrive registry by
+    matching `ConfiguredTenantId = 0cca651b-b45a-4199-b7b2-bd44f771253f`,
+    avoiding the accented-char (`Palácio`) mojibake issue on PS 5.1.
+    New flags: `-SkipCatel`, `-CatelMirrorRoot`, `-CatelTenantId`,
+    `-CatelMirrorSubdir`.
+  - Refactored cold-path early-exit: when no new raw entries exist,
+    distill+embed phases are now skipped but mirror+git phases still
+    run (so out-of-band changes to scripts/SESSION_LOG/AGENTS.md
+    still propagate). Wrapped phases 1+2+state+pointer in
+    `if (-not $skipDistill)`.
+  - Updated AGENTS.md tier description to enumerate 3a Seagate +
+    3b personal OneDrive + 3c Catel OneDrive.
+  - Test run: tier-3c mirror OK -> Catel folder populated end-to-end.
+    Verified all expected files present (memory tree, scripts, config,
+    SESSION_LOG.md, AGENTS.md). Commit `0e21714` on `origin/main`.
+  - User confirmed Catel mirror folder is now visible on laptop side
+    via OneDrive sync — multi-device propagation working.
+- **Files touched:**
+  `.augment/scripts/cold-path-distill.ps1`,
+  `AGENTS.md`,
+  `.augment/SESSION_LOG.md`.
+- **State:** complete for the mirror/access work. Laptop sibling agent
+  can now read project context from either:
+  (a) the personal-OneDrive-synced workspace root, OR
+  (b) the Catel-OneDrive-synced `MCProcessor\.augment\` mirror
+      (preferred for read-only context lookup; isolated from accidental
+      writes in the live workspace).
+- **Next step for the laptop sibling agent:** on first invocation,
+  read this entry + the previous two entries + `AGENTS.md`, then state
+  back the project state, the next planned action, and confirm the
+  `AUGMENT_ARCHITECT` env var value to use (`zepedro` for José,
+  `juan` for Juan). Do NOT checkpoint to SESSION_LOG.md concurrently
+  with another active agent — coordination rule.
+- **Notes:**
+  - AGENTS.md is currently `.gitignore`d. Tier 3c mirror still copies
+    it via robocopy/Copy-Item — laptop receives it. Decision on
+    whether to track it in git is deferred.
+  - RDP into CHost remains blocked (NLA on + new MSA password
+    requires admin shell on CHost to disable NLA; user must walk to
+    CHost or accept UAC there). Parked — tunnel + sibling-agent
+    architecture removes the need.
+  - Tonight's 02:00 cold-path will now exercise all three mirror
+    tiers + git for the first time. Verify `.cold-path.log`
+    tomorrow morning.
+  - Two pending items from earlier checkpoints still open:
+    L0 Airouter budget tracker, 2nd Airouter key wiring.
+
+
+### 2026-05-22 14:30 — Tailscale + RDP shortcuts deployed; blocked on RDP auth, pivoting to laptop-side Augment
+- **Goal:** give zepedro from-anywhere access to CHost's Augment session
+  so the shared chat / context window survives location changes. Same
+  mechanism unblocks Juan later (he'll RDP into the shared `zeped`
+  session, tag work via `$env:AUGMENT_ARCHITECT='juan'`).
+- **Done:**
+  - Disabled AC standby on CHost (`powercfg /change standby-timeout-ac 0`)
+    so RDP isn't blocked by the prior 3-min sleep.
+  - Installed Tailscale 1.98.2 on CHost; signed in with GitHub as
+    `Jose-Pedro`. CHost tailnet IP `100.83.6.49`, magic-DNS name `work`,
+    FQDN `work.tail6394c1.ts.net`.
+  - Installed Tailscale on laptop (`flying`, `100.74.20.77`), same
+    account. Both nodes online, mutually visible.
+  - Committed two pre-built RDP shortcuts under `.augment/exports/`:
+    `connect-chost-lan.rdp` (192.168.4.74 for same-Wi-Fi)
+    and `connect-chost-tailscale.rdp` (magic-DNS `work` for anywhere).
+    Pushed as `0674ea6` + `41d7d59` on `origin/main`.
+  - Identified the MSA tied to local `zeped` profile:
+    `zepedro.medeiros@gmail.com` (via HKCU IdentityCRL UserNames).
+    User confirmed correct password is held (redacted).
+  - Created `.vsls.json` at repo root earlier in session to fix Live
+    Share `RangeError` from a node_modules junction loop under
+    `Prv/prv-intprojects-nodejs/`. Live Share now secondary to RDP.
+- **Files touched:**
+  `.augment/exports/connect-chost-lan.rdp`,
+  `.augment/exports/connect-chost-tailscale.rdp`,
+  `.vsls.json`,
+  `.augment/SESSION_LOG.md`.
+- **State:** blocked. RDP from laptop into `work` rejects all username
+  variants (`zeped`, `zepedro.medeiros@gmail.com`, `-WORK\zeped`,
+  `.\zeped`) despite user having the correct MSA password. CHost-side
+  RDP config not yet verified (RDP-enabled? `zeped` in Remote Desktop
+  Users? firewall allowing on Tailscale interface?).
+- **Next step:** user is switching to a fresh Augment session on the
+  laptop (own VS Code, own Augment subscription, OneDrive-synced repo).
+  That agent picks up from this entry. Two parallel paths it can take:
+  (a) diagnose CHost RDP from inside this CHost session via the laptop
+  agent's chat — but the laptop agent has no terminal on CHost, so
+  it'd need to walk the user through running commands at the CHost
+  console; or (b) bypass RDP entirely and do work directly from the
+  laptop-side repo (chat history won't be shared with this thread, but
+  `.augment/memory/raw/*.juan.jsonl` and `*.zepedro.jsonl` keep the
+  per-architect persistence working). Recommended: (b) for today, fix
+  RDP later when both architects are physically at CHost.
+- **Notes:**
+  - C1 (sequential shared session) is the intended model: only one
+    interactive session at a time. RDP-in locks the console; logging
+    in at console kicks the RDP session.
+  - `AUGMENT_ARCHITECT` env var is per-terminal — set it in every new
+    terminal before invoking memory-append.ps1 / agent work.
+  - Tonight's 02:00 cold-path will still run on CHost regardless of
+    where the architects are typing from. Verify `.cold-path.log`
+    tomorrow morning.
+  - Password is held by user; treat as redacted in chat, tool calls,
+    and this log.
+  - Two deferred items still pending from prior checkpoint:
+    L0 Airouter budget tracker; 2nd Airouter key wiring.
+
+
+### 2026-05-22 12:05 — Phase 3b validated; Juan onboarding pending Live Share install
+- **Goal:** finish validating the cold-path git auto-commit/push step
+  (Phase 3b), then start Juan onboarding via VS Code Live Share so his
+  raw stream feeds tonight's 02:00 cold-path alongside zepedro's.
+- **Done:**
+  - Validated Phase 3b end-to-end. Two bugs caught and fixed in
+    `cold-path-distill.ps1`:
+    1. `Push-Location (Split-Path $memRoot)` landed in `.augment/`,
+       not repo root, so `git add .augment/memory ...` looked for
+       `.augment/.augment/memory` and failed. Fixed by stepping up
+       one more level: `Split-Path (Split-Path $memRoot)`.
+    2. Git writes benign warnings to stderr (e.g. CRLF/LF
+       conversion). Under script-wide `EAP=Stop` these were caught
+       by the `try/catch` and aborted the commit silently. Fixed by
+       wrapping the git block with `EAP=Continue` and replacing
+       try/catch-driven flow with `$LASTEXITCODE` checks. Also
+       restructured to drop early-`return` so `run end` always logs.
+  - Verified: new commit `b931185 cold-path: distill 2026-05-22`
+    on local `main` AND `origin/main` (push succeeded).
+  - Total nightly run wall-clock: ~35 s (22 s distill, 3 s embed,
+    6 s Seagate mirror, 3 s git).
+  - Discovered three untracked dirs under `.augment/`: `config/`,
+    `exports/`, `scripts/`. The `scripts/` one is the critical
+    finding — our automation source (memory-append, cold-path-distill,
+    register-nightly-task) lives only on CHost + Seagate mirror, not
+    in git. Surfaced to user; awaiting `track scripts` confirmation.
+  - Juan onboarding: user confirmed channel is **VS Code Live Share**
+    (host shares a session, Juan joins as guest), NOT the previously
+    documented `chost-juan` Microsoft Remote Tunnel path. AGENTS.md
+    lines 127-132 are now stale; awaiting `fix agents` to rewrite.
+  - Confirmed scripts already Juan-ready (no code changes): memory-
+    append.ps1 already has `-Architect` param + `AUGMENT_ARCHITECT`
+    env fallback; cold-path default Architects = `@('zepedro','juan')`.
+  - Agreed convention with user: **option A** — Juan opens a shared
+    terminal in Live Share, runs `$env:AUGMENT_ARCHITECT='juan'`
+    once, then every `memory-append.ps1` call from that terminal
+    tags entries to `2026-05-22.juan.jsonl`.
+  - Live Share extension was MISSING from this VS Code. Installed
+    `ms-vsliveshare.vsliveshare` via `code.cmd --install-extension`.
+    Sign-in + first invitation still pending (requires VS Code
+    restart to activate, hence this checkpoint).
+- **Files touched:**
+  - `.augment/scripts/cold-path-distill.ps1` (Phase 3b: two iterative
+    bug fixes — pathing + EAP/exit-code handling)
+  - `.augment/SESSION_LOG.md` (this entry)
+  - git: new commit `b931185` on `main` + `origin/main` containing
+    today's `.augment/memory/**` artifacts and the previous SESSION_LOG
+    checkpoint
+  - VS Code: extension `ms-vsliveshare.vsliveshare` installed (per-
+    user, not in repo)
+- **State:** in-progress (Phase 3b complete and live; Juan onboarding
+  blocked on VS Code restart to activate Live Share extension).
+- **Next step:** after VS Code restart →
+  1. `Ctrl+Shift+P` → "Live Share: Sign In" (use GitHub, account is
+     already `Jose-Pedro`).
+  2. Click "Live Share" button in status bar (bottom-left) → "Start
+     Collaboration Session" → copy invite URL to Juan.
+  3. When Juan joins: Live Share panel (left sidebar) → right-click
+     his name → "Make Read/Write" → `Ctrl+Shift+P` → "Live Share:
+     Share Terminal" → Read/write.
+  4. Juan runs in that terminal: `$env:AUGMENT_ARCHITECT='juan'`
+     then his inaugural `memory-append.ps1 -Kind decision -Text ...`
+     to seed `2026-05-22.juan.jsonl`.
+- **Notes:**
+  - Two unresolved follow-ups deliberately deferred until user gives
+    explicit go-ahead: (a) `git add .augment/scripts .augment/config
+    .augment/exports` so automation source is versioned; (b) AGENTS.md
+    lines 127-132 rewrite (Live Share = active path, Remote Tunnel
+    = optional future). Both independent of Juan; can be done
+    anytime.
+  - Live Share guest's shared terminal physically runs on CHost (no
+    OS-level user separation between zepedro and juan in that shell).
+    Architect tagging is purely a convention enforced via env var or
+    `-Architect` flag — there is no auto-detection.
+  - Live Share has a browser fallback (vscode.dev) so Juan does NOT
+    need VS Code installed locally if he doesn't have it yet.
+  - VS Code restart (not just window reload) is recommended for
+    Live Share's first activation — its agent process attaches at
+    full process start. After restart, the "Live Share" entry will
+    appear in the status bar and as an icon in the activity bar.
+
 ### 2026-05-22 11:45 — Phase 0 closed: cold-path distill + nightly task + Tier 3a backup
 - **Goal:** stand up the full write-now/index-later memory pipeline
   (raw -> distilled -> embedded -> Seagate mirror), automate it nightly,
