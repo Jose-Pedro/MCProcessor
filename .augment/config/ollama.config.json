@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Endpoints for the CModel local fleet on CHost. Loopback URL is for CHost-side callers; tailnet URL is for laptop / any other Tailscale-connected node. Port 11434 is exposed by setting User env var OLLAMA_HOST=0.0.0.0:11434 and inbound firewall rule 'Augment-Ollama-Tailscale' (scope 100.64.0.0/10).",
+  "host": {
+    "chost": "http://127.0.0.1:11434",
+    "tailnet": "http://100.83.6.49:11434",
+    "tailnetDns": "http://work.tail6394c1.ts.net:11434"
+  },
+  "models": {
+    "writer":    { "id": "qwen2.5-coder:7b-instruct-q4_K_M", "role": "extract/summarize/rerank" },
+    "retriever": { "id": "nomic-embed-text:latest",          "role": "embeddings (dim=768)" }
+  },
+  "batchingLaw": "All writer calls first, then all retriever calls. Never interleave - CHost can only hold one CModel member resident at a time. keep_alive=24h is mandatory on every call."
+}
