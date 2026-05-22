@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lead Architect — Dual-Model Counterpart System Design</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  html { font-size: 11pt; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #1a1a1a; line-height: 1.45; }
+  h1 { font-size: 20pt; margin: 0 0 4pt 0; border-bottom: 2px solid #2c5282; padding-bottom: 4pt; }
+  h2 { font-size: 14pt; margin: 18pt 0 6pt 0; color: #2c5282; border-bottom: 1px solid #cbd5e0; padding-bottom: 2pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 12pt 0 4pt 0; color: #2d3748; page-break-after: avoid; }
+  p, li { font-size: 10.5pt; }
+  ul, ol { margin: 4pt 0 6pt 18pt; padding: 0; }
+  li { margin: 2pt 0; }
+  code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 9.5pt; background: #f1f5f9; padding: 1pt 3pt; border-radius: 2pt; }
+  pre { font-family: Consolas, "Cascadia Mono", monospace; font-size: 9pt; background: #f7fafc; border: 1px solid #e2e8f0; border-left: 3px solid #4a5568; padding: 8pt 10pt; border-radius: 3pt; overflow-x: auto; white-space: pre-wrap; page-break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 6pt 0 10pt 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #cbd5e0; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 600; }
+  blockquote { border-left: 3px solid #2c5282; padding: 4pt 10pt; margin: 6pt 0; background: #f7fafc; font-style: italic; }
+  .meta { color: #4a5568; font-size: 9.5pt; margin-bottom: 12pt; }
+  .badge { display: inline-block; padding: 1pt 6pt; border-radius: 3pt; font-size: 8.5pt; font-weight: 600; }
+  .userblock { background: #fffbea; border: 1px solid #f6e05e; border-left: 4px solid #d69e2e; padding: 8pt 12pt; border-radius: 3pt; margin: 8pt 0 16pt 0; page-break-inside: avoid; }
+  .userblock h3 { margin-top: 0; color: #744210; }
+  hr { border: none; border-top: 1px solid #cbd5e0; margin: 14pt 0; }
+  .pagebreak { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<h1>Lead Architect — Dual-Model Counterpart System Design</h1>
+<div class="meta">
+  Project: <b>MCProcessor</b> &middot; Workspace: <code>GODMODE/Codebase</code> &middot; Generated: 2026-05-21
+  &middot; Repo: <code>Jose-Pedro/MCProcessor</code>
+</div>
+
+<div class="userblock">
+<h3>User request — Lead Architect mandate</h3>
+<p>Act as the Lead Architect in a dual-model agentic framework. We are establishing a persistent
+"Agent Counterpart" system where you serve as the strategic architect and a future remote model
+(Qwen 3.6) will serve as the primary coding engine — making you the supervisor. Remember the
+concept is <i>not</i> fast AI; we are focused on doing things right, not doing things now. Any
+task that the local models can perform should be done by them and await the time needed, being
+your responsibility to train them and revise them to the best of the models' abilities, always
+focusing on doing the least interactions possible and being patient for replies and tunings.</p>
+
+<p><b>Objective:</b> design and implement a high-efficiency long-term memory and training
+architecture with the following requirements:</p>
+
+<ol>
+  <li><b>Dual-Model Roles</b>
+    <ul>
+      <li><b>Local Model (Ollama):</b> "Knowledge Vault" and "Context Manager." Stores all
+          consolidated training, architectural decisions, and session history.</li>
+      <li><b>Remote Model (Qwen 3.6):</b> "Execution Engine" for complex coding tasks, guided
+          by context provided by the local model.</li>
+    </ul>
+  </li>
+  <li><b>Knowledge Persistence &amp; Consolidation</b>
+    <ul>
+      <li>Every new session begins by loading the "Consolidated Past Knowledge."</li>
+      <li>"Best Version" logic: avoid recording redundant chat history; distill lessons learned
+          and optimal code patterns into a structured knowledge base
+          (e.g. <code>.augment/</code> or <code>AGENTS.md</code>).</li>
+      <li>100% functional accuracy and architectural integrity; prioritize the "right solution"
+          over user-pleasing.</li>
+    </ul>
+  </li>
+  <li><b>Model Investigation</b>
+    <ul>
+      <li>Evaluate currently installed local models
+          (<code>acidtib/qwen2.5-coder-cline:7b</code>, <code>qwen2.5-coder:7b-instruct</code>,
+          <code>nemotron-3-nano:4b</code>, <code>nomic-embed-text</code>) to determine which is
+          most efficient for "Knowledge Extraction" and "Context Compression."</li>
+      <li>Propose a method for using the embedding model
+          (<code>nomic-embed-text</code>) to facilitate fast retrieval of long-term memory.</li>
+    </ul>
+  </li>
+  <li><b>Environment Continuity</b>
+    <ul>
+      <li>Define the "Bootstrap" process for starting a session so that no context or training
+          progress is ever lost, allowing the environment to evolve as a long-term autonomous
+          counterpart.</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<h2>0. Critical clarification first</h2>
+<p><b>"Qwen 3.6"</b> — I cannot identify this version unambiguously. The Qwen family today has:</p>
+<ul>
+  <li>Qwen 2.5 (the family we have local: <code>qwen2.5-coder:7b</code>)</li>
+  <li>Qwen 3 base + Qwen 3 Coder (30B MoE, ~17 GB Q4 — does <i>not</i> fit your 6 GB VRAM)</li>
+  <li>No publicly released "Qwen 3.6" that I can verify</li>
+</ul>
+<p>Before designing the remote half I need to know:</p>
+<ol>
+  <li><b>What model exactly</b> — a hosted endpoint (Alibaba DashScope? OpenRouter? Together?),
+      a self-hosted deployment on a bigger machine, or something else?</li>
+  <li><b>Access mechanism</b> — API key + OpenAI-compatible HTTP, SSH-tunneled Ollama, Cline's
+      built-in providers, …?</li>
+  <li><b>Cost model</b> — free local-network / self-hosted, or paid per-token? This drives how
+      aggressive we should be in delegating to local first.</li>
+</ol>
+<p>The local-side architecture below <b>does not depend on this answer</b> — it's the foundation
+that holds regardless.</p>
+
+<h2>Operating principle (encoded as routing law)</h2>
+<blockquote>
+The Lead Architect and the Remote Execution Engine are the most expensive resources in the
+system. No task reaches them that the local ensemble can perform. If the local ensemble is
+uncertain, it produces a structured failure report — never a guess — and the task is routed
+one level up.
+</blockquote>
+<p>This means slow first runs (local models think; distillation takes time) but compounding
+efficiency — every distilled fact reduces future re-work.</p>
+
+<h2>1. System overview</h2>
+<pre>
+SUPERVISOR (Lead Architect) — strategy, audit, escalation
+    │
+    ├─ delegates routine tasks to LOCAL ENSEMBLE (Ollama)
+    │     ├─ acidtib qwen-cline 7b  → Cline agentic tool-use
+    │     ├─ qwen2.5-coder 7b inst  → extraction / distillation
+    │     ├─ nemotron-3-nano 4b     → fast classify / chunk summary
+    │     └─ nomic-embed-text       → embeddings for retrieval
+    │
+    └─ assigns heavy coding to REMOTE EXEC ENGINE (TBD — "Qwen 3.6")
+</pre>
+
+<h2>2. Model role assignments (and how I arrived at them)</h2>
+<table>
+<thead><tr><th>Capability needed</th><th>Assigned model</th><th>Evidence / reasoning</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td><b>Cline agentic tool-use</b></td>
+    <td><code>acidtib/qwen2.5-coder-cline:7b</code></td>
+    <td>Smoke-tested ✅; 16 K context; explicitly fine-tuned for Cline's tool-call JSON.</td>
+    <td>High</td></tr>
+<tr><td><b>Knowledge extraction</b> (source file → structured facts)</td>
+    <td><code>qwen2.5-coder:7b-instruct-q4_K_M</code></td>
+    <td>16 K context handles big CDS files; instruct-tuned for "extract X from Y" patterns;
+        same base as the Cline tune so structurally consistent.</td>
+    <td>Medium-high — needs a targeted test on a real <code>processflow.cds</code>-sized input</td></tr>
+<tr><td><b>Context compression</b> (raw chat → distilled lesson)</td>
+    <td><b>Two-stage:</b> <code>nemotron-3-nano:4b</code> for chunk-summary pass,
+        then <code>qwen2.5-coder:7b-instruct</code> for cross-chunk merge</td>
+    <td>Nemotron is 1.6× faster (31 vs 19 tok/s) but only 4 K context — perfect for
+        chunk-by-chunk first pass. Qwen 7B does the unifying second pass where reasoning matters.</td>
+    <td>Medium — needs validation</td></tr>
+<tr><td><b>Classification</b> (tag a snippet: decision / fact / pattern / anti-pattern)</td>
+    <td><code>nemotron-3-nano:4b</code></td>
+    <td>Cheap discrete-output task, exactly what a fast small model is for.</td>
+    <td>High</td></tr>
+<tr><td><b>Embeddings</b></td>
+    <td><code>nomic-embed-text</code></td>
+    <td>Only embedding model on the box; 768-dim; 8192-token input;
+        Ollama <code>/api/embeddings</code>.</td>
+    <td>High</td></tr>
+<tr><td><b>Merge arbiter</b> (two memory entries disagree)</td>
+    <td>Escalate to Lead Architect</td>
+    <td>Governance call, not a generation task.</td>
+    <td>High</td></tr>
+<tr><td><b>Complex multi-file refactor</b></td>
+    <td>Remote Execution Engine</td>
+    <td>Above local capability ceiling.</td>
+    <td>Pending remote-model confirmation</td></tr>
+</tbody>
+</table>
+<p><b>Caveat:</b> the "context compression" and "knowledge extraction" assignments are based on
+architectural intuition + the smoke-bench tok/s data. They have <i>not</i> yet been tested on a
+real distillation task against the repo. I will not commit to these assignments without running
+a 5-minute targeted test — see Phase 0 below.</p>
+
+<h2>3. Storage layout (proposed — no files created yet)</h2>
+<pre>
+.augment/
+├── AGENTS.md                       (existing — root behavioral contract)
+├── SESSION_LOG.md                  (existing — rolling human-readable log)
+├── memory/
+│   ├── README.md                   (how the memory system works — for humans)
+│   ├── journal.jsonl               (APPEND-ONLY: every fact ever recorded, with embedding hash)
+│   ├── consolidated.md             (BEST-VERSION view: deduplicated, human-readable)
+│   ├── decisions.md                (architectural decision records — ADRs)
+│   ├── patterns.md                 (reusable code patterns confirmed in repo)
+│   └── anti-patterns.md            (things tried that failed — never re-try without cause)
+├── embeddings/
+│   └── store.sqlite                (SQLite: chunk_id, text, source_file, vector BLOB, created_at)
+├── prompts/
+│   ├── distill.txt                 (raw chat → structured facts)
+│   ├── merge.txt                   (existing entry + new info → best version)
+│   ├── extract.txt                 (source file → structured facts)
+│   └── classify.txt                (snippet → category)
+└── scripts/
+    ├── ollama-server.ps1           (existing-ish: ensure Ollama is up)
+    ├── memory-write.ps1            (NEW: append fact + embed + merge into consolidated)
+    ├── memory-query.ps1            (NEW: semantic search → top-K chunks)
+    ├── session-bootstrap.ps1       (NEW: load context at session start)
+    ├── session-checkpoint.ps1      (NEW: distill session → memory)
+    └── router.ps1                  (NEW: pick the right local model for a task)
+</pre>
+<p>Two important design choices:</p>
+<ol>
+  <li><b><code>journal.jsonl</code> is append-only and immutable.</b> Every fact ever extracted,
+      with timestamp + embedding hash + source. This is the audit trail. If the consolidated
+      view ever rots, we re-derive it from the journal.</li>
+  <li><b><code>consolidated.md</code> is regenerable.</b> It's the "best version" — but it's
+      never the source of truth. The journal is.</li>
+</ol>
+<p>This separation means: <b>we can never lose knowledge.</b> Even if a distillation pass
+introduces a bad merge, rolling back is "regenerate <code>consolidated.md</code> from
+<code>journal.jsonl</code>."</p>
+
+<h2>4. The "Best Version" merge protocol</h2>
+<p>When <code>memory-write.ps1</code> receives a new fact:</p>
+<pre>
+1. classify(new_fact)               → category   [nemotron-3-nano]
+2. embed(new_fact)                  → vector     [nomic-embed-text]
+3. append to journal.jsonl          (immutable)
+4. top-3 = query(vector, threshold=0.85)
+5. IF top-3 empty:
+       → new entry in consolidated.md
+6. ELSE for each near-neighbor:
+       → run merge.txt prompt:
+           "Given EXISTING entry [X] and NEW fact [Y], produce the unified
+            best version. Rules:
+              - Do NOT add facts not present in either source.
+              - Prefer specific over vague (file:line refs win over 'somewhere').
+              - If contradicted, mark with !CONTRADICTION! and stop.
+              - Output ONLY the merged entry, no preamble."
+       → [qwen2.5-coder 7b instruct]
+7. IF !CONTRADICTION! in output:
+       → escalate to Lead Architect — do not auto-resolve
+8. ELSE replace the existing entry with the merged version.
+9. Re-embed merged entry, update embeddings store.
+</pre>
+<p>Guardrails preventing hallucination:</p>
+<ul>
+  <li>Merge prompt explicitly forbids adding new facts.</li>
+  <li>The journal still has both originals for rollback.</li>
+  <li>A contradiction stops the pipeline rather than being silently picked.</li>
+</ul>
+
+<h2>5. Retrieval (RAG) design</h2>
+<p><b>Why SQLite, not a vector DB:</b> for a corpus under ~10 K chunks (we'll be far below that
+for years), an in-process SQLite with cosine-similarity in PowerShell beats any heavyweight
+vector DB on operational simplicity. Zero servers, zero ports, zero install. If we ever exceed
+10 K we migrate to <code>sqlite-vss</code> or <code>pgvector</code>.</p>
+
+<p><b>Storage schema:</b></p>
+<pre>
+CREATE TABLE chunks (
+  id          INTEGER PRIMARY KEY,
+  category    TEXT NOT NULL,         -- decision|fact|pattern|anti-pattern|lesson
+  source      TEXT,                  -- e.g. 'session:2026-05-21:checkpoint-3'
+  text        TEXT NOT NULL,
+  vector      BLOB NOT NULL,         -- 768 * 4 bytes (float32)
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  superseded_by INTEGER REFERENCES chunks(id)  -- soft-delete after merge
+);
+CREATE INDEX idx_category ON chunks(category) WHERE superseded_by IS NULL;
+</pre>
+
+<p><b>Query path:</b></p>
+<pre>
+query("How does prv-bts processflow relate to MCProcessor?")
+  → embed via nomic-embed-text          (~50 ms)
+  → SELECT id, text, dot_product(vector, :q) AS score
+       FROM chunks WHERE superseded_by IS NULL
+    ORDER BY score DESC LIMIT 10        (~5-20 ms for &lt;10K rows)
+  → filter by score &gt; 0.55              (configurable threshold)
+  → return top-K with provenance
+</pre>
+<p>Cosine similarity over 768-dim float32 vectors on small N can be done in pure PowerShell in
+~10 ms; if it gets slow we move it to a Python helper.</p>
+
+<h2>6. Session bootstrap protocol</h2>
+<p>When a new Augment session opens:</p>
+<ol>
+  <li><b>Existing</b> (per <code>AGENTS.md</code>): read <code>AGENTS.md</code>, read
+      <code>SESSION_LOG.md</code> tail.</li>
+  <li><b>NEW step:</b> Lead Architect calls <code>session-bootstrap.ps1</code> with the user's
+      first prompt as input:
+      <pre>user_prompt → embed → top-K memory chunks → render preamble</pre></li>
+  <li>Preamble format (~30–50 lines max):
+      <pre>
+## Loaded from long-term memory (relevance to current prompt)
+
+[0.91] DECISION: prv-bts-nodejs not imported; processflow consumed via …
+       source: session 2026-05-21 checkpoint-2
+[0.87] FACT: SCREEN_CONTROLS table lives in cmm-ddl-hana/db/src/cmm/…
+       source: codebase scan 2026-05-21
+[0.83] PATTERN: every CAP project binds same HANA tables via …
+…
+      </pre>
+  </li>
+  <li>Lead Architect acknowledges loaded context in 1–2 lines to the user, then proceeds.</li>
+</ol>
+<p><b>Crucially:</b> if the user's first prompt is <code>checkpoint</code> /
+<code>save progress</code>, bootstrap is skipped and we jump to the checkpoint protocol instead.</p>
+
+<h2>7. Session checkpoint protocol</h2>
+<p>On user "checkpoint" / "save progress":</p>
+<ol>
+  <li>Lead Architect collects the session's salient turns (no raw chat dump).</li>
+  <li>Local pipeline:
+    <ul>
+      <li><b>nemotron-3-nano</b> does chunk-by-chunk classification
+          (decision / fact / pattern / lesson / noise)</li>
+      <li><b>qwen2.5-coder 7b instruct</b> does the structured extraction prompt per
+          non-noise chunk</li>
+    </ul>
+  </li>
+  <li>For each extracted fact: pipe through <code>memory-write.ps1</code> (which handles the
+      merge logic from §4).</li>
+  <li>Update <code>SESSION_LOG.md</code> per existing AGENTS.md template — but the entry
+      references <i>which memory IDs were added/merged</i>, not the raw content. Memory is the
+      source of truth; SESSION_LOG is the human-readable timeline.</li>
+</ol>
+<p>Result: every checkpoint <b>grows the consolidated knowledge base without growing the
+chat-replay log.</b></p>
+
+<h2>8. Phased build plan</h2>
+<p>Explicit go/no-go between phases. No phase exceeds ~30 minutes wall-clock of build time.</p>
+
+<h3>Phase 0 — Targeted local-model validation (~10 min, prerequisite)</h3>
+<p><b>Before</b> committing the role assignments in §2, test them:</p>
+<ul>
+  <li>Feed <code>Prv\prv-bts-nodejs\db\processflow.cds</code> (~7 KB) to
+      <code>qwen2.5-coder 7b instruct</code> with the extraction prompt → measure:
+      (a) does it produce structured output? (b) does it hallucinate fields?</li>
+  <li>Feed a 2-KB chat snippet to <code>nemotron-3-nano</code> with classification prompt
+      → measure correctness.</li>
+  <li>Feed an embedding query to <code>nomic-embed-text</code> → measure round-trip latency.</li>
+  <li><b>Output:</b> a one-page validation report; if any model fails its assigned role,
+      reassign before building.</li>
+</ul>
+
+<h3>Phase 1 — Memory primitives (~30 min build)</h3>
+<ul>
+  <li>Create <code>.augment/memory/</code>, <code>.augment/embeddings/</code>,
+      <code>.augment/prompts/</code>, <code>.augment/scripts/</code></li>
+  <li>Write <code>memory-write.ps1</code>, <code>memory-query.ps1</code> (with SQLite schema)</li>
+  <li>Write the three prompt files (distill, merge, classify)</li>
+  <li>Seed <code>journal.jsonl</code> and <code>consolidated.md</code> with the
+      <b>already-captured</b> decisions from this and the prior session (MCProcessor scope,
+      no prv-bts import, model lineup, the 5 architectural decisions, etc.) — this becomes the
+      bootstrap data, NOT new content</li>
+  <li>Smoke-test: write a fact, query for it, confirm round-trip</li>
+</ul>
+
+<h3>Phase 2 — Bootstrap + checkpoint scripts (~20 min build)</h3>
+<ul>
+  <li>Write <code>session-bootstrap.ps1</code> and <code>session-checkpoint.ps1</code></li>
+  <li>Wire them into <code>AGENTS.md</code> so future Augment sessions invoke them</li>
+  <li>Smoke-test by simulating a session bootstrap</li>
+</ul>
+
+<h3>Phase 3 — Remote-engine integration (blocked on Qwen 3.6 clarification)</h3>
+<ul>
+  <li>Confirm remote model identity + access mechanism</li>
+  <li>Define routing rules: "when does Lead Architect escalate from local to remote?"</li>
+  <li>Wire the remote engine (likely via Cline's provider config or a thin CLI shim)</li>
+  <li>Test escalation end-to-end on a real coding task</li>
+</ul>
+
+<h3>Phase 4 — Self-evolution loop (later)</h3>
+<ul>
+  <li>Periodic "memory health check": detect stale entries, contradiction clusters,
+      low-confidence facts</li>
+  <li>Lead Architect reviews, accepts/rejects pruning suggestions</li>
+</ul>
+
+<h2>9. What I need from you before I build anything</h2>
+<ol>
+  <li><b>Confirm "Qwen 3.6" identity</b> — model, host, access. (Blocks Phase 3 only;
+      Phases 0–2 proceed regardless.)</li>
+  <li><b>Confirm storage location</b> — <code>.augment/</code> under the workspace root,
+      as proposed? Or a separate folder so memory persists across workspaces?</li>
+  <li><b>Confirm Phase 0 (validation tests) goes first</b> — small, but ~10 min of local-model
+      time and produces hard evidence for or against the proposed role assignments. Alternative:
+      skip and trust intuition, build Phase 1 directly, fix roles later if wrong.</li>
+  <li><b>Pending decisions from the previous design pass</b> (still open, mostly orthogonal —
+      but 4d affects script paths):
+    <ul>
+      <li>4a. Delete empty <code>cmm-processflow-*</code> placeholders?</li>
+      <li>4b. Fix <code>prv-screeencontrol-ui5</code> git merge markers?</li>
+      <li>4c. Have local model digest <code>cmm-sfr-interface-nodejs</code> design docs
+             (perfect Phase 0+ workload)?</li>
+      <li>4d. Rename <code>prv-intprojects-*</code> → <code>prv-mcprocessor-*</code>?</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Recommendation</h2>
+<ul>
+  <li><b>Now:</b> answer #1 (Qwen 3.6 identity) and #3 (yes/no to Phase 0 validation). Phase 0
+      is the cheapest possible reality-check before locking the architecture.</li>
+  <li><b>Then:</b> run Phase 0, report back validation results, propose any role adjustments.
+      If validation passes, you say <code>proceed</code> and Phase 1 is built.</li>
+  <li><b>Optionally in parallel:</b> if you give #4c (digest the SFR docs), that becomes the
+      <i>test workload</i> for the Phase 0 distillation pass — we learn something useful about
+      prior-art while validating the model assignments. Two birds, one local model.</li>
+</ul>
+
+<hr>
+<div class="meta">
+  End of document &middot; Generated by Lead Architect (Augment Agent / Claude Opus 4.7)
+  &middot; Source: <code>.augment/exports/lead-architect-design.html</code>
+</div>
+
+</body>
+</html>

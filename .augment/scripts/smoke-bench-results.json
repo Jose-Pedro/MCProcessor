@@ -1,0 +1,46 @@
+﻿[
+    {
+        "Model":  "acidtib/qwen2.5-coder-cline:7b",
+        "Status":  "FAIL",
+        "Error":  "The remote server returned an error: (500) Internal Server Error."
+    },
+    {
+        "Model":  "qwen2.5-coder:7b-instruct-q4_K_M",
+        "LoadMs":  53605,
+        "PromptTok":  59,
+        "PromptMs":  163,
+        "GenTok":  29,
+        "GenMs":  1480,
+        "TokPerSec":  19.6,
+        "TotalMs":  55290,
+        "WallMs":  55369,
+        "Footprint":  "4 minutes from now / ",
+        "Output":  "```javascript function sumArray(arr) { return arr.reduce((acc, val) =\u003e acc + val, 0); } ```"
+    },
+    {
+        "Model":  "deepseek-coder:6.7b",
+        "LoadMs":  17065,
+        "PromptTok":  102,
+        "PromptMs":  228,
+        "GenTok":  31,
+        "GenMs":  1804,
+        "TokPerSec":  17.2,
+        "TotalMs":  19117,
+        "WallMs":  19120,
+        "Footprint":  "4 minutes from now / ",
+        "Output":  "function sumArray(arr) { return arr.reduce((a, b) =\u003e a + b, 0); }"
+    },
+    {
+        "Model":  "nemotron-3-nano:4b",
+        "LoadMs":  24071,
+        "PromptTok":  49,
+        "PromptMs":  137,
+        "GenTok":  120,
+        "GenMs":  3846,
+        "TokPerSec":  31.2,
+        "TotalMs":  28216,
+        "WallMs":  28221,
+        "Footprint":  "4 minutes from now / ",
+        "Output":  "function sumArray(arr) { return arr.reduce((a, b) =\u003e a + b, 0"
+    }
+]

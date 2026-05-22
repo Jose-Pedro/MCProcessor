@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Non-secret config for the remote Execution Engine. The API key is NEVER stored here; it must live in the User environment variable AIROUTER_API_KEY. Update via: [Environment]::SetEnvironmentVariable('AIROUTER_API_KEY', '<new-key>', 'User')",
+  "provider": "airouter",
+  "baseUrl": "https://api.airouter.ch/v1",
+  "apiKeyEnvVar": "AIROUTER_API_KEY",
+  "api": "openai-completions",
+  "models": [
+    {
+      "id": "Qwen3.6",
+      "displayName": "Qwen3.6 (airouter.ch)",
+      "contextWindow": 262144,
+      "maxTokens": 65536,
+      "reasoning": true,
+      "input": ["text", "image"],
+      "cost": { "input": 0, "output": 0 },
+      "compat": { "supportsUsageInStreaming": true },
+      "role": "remote-execution-engine",
+      "notes": "Primary coding engine for complex multi-file work. Routed to ONLY after the local ensemble has exhausted its capability (see AGENTS.md > Token discipline > rule 7)."
+    }
+  ],
+  "endpoints": {
+    "models": "/models",
+    "chatCompletions": "/chat/completions",
+    "embeddings": "/embeddings"
+  },
+  "defaults": {
+    "temperature": 0.2,
+    "stream": false
+  }
+}
