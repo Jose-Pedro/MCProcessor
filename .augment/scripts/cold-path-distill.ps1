@@ -12,6 +12,7 @@
 #   .\cold-path-distill.ps1 -DryRun
 #   .\cold-path-distill.ps1 -SkipGit        # don't commit/push
 #   .\cold-path-distill.ps1 -SkipBackup     # don't mirror to Seagate
+#   .\cold-path-distill.ps1 -SkipCatel      # don't mirror to Catel OneDrive
 #
 [CmdletBinding()]
 param(
@@ -20,10 +21,14 @@ param(
     [switch]$DryRun,
     [switch]$SkipGit,
     [switch]$SkipBackup,
+    [switch]$SkipCatel,
     [string]$OllamaBase = 'http://127.0.0.1:11434',
     [string]$WriterModel = 'qwen2.5-coder:7b-instruct-q4_K_M',
     [string]$EmbedModel = 'nomic-embed-text:latest',
-    [string]$BackupRoot = 'D:\Backups\MCProcessor'
+    [string]$BackupRoot = 'D:\Backups\MCProcessor',
+    [string]$CatelMirrorRoot = '',
+    [string]$CatelTenantId = '0cca651b-b45a-4199-b7b2-bd44f771253f',
+    [string]$CatelMirrorSubdir = 'MCProcessor'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -71,12 +76,17 @@ foreach ($d in $dates) {
     }
 }
 
-if (-not $work) { Log "no new raw entries; exiting"; exit 0 }
-$totalNew = ($work | ForEach-Object { $_.newLines.Count } | Measure-Object -Sum).Sum
-Log "work units: $($work.Count), total new lines: $totalNew"
+$skipDistill = -not $work
+if ($skipDistill) { Log "no new raw entries; skipping phases 1+2, still running mirror/git" }
+else {
+    $totalNew = ($work | ForEach-Object { $_.newLines.Count } | Measure-Object -Sum).Sum
+    Log "work units: $($work.Count), total new lines: $totalNew"
+}
 
 if ($DryRun) { $work | ForEach-Object { Log "  would process: $($_.src) (+$($_.newLines.Count))" }; exit 0 }
 
+$distilledItems = @()
+if (-not $skipDistill) {
 # ============ PHASE 1: WRITER (Qwen hot, nomic absent) ============
 Log "--- phase 1: load $WriterModel ---"
 $null = Invoke-RestMethod -Uri "$OllamaBase/api/generate" -Method Post -ContentType 'application/json' -TimeoutSec 180 -Body (@{
@@ -84,7 +94,6 @@ $null = Invoke-RestMethod -Uri "$OllamaBase/api/generate" -Method Post -ContentT
 } | ConvertTo-Json -Compress)
 
 $distillSys = 'You compress chat memory entries into ONE compact JSON object per input. Schema: {"summary":"<one sentence>","topics":["..."],"entities":["..."]}. Output ONLY the JSON object, no prose, no markdown.'
-$distilledItems = @()
 foreach ($u in $work) {
     foreach ($line in $u.newLines) {
         $obj = $line | ConvertFrom-Json
@@ -130,6 +139,7 @@ $stateObj | ConvertTo-Json -Depth 4 | Set-Content -Path $stateFile -Encoding UTF
 # Pointer file for fast retrieval
 $pointer = [ordered]@{ updated=(Get-Date).ToString('s'); files=@(Get-ChildItem $idxDir -Filter '*.vec.jsonl' | ForEach-Object { $_.Name }) }
 $pointer | ConvertTo-Json | Set-Content -Path (Join-Path $memRoot 'today.index.json') -Encoding UTF8
+} # end if (-not $skipDistill)
 
 # ============ PHASE 3a: TIER 3a BACKUP (Seagate, sometimes-plugged) ============
 if (-not $SkipBackup) {
@@ -149,6 +159,50 @@ if (-not $SkipBackup) {
         Log "tier-3a backup: drive $backupDriveRoot not mounted, skipping (sometimes-plugged)"
     }
 }
+
+# ============ PHASE 3c: TIER 3c BACKUP (Catel OneDrive, multi-device) ============
+# Mirrors agent state to the Catel OneDrive folder so it propagates to the
+# laptop (and any other device signed into the same tenant) without git.
+if (-not $SkipCatel) {
+    if (-not $CatelMirrorRoot) {
+        $acct = Get-ChildItem 'HKCU:\Software\Microsoft\OneDrive\Accounts' -EA 0 |
+            Where-Object { (Get-ItemProperty $_.PSPath -EA 0).ConfiguredTenantId -eq $CatelTenantId } |
+            Select-Object -First 1
+        if ($acct) {
+            $userFolder = (Get-ItemProperty $acct.PSPath -EA 0).UserFolder
+            if ($userFolder) { $CatelMirrorRoot = Join-Path $userFolder $CatelMirrorSubdir }
+        }
+    }
+    if ($CatelMirrorRoot -and (Test-Path (Split-Path $CatelMirrorRoot))) {
+        try {
+            $repoRoot = Split-Path (Split-Path $memRoot)
+            $dotAug = Join-Path $CatelMirrorRoot '.augment'
+            $null = New-Item -ItemType Directory -Force -Path $dotAug
+            $pairs = @(
+                @{ Src = $memRoot;                            Dst = (Join-Path $dotAug 'memory') },
+                @{ Src = (Join-Path $repoRoot '.augment\scripts'); Dst = (Join-Path $dotAug 'scripts') },
+                @{ Src = (Join-Path $repoRoot '.augment\config');  Dst = (Join-Path $dotAug 'config') }
+            )
+            $allOK = $true
+            foreach ($p in $pairs) {
+                if (-not (Test-Path $p.Src)) { continue }
+                $rc = & robocopy $p.Src $p.Dst /MIR /R:1 /W:1 /MT:4 /NFL /NDL /NP /NJH /NJS 2>&1
+                if ($LASTEXITCODE -ge 8) { $allOK = $false; Log "tier-3c mirror: $($p.Src) -> $($p.Dst) FAILED (robocopy exit=$LASTEXITCODE)" }
+            }
+            $singles = @(
+                @{ Src = (Join-Path $repoRoot '.augment\SESSION_LOG.md'); Dst = (Join-Path $dotAug 'SESSION_LOG.md') },
+                @{ Src = (Join-Path $repoRoot 'AGENTS.md');               Dst = (Join-Path $CatelMirrorRoot 'AGENTS.md') }
+            )
+            foreach ($s in $singles) {
+                if (Test-Path $s.Src) { Copy-Item -Path $s.Src -Destination $s.Dst -Force }
+            }
+            if ($allOK) { Log "tier-3c mirror: OK -> $CatelMirrorRoot" }
+        } catch { Log "tier-3c mirror: ERROR $($_.Exception.Message)" }
+    } else {
+        Log "tier-3c mirror: Catel OneDrive folder not found (tenant=$CatelTenantId), skipping"
+    }
+}
+
 
 # ============ PHASE 3b: GIT ============
 # Git writes benign warnings (e.g. CRLF/LF) to stderr; with the script-wide
