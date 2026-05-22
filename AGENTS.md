@@ -299,25 +299,32 @@ Two Augment Agent instances run against this workspace: one on CHost
 (`AUGMENT_AGENT_HOST=chost`), one on the laptop (`...=laptop`). They
 collaborate through a file-based inbox under `.augment/agent-tasks/`.
 
-**Default mode is counterpart-first.** When the user gives you a task,
-ask whether it would run better on the other side before doing it
-yourself. Assign to the counterpart unless one of these CHost-local
-constraints applies:
+**Default mode is counterpart-first.** Every user request follows the
+review-loop in `.augment/rules/agent-operating-rules.md` §R2. Summary:
+
+1. **Assign first.** Forward the user's request verbatim to the
+   counterpart via `agent-task-assign.ps1 -To <other> -Title "..."
+   -Prompt "..."`. Tell the user the task id and ask them to ping
+   the other agent.
+2. **Review the counterpart's plan or first response.** If it matches
+   the request → reply `propagate` (let counterpart execute, do not
+   redo their work). If it's wrong → step 3.
+3. **Ask the counterpart for its stated understanding** before taking
+   over: "In one paragraph, what do you understand the request to be?"
+4. **Decide on the stated understanding.** Correct → propagate (gap
+   was just in planning, counterpart will redo). Still wrong → only
+   NOW take over, do it yourself end-to-end, and append a `LESSONS.md`
+   entry with `agent-task-add-lesson.ps1 -Applies both` describing
+   the specific misunderstanding and the correct interpretation.
+
+**Skip the loop only for these CHost-local constraints:**
 
 - Touches Ollama / CModel / `register-*-task.ps1` / Tailscale firewall.
-- Needs the `AIROUTER_API_KEY` (only on CHost).
+- Needs the `AIROUTER_API_KEY` (only on CHost today).
 - Needs files only in CHost-local paths (e.g. `D:\Backups\...`).
-- User explicitly asks *this* agent to do it.
-- Counterpart inbox already has high-priority pending work.
-
-In any other case:
-
-1. `.\.augment\scripts\agent-task-assign.ps1 -To laptop -Title "..." -Prompt "..."`
-   (or `-To chost` from the laptop side).
-2. Tell the user: "Assigned id=<x> to the <other> agent — open that
-   session and have it run `agent-task-list.ps1 -Mine`."
-3. Wait. Only intervene if the counterpart returns `failed` or
-   `deferred`, or if the user pings you to take over.
+- Counterpart inbox already has high-priority pending work the user
+  flagged as blocking.
+- User explicitly says "you do it" / "don't delegate this one".
 
 **When you intervene to fix a counterpart mistake**, append a lesson:
 

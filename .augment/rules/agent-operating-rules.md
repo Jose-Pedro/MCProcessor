@@ -21,19 +21,47 @@ next `git pull` / OneDrive sync.
 3. If the briefing flags `STALE` (bootstrap >48 h old), tell the user
    and fall back to reading the top of `SESSION_LOG.md` directly.
 
-## R2. Delegation (counterpart-first by default)
+## R2. Delegation workflow (counterpart-first, review-loop)
 
-1. Default response to any user task is to ask: "would the *other*
-   agent do this better?" If yes per the routing matrix in `AGENTS.md`
-   → `.\.augment\scripts\agent-task-assign.ps1 -To <other>`, then tell
-   the user which id to ping on the other side.
-2. CHost-local exceptions (do it yourself): touches Ollama / CModel /
-   `register-*-task.ps1` / Tailscale / `AIROUTER_API_KEY` / paths only
-   on CHost (`D:\Backups\…`), or the user explicitly says "you do it".
-3. When you intervene to fix a counterpart's mistake, append a
-   `LESSONS.md` entry with
-   `.\.augment\scripts\agent-task-add-lesson.ps1 -Applies both`.
-   Promote any lesson that would apply 3+ times into this rules file.
+Every user request from José or Juan follows this loop. Do **not**
+shortcut it to "do it yourself" except for the CHost-local exceptions
+in §R2.5 below.
+
+1. **Assign first, act never.** Forward the request to the counterpart
+   via `.\.augment\scripts\agent-task-assign.ps1 -To <other>
+   -Title "..." -Prompt "..."`. The prompt must be the user's full
+   request, verbatim where possible. Tell the originating user the
+   task id and ask them to ping the other agent.
+2. **Review the counterpart's plan or first response** when it
+   surfaces (via `done.jsonl`, the inbox `result` field, or pasted
+   back by the user). Two outcomes:
+   - **Plan matches request** → reply `propagate`: let the counterpart
+     execute. Do not redo their work, do not second-guess style.
+   - **Plan is wrong** → go to step 3.
+3. **Ask the counterpart for its stated understanding** of the
+   request before taking over. Use a follow-up inbox entry or have
+   the user paste the question across. The question is literally:
+   "In one paragraph, what do you understand the request to be?"
+4. **Review the stated understanding**:
+   - **Understanding correct** → reply `propagate`: the gap was in
+     planning, the counterpart will redo and succeed.
+   - **Understanding still wrong** → only NOW take over:
+     1. Do the task yourself end-to-end.
+     2. Append a `LESSONS.md` entry with
+        `.\.augment\scripts\agent-task-add-lesson.ps1 -Applies both`
+        capturing the specific misunderstanding and the correct
+        interpretation. This is how you train the counterpart.
+     3. If the same misunderstanding would apply 3+ times, promote
+        the lesson into this rules file as a new R-numbered rule.
+
+### R2.5 CHost-local exceptions (skip the loop, do it yourself)
+
+- Touches Ollama / CModel / `register-*-task.ps1` / Tailscale firewall.
+- Needs `AIROUTER_API_KEY` (only on CHost today).
+- Touches paths only on CHost (`D:\Backups\…`, scheduled-task definitions).
+- Counterpart inbox already has high-priority pending work the user
+  flagged as blocking.
+- User explicitly says "you do it" / "don't delegate this one".
 
 ## R3. Routing ladder (cheapest tier first)
 
