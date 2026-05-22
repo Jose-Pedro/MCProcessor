@@ -15,7 +15,7 @@
 param(
     [int]$WindowMinutes = 30,
     [switch]$NoLLM,
-    [string]$OllamaBase  = 'http://127.0.0.1:11434',
+    [string]$OllamaBase  = '',
     [string]$WriterModel = 'qwen2.5-coder:7b-instruct-q4_K_M'
 )
 
@@ -26,6 +26,21 @@ $augDir    = Join-Path $root '.augment'
 $logFile   = Join-Path $augDir 'SESSION_LOG.md'
 $state     = Join-Path $augDir '.auto-checkpoint.state.json'
 $worklog   = Join-Path $augDir '.auto-checkpoint.log'
+
+# Resolve OllamaBase from config based on host. CHost -> loopback;
+# anything else -> CHost tailnet IP. Hand-supplied -OllamaBase wins.
+if (-not $OllamaBase) {
+    $self = if ($env:AUGMENT_AGENT_HOST) { $env:AUGMENT_AGENT_HOST }
+            elseif ($env:COMPUTERNAME -match 'CHOST|WORK') { 'chost' }
+            else { 'laptop' }
+    $cfgPath = Join-Path $augDir 'config\ollama.config.json'
+    if (Test-Path $cfgPath) {
+        try {
+            $cfg = Get-Content $cfgPath -Raw | ConvertFrom-Json
+            $OllamaBase = if ($self -eq 'chost') { $cfg.host.chost } else { $cfg.host.tailnet }
+        } catch { $OllamaBase = 'http://127.0.0.1:11434' }
+    } else { $OllamaBase = 'http://127.0.0.1:11434' }
+}
 
 function Log($m) { Add-Content -Path $worklog -Value ("{0}  {1}" -f (Get-Date -Format s), $m) -Encoding UTF8 }
 
