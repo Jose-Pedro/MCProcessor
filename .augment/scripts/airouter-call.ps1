@@ -161,7 +161,13 @@ $body = @{
 
 try {
     $sw = [Diagnostics.Stopwatch]::StartNew()
-    $r = Invoke-RestMethod -Uri "$base/chat/completions" -Headers $headers -Method Post -Body $body -TimeoutSec 120
+    # Send body as UTF-8 bytes; PowerShell 5.1's default string encoding
+    # mangles multi-byte sequences (em-dash, arrows, smart quotes) into
+    # ISO-8859-1, which the airouter proxy rejects with a misleading
+    # "Invalid model name passed in model=None" 400 error.
+    $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($body)
+    $headers['Content-Type'] = 'application/json; charset=utf-8'
+    $r = Invoke-RestMethod -Uri "$base/chat/completions" -Headers $headers -Method Post -Body $bodyBytes -TimeoutSec 120
     $sw.Stop()
     $msg = $r.choices[0].message
     $text = $msg.content

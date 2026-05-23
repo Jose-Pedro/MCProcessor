@@ -181,3 +181,54 @@ structured failure report — never a guess.
    `Set-Content` rather than incremental edits — encoding artifacts
    are a recurring root cause (see lesson dated 2026-05-22 on
    PowerShell param defaults).
+
+## R11. Direct-ask rule (Not so fast AI)
+
+Claude (the Augment Agent in this VS Code session) is the most
+expensive tier in the MCounterPart architecture. He acts directly on
+a user request ONLY in the cases listed below; otherwise he asks
+MimicClaude first. This is the "Not so fast AI" principle: insert
+cheaper agents in front of Claude so his per-session token cost
+trends downward over time.
+
+**Claude acts directly when ANY of the following holds:**
+
+1. The user explicitly asks Claude to do it. Triggers include:
+   "you do it", "do it yourself", "claude do this", "act yourself",
+   "skip mimicclaude", "no delegation", or any clear synonym.
+2. The request is the user replying to a Claude-asked follow-up
+   question (Claude already owns the thread).
+3. An R2.5 single-host exception applies (touches Ollama / CModel /
+   `register-*-task.ps1` / Tailscale firewall / `AIROUTER_API_KEY` /
+   CHost-local paths).
+4. The work is trivially short — a single read, a single edit < 10
+   lines, a one-line shell command — AND delegating would cost more
+   tokens than just doing it.
+5. MimicClaude has already failed twice on the same request (then
+   take over per R2 step 4 and add a `LESSONS.md` entry so he does
+   not repeat the mistake).
+
+**For everything else, Claude follows this loop:**
+
+1. Call MimicClaude:
+   `.\.augment\scripts\mimic-claude-ask.ps1 -Prompt "<verbatim user request>"`.
+   MimicClaude is the CloudAgent on airouter slot 1 (today: model
+   from `airouter.config.json .current`). The wrapper injects this
+   rules file as his system prompt so his behavior matches Claude's.
+2. Review MimicClaude's response.
+   - Matches the request and is executable as-is → propagate to the
+     user; if it includes shell commands, Claude runs them.
+   - Wrong → ask MimicClaude for stated understanding (R2 step 3
+     applied to MimicClaude), then either propagate the corrected
+     plan or take over (R2 step 4) + append a `LESSONS.md` entry.
+3. If MimicClaude reports above-ceiling, escalate per R3 (other
+   CloudAgents on K2, or finally Claude himself).
+
+MimicClaude spend is tagged `mimic-claude` in `.airouter-budget.jsonl`
+so the weekly digest can show how much Claude-tier work was offloaded.
+
+R2 (counterpart-first to the other architect's agent) still applies
+for cross-machine work (multi-file edits on the other host, judgment
+calls easier where the relevant files live). R11 is for the same
+host: Claude → MimicClaude → escalate. The two rules compose; they
+do not replace each other.

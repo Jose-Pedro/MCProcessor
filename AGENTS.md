@@ -344,9 +344,25 @@ promote it into this `AGENTS.md` file as a workspace-wide rule.
 
 | Work type | Channel |
 |---|---|
-| Multi-file code edits, design decisions, judgment calls | Counterpart Augment agent (`agent-task-assign.ps1`) |
+| Anything Claude could do himself but doesn't have to | **MimicClaude** (`mimic-claude-ask.ps1`) — see R11 |
+| Multi-file code edits, design decisions, judgment calls (cross-machine) | Counterpart Augment agent (`agent-task-assign.ps1`) |
 | Scriptable airouter calls (summarize, classify, draft) | Clone-agent queue (`clone-agent-enqueue.ps1`) |
 | Embeddings, distillation, memory writes | CModel (cold-path only, never inline) |
-| One-shot exploration with no reusable output | Just do it inline |
+| One-shot exploration with no reusable output AND R11 exception applies | Just do it inline |
+
+### MimicClaude (Not so fast AI)
+
+MimicClaude is the specific CloudAgent on airouter slot 1 (today: the
+model in `airouter.config.json .current`) that Claude asks FIRST for
+every non-trivial user request. He is given this `AGENTS.md` +
+`agent-operating-rules.md` in his system prompt by
+`.\.augment\scripts\mimic-claude-ask.ps1`, so his behavior matches
+Claude's. His spend is tagged `mimic-claude` in `.airouter-budget.jsonl`.
+
+The complete rules for when Claude bypasses MimicClaude (5 cases) and
+the loop he runs when he doesn't bypass (3 steps) live in R11 of the
+rules file. R11 composes with R2 — R2 governs cross-machine delegation
+to the *other architect's* agent; R11 governs same-host delegation to
+MimicClaude. Both must be honored before Claude acts directly.
 
 
