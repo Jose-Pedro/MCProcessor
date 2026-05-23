@@ -5,9 +5,19 @@ this workspace (CHost + laptop). They distill the longer narrative in
 `AGENTS.md`. If a conflict appears, this file wins for the rule listed
 here; `AGENTS.md` wins for everything not listed here.
 
-Audience: both agents (CHost = José Pedro's, laptop = Juan's). Sync is
-OneDrive + git; a single edit here applies to both machines after the
-next `git pull` / OneDrive sync.
+Audience: both agents (desktop = CHost = José Pedro's, laptop = Juan's).
+Sync is OneDrive + git; a single edit here applies to both machines
+after the next `git pull` / OneDrive sync.
+
+**All rules below are symmetric.** They apply identically to both agents
+with roles reversed — "counterpart" means the *other* agent regardless
+of which side you are running on. Exceptions are called out inline
+(e.g. R2.5 lists CHost-local exceptions; an analogous laptop-local
+list does not exist today because the laptop has no unique resources
+the rules need to gate on — if that ever changes, add an R2.6).
+Counterpart-first delegation (R2) and the routing ladder (R3) MUST
+be honored from both sides before token-economy shortcuts (R4) are
+even considered.
 
 ## R1. Session start (one read, not four)
 
