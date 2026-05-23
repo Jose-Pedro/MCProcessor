@@ -26,7 +26,6 @@ $root      = Resolve-Path (Join-Path $scriptDir '..')
 $bootPath  = Join-Path $root 'SESSION_BOOTSTRAP.md'
 $inboxPath = Join-Path $root 'AGENT_INBOX.md'
 $lessPath  = Join-Path $root 'agent-tasks\LESSONS.md'
-$taskList  = Join-Path $scriptDir 'agent-task-list.ps1'
 
 $self = if ($env:AUGMENT_AGENT_HOST) { $env:AUGMENT_AGENT_HOST }
         elseif ($env:COMPUTERNAME -match 'CHOST|WORK') { 'chost' }
@@ -92,19 +91,35 @@ if (Test-Path $lessPath) {
 }
 [void]$out.AppendLine("")
 
-# 4. My pending tasks (live)
+# 4. My pending tasks (live) - inlined; do not call agent-task-list.ps1
+# because it uses Write-Host which is not captured by stdout redirection.
 [void]$out.AppendLine("## 4. My pending tasks (this host = $self)")
-if (Test-Path $taskList) {
-    try {
-        $tasks = & $taskList -Mine -Self $self 2>&1 | Out-String
+$tasksDir = Join-Path $root 'agent-tasks'
+$inboxFile = Join-Path $tasksDir "inbox-$self.jsonl"
+$donePath  = Join-Path $tasksDir 'done.jsonl'
+$doneIds = @{}
+if (Test-Path $donePath) {
+    Get-Content $donePath -Encoding UTF8 | ForEach-Object {
+        try { $d = $_ | ConvertFrom-Json; if ($d) { $doneIds[$d.id] = $d.status } } catch {}
+    }
+}
+if (Test-Path $inboxFile) {
+    $pending = @()
+    Get-Content $inboxFile -Encoding UTF8 | ForEach-Object {
+        try { $j = $_ | ConvertFrom-Json } catch { $j = $null }
+        if ($j -and -not $doneIds.ContainsKey($j.id)) { $pending += $j }
+    }
+    if ($pending.Count -eq 0) {
+        [void]$out.AppendLine("_(no pending tasks)_")
+    } else {
         [void]$out.AppendLine('```')
-        [void]$out.AppendLine($tasks.Trim())
+        foreach ($p in $pending) {
+            [void]$out.AppendLine(("{0}  [{1}]  from={2}  {3}" -f $p.id, $p.priority, $p.from, $p.title))
+        }
         [void]$out.AppendLine('```')
-    } catch {
-        [void]$out.AppendLine("_(agent-task-list failed: $($_.Exception.Message))_")
     }
 } else {
-    [void]$out.AppendLine("_(agent-task-list.ps1 missing)_")
+    [void]$out.AppendLine("_(no inbox file: $inboxFile)_")
 }
 
 # 5. Hint footer

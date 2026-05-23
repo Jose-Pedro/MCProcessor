@@ -28,5 +28,3 @@ date here.
 - **What went wrong:** Complex sub-expression default in param block (if/elseif/else with env var lookup as the default value)
 - **Correct approach:** Keep param defaults to plain literals like empty string. Move env-var/if-else logic AFTER the param block. If file still misbehaves after str-replace edits, rewrite via PS Set-Content to clear hidden-char artifacts.
 - **Applies to:** both
-
-(no lessons yet)
