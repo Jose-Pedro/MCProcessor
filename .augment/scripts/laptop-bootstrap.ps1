@@ -71,9 +71,10 @@ try {
         }
     } else { $report.ollamaReach = "config missing: $cfgPath" }
 
-    # 4. Scheduled task. Laptop uses StartMinuteOffset=16 so its fires
-    # land at HH:16/HH:46 instead of CHost's HH:01/HH:31, avoiding
-    # OneDrive conflict copies on SESSION_LOG.md.
+    # 4. Scheduled tasks. AutoCheckpoint uses StartMinuteOffset=16 on
+    # laptop so its fires land at HH:16/HH:46 instead of CHost's
+    # HH:01/HH:31, avoiding OneDrive conflict copies. InboxNotifier
+    # runs every 2 minutes and pops toasts for new inbox tasks.
     if (-not $SkipTaskRegistration) {
         try {
             & (Join-Path $scriptDir 'register-auto-checkpoint-task.ps1') -StartMinuteOffset 16 | Out-Null
@@ -85,7 +86,17 @@ try {
         } catch {
             $report.scheduledTask = "FAILED: $($_.Exception.Message)"
         }
-    } else { $report.scheduledTask = "(skipped)" }
+        try {
+            & (Join-Path $scriptDir 'register-inbox-notifier-task.ps1') | Out-Null
+            $t2 = Get-ScheduledTask -TaskName 'AugmentInboxNotifier' -EA 0
+            if ($t2) {
+                $nr2 = (Get-ScheduledTaskInfo $t2).NextRunTime
+                $report.inboxNotifier = "AugmentInboxNotifier registered, next run: $nr2"
+            } else { $report.inboxNotifier = "registration claimed success but task not found" }
+        } catch {
+            $report.inboxNotifier = "FAILED: $($_.Exception.Message)"
+        }
+    } else { $report.scheduledTask = "(skipped)"; $report.inboxNotifier = "(skipped)" }
 
     # 5. Inbox snapshot
     try {

@@ -122,6 +122,8 @@
 .augment/.airouter-budget.jsonl
 .augment/.auto-checkpoint.state.json
 .augment/.auto-checkpoint.log
+.augment/.inbox-notifier.state.json
+.augment/.inbox-notifier.log
 .augment/SESSION_BRIEFING.md
 .augment/clone-agent/.state.json
 .augment/clone-agent/.worker.lock
