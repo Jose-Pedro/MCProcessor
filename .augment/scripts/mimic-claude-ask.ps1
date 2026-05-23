@@ -31,7 +31,9 @@ param(
     [string]$Tag = 'mimic-claude',
 
     [switch]$IncludeAgents,
-    [switch]$DryRun
+    [switch]$DryRun,
+    [int]$ToastAfterSec = 30,
+    [switch]$NoToast
 )
 
 $ErrorActionPreference = 'Stop'
@@ -124,4 +126,35 @@ $splat = @{
 if ($OutputFile) { $splat['OutputFile'] = $OutputFile }
 if ($Model)      { $splat['Model']      = $Model }
 
-& $callee @splat
+# Schedule a background latency toast: if MimicClaude is still thinking
+# after $ToastAfterSec, a native NotifyIcon balloon nudges the architect
+# so they don't sit silent during a long reasoning pass. Killed below
+# whichever way the foreground call returns.
+$toastJob = $null
+if (-not $NoToast -and $ToastAfterSec -gt 0) {
+    $toastJob = Start-Job -ScriptBlock {
+        param($delay, $promptPreview)
+        Start-Sleep -Seconds $delay
+        try {
+            Add-Type -AssemblyName System.Windows.Forms -EA Stop
+            Add-Type -AssemblyName System.Drawing       -EA Stop
+            $bal = New-Object System.Windows.Forms.NotifyIcon
+            $bal.Icon = [System.Drawing.SystemIcons]::Information
+            $bal.BalloonTipTitle = "MimicClaude still thinking ($delay s+)"
+            $bal.BalloonTipText  = $promptPreview
+            $bal.Visible = $true
+            $bal.ShowBalloonTip(15000)
+            Start-Sleep -Milliseconds 800
+            $bal.Dispose()
+        } catch {}
+    } -ArgumentList $ToastAfterSec, ($Prompt.Substring(0, [Math]::Min(120, $Prompt.Length)))
+}
+
+try {
+    & $callee @splat
+} finally {
+    if ($toastJob) {
+        Stop-Job  -Job $toastJob -EA SilentlyContinue
+        Remove-Job -Job $toastJob -Force -EA SilentlyContinue
+    }
+}

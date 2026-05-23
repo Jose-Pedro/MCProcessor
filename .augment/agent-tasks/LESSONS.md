@@ -23,6 +23,12 @@ date here.
 
 ## Entries
 
+## 2026-05-23 02:44 - PowerShell 5.1 mangles UTF-8 in Invoke-RestMethod string body
+- **Context:** airouter-call.ps1 sending a JSON body containing em-dashes/arrows/smart quotes (e.g. the full agent-operating-rules.md as a system prompt)
+- **What went wrong:** Passing the JSON string directly to Invoke-RestMethod -Body. PS 5.1 silently encodes the string in the platform ANSI code page (CP-1252), so multi-byte UTF-8 sequences become garbage bytes. The airouter proxy fails to parse the body and returns a misleading 400 'Invalid model name passed in model=None'.
+- **Correct approach:** Convert the body to UTF-8 bytes first: $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($body); set Content-Type 'application/json; charset=utf-8'; pass $bodyBytes to -Body. Apply this to every wrapper that POSTs JSON via Invoke-RestMethod in PS 5.1.
+- **Applies to:** both
+
 ## 2026-05-23 02:08 - OneDrive locks .git/logs/HEAD causing 'cannot update ref HEAD'
 - **Context:** Restoration commit on laptop failed with: 'unable to append to .git/logs/HEAD: Invalid argument'. Root cause: OneDrive holds an open handle on .git/logs/HEAD during sync, racing git's atomic append.
 - **What went wrong:** Treating the error as a real git problem and retrying blindly, or stashing.
