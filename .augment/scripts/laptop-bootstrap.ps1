@@ -71,10 +71,12 @@ try {
         }
     } else { $report.ollamaReach = "config missing: $cfgPath" }
 
-    # 4. Scheduled task
+    # 4. Scheduled task. Laptop uses StartMinuteOffset=16 so its fires
+    # land at HH:16/HH:46 instead of CHost's HH:01/HH:31, avoiding
+    # OneDrive conflict copies on SESSION_LOG.md.
     if (-not $SkipTaskRegistration) {
         try {
-            & (Join-Path $scriptDir 'register-auto-checkpoint-task.ps1') | Out-Null
+            & (Join-Path $scriptDir 'register-auto-checkpoint-task.ps1') -StartMinuteOffset 16 | Out-Null
             $t = Get-ScheduledTask -TaskName 'AugmentAutoCheckpoint' -EA 0
             if ($t) {
                 $nr = (Get-ScheduledTaskInfo $t).NextRunTime

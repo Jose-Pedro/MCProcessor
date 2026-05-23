@@ -4,8 +4,13 @@
 #
 [CmdletBinding()]
 param(
-    [string]$TaskName       = 'AugmentAutoCheckpoint',
-    [int]   $IntervalMinutes = 30
+    [string]$TaskName        = 'AugmentAutoCheckpoint',
+    [int]   $IntervalMinutes = 30,
+    # Minute-of-the-hour offset for the first fire (0..59). Use a
+    # different value on each host so the two machines don't write
+    # SESSION_LOG.md simultaneously over OneDrive.
+    # Convention: CHost=1 (HH:01/HH:31), laptop=16 (HH:16/HH:46).
+    [int]   $StartMinuteOffset = 1
 )
 
 $ErrorActionPreference = 'Stop'
@@ -15,7 +20,7 @@ if (-not (Test-Path $target)) { throw "missing $target" }
 
 $action    = New-ScheduledTaskAction -Execute 'powershell.exe' `
               -Argument ("-NoProfile -ExecutionPolicy Bypass -File `"{0}`"" -f $target)
-$trigger   = New-ScheduledTaskTrigger -Once -At (Get-Date).Date.AddMinutes(1) `
+$trigger   = New-ScheduledTaskTrigger -Once -At (Get-Date).Date.AddMinutes($StartMinuteOffset) `
               -RepetitionInterval (New-TimeSpan -Minutes $IntervalMinutes) `
               -RepetitionDuration ([TimeSpan]::FromDays(365))
 $settings  = New-ScheduledTaskSettingsSet -StartWhenAvailable `
