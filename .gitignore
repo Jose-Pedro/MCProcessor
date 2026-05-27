@@ -121,14 +121,26 @@
 .augment/.cache/
 .augment/.airouter-budget.jsonl
 .augment/.auto-checkpoint.state.json
+.augment/.auto-checkpoint.state-*.json
 .augment/.auto-checkpoint.log
 .augment/.inbox-notifier.state.json
+.augment/.inbox-notifier.state-*.json
+.augment/.inbox-notifier.state--*.json
 .augment/.inbox-notifier.log
 .augment/SESSION_BRIEFING.md
+.augment/SESSION_LOG-*.md
+.augment/SESSION_LOG--*.md
 .augment/clone-agent/.state.json
 .augment/clone-agent/.worker.lock
 .augment/clone-agent/worker.log
 .augment/clone-agent/results/
+.augment/clone-agent/queue.jsonl
+.augment/agent-tasks/done.jsonl
+.augment/agent-tasks/done-*.jsonl
+.augment/agent-tasks/inbox-*.jsonl
+.augment/memory/raw/*.jsonl
+.augment/memory/distilled/*.jsonl
+.augment/memory/index/*.jsonl
 
 # ============================================================
 # Local tooling cache
