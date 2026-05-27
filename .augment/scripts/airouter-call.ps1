@@ -167,7 +167,15 @@ try {
     # "Invalid model name passed in model=None" 400 error.
     $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($body)
     $headers['Content-Type'] = 'application/json; charset=utf-8'
-    $r = Invoke-RestMethod -Uri "$base/chat/completions" -Headers $headers -Method Post -Body $bodyBytes -TimeoutSec 120
+    # PS 5.1's Invoke-RestMethod ignores the response charset and decodes JSON
+    # bodies as ISO-8859-1, producing mojibake on every multi-byte codepoint
+    # (e.g. "experiência" -> "experiÃªncia"). Use Invoke-WebRequest, read the
+    # raw response stream, and decode UTF-8 explicitly.
+    $resp = Invoke-WebRequest -Uri "$base/chat/completions" -Headers $headers -Method Post -Body $bodyBytes -TimeoutSec 300 -UseBasicParsing
+    $ms = New-Object System.IO.MemoryStream
+    $resp.RawContentStream.CopyTo($ms)
+    $rawBytes = $ms.ToArray()
+    $r = [System.Text.Encoding]::UTF8.GetString($rawBytes) | ConvertFrom-Json
     $sw.Stop()
     $msg = $r.choices[0].message
     $text = $msg.content

@@ -23,6 +23,36 @@ date here.
 
 ## Entries
 
+## 2026-05-25 21:55 - Excel Dashboard should derive categories from data, not hardcode them
+- **Context:** Original nuno-build-roles-xlsx.ps1 hardcoded Hotel/QC/Sales COUNTIF rows. When seed grew from 32 employers / 3 profiles to 110 employers / 10 profiles, the Dashboard would have under-reported by hiding 7 new buckets entirely.
+- **What went wrong:** Hardcode Cells.Item(5,2).Formula = COUNTIF(B:B, hotel) etc. for each known profile bucket.
+- **Correct approach:** Define an [ordered] map of profile-code -> display-label, iterate it and emit a Dashboard row only if at least one employer has that profile. Append a second pass for any unknown profile codes encountered in the data (label them [<code>]). Dashboard then adapts to any seed without code edits. See nuno-build-roles-xlsx.ps1 lines 134-170.
+- **Applies to:** both
+
+## 2026-05-25 21:55 - Salvage truncated JSON arrays from heavy-reasoning models
+- **Context:** Qwen3.6 / airouter; long structured outputs hit -MaxTokens 16384 mid-array (e.g. nuno-roles-expand burned ~6k reasoning, returned 110 employer objects truncated mid-Sonae entry, no closing ] for employers, no job_board_searches at all)
+- **What went wrong:** Re-run with bigger max_tokens (no headroom - model already at ceiling), or discard the partial response and seed manually
+- **Correct approach:** Locate array opener with IndexOf([, IndexOf(employers)), slice body, find LastIndexOf(},) to cut after last complete object, reconstruct as { <key>: [ <body> ] } and ConvertFrom-Json. Then merge with whatever the model didnt reach (board searches in our case) from the prior seed. See nuno-roles-merge-expand.ps1 for the canonical pattern.
+- **Applies to:** both
+
+## 2026-05-25 21:54 - Excel COM rebuilds: probe open processes first, output to sibling filename if locked
+- **Context:** nuno-build-roles-xlsx.ps1 second invocation against nuno-roles.xlsx while user's Excel session (PID 14056) had it open - Remove-Item failed with IOException, whole build aborted at line 60
+- **What went wrong:** Run the builder against the target filename and let Remove-Item throw. Or try to Stop-Process the user's Excel - destroys unsaved work.
+- **Correct approach:** Before Remove-Item, run Get-Process EXCEL,WINWORD -ErrorAction SilentlyContinue | Select Id,MainWindowTitle. If MainWindowTitle matches the target file basename, switch -OutFile to a sibling (e.g. -expanded.xlsx) and report the rename to the user. Only Stop-Process Excel/Word PIDs whose MainWindowTitle is empty (orphan COM zombies from prior builder runs).
+- **Applies to:** both
+
+## 2026-05-25 21:54 - Compress-Archive fails on files held by Word/Excel; stage-then-zip via .NET
+- **Context:** Building nuno-job-pack-2026-05-25.zip while user had nuno-roles.xlsx open in Excel and pt\\linkedin-guide-pt.docx + pt\\reclet-pt.docx open in Word
+- **What went wrong:** Call Compress-Archive -Path \C:\Users\zeped\OneDrive - Palácio dos Afetos lda\GODMODE\Nuno-Job\03_deliverables\\* -DestinationPath \C:\Users\zeped\OneDrive - Palácio dos Afetos lda\GODMODE\Nuno-Job\nuno-job-pack-2026-05-25.zip directly. It (1) floods stderr with hundreds of progress-bar lines (transcript pollution), (2) opens source files with implicit exclusive access and fails with ZipArchiveHelper: The process cannot access the file ... because it is being used by another process, leaving a 0-byte zip on disk.
+- **Correct approach:** Stage to \C:\Users\zeped\AppData\Local\Temp first: for each source file, open with [System.IO.File]::Open(path, Open, Read, FileShare.ReadWrite) and copy to staging (Office holds files with NO sharing, so 2-3 may still fail - log and continue, do not abort). Then [System.IO.Compression.ZipFile]::CreateFromDirectory(\C:\Users\zeped\AppData\Local\Temp\nuno-pack-21e3bdd6, \C:\Users\zeped\OneDrive - Palácio dos Afetos lda\GODMODE\Nuno-Job\nuno-job-pack-2026-05-25.zip, Optimal, \False) - silent, no progress events, no NativeCommandError noise. Delete staging at end.
+- **Applies to:** both
+
+## 2026-05-25 15:41 - airouter is flat-price; do not budget tokens like Claude
+- **Context:** Routing decisions for clone-agent and remote-master-call. Default heuristic was to keep max_tokens tight to save budget.
+- **What went wrong:** Treating airouter max_tokens as a cost lever (e.g. max_tokens=6144 for a multi-doc generation). Result: reasoning models like Qwen3.6 burn the entire budget on reasoning_tokens and return status=empty with text_tokens=0.
+- **Correct approach:** airouter models are FLAT-PRICE. Token caps are a Claude-license / agent-seat constraint, not an airouter constraint. For reasoning models, set max_tokens >= 16384 so content survives after reasoning. Also: each airouter key supports 3 concurrent calls -- batch parallel where possible.
+- **Applies to:** both
+
 ## 2026-05-23 02:44 - PowerShell 5.1 mangles UTF-8 in Invoke-RestMethod string body
 - **Context:** airouter-call.ps1 sending a JSON body containing em-dashes/arrows/smart quotes (e.g. the full agent-operating-rules.md as a system prompt)
 - **What went wrong:** Passing the JSON string directly to Invoke-RestMethod -Body. PS 5.1 silently encodes the string in the platform ANSI code page (CP-1252), so multi-byte UTF-8 sequences become garbage bytes. The airouter proxy fails to parse the body and returns a misleading 400 'Invalid model name passed in model=None'.
